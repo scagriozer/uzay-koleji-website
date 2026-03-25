@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayıt & Başvuru | Uzay Koleji</title>
+<meta name="description" content="Uzay Koleji'ne kayıt ve başvuru formu. %100 ücretsiz mesleki lise eğitimi için hemen başvur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root{
+  --color-accent:#C9A227;
+  --color-accent-dark:#a07d18;
+  --color-accent-light:#e8c55a;
+  --color-accent-bg:rgba(201,162,39,0.08);
+  --color-accent-border:rgba(201,162,39,0.25);
+  --color-navy:#1B2D4F;
+  --color-sky:#4A90D9;
+  --font-serif:'Merriweather',serif;
+  --font-sans:'Poppins',sans-serif;
+  --font-body:'Roboto',sans-serif;
+}
+
+/* ── RESET ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);color:#e2e8f0;background:#0a1628;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ── ANNOUNCEMENT BAR ───────────────────────────────────── */
+.ann-bar{
+  background:var(--color-accent);
+  color:#0a1628;
+  font-family:var(--font-sans);
+  font-size:.75rem;
+  font-weight:600;
+  text-align:center;
+  padding:.45rem 1rem;
+  white-space:nowrap;
+  overflow:hidden;
+  position:relative;
+}
+.ann-bar span{
+  display:inline-block;
+  animation:ticker 28s linear infinite;
+}
+@keyframes ticker{0%{transform:translateX(60vw);}100%{transform:translateX(-100%);}}
+
+/* ── NAVBAR ─────────────────────────────────────────────── */
+.navbar{
+  position:sticky;top:0;z-index:999;
+  background:rgba(10,22,40,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  transition:box-shadow .3s;
+}
+.navbar.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.5);}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.5rem;
+}
+.nav-logo{
+  font-family:var(--font-serif);
+  font-size:1.35rem;font-weight:900;
+  color:#fff;letter-spacing:-.5px;
+  display:flex;align-items:center;gap:.5rem;
+}
+.nav-logo .logo-star{color:var(--color-accent);font-size:1.5rem;}
+.nav-links{display:flex;align-items:center;gap:1.8rem;}
+.nav-links a{
+  font-family:var(--font-sans);font-size:.82rem;font-weight:500;
+  color:rgba(255,255,255,.75);transition:color .2s;
+}
+.nav-links a:hover{color:var(--color-accent);}
+.nav-links .nav-cta{
+  background:var(--color-accent);color:#0a1628;
+  padding:.45rem 1.1rem;border-radius:6px;font-weight:700;
+  transition:background .2s,transform .15s;
+}
+.nav-links .nav-cta:hover{background:var(--color-accent-light);transform:translateY(-1px);}
+.nav-dropdown{position:relative;}
+.nav-dropdown>a::after{content:" ▾";font-size:.65rem;opacity:.6;}
+.dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 8px);left:0;
+  background:rgba(15,28,52,0.98);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.1);border-radius:10px;
+  padding:.6rem 0;min-width:200px;box-shadow:0 8px 32px rgba(0,0,0,.5);
+}
+.nav-dropdown:hover .dropdown-menu{display:block;}
+.dropdown-menu a{
+  display:block;padding:.55rem 1.2rem;
+  font-family:var(--font-sans);font-size:.8rem;font-weight:500;
+  color:rgba(255,255,255,.75);transition:all .15s;
+}
+.dropdown-menu a:hover{color:var(--color-accent);background:var(--color-accent-bg);padding-left:1.5rem;}
+.nav-hamburger{
+  display:none;background:none;border:none;
+  cursor:pointer;padding:.3rem;flex-direction:column;gap:5px;
+}
+.nav-hamburger span{
+  display:block;width:24px;height:2px;
+  background:rgba(255,255,255,.8);border-radius:2px;
+  transition:all .3s;
+}
+.mobile-menu{
+  display:none;
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(8,18,34,0.98);
+  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  padding:2rem;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  font-family:var(--font-sans);font-size:1.2rem;font-weight:600;
+  color:rgba(255,255,255,.85);
+}
+.mobile-menu a:hover{color:var(--color-accent);}
+.mobile-close{
+  position:absolute;top:1.2rem;right:1.4rem;
+  background:none;border:none;color:rgba(255,255,255,.6);
+  font-size:1.8rem;cursor:pointer;
+}
+
+/* ── HERO OVERLAY ───────────────────────────────────────── */
+.hero-anim-overlay{
+  position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;
+}
+
+/* document float animation */
+@keyframes doc-float{
+  0%{transform:translateY(0) rotate(var(--r,0deg));opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:.7;}
+  100%{transform:translateY(-110px) rotate(var(--r,0deg));opacity:0;}
+}
+@keyframes check-pop{
+  0%{transform:scale(0);opacity:0;}
+  40%{transform:scale(1.2);opacity:1;}
+  100%{transform:scale(1);opacity:.8;}
+}
+@keyframes ring-expand{
+  0%{transform:scale(1);opacity:.5;}
+  100%{transform:scale(2.5);opacity:0;}
+}
+@keyframes pencil-bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+/* ── PAGE HERO ──────────────────────────────────────────── */
+.page-hero{
+  position:relative;
+  background:linear-gradient(140deg,#0a1628 0%,#0e1e3a 35%,#12264a 65%,#0a1628 100%);
+  min-height:88vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 40%,rgba(201,162,39,.12) 0%,transparent 65%),
+             radial-gradient(ellipse at 20% 80%,rgba(74,144,217,.08) 0%,transparent 55%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1200px;margin:0 auto;padding:5rem 1.5rem 4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--color-accent-bg);border:1px solid var(--color-accent-border);
+  border-radius:50px;padding:.4rem .9rem;margin-bottom:1.2rem;
+  font-family:var(--font-sans);font-size:.75rem;font-weight:600;color:var(--color-accent);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.hero-title{
+  font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:900;line-height:1.2;color:#fff;margin-bottom:1.2rem;
+}
+.hero-title em{font-style:normal;color:var(--color-accent);}
+.hero-desc{
+  font-family:var(--font-sans);font-size:1rem;color:rgba(255,255,255,.72);
+  line-height:1.8;margin-bottom:2rem;
+}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem;}
+.hero-pill{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:50px;padding:.35rem .85rem;
+  font-family:var(--font-sans);font-size:.75rem;font-weight:500;color:rgba(255,255,255,.75);
+}
+.hero-pill.gold{
+  background:var(--color-accent-bg);border-color:var(--color-accent-border);
+  color:var(--color-accent);
+}
+
+/* ── HERO FORM ──────────────────────────────────────────── */
+.hero-form-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  padding:2rem;
+  backdrop-filter:blur(8px);
+}
+.hero-form-card h3{
+  font-family:var(--font-sans);font-size:1.1rem;font-weight:700;
+  color:#fff;margin-bottom:.4rem;
+}
+.hero-form-card .form-sub{
+  font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:1.5rem;
+}
+.form-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;}
+.form-field label{
+  font-family:var(--font-sans);font-size:.75rem;font-weight:600;
+  color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.05em;
+}
+.form-field input,
+.form-field select,
+.form-field textarea{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:.7rem 1rem;
+  font-family:var(--font-body);font-size:.9rem;color:#fff;
+  outline:none;transition:border-color .2s,background .2s;
+  -webkit-appearance:none;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder{color:rgba(255,255,255,.3);}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{
+  border-color:var(--color-accent);
+  background:rgba(201,162,39,.06);
+}
+.form-field select option{background:#0e1e3a;color:#e2e8f0;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-privacy{
+  font-size:.72rem;color:rgba(255,255,255,.4);
+  text-align:center;margin-top:.8rem;line-height:1.5;
+}
+.form-privacy a{color:var(--color-accent);text-decoration:underline;}
+.btn-submit{
+  width:100%;padding:.9rem;
+  background:linear-gradient(135deg,var(--color-accent),var(--color-accent-dark));
+  color:#0a1628;border:none;border-radius:8px;
+  font-family:var(--font-sans);font-size:.95rem;font-weight:800;
+  cursor:pointer;transition:transform .15s,box-shadow .2s;
+  letter-spacing:.03em;margin-top:.4rem;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,162,39,.4);}
+
+/* ── SECTIONS ───────────────────────────────────────────── */
+section{padding:5rem 1.5rem;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-badge{
+  display:inline-block;
+  background:var(--color-accent-bg);border:1px solid var(--color-accent-border);
+  border-radius:50px;padding:.3rem .9rem;
+  font-family:var(--font-sans);font-size:.72rem;font-weight:700;
+  color:var(--color-accent);letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:.8rem;
+}
+.section-title{
+  font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.4rem);
+  font-weight:900;color:#fff;margin-bottom:.6rem;line-height:1.25;
+}
+.section-title em{font-style:normal;color:var(--color-accent);}
+.section-desc{
+  font-family:var(--font-sans);font-size:.95rem;
+  color:rgba(255,255,255,.6);max-width:560px;line-height:1.7;
+}
+.section-header{margin-bottom:3rem;}
+
+/* ── WHY CARDS ──────────────────────────────────────────── */
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.why-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:1.8rem 1.5rem;
+  transition:transform .2s,border-color .2s;
+}
+.why-card:hover{transform:translateY(-4px);border-color:var(--color-accent-border);}
+.why-icon{font-size:2rem;margin-bottom:1rem;}
+.why-card h4{
+  font-family:var(--font-sans);font-size:1rem;font-weight:700;
+  color:#fff;margin-bottom:.5rem;
+}
+.why-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.65;}
+
+/* ── PROCESS STEPS ──────────────────────────────────────── */
+.steps-section{background:linear-gradient(180deg,#0a1628 0%,#0d1e38 50%,#0a1628 100%);}
+.steps-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+  counter-reset:step-counter;
+}
+.step-card{
+  text-align:center;padding:2rem 1.2rem;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;position:relative;
+}
+.step-card::after{
+  content:'→';
+  position:absolute;right:-1.1rem;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.15);font-size:1.2rem;
+}
+.step-card:last-child::after{display:none;}
+.step-num{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--color-accent),var(--color-accent-dark));
+  color:#0a1628;font-family:var(--font-sans);font-size:1.1rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+}
+.step-card h4{
+  font-family:var(--font-sans);font-size:.95rem;font-weight:700;
+  color:#fff;margin-bottom:.4rem;
+}
+.step-card p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.6;}
+
+/* ── FULL FORM SECTION ──────────────────────────────────── */
+.form-section{background:rgba(255,255,255,.02);}
+.form-layout{
+  display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;
+}
+.form-sidebar h3{
+  font-family:var(--font-sans);font-size:1.3rem;font-weight:700;
+  color:#fff;margin-bottom:1rem;
+}
+.sidebar-list{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem;}
+.sidebar-item{
+  display:flex;align-items:flex-start;gap:.75rem;
+  font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.5;
+}
+.sidebar-item .s-icon{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--color-accent-bg);border:1px solid var(--color-accent-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:.75rem;margin-top:.1rem;
+}
+.contact-box{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:1.2rem;
+}
+.contact-box p{font-family:var(--font-sans);font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.6rem;}
+.contact-box a{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--font-sans);font-size:.85rem;font-weight:600;color:var(--color-accent);
+  margin-bottom:.5rem;
+}
+.big-form{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:2.5rem;
+}
+.big-form .form-section-title{
+  font-family:var(--font-sans);font-size:.75rem;font-weight:700;
+  color:var(--color-accent);text-transform:uppercase;letter-spacing:.12em;
+  margin-bottom:1.2rem;margin-top:2rem;padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.big-form .form-section-title:first-child{margin-top:0;padding-top:0;border-top:none;}
+.checkbox-row{
+  display:flex;align-items:flex-start;gap:.75rem;
+  font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:1rem;
+}
+.checkbox-row input[type=checkbox]{
+  width:16px;height:16px;flex-shrink:0;margin-top:.1rem;
+  accent-color:var(--color-accent);cursor:pointer;
+}
+.checkbox-row a{color:var(--color-accent);text-decoration:underline;}
+.form-success{
+  display:none;text-align:center;padding:3rem 2rem;
+}
+.form-success .success-icon{font-size:3rem;margin-bottom:1rem;}
+.form-success h3{
+  font-family:var(--font-sans);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.6rem;
+}
+.form-success p{font-size:.9rem;color:rgba(255,255,255,.6);}
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.faq-list{display:flex;flex-direction:column;gap:.8rem;max-width:760px;margin:0 auto;}
+.faq-item{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;overflow:hidden;
+  transition:border-color .2s;
+}
+.faq-item:hover,.faq-item[open]{border-color:var(--color-accent-border);}
+.faq-item summary{
+  padding:1.1rem 1.3rem;cursor:pointer;
+  font-family:var(--font-sans);font-size:.9rem;font-weight:600;color:#fff;
+  display:flex;justify-content:space-between;align-items:center;
+  list-style:none;
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{
+  content:'+';font-size:1.2rem;color:var(--color-accent);
+  flex-shrink:0;margin-left:1rem;transition:transform .2s;
+}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item .faq-body{
+  padding:0 1.3rem 1.1rem;
+  font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.7;
+}
+
+/* ── FINAL CTA ──────────────────────────────────────────── */
+.final-cta{
+  background:linear-gradient(135deg,#6a4808 0%,#4a3005 50%,#2a1a02 100%);
+  border-radius:20px;
+  padding:3.5rem 2rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center top,rgba(201,162,39,.25) 0%,transparent 65%);
+}
+.final-cta-inner{position:relative;z-index:1;}
+.final-cta h2{
+  font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:900;color:#fff;margin-bottom:.8rem;
+}
+.final-cta p{
+  font-family:var(--font-sans);font-size:1rem;
+  color:rgba(255,255,255,.75);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;
+}
+.cta-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;}
+.btn-primary{
+  background:var(--color-accent);color:#0a1628;
+  padding:.85rem 2rem;border-radius:8px;
+  font-family:var(--font-sans);font-size:.9rem;font-weight:800;
+  transition:transform .15s,box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,162,39,.4);}
+.btn-outline{
+  border:2px solid rgba(255,255,255,.3);color:#fff;
+  padding:.85rem 2rem;border-radius:8px;
+  font-family:var(--font-sans);font-size:.9rem;font-weight:600;
+  transition:border-color .2s,background .2s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-outline:hover{border-color:var(--color-accent);background:var(--color-accent-bg);}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+footer{
+  background:#070f1f;
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:4rem 1.5rem 2rem;
+}
+.footer-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;
+  margin-bottom:3rem;
+}
+.footer-brand .brand-name{
+  font-family:var(--font-serif);font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:.6rem;
+}
+.footer-brand .brand-tagline{
+  font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:1.2rem;max-width:220px;
+}
+.footer-brand .brand-badges{display:flex;flex-wrap:wrap;gap:.4rem;}
+.footer-brand .brand-badge{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:50px;padding:.25rem .65rem;
+  font-family:var(--font-sans);font-size:.65rem;font-weight:600;color:rgba(255,255,255,.5);
+}
+.footer-col h4{
+  font-family:var(--font-sans);font-size:.78rem;font-weight:700;
+  color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.footer-col ul li a{
+  font-size:.8rem;color:rgba(255,255,255,.55);transition:color .2s;
+}
+.footer-col ul li a:hover{color:var(--color-accent);}
+.footer-bottom{
+  max-width:1200px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;
+}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.3);}
+
+/* ── WHATSAPP FLOAT ─────────────────────────────────────── */
+.whatsapp-float{
+  position:fixed;bottom:2rem;right:1.5rem;z-index:900;
+}
+.wa-btn{
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  transition:transform .2s,width .3s,border-radius .3s;
+  position:relative;z-index:2;overflow:hidden;
+}
+.wa-btn:hover{transform:scale(1.1);}
+.wa-btn svg{width:28px;height:28px;fill:#fff;}
+.wa-pulse{
+  position:absolute;inset:0;border-radius:50%;
+  background:rgba(37,211,102,.4);
+  animation:wa-ring 2s ease-out infinite;
+}
+.wa-pulse:nth-child(2){animation-delay:.5s;}
+@keyframes wa-ring{0%{transform:scale(1);opacity:.6;}100%{transform:scale(2.2);opacity:0;}}
+
+/* ── STICKY CTA BAR ─────────────────────────────────────── */
+.sticky-cta-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:800;
+  background:linear-gradient(90deg,#0a1628,#0e1e3a);
+  border-top:1px solid var(--color-accent-border);
+  padding:.85rem 1.2rem;
+  align-items:center;justify-content:space-between;gap:.8rem;
+}
+.sticky-cta-bar .cta-text{
+  font-family:var(--font-sans);font-size:.78rem;font-weight:600;color:rgba(255,255,255,.8);
+  flex:1;
+}
+.sticky-cta-bar .cta-text strong{color:var(--color-accent);}
+.sticky-cta-bar .cta-action{
+  background:var(--color-accent);color:#0a1628;
+  padding:.55rem 1.1rem;border-radius:6px;
+  font-family:var(--font-sans);font-size:.78rem;font-weight:800;
+  white-space:nowrap;flex-shrink:0;
+}
+
+/* ── REVEAL ─────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1024px){
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .steps-grid{grid-template-columns:repeat(2,1fr);}
+  .step-card::after{display:none;}
+  .form-layout{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .hero-content{grid-template-columns:1fr;}
+  .page-hero{min-height:auto;}
+  .hero-form-card{margin-top:2rem;}
+  .form-row{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .big-form{padding:1.5rem;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .sticky-cta-bar{display:flex;}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <span>✅ Başvurular Açık — 26 Nisan 2026 Bursluluk Sınavı · %100 Ücretsiz Mesleki Lise · Altıneller Güvencesi · Adana'nın En Kapsamlı Mesleki Eğitim Programları · Kontenjan Dolmadan Başvur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-star">★</span>
+      <span>Uzay Koleji</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a href="programlar/index.html">Programlar</a>
+        <div class="dropdown-menu">
+          <a href="programlar/havacilik.html">✈ Havacılık</a>
+          <a href="programlar/hemsirelik.html">🏥 Hemşire Yardımcılığı</a>
+          <a href="programlar/biyomedikal.html">🔬 Biyomedikal</a>
+          <a href="programlar/ebelik.html">👶 Ebelik</a>
+          <a href="programlar/saglik-bakim.html">❤ Sağlık Bakım</a>
+          <a href="programlar/enerji.html">⚡ Enerji</a>
+          <a href="programlar/elektrik-elektronik.html">💡 Elektrik-Elektronik</a>
+          <a href="programlar/gida-teknolojileri.html">🌾 Gıda Teknolojileri</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a href="#">Kampüsler</a>
+        <div class="dropdown-menu">
+          <a href="kampusler/cukurova.html">🏫 Çukurova Kampüsü</a>
+          <a href="kampusler/seyhan.html">🏫 Seyhan Kampüsü</a>
+          <a href="kampusler/yuregir.html">🏫 Yüreğir Kampüsü</a>
+        </div>
+      </div>
+      <a href="bursluluk-sinavi.html">Bursluluk Sınavı</a>
+      <a href="kayit.html" class="nav-cta">Başvur</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="programlar/index.html">Programlar</a>
+  <a href="kampusler/yuregir.html">Kampüsler</a>
+  <a href="bursluluk-sinavi.html">Bursluluk Sınavı</a>
+  <a href="kayit.html" style="color:var(--color-accent);font-weight:800;">Başvur →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <!-- Hero animation overlay: floating form documents with checkmarks -->
+  <div class="hero-anim-overlay">
+    <svg width="100%" height="100%" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Floating document 1 -->
+      <g style="--r:-8deg;animation:doc-float 9s ease-in-out 0s infinite">
+        <rect x="80" y="480" width="48" height="60" rx="4" fill="rgba(201,162,39,0.12)" stroke="rgba(201,162,39,0.3)" stroke-width="1"/>
+        <line x1="88" y1="500" x2="120" y2="500" stroke="rgba(201,162,39,0.35)" stroke-width="1.5"/>
+        <line x1="88" y1="510" x2="120" y2="510" stroke="rgba(201,162,39,0.25)" stroke-width="1"/>
+        <line x1="88" y1="520" x2="110" y2="520" stroke="rgba(201,162,39,0.2)" stroke-width="1"/>
+        <polyline points="88,530 94,536 108,524" stroke="rgba(201,162,39,0.6)" stroke-width="2" fill="none"/>
+      </g>
+      <!-- Floating document 2 -->
+      <g style="--r:6deg;animation:doc-float 11s ease-in-out 2s infinite">
+        <rect x="1280" y="420" width="48" height="60" rx="4" fill="rgba(74,144,217,0.1)" stroke="rgba(74,144,217,0.25)" stroke-width="1"/>
+        <line x1="1288" y1="440" x2="1320" y2="440" stroke="rgba(74,144,217,0.3)" stroke-width="1.5"/>
+        <line x1="1288" y1="450" x2="1320" y2="450" stroke="rgba(74,144,217,0.2)" stroke-width="1"/>
+        <line x1="1288" y1="460" x2="1310" y2="460" stroke="rgba(74,144,217,0.15)" stroke-width="1"/>
+        <polyline points="1288,470 1294,476 1308,464" stroke="rgba(74,144,217,0.5)" stroke-width="2" fill="none"/>
+      </g>
+      <!-- Large soft glow circles -->
+      <circle cx="300" cy="350" r="180" fill="rgba(201,162,39,0.04)"/>
+      <circle cx="1100" cy="300" r="220" fill="rgba(74,144,217,0.04)"/>
+      <!-- Dotted grid pattern -->
+      <g opacity="0.06">
+        <circle cx="200" cy="150" r="2" fill="white"/>
+        <circle cx="300" cy="150" r="2" fill="white"/>
+        <circle cx="400" cy="150" r="2" fill="white"/>
+        <circle cx="500" cy="150" r="2" fill="white"/>
+        <circle cx="200" cy="250" r="2" fill="white"/>
+        <circle cx="300" cy="250" r="2" fill="white"/>
+        <circle cx="400" cy="250" r="2" fill="white"/>
+        <circle cx="500" cy="250" r="2" fill="white"/>
+        <circle cx="200" cy="350" r="2" fill="white"/>
+        <circle cx="300" cy="350" r="2" fill="white"/>
+        <circle cx="900" cy="150" r="2" fill="white"/>
+        <circle cx="1000" cy="150" r="2" fill="white"/>
+        <circle cx="1100" cy="150" r="2" fill="white"/>
+        <circle cx="1200" cy="150" r="2" fill="white"/>
+        <circle cx="900" cy="250" r="2" fill="white"/>
+        <circle cx="1000" cy="250" r="2" fill="white"/>
+        <circle cx="1100" cy="250" r="2" fill="white"/>
+        <circle cx="1200" cy="250" r="2" fill="white"/>
+      </g>
+      <!-- Pencil SVG decorative (right side) -->
+      <g style="animation:pencil-bounce 3s ease-in-out infinite" transform-origin="820 200">
+        <rect x="800" y="140" width="12" height="80" rx="4" fill="rgba(201,162,39,0.18)" stroke="rgba(201,162,39,0.3)" stroke-width="1"/>
+        <polygon points="800,220 812,220 806,240" fill="rgba(201,162,39,0.25)"/>
+        <rect x="800" y="140" width="12" height="14" rx="2" fill="rgba(255,160,160,0.2)" stroke="rgba(255,160,160,0.3)" stroke-width="1"/>
+        <line x1="800" y1="154" x2="812" y2="154" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      </g>
+      <!-- Check marks floating -->
+      <g opacity="0.18">
+        <circle cx="650" cy="100" r="16" stroke="rgba(201,162,39,0.5)" stroke-width="1.5" fill="none"/>
+        <polyline points="642,100 648,107 660,93" stroke="rgba(201,162,39,0.7)" stroke-width="2.5" fill="none"/>
+      </g>
+      <g opacity="0.12">
+        <circle cx="1180" cy="500" r="16" stroke="rgba(74,144,217,0.5)" stroke-width="1.5" fill="none"/>
+        <polyline points="1172,500 1178,507 1190,493" stroke="rgba(74,144,217,0.7)" stroke-width="2.5" fill="none"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">📋 Online Kayıt & Başvuru</div>
+      <h1 class="hero-title">
+        Geleceğine<br><em>İlk Adımı</em> At
+      </h1>
+      <p class="hero-desc">
+        Uzay Koleji'nde %100 devlet destekli, ücretsiz mesleki lise eğitimi için hemen başvur.
+        Formunu doldur, seni arayalım — sınırlı kontenjan.
+      </p>
+      <div class="hero-pills">
+        <span class="hero-pill gold">%100 Ücretsiz</span>
+        <span class="hero-pill">3 Kampüs</span>
+        <span class="hero-pill">8 Program</span>
+        <span class="hero-pill">Altıneller Güvencesi</span>
+      </div>
+    </div>
+
+    <!-- Quick Hero Form -->
+    <div class="hero-form-card reveal">
+      <h3>Hızlı Ön Başvuru</h3>
+      <p class="form-sub">2 dakikada başvurunu tamamla, ekibimiz seninle iletişime geçsin.</p>
+      <form id="quickForm" onsubmit="handleQuickSubmit(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Ad</label>
+            <input type="text" placeholder="Adın" required>
+          </div>
+          <div class="form-field">
+            <label>Soyad</label>
+            <input type="text" placeholder="Soyadın" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Telefon</label>
+          <input type="tel" placeholder="05XX XXX XX XX" required>
+        </div>
+        <div class="form-field">
+          <label>İlgilendiğin Program</label>
+          <select required>
+            <option value="" disabled selected>Program seç...</option>
+            <optgroup label="Sağlık Programları">
+              <option>Hemşire Yardımcılığı</option>
+              <option>Biyomedikal Cihaz Teknolojisi</option>
+              <option>Ebelik</option>
+              <option>Sağlık Bakım</option>
+            </optgroup>
+            <optgroup label="Teknik Programlar">
+              <option>Havacılık</option>
+              <option>Enerji</option>
+              <option>Elektrik-Elektronik</option>
+              <option>Gıda Teknolojileri</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Tercih Ettiğin Kampüs</label>
+          <select>
+            <option value="" disabled selected>Kampüs seç...</option>
+            <option>Yüreğir Kampüsü</option>
+            <option>Çukurova Kampüsü</option>
+            <option>Seyhan Kampüsü</option>
+            <option>Fark etmez</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Ön Başvuru Yap →</button>
+        <p class="form-privacy">Bilgileriniz <a href="#">KVKK kapsamında</a> korunur. Spam gönderilmez.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- WHY UZAY KOLEJİ -->
+<section>
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-badge">Neden Uzay Koleji?</div>
+      <h2 class="section-title">Doğru Seçim İçin <em>Doğru Nedenler</em></h2>
+      <p class="section-desc">Altıneller bünyesinde, devlet güvencesiyle ücretsiz, kariyer odaklı mesleki eğitim.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">💰</div>
+        <h4>%100 Ücretsiz Eğitim</h4>
+        <p>Kayıt ücreti, kitap, üniformadan kırtasiyeye kadar tüm masraflar Altıneller tarafından karşılanır.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">🏛</div>
+        <h4>Devlet Destekli Diploma</h4>
+        <p>MEB onaylı müfredat ve devlet diploması. Mezunlar hem yurt içinde hem yurt dışında çalışabilir.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">💼</div>
+        <h4>Ücretli Staj Programı</h4>
+        <p>Tüm programlarda zorunlu staj ücretlidir. Öğrenciler eğitim alırken de kazanır.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">✈</div>
+        <h4>Erasmus+ Fırsatları</h4>
+        <p>Avrupa'daki iş ortakları sayesinde yurt dışı staj ve değişim programlarına katılabilirsin.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">🔬</div>
+        <h4>Donanımlı Laboratuvarlar</h4>
+        <p>Her kampüste programa özel laboratuvar ve atölyeler. Teori değil, gerçek uygulamalı eğitim.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">📈</div>
+        <h4>Yüksek İstihdam Oranı</h4>
+        <p>Mezunların büyük çoğunluğu ilk 3 ayda işe yerleşiyor. Güçlü sektör bağlantıları ve kariyer desteği.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAŞVURU SÜRECİ -->
+<section class="steps-section">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-badge">Başvuru Süreci</div>
+      <h2 class="section-title">4 Adımda <em>Kayıt</em></h2>
+      <p class="section-desc" style="max-width:480px;margin:0 auto;">Başvurudan kayıta kadar her adımda yanındayız.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h4>Formu Doldur</h4>
+        <p>Online başvuru formunu eksiksiz doldur. 5 dakika sürer.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h4>Sizi Arayalım</h4>
+        <p>Danışmanımız 24 saat içinde seni arayarak detayları anlatır.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h4>Bursluluk Sınavı</h4>
+        <p>26 Nisan 2026 sınavına gir. Sınav ücretsiz ve zorunlu değil.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-4">
+        <div class="step-num">4</div>
+        <h4>Kayıt Tamamla</h4>
+        <p>Belgelerini teslim et, kampüsünde yerini ayırt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAYLI BAŞVURU FORMU -->
+<section class="form-section" id="basvuru-formu">
+  <div class="section-inner">
+    <div class="form-layout">
+      <!-- Sidebar -->
+      <div class="form-sidebar reveal">
+        <div class="section-badge">Kayıt Formu</div>
+        <h3>Detaylı<br>Başvuru Formu</h3>
+        <div class="sidebar-list">
+          <div class="sidebar-item">
+            <div class="s-icon">✅</div>
+            <span>Tüm alanları eksiksiz doldur, süreci hızlandır.</span>
+          </div>
+          <div class="sidebar-item">
+            <div class="s-icon">📞</div>
+            <span>Danışmanımız 1 iş günü içinde geri döner.</span>
+          </div>
+          <div class="sidebar-item">
+            <div class="s-icon">🔒</div>
+            <span>Kişisel verileriniz KVKK kapsamında korunur.</span>
+          </div>
+          <div class="sidebar-item">
+            <div class="s-icon">🎓</div>
+            <span>Bursluluk sınavı başvurusu ile birleştirilebilir.</span>
+          </div>
+        </div>
+        <div class="contact-box">
+          <p>Soruların mı var?</p>
+          <a href="tel:+905001234567">📞 0500 123 45 67</a>
+          <a href="mailto:kayit@uzay.k12.tr">✉ kayit@uzay.k12.tr</a>
+          <a href="https://wa.me/905001234567" target="_blank" rel="noopener">💬 WhatsApp'tan yaz</a>
+        </div>
+      </div>
+
+      <!-- Big Form -->
+      <div class="big-form reveal reveal-delay-1">
+        <div id="bigFormWrapper">
+          <form id="bigForm" onsubmit="handleBigSubmit(event)">
+            <!-- Kişisel Bilgiler -->
+            <div class="form-section-title">👤 Öğrenci Bilgileri</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Ad *</label>
+                <input type="text" placeholder="Öğrencinin adı" required>
+              </div>
+              <div class="form-field">
+                <label>Soyad *</label>
+                <input type="text" placeholder="Öğrencinin soyadı" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Doğum Tarihi</label>
+                <input type="date">
+              </div>
+              <div class="form-field">
+                <label>T.C. Kimlik No</label>
+                <input type="text" placeholder="XXXXXXXXXXX" maxlength="11">
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Mevcut Okul / Mezun Olduğu Okul</label>
+              <input type="text" placeholder="8. sınıf veya mezun olduğu okul adı">
+            </div>
+
+            <!-- Veli Bilgileri -->
+            <div class="form-section-title">👨‍👩‍👧 Veli / Vasi Bilgileri</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Veli Adı Soyadı *</label>
+                <input type="text" placeholder="Tam adı" required>
+              </div>
+              <div class="form-field">
+                <label>Yakınlık Derecesi</label>
+                <select>
+                  <option value="" disabled selected>Seç...</option>
+                  <option>Anne</option>
+                  <option>Baba</option>
+                  <option>Vasi</option>
+                  <option>Diğer</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Veli Telefon *</label>
+                <input type="tel" placeholder="05XX XXX XX XX" required>
+              </div>
+              <div class="form-field">
+                <label>E-posta</label>
+                <input type="email" placeholder="ornek@email.com">
+              </div>
+            </div>
+            <div class="form-field">
+              <label>İkametgah Adresi</label>
+              <input type="text" placeholder="Mahalle, sokak, ilçe, Adana">
+            </div>
+
+            <!-- Program Tercihi -->
+            <div class="form-section-title">🎓 Program & Kampüs Tercihi</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>1. Program Tercihi *</label>
+                <select required>
+                  <option value="" disabled selected>Program seç...</option>
+                  <optgroup label="Sağlık Programları">
+                    <option>Hemşire Yardımcılığı</option>
+                    <option>Biyomedikal Cihaz Teknolojisi</option>
+                    <option>Ebelik</option>
+                    <option>Sağlık Bakım</option>
+                  </optgroup>
+                  <optgroup label="Teknik Programlar">
+                    <option>Havacılık</option>
+                    <option>Enerji</option>
+                    <option>Elektrik-Elektronik</option>
+                    <option>Gıda Teknolojileri</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>2. Program Tercihi</label>
+                <select>
+                  <option value="" disabled selected>İkinci tercih (opsiyonel)</option>
+                  <optgroup label="Sağlık Programları">
+                    <option>Hemşire Yardımcılığı</option>
+                    <option>Biyomedikal Cihaz Teknolojisi</option>
+                    <option>Ebelik</option>
+                    <option>Sağlık Bakım</option>
+                  </optgroup>
+                  <optgroup label="Teknik Programlar">
+                    <option>Havacılık</option>
+                    <option>Enerji</option>
+                    <option>Elektrik-Elektronik</option>
+                    <option>Gıda Teknolojileri</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Tercih Ettiğin Kampüs *</label>
+              <select required>
+                <option value="" disabled selected>Kampüs seç...</option>
+                <option>Yüreğir Kampüsü (6 program — en büyük)</option>
+                <option>Çukurova Kampüsü (Sağlık programları)</option>
+                <option>Seyhan Kampüsü (Teknik programlar)</option>
+                <option>Fark etmez, uygun kampüse yönlendirin</option>
+              </select>
+            </div>
+
+            <!-- Bursluluk Sınavı -->
+            <div class="form-section-title">🏆 Bursluluk Sınavı</div>
+            <div class="form-field">
+              <label>26 Nisan Bursluluk Sınavına Katılmak İstiyor musun?</label>
+              <select>
+                <option value="" disabled selected>Seç...</option>
+                <option>Evet, katılmak istiyorum</option>
+                <option>Hayır, doğrudan kayıt olacağım</option>
+                <option>Bilgi almak istiyorum</option>
+              </select>
+            </div>
+
+            <!-- Nasıl Duydunuz -->
+            <div class="form-field">
+              <label>Bizi Nasıl Duydunuz?</label>
+              <select>
+                <option value="" disabled selected>Seç...</option>
+                <option>Sosyal Medya (Instagram, Facebook)</option>
+                <option>Arama Motoru (Google)</option>
+                <option>Tanıdık / Arkadaş Tavsiyesi</option>
+                <option>Afiş / Broşür</option>
+                <option>Okul Danışmanı</option>
+                <option>Diğer</option>
+              </select>
+            </div>
+
+            <!-- Notlar -->
+            <div class="form-field">
+              <label>Eklemek İstedikleriniz</label>
+              <textarea rows="3" placeholder="Sorularınız, özel durumunuz veya eklemek istediğiniz notlar..."></textarea>
+            </div>
+
+            <!-- KVKK & İzinler -->
+            <div class="form-section-title">📄 Onaylar</div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="kvkk" required>
+              <label for="kvkk"><a href="#">Kişisel Verilerin Korunması Kanunu (KVKK)</a> kapsamında kişisel verilerimin işlenmesine onay veriyorum.</label>
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="iletisim">
+              <label for="iletisim">Uzay Koleji'nden bilgilendirme, duyuru ve fırsat mesajları almak istiyorum.</label>
+            </div>
+
+            <button type="submit" class="btn-submit" style="margin-top:1.5rem;">Başvuruyu Gönder ✓</button>
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div class="form-success" id="bigFormSuccess">
+          <div class="success-icon">🎉</div>
+          <h3>Başvurunuz Alındı!</h3>
+          <p>Danışmanımız en geç 1 iş günü içinde sizi arayacak.<br>Uzay Koleji ailesine hoş geldiniz!</p>
+          <br>
+          <a href="bursluluk-sinavi.html" class="btn-primary" style="display:inline-flex;margin:0 auto;">26 Nisan Bursluluk Sınavı Hakkında Bilgi Al →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section>
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-badge">SSS</div>
+      <h2 class="section-title">Sık Sorulan <em>Sorular</em></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Kayıt olmak için hangi belgeler gerekiyor?</summary>
+        <div class="faq-body">Nüfus cüzdanı fotokopisi, öğrenci belgesi veya diploma, 2 adet fotoğraf ve ikametgah belgesi yeterlidir. Bursluluk sınavına girmek isteyenler için ek belge gerekmez.</div>
+      </details>
+      <details class="faq-item reveal reveal-delay-1">
+        <summary>Eğitim gerçekten ücretsiz mi?</summary>
+        <div class="faq-body">Evet. Kayıt ücreti, kitaplar, üniform, laboratuvar malzemeleri dahil tüm masraflar Altıneller tarafından karşılanmaktadır. Öğrencilerden hiçbir ücret alınmaz.</div>
+      </details>
+      <details class="faq-item reveal reveal-delay-2">
+        <summary>Başvuru için yaş sınırı var mı?</summary>
+        <div class="faq-body">8. sınıfı tamamlamış veya ortaokul mezunu olan her öğrenci başvurabilir. Üst yaş sınırı bulunmamaktadır; yetişkin bireyler de programa katılabilir.</div>
+      </details>
+      <details class="faq-item reveal reveal-delay-3">
+        <summary>Bursluluk sınavına girmek zorunlu mu?</summary>
+        <div class="faq-body">Hayır, zorunlu değildir. Doğrudan kayıt da yapılabilir. Ancak bursluluk sınavı, ek burslar ve öncelikli kampüs/program tercih hakkı için fırsat sunmaktadır.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Aynı anda birden fazla programa başvurabilir miyim?</summary>
+        <div class="faq-body">Başvuru formunda 2 program tercihi girebilirsiniz. Danışmanınız, kontenjan durumuna ve ilgi alanınıza göre en uygun programı belirlemenizde yardımcı olacaktır.</div>
+      </details>
+      <details class="faq-item reveal reveal-delay-1">
+        <summary>Mezuniyet sonrası iş imkânı nasıl?</summary>
+        <div class="faq-body">Mezunlar hem kamu hem de özel sektörde çalışabilmektedir. Staj sürecinde edinilen deneyim sayesinde pek çok öğrenci staj yaptığı kurumda işe yerleşmektedir. Altıneller'in sektör ağı aktif olarak kariyer sürecinde destek sağlar.</div>
+      </details>
+      <details class="faq-item reveal reveal-delay-2">
+        <summary>Taşra veya uzak ilçeden öğrenciler için ulaşım desteği var mı?</summary>
+        <div class="faq-body">Adana genelindeki servis imkânları kampüse ve ikametgah adresine göre değerlendirilerek danışman tarafından bilgi verilmektedir. Formdaki adresi doğru girmeniz bu konuda destek almanızı kolaylaştırır.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="padding:3rem 1.5rem 5rem;">
+  <div class="section-inner">
+    <div class="final-cta reveal">
+      <div class="final-cta-inner">
+        <h2>Kontenjanlar Dolmadan Başvur</h2>
+        <p>Ücretsiz, devlet diplomalı, kariyer garantili mesleki eğitim için bugün başvurunu tamamla.</p>
+        <div class="cta-buttons">
+          <a href="#basvuru-formu" class="btn-primary">📋 Formu Doldur</a>
+          <a href="bursluluk-sinavi.html" class="btn-outline">🏆 Bursluluk Sınavı Hakkında Bilgi Al</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">★ Uzay Koleji</div>
+      <p class="brand-tagline">Altıneller bünyesinde, devlet güvencesiyle ücretsiz mesleki lise eğitimi.</p>
+      <div class="brand-badges">
+        <span class="brand-badge">MEB Onaylı</span>
+        <span class="brand-badge">Altıneller Grubu</span>
+        <span class="brand-badge">Adana</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programlar</h4>
+      <ul>
+        <li><a href="programlar/havacilik.html">Havacılık</a></li>
+        <li><a href="programlar/hemsirelik.html">Hemşire Yardımcılığı</a></li>
+        <li><a href="programlar/biyomedikal.html">Biyomedikal</a></li>
+        <li><a href="programlar/enerji.html">Enerji</a></li>
+        <li><a href="programlar/elektrik-elektronik.html">Elektrik-Elektronik</a></li>
+        <li><a href="programlar/gida-teknolojileri.html">Gıda Teknolojileri</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kampüsler</h4>
+      <ul>
+        <li><a href="kampusler/yuregir.html">Yüreğir Kampüsü</a></li>
+        <li><a href="kampusler/cukurova.html">Çukurova Kampüsü</a></li>
+        <li><a href="kampusler/seyhan.html">Seyhan Kampüsü</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Başvuru</h4>
+      <ul>
+        <li><a href="bursluluk-sinavi.html">Bursluluk Sınavı</a></li>
+        <li><a href="kayit.html">Online Kayıt</a></li>
+        <li><a href="mailto:kayit@uzay.k12.tr">kayit@uzay.k12.tr</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Uzay Koleji — Altıneller Eğitim Grubu. Tüm hakları saklıdır.</p>
+    <p>KVKK · Gizlilik Politikası · Çerez Politikası</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float">
+  <div class="wa-pulse"></div>
+  <div class="wa-pulse"></div>
+  <button class="wa-btn" onclick="window.open('https://wa.me/905001234567','_blank')" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </button>
+</div>
+
+<!-- STICKY CTA BAR -->
+<div class="sticky-cta-bar" id="stickyCta">
+  <div class="cta-text"><strong>%100 Ücretsiz</strong> — 3 Kampüs · 8 Program · Altıneller Güvencesi</div>
+  <a href="#basvuru-formu" class="cta-action">Başvur →</a>
+</div>
+
+<script>
+// ── NAVBAR SCROLL ─────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── HAMBURGER MENU ────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── QUICK FORM SUBMIT ─────────────────────────────────────
+function handleQuickSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = '✓ Başvurunuz Alındı!';
+  btn.style.background = 'linear-gradient(135deg,#27ae60,#1e8449)';
+  btn.disabled = true;
+  e.target.querySelectorAll('input,select').forEach(el => el.disabled = true);
+}
+
+// ── BIG FORM SUBMIT ───────────────────────────────────────
+function handleBigSubmit(e) {
+  e.preventDefault();
+  document.getElementById('bigFormWrapper').style.display = 'none';
+  const success = document.getElementById('bigFormSuccess');
+  success.style.display = 'block';
+  // Smooth scroll to success message
+  success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
