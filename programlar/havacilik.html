@@ -276,6 +276,88 @@
  .text-center{text-align:center;}
  .two-col-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:center;}
  @media(max-width:767px){.two-col-layout{grid-template-columns:1fr;gap:var(--space-8);}}
+ /* ============================================================
+    LIQUID GLASS OVERRIDES
+ ============================================================ */
+
+ /* Koyu gökyüzü zemini */
+ body{background:linear-gradient(140deg,#0B1A30 0%,#0e1e3a 45%,#0a1628 100%) fixed;color:#F7F4EC;}
+
+ /* Hero: kendi arka planını kaldır */
+ .hero{background:transparent!important;}
+ .hero::before{display:none!important;}
+ .hero__bg-grid{opacity:0.15;}
+
+ /* Tüm bölümler z-index 1'de */
+ .announcement-bar,.navbar,section,.footer,.sticky-cta-bar{position:relative;z-index:1;}
+
+ /* Navbar — liquid glass */
+ .navbar{background:rgba(10,22,48,0.68)!important;backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-bottom:1px solid rgba(217,230,242,0.10)!important;}
+ .navbar.is-scrolled{background:rgba(8,16,36,0.90)!important;box-shadow:0 4px 24px rgba(0,0,0,0.30)!important;}
+ .navbar__logo-text{color:#F7F4EC!important;}
+ .navbar__logo-sub{color:rgba(217,230,242,0.50)!important;}
+ .navbar__links a,.navbar__dropdown-trigger{color:rgba(217,230,242,0.85)!important;}
+ .navbar__links a:hover,.navbar__dropdown-trigger:hover,.navbar__links a.active{color:#FFCB03!important;}
+ .navbar__links a::after,.navbar__dropdown-trigger::after{background-color:#FFCB03!important;}
+ .navbar__hamburger span{background-color:#F7F4EC!important;}
+
+ /* Mega menu */
+ .navbar__mega-menu{background:rgba(8,18,40,0.96)!important;backdrop-filter:blur(20px);border-color:rgba(217,230,242,0.12)!important;}
+ .mega-menu__item{color:rgba(217,230,242,0.85)!important;}
+ .mega-menu__item:hover{background:rgba(74,144,217,0.12)!important;color:#6aaae3!important;}
+ .mega-menu__item.active{background:rgba(74,144,217,0.15)!important;color:#6aaae3!important;}
+
+ /* Bölümler — liquid glass panel */
+ .section{background:rgba(15,28,58,0.52)!important;backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-top:1px solid rgba(217,230,242,0.09);border-bottom:1px solid rgba(217,230,242,0.06);}
+ .section--alt{background:rgba(8,18,44,0.62)!important;}
+ .section--dark{background:rgba(5,12,30,0.78)!important;}
+ .cta-section{background:linear-gradient(135deg,rgba(255,203,3,0.14) 0%,rgba(12,26,60,0.75) 100%)!important;}
+ .cta-section::before{opacity:0.5;}
+
+ /* Tipografi */
+ h1,h2,h3,h4,.section-title,.h2,.h3{color:#F7F4EC!important;}
+ .section-subtitle{color:rgba(217,230,242,0.70)!important;}
+ .hero h1 em{color:#6aaae3!important;}
+ .hero__desc{color:rgba(247,244,236,0.82)!important;}
+
+ /* Kartlar — liquid glass */
+ .ozet-card,.feature-card,.kariyer-item,.testimonial-card{background:rgba(10,22,52,0.62)!important;backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border:1px solid rgba(217,230,242,0.11)!important;box-shadow:none!important;}
+ .ozet-card:hover,.feature-card:hover,.kariyer-item:hover,.testimonial-card:hover{border-color:rgba(255,203,3,0.28)!important;box-shadow:0 8px 32px rgba(255,203,3,0.09)!important;}
+ .ozet-card__label,.feature-card__title,.kariyer-item__name,.testimonial-card__name{color:#F7F4EC!important;}
+ .ozet-card__desc,.feature-card__desc,.testimonial-card__text{color:rgba(217,230,242,0.72)!important;}
+ .ozet-card__value{color:#6aaae3!important;}
+ .testimonial-card__quote{color:var(--color-gold)!important;}
+
+ /* Kariyer item */
+ .kariyer-item{border-left-color:rgba(74,144,217,0.40)!important;}
+ .kariyer-item__icon{background:rgba(74,144,217,0.12)!important;}
+
+ /* Tesis kartları */
+ .tesis-card{border:1px solid rgba(217,230,242,0.10)!important;}
+ .tesis-card__body{background:rgba(10,22,52,0.68)!important;backdrop-filter:blur(14px);}
+ .tesis-card__title{color:#F7F4EC!important;}
+ .tesis-card__desc{color:rgba(217,230,242,0.70)!important;}
+
+ /* Kampüs bilgi kartı */
+ .kampus-info-card{background:transparent!important;border:1px solid rgba(217,230,242,0.12)!important;box-shadow:none!important;}
+ .kampus-info-card__content{background:rgba(10,22,52,0.70)!important;backdrop-filter:blur(16px);}
+ .kampus-info-card__title{color:#F7F4EC!important;}
+ .kampus-detail{color:rgba(217,230,242,0.72)!important;}
+ .kampus-other-links a{color:rgba(217,230,242,0.55)!important;border-color:rgba(217,230,242,0.15)!important;}
+ .kampus-other-links a:hover{color:#6aaae3!important;border-color:#6aaae3!important;}
+
+ /* Outline buton */
+ .btn--outline-white{color:#F7F4EC!important;border-color:rgba(247,244,236,0.45)!important;}
+ .btn--outline-white:hover{background:rgba(247,244,236,0.10)!important;}
+
+ /* Footer */
+ .footer{background:rgba(5,12,26,0.88)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+
+ /* Sticky bar */
+ .sticky-cta-bar{background:rgba(8,16,36,0.94)!important;backdrop-filter:blur(20px);border-top-color:rgba(74,144,217,0.25)!important;}
+
+ /* Mobile menu */
+ .navbar__mobile-menu{background:rgba(5,12,26,0.97)!important;}
  </style>
 </head>
 <body>
@@ -318,6 +400,7 @@
       <a href="saglik-bakim.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#8E44AD;"></span>Sağlık Bakım</a>
       <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2980B9;"></span>Elektrik-Elektronik</a>
       <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2ECC71;"></span>Gıda Teknolojileri</a>
+      <a href="turizm-otelcilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#E67E22;"></span>🏨 Turizm ve Otelcilik</a>
      </div>
     </li>
     <li class="navbar__item--dropdown">
