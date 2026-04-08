@@ -1,0 +1,5 @@
+.vercel
+.DS_Store
+.planning/
+apply_changes.py
+.continue-here.md

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Uzay Koleji Etkinlikler — Havacılık Fuarı 2026. Adana'nın en büyük havacılık etkinliğinde bizi ziyaret edin.">
+  <title>Etkinlikler — Uzay Koleji | Adana Havacılık Fuarı 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --color-gold:           #FFCB03;
+      --color-gold-dark:      #D4A800;
+      --color-lacivert:       #12284C;
+      --color-lacivert-dark:  #0B1A30;
+      --color-lacivert-light: #1A3660;
+      --color-beyaz:          #F7F4EC;
+      --color-kirmizi:        #9B1B30;
+      --color-gri:            #D8CBB6;
+      --color-grafit:         #1E2A36;
+      --color-text-primary:   #12284C;
+      --color-text-secondary: #1E2A36;
+      --color-text-muted:     #5A6A7A;
+      --color-text-white:     #F7F4EC;
+      --color-border:         #D8CBB6;
+      --color-whatsapp:       #25D366;
+      --font-display: 'Montserrat', sans-serif;
+      --font-body:    'Poppins', sans-serif;
+      --font-data:    'Roboto', Arial, sans-serif;
+      --font-weight-medium:   500;
+      --font-weight-semibold: 600;
+      --font-weight-bold:     700;
+      --font-weight-black:    900;
+      --text-xs:   0.75rem;
+      --text-sm:   0.875rem;
+      --text-base: 1rem;
+      --text-md:   1.125rem;
+      --text-lg:   1.25rem;
+      --text-xl:   1.5rem;
+      --text-2xl:  1.875rem;
+      --text-3xl:  2.25rem;
+      --text-4xl:  3rem;
+      --space-2:  0.5rem;
+      --space-4:  1rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --z-navbar: 200;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      background: var(--color-beyaz);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: 1140px;
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 4vw, 2.5rem);
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: var(--z-navbar);
+      background: rgba(247,244,236,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216,203,182,0.4);
+      transition: box-shadow var(--transition-base);
+    }
+    .navbar.scrolled { box-shadow: 0 4px 20px rgba(18,40,76,0.10); }
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-6);
+    }
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-shrink: 0;
+    }
+    .navbar__logo-mark {
+      width: 40px; height: 40px;
+      background: var(--color-lacivert);
+      color: var(--color-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .navbar__logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: #12284C;
+      line-height: 1.0;
+    }
+    .navbar__logo-sub {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      color: #5A6A7A;
+      letter-spacing: 0.24px;
+    }
+    .navbar__nav { flex: 1; }
+    .navbar__links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      justify-content: center;
+    }
+    .navbar__links a {
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      padding: var(--space-2) 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color var(--transition-fast);
+    }
+    .navbar__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: var(--color-gold);
+      transition: width var(--transition-base);
+    }
+    .navbar__links a:hover { color: var(--color-gold); }
+    .navbar__links a:hover::after { width: 100%; }
+    .navbar__links a.active { color: var(--color-gold); }
+    .navbar__links a.active::after { width: 100%; }
+    .nav-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #12284C;
+      background: #FFCB03;
+      border-radius: 4px;
+      padding: 1px 5px;
+      line-height: 1.5;
+      position: relative;
+      top: -1px;
+      margin-left: 2px;
+    }
+    .navbar__cta-desktop {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFCB03;
+      border: 2px solid #FFCB03;
+      color: #12284C;
+      height: 44px;
+      border-radius: 27px;
+      padding: 0 24px;
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--text-sm);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .navbar__cta-desktop:hover {
+      background: var(--color-gold-dark);
+      border-color: var(--color-gold-dark);
+      box-shadow: 0 4px 16px rgba(255,203,3,0.35);
+    }
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer;
+    }
+    .navbar__hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--color-lacivert);
+      border-radius: 2px;
+      transition: var(--transition-base);
+    }
+    .navbar__mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: var(--space-4) clamp(1rem,4vw,2.5rem) var(--space-6);
+      background: rgba(247,244,236,0.98);
+      border-top: 1px solid rgba(216,203,182,0.4);
+      gap: var(--space-2);
+    }
+    .navbar__mobile-menu.open { display: flex; }
+    .mobile-nav-link {
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(216,203,182,0.3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mobile-nav-link:hover { color: var(--color-gold); }
+    .mobile-nav-link.active { color: var(--color-gold); }
+    .mobile-nav-cta { margin-top: var(--space-4); }
+    .mobile-nav-cta a {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-gold);
+      color: var(--color-lacivert);
+      font-weight: var(--font-weight-semibold);
+      padding: 14px;
+      border-radius: 27px;
+      font-size: var(--text-sm);
+    }
+
+    @media (max-width: 900px) {
+      .navbar__nav, .navbar__cta-desktop { display: none; }
+      .navbar__hamburger { display: flex; }
+    }
+
+    /* ── Hero ── */
+    .event-hero {
+      padding-top: 72px;
+      min-height: 92vh;
+      background: var(--color-lacivert);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .event-hero__grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,203,3,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,203,3,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .event-hero__glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,203,3,0.12) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .event-hero__content {
+      position: relative;
+      z-index: 2;
+      padding-block: clamp(3rem, 8vh, 6rem);
+      width: 100%;
+    }
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,203,3,0.15);
+      border: 1px solid rgba(255,203,3,0.3);
+      color: var(--color-gold);
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 40px;
+      margin-bottom: 1.5rem;
+    }
+    .event-hero h1 {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-black);
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      color: #F7F4EC;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .event-hero h1 span {
+      color: var(--color-gold);
+    }
+    .event-hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(247,244,236,0.75);
+      font-size: var(--text-sm);
+    }
+    .event-meta-item i {
+      color: var(--color-gold);
+      font-size: 0.9rem;
+    }
+    .event-hero__desc {
+      font-size: var(--text-md);
+      color: rgba(247,244,236,0.65);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .event-hero__cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-gold);
+      color: var(--color-lacivert);
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-sm);
+      padding: 14px 28px;
+      border-radius: 40px;
+      border: 2px solid var(--color-gold);
+      cursor: pointer;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .btn-gold:hover {
+      background: var(--color-gold-dark);
+      border-color: var(--color-gold-dark);
+      box-shadow: 0 6px 20px rgba(255,203,3,0.4);
+    }
+    .btn-outline-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #F7F4EC;
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--text-sm);
+      padding: 14px 28px;
+      border-radius: 40px;
+      border: 1.5px solid rgba(247,244,236,0.3);
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+    .btn-outline-light:hover {
+      border-color: rgba(247,244,236,0.7);
+      background: rgba(247,244,236,0.08);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,203,3,0.2);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      min-width: 72px;
+    }
+    .countdown-unit__value {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-black);
+      font-size: var(--text-2xl);
+      color: var(--color-gold);
+      line-height: 1;
+      tabular-nums: ;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-unit__label {
+      font-size: 0.65rem;
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(247,244,236,0.45);
+      margin-top: 4px;
+    }
+
+    /* ── Event Details ── */
+    .section {
+      padding-block: clamp(3rem, 7vw, 5rem);
+    }
+    .section--alt { background: #fff; }
+
+    .section-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-gold-dark);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-black);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      color: var(--color-lacivert);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: var(--text-md);
+      color: var(--color-text-muted);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .detail-card {
+      background: var(--color-beyaz);
+      border: 1px solid rgba(216,203,182,0.5);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .detail-card__icon {
+      width: 40px; height: 40px;
+      background: rgba(255,203,3,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .detail-card__label {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .detail-card__value {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--text-lg);
+      color: var(--color-lacivert);
+      line-height: 1.2;
+    }
+    .detail-card__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .highlights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--color-beyaz);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--color-gold);
+    }
+    .highlight-item__icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .highlight-item__text strong {
+      display: block;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-lacivert);
+      margin-bottom: 2px;
+    }
+    .highlight-item__text span {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* ── Layout: 2-col ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ── Map ── */
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(216,203,182,0.5);
+      box-shadow: 0 8px 32px rgba(18,40,76,0.08);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 400px;
+      display: block;
+      border: none;
+    }
+    .map-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      background: var(--color-lacivert);
+      color: #F7F4EC;
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      transition: background var(--transition-fast);
+    }
+    .map-cta:hover { background: var(--color-lacivert-light); }
+    .map-cta i { color: var(--color-gold); }
+
+    /* ── Form ── */
+    .form-card {
+      background: #fff;
+      border: 1px solid rgba(216,203,182,0.5);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: 0 8px 32px rgba(18,40,76,0.06);
+    }
+    .form-card__title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--text-xl);
+      color: var(--color-lacivert);
+      margin-bottom: 0.5rem;
+    }
+    .form-card__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: 1.75rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-lacivert);
+      margin-bottom: 6px;
+    }
+    .form-group label .req {
+      color: var(--color-kirmizi);
+      margin-left: 2px;
+    }
+    .form-control {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      background: var(--color-beyaz);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--color-lacivert);
+      box-shadow: 0 0 0 3px rgba(18,40,76,0.08);
+      background: #fff;
+    }
+    select.form-control { cursor: pointer; }
+    .form-group--checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .form-group--checkbox input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--color-lacivert);
+      cursor: pointer;
+    }
+    .form-group--checkbox label {
+      margin: 0;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .form-group--checkbox label a {
+      color: var(--color-lacivert);
+      text-decoration: underline;
+    }
+    .btn-submit {
+      width: 100%;
+      height: 50px;
+      background: var(--color-lacivert);
+      color: #F7F4EC;
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-sm);
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast);
+      margin-top: 1.5rem;
+    }
+    .btn-submit:hover {
+      background: var(--color-lacivert-light);
+      box-shadow: 0 6px 20px rgba(18,40,76,0.25);
+    }
+    .form-note {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* Teşekkür durumu */
+    .form-thanks {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+    .form-thanks__icon {
+      width: 64px; height: 64px;
+      background: rgba(255,203,3,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem;
+    }
+    .form-thanks__title {
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--text-xl);
+      color: var(--color-lacivert);
+    }
+    .form-thanks__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      max-width: 300px;
+    }
+    .form-thanks__wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #fff;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-sm);
+      padding: 12px 24px;
+      border-radius: 40px;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--color-lacivert-dark);
+      color: rgba(247,244,236,0.7);
+      padding-block: 3rem 2rem;
+    }
+    .footer__bottom {
+      border-top: 1px solid rgba(247,244,236,0.1);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: var(--text-xs);
+      color: rgba(247,244,236,0.4);
+    }
+    .footer__bottom-links { display: flex; gap: 1.5rem; }
+    .footer__bottom-links a:hover { color: var(--color-gold); }
+
+    /* ── WhatsApp + Chatbot Floating ── */
+    .wa-btn {
+      position: fixed;
+      bottom: 19px;
+      right: 82px;
+      z-index: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(18,40,76,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #F7F4EC;
+      border: none;
+      border-radius: 64px;
+      padding: 10px 18px 10px 10px;
+      width: 256px;
+      height: 64px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(18,40,76,0.35);
+      animation: wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;
+      transition: filter var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+      white-space: nowrap;
+    }
+    .wa-btn:hover { filter: brightness(1.18); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(18,40,76,0.45); }
+    .wa-btn__circle {
+      width: 50px; height: 50px; min-width: 50px;
+      border-radius: 50%;
+      background-color: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    @keyframes wa-entrance {
+      from { transform: translateY(32px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .chatbot-btn {
+      position: fixed;
+      bottom: 19px; right: 11px;
+      z-index: 600;
+      width: 64px; height: 64px;
+      border-radius: 296px;
+      background: rgba(18,40,76,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(18,40,76,0.35);
+      animation: wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.55s both;
+      transition: filter var(--transition-base), transform var(--transition-base);
+    }
+    .chatbot-btn:hover { filter: brightness(1.18); transform: translateY(-2px); }
+    .chatbot-btn svg { width: 26px; height: 26px; color: #F7F4EC; }
+    @media (max-width: 767px) {
+      .wa-btn { bottom: 80px; font-size: 13px; padding: 9px 14px 9px 9px; }
+      .wa-btn__circle { width: 30px; height: 30px; min-width: 30px; }
+      .chatbot-btn { bottom: 80px; right: 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-btn, .chatbot-btn { animation: none; opacity: 1; transform: none; transition: none; }
+    }
+
+    @media (max-width: 600px) {
+      .countdown { gap: 0.75rem; }
+      .countdown-unit { padding: 10px 14px; min-width: 60px; }
+      .countdown-unit__value { font-size: var(--text-xl); }
+      .event-hero__cta-group { flex-direction: column; }
+      .btn-gold, .btn-outline-light { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+
+      <a href="index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
+        <div class="navbar__logo-mark">UK</div>
+        <div>
+          <div class="navbar__logo-text">UZAY KOLEJİ</div>
+          <div class="navbar__logo-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
+        </div>
+      </a>
+
+      <nav class="navbar__nav" aria-label="Ana Navigasyon">
+        <ul class="navbar__links">
+          <li><a href="index.html#programlar">Programlar</a></li>
+          <li><a href="index.html#kampusler">Kampüsler</a></li>
+          <li><a href="index.html#firsatlar">Fırsatlar</a></li>
+          <li><a href="index.html#neden">Okulumuz</a></li>
+          <li><a href="index.html#iletisim">İletişim</a></li>
+          <li><a href="etkinlikler.html" class="active">Etkinlikler</a></li>
+        </ul>
+      </nav>
+
+      <a href="../bursluluk-sinavi.html" class="navbar__cta-desktop">Bursluluk Sınavı</a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="navbar__mobile-menu" id="mobileMenu">
+      <a href="index.html#programlar" class="mobile-nav-link">Programlar</a>
+      <a href="index.html#kampusler" class="mobile-nav-link">Kampüsler</a>
+      <a href="index.html#firsatlar" class="mobile-nav-link">Fırsatlar</a>
+      <a href="index.html#neden" class="mobile-nav-link">Okulumuz</a>
+      <a href="index.html#iletisim" class="mobile-nav-link">İletişim</a>
+      <a href="etkinlikler.html" class="mobile-nav-link active">Etkinlikler</a>
+      <div class="mobile-nav-cta">
+        <a href="../bursluluk-sinavi.html">🎓 Bursluluk Sınavına Başvur</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="event-hero">
+    <div class="event-hero__grid-bg"></div>
+    <div class="event-hero__glow"></div>
+    <div class="container event-hero__content">
+
+      <div class="event-tag">
+        <i class="fa-solid fa-plane"></i>
+        Havacılık &amp; Uzay Etkinliği
+      </div>
+
+      <h1>Adana<br><span>Havacılık Fuarı</span><br>2026</h1>
+
+      <div class="event-hero__meta">
+        <div class="event-meta-item">
+          <i class="fa-regular fa-calendar"></i>
+          <span>14–16 Haziran 2026</span>
+        </div>
+        <div class="event-meta-item">
+          <i class="fa-regular fa-clock"></i>
+          <span>10:00 – 18:00</span>
+        </div>
+        <div class="event-meta-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Adana Fuar Merkezi</span>
+        </div>
+      </div>
+
+      <p class="event-hero__desc">
+        Uzay Koleji olarak Adana Havacılık Fuarı'ndayız. Simulatörler, kariyer danışmanlığı ve programlarımız hakkında bilgi almak için standımıza gelin.
+      </p>
+
+      <div class="event-hero__cta-group">
+        <a href="#form" class="btn-gold">
+          <i class="fa-solid fa-ticket"></i>
+          Ziyaret Planla &amp; Bilgi Al
+        </a>
+        <a href="#konum" class="btn-outline-light">
+          <i class="fa-solid fa-map"></i>
+          Konumu Gör
+        </a>
+      </div>
+
+      <div class="countdown" id="countdown" aria-label="Etkinliğe kalan süre">
+        <div class="countdown-unit">
+          <span class="countdown-unit__value" id="cd-days">--</span>
+          <span class="countdown-unit__label">Gün</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__value" id="cd-hours">--</span>
+          <span class="countdown-unit__label">Saat</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__value" id="cd-mins">--</span>
+          <span class="countdown-unit__label">Dakika</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__value" id="cd-secs">--</span>
+          <span class="countdown-unit__label">Saniye</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ETKİNLİK DETAYLARI
+  ============================================================ -->
+  <section class="section">
+    <div class="container">
+
+      <p class="section-eyebrow">Etkinlik Detayları</p>
+      <h2 class="section-title">Fuarda Neler Var?</h2>
+      <p class="section-subtitle">
+        Havacılık ve uzay sektörünün önde gelen firmalarının katılacağı bu fuarda Uzay Koleji standında seni ve ailenizi bekliyoruz.
+      </p>
+
+      <div class="details-grid">
+        <div class="detail-card">
+          <div class="detail-card__icon">📅</div>
+          <div class="detail-card__label">Tarih</div>
+          <div class="detail-card__value">14–16 Haziran</div>
+          <div class="detail-card__sub">2026</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card__icon">🕙</div>
+          <div class="detail-card__label">Saat</div>
+          <div class="detail-card__value">10:00–18:00</div>
+          <div class="detail-card__sub">Her gün açık</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card__icon">📍</div>
+          <div class="detail-card__label">Mekan</div>
+          <div class="detail-card__value">Adana Fuar Merkezi</div>
+          <div class="detail-card__sub">Yüreğir, Adana</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card__icon">🏷️</div>
+          <div class="detail-card__label">Giriş</div>
+          <div class="detail-card__value">Ücretsiz</div>
+          <div class="detail-card__sub">Kayıt önerilir</div>
+        </div>
+      </div>
+
+      <div class="highlights-list">
+        <div class="highlight-item">
+          <span class="highlight-item__icon">✈️</span>
+          <div class="highlight-item__text">
+            <strong>Uçuş Simülatörü Deneyimi</strong>
+            <span>Havacılık programı öğrencilerimizin sunduğu interaktif simülatör deneyimi.</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-item__icon">🎓</span>
+          <div class="highlight-item__text">
+            <strong>Kariyer Danışmanlığı</strong>
+            <span>Programlarımız, burs imkânları ve mezun kariyerleri hakkında birebir bilgi.</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-item__icon">📋</span>
+          <div class="highlight-item__text">
+            <strong>Kayıt &amp; Başvuru Bilgisi</strong>
+            <span>2026–2027 kayıt süreci, gerekli belgeler ve devlet destek bilgileri.</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-item__icon">🤝</span>
+          <div class="highlight-item__text">
+            <strong>Sektör Firmalarıyla Tanışma</strong>
+            <span>Havacılık sektörünün önde gelen şirketleri ile staj ve istihdam imkânları.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       KONUM + FORM
+  ============================================================ -->
+  <section class="section section--alt" id="konum">
+    <div class="container">
+
+      <div class="two-col">
+
+        <!-- Harita -->
+        <div>
+          <p class="section-eyebrow">Konum</p>
+          <h2 class="section-title" style="margin-bottom:1.5rem;">Bizi Fuar'da Bulun</h2>
+          <div class="map-wrap">
+            <!-- Placeholder: gerçek koordinatlar belli olunca src güncellenir -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3189.3!2d35.3!3d37.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAwJzAwLjAiTiAzNcKwMTgnMDAuMCJF!5e0!3m2!1str!2str!4v1"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Adana Fuar Merkezi konumu"
+            ></iframe>
+            <a
+              href="https://maps.google.com/?q=Adana+Fuar+Merkezi"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-cta"
+            >
+              <i class="fa-solid fa-diamond-turn-right"></i>
+              Google Maps'te Yol Tarifi Al
+            </a>
+          </div>
+        </div>
+
+        <!-- Lead Form -->
+        <div id="form">
+          <div class="form-card">
+
+            <div id="formBody">
+              <h3 class="form-card__title">Ziyaret Planla &amp; Bilgi Al</h3>
+              <p class="form-card__sub">Standımızda sizi özel karşılayalım. Formu doldurun, bilgilendirme için sizi arayalım.</p>
+
+              <form id="leadForm" novalidate>
+
+                <!-- UTM parametreleri — JS tarafından doldurulur -->
+                <input type="hidden" id="f_utm_source"   name="utm_source">
+                <input type="hidden" id="f_utm_medium"   name="utm_medium">
+                <input type="hidden" id="f_utm_campaign" name="utm_campaign">
+                <input type="hidden" id="f_utm_content"  name="utm_content">
+                <input type="hidden" id="f_utm_term"     name="utm_term">
+                <input type="hidden" name="etkinlik" value="Adana Havacılık Fuarı 2026">
+
+                <div class="form-group">
+                  <label for="f_name">Ad Soyad <span class="req">*</span></label>
+                  <input type="text" id="f_name" name="name" class="form-control" placeholder="Ahmet Yılmaz" autocomplete="name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="f_phone">Telefon <span class="req">*</span></label>
+                  <input type="tel" id="f_phone" name="phone" class="form-control" placeholder="05XX XXX XX XX" autocomplete="tel" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="f_email">E-posta</label>
+                  <input type="email" id="f_email" name="email" class="form-control" placeholder="ornek@mail.com" autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="f_grade">İlgilenilen Kademe <span class="req">*</span></label>
+                  <select id="f_grade" name="grade" class="form-control" required>
+                    <option value="" disabled selected>Seçiniz…</option>
+                    <option value="ortaokul">Ortaokul (8. Sınıf öğrencisi)</option>
+                    <option value="lise_1">Lise 1. Sınıfa geçiyor</option>
+                    <option value="lise_transfer">Lise nakil</option>
+                    <option value="veli">Veli (çocuğum ilgili)</option>
+                    <option value="diger">Diğer</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="f_program">İlgilenilen Program</label>
+                  <select id="f_program" name="program" class="form-control">
+                    <option value="" disabled selected>Seçiniz…</option>
+                    <option value="havacilik">✈ Havacılık</option>
+                    <option value="enerji">⚡ Yenilenebilir Enerji</option>
+                    <option value="biyomedikal">🔬 Biyomedikal</option>
+                    <option value="saglik">🏥 Sağlık Hizmetleri</option>
+                    <option value="elektrik">🔌 Elektrik-Elektronik</option>
+                    <option value="gida">🌿 Gıda Teknolojileri</option>
+                    <option value="turizm">🏨 Turizm ve Otelcilik</option>
+                    <option value="kararsiz">Henüz karar vermedim</option>
+                  </select>
+                </div>
+
+                <div class="form-group form-group--checkbox">
+                  <input type="checkbox" id="f_kvkk" name="kvkk" required>
+                  <label for="f_kvkk">
+                    <a href="#">KVKK Aydınlatma Metni</a>'ni okudum ve kişisel verilerimin işlenmesine onay veriyorum. <span class="req">*</span>
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  Bilgi Talebi Gönder
+                </button>
+                <p class="form-note">Bilgileriniz yalnızca bu etkinlik kapsamında kullanılacaktır.</p>
+
+              </form>
+            </div>
+
+            <!-- Teşekkür durumu -->
+            <div class="form-thanks" id="formThanks">
+              <div class="form-thanks__icon">🎉</div>
+              <h3 class="form-thanks__title">Talebiniz Alındı!</h3>
+              <p class="form-thanks__sub">En kısa sürede sizi arayacağız. Fuarda görüşmek üzere!</p>
+              <a href="https://wa.me/90322XXXXXXX" target="_blank" rel="noopener" class="form-thanks__wa">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp'tan da ulaşabilirsiniz
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2026 Uzay Koleji — Altıneller Grup bünyesindedir.</span>
+        <nav class="footer__bottom-links">
+          <a href="#">Gizlilik Politikası</a>
+          <a href="#">KVKK Aydınlatma</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/905320000000" class="wa-btn"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="WhatsApp ile iletişime geç">
+    <span class="wa-btn__circle" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </span>
+    WhatsApp'tan Ulaşın
+  </a>
+
+  <!-- Chatbot Trailing Button -->
+  <button class="chatbot-btn" id="chatbotBtn" aria-label="Chatbot ile konuş">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </button>
+
+  <!-- ============================================================
+       JS
+  ============================================================ -->
+  <script>
+    /* ── Navbar scroll shadow ── */
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    document.getElementById('hamburger').addEventListener('click', function () {
+      var menu = document.getElementById('mobileMenu');
+      var open = menu.classList.toggle('open');
+      this.setAttribute('aria-expanded', open);
+    });
+
+    /* ── Countdown ── */
+    var eventDate = new Date('2026-06-14T10:00:00');
+    function updateCountdown() {
+      var now  = new Date();
+      var diff = eventDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<span style="color:var(--color-gold);font-size:1.1rem;font-weight:700;">Etkinlik Başladı!</span>';
+        return;
+      }
+      var days  = Math.floor(diff / 864e5);
+      var hours = Math.floor((diff % 864e5) / 36e5);
+      var mins  = Math.floor((diff % 36e5) / 6e4);
+      var secs  = Math.floor((diff % 6e4) / 1e3);
+      function pad(n) { return String(n).padStart(2, '0'); }
+      document.getElementById('cd-days').textContent  = days;
+      document.getElementById('cd-hours').textContent = pad(hours);
+      document.getElementById('cd-mins').textContent  = pad(mins);
+      document.getElementById('cd-secs').textContent  = pad(secs);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ── UTM parametrelerini hidden input'lara aktar ── */
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function (key) {
+        var val = params.get(key);
+        if (val) {
+          var el = document.getElementById('f_' + key);
+          if (el) el.value = val;
+        }
+      });
+    })();
+
+    /* ── Form submit — placeholder ── */
+    document.getElementById('leadForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name  = document.getElementById('f_name').value.trim();
+      var phone = document.getElementById('f_phone').value.trim();
+      var grade = document.getElementById('f_grade').value;
+      var kvkk  = document.getElementById('f_kvkk').checked;
+
+      if (!name || !phone || !grade || !kvkk) {
+        alert('Lütfen zorunlu alanları doldurun ve KVKK onayı verin.');
+        return;
+      }
+
+      /* TODO: gerçek submit — fetch('/api/leads', { method:'POST', body: new FormData(this) }) */
+      console.log('Form verisi (placeholder):', Object.fromEntries(new FormData(this)));
+
+      document.getElementById('formBody').style.display  = 'none';
+      var thanks = document.getElementById('formThanks');
+      thanks.style.display = 'flex';
+    });
+  </script>
+
+</body>
+</html>

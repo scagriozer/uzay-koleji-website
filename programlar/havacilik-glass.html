@@ -65,10 +65,10 @@
  .section{padding-block:var(--section-padding-y);}
  .section--dark{background-color:var(--color-lacivert);}
  .section--alt{background-color:var(--color-bg-section-alt);}
- h1{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:clamp(2.25rem,5vw,4.5rem);line-height:1.15;letter-spacing:-0.02em;}
- h2,.h2{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.2;letter-spacing:-0.015em;color:var(--color-text-primary);}
- h3,.h3{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:clamp(1.25rem,2.5vw,1.875rem);line-height:1.3;}
- .section-title{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.2;letter-spacing:-0.015em;color:var(--color-text-primary);margin-bottom:var(--space-4);}
+ h1{font-family:var(--font-display);font-weight: var(--font-weight-black);font-size:clamp(2.25rem,5vw,4.5rem);line-height:1.15;letter-spacing:-0.02em;}
+ h2,.h2{font-family:var(--font-display);font-weight: var(--font-weight-black);font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.2;letter-spacing:-0.015em;color:var(--color-text-primary);}
+ h3,.h3{font-family: var(--font-display);font-weight: var(--font-weight-black);font-size:clamp(1.25rem,2.5vw,1.875rem);line-height:1.3;}
+ .section-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.2;letter-spacing:-0.015em;color:var(--color-text-primary);margin-bottom:var(--space-4);}
  .section-subtitle{font-size:var(--text-md);color:var(--color-text-muted);max-width:600px;}
  .section-header{text-align:center;margin-bottom:var(--space-12);}
  .section-badge{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent-bg);color:var(--color-accent);padding:6px 14px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:var(--font-weight-semibold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-4);border:1px solid var(--color-accent-border);}
@@ -163,7 +163,7 @@
  .feature-card{background:var(--color-beyaz);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm);border-top:4px solid var(--color-accent);transition:transform var(--transition-base),box-shadow var(--transition-base);}
  .feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
  .feature-card__icon{font-size:2rem;margin-bottom:var(--space-3);display:block;}
- .feature-card__title{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
+ .feature-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
  .feature-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;}
  @media(max-width:1023px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
  @media(max-width:480px){.feature-grid{grid-template-columns:1fr;}}
@@ -178,7 +178,7 @@
  .firsat-card{background:rgba(247,244,236,0.06);border:1px solid rgba(255,203,3,0.25);border-radius:var(--radius-xl);padding:var(--space-8);transition:background-color var(--transition-base),transform var(--transition-base);}
  .firsat-card:hover{background:rgba(255,203,3,0.08);transform:translateY(-4px);}
  .firsat-card__icon{font-size:2.5rem;margin-bottom:var(--space-4);display:block;}
- .firsat-card__title{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-md);color:var(--color-gold);margin-bottom:var(--space-2);}
+ .firsat-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-md);color:var(--color-gold);margin-bottom:var(--space-2);}
  .firsat-card__subtitle{font-size:var(--text-sm);color:rgba(247,244,236,0.50);font-style:italic;margin-bottom:var(--space-3);}
  .firsat-card__desc{font-size:var(--text-sm);color:rgba(247,244,236,0.65);line-height:1.6;}
  @media(max-width:767px){.firsat-cards{grid-template-columns:1fr;}}
@@ -188,7 +188,7 @@
  .tesis-card__image{height:180px;display:flex;align-items:center;justify-content:center;position:relative;font-size:3.5rem;}
  .tesis-card__image-label{position:absolute;bottom:var(--space-3);left:var(--space-4);font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-sm);color:rgba(247,244,236,0.7);letter-spacing:0.06em;text-transform:uppercase;}
  .tesis-card__body{padding:var(--space-6);background:var(--color-beyaz);}
- .tesis-card__title{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
+ .tesis-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
  .tesis-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
  @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}}
  .testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
@@ -209,7 +209,7 @@
  .kampus-map-label{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-xl);color:var(--color-beyaz);position:relative;z-index:1;text-align:center;}
  .kampus-map-sub{font-size:var(--text-sm);color:rgba(247,244,236,0.55);position:relative;z-index:1;text-align:center;}
  .kampus-info-card__content{padding:var(--space-8);display:flex;flex-direction:column;gap:var(--space-5);}
- .kampus-info-card__title{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-xl);color:var(--color-text-primary);}
+ .kampus-info-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-xl);color:var(--color-text-primary);}
  .kampus-detail{display:flex;align-items:flex-start;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-secondary);}
  .kampus-detail__icon{font-size:1rem;flex-shrink:0;margin-top:2px;}
  .kampus-other-links{display:flex;gap:var(--space-3);flex-wrap:wrap;padding-top:var(--space-4);border-top:1px solid var(--color-border);}
@@ -432,12 +432,10 @@
       <a href="havacilik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#4A90D9;"></span>Havacılık</a>
       <a href="enerji.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#F5A623;"></span>Enerji Sistemleri</a>
       <a href="biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#27AE60;"></span>Biyomedikal</a>
-      <a href="hemsirelik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#E8A0BF;"></span>Hemşire Yardımcılığı</a>
-      <a href="ebelik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#C0392B;"></span>Ebelik Yardımcılığı</a>
-      <a href="saglik-bakim.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#8E44AD;"></span>Sağlık Bakım</a>
+      <a href="saglik-bakim.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2a6080;"></span>Sağlık Hizmetleri</a>
       <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2980B9;"></span>Elektrik-Elektronik</a>
       <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2ECC71;"></span>Gıda Teknolojileri</a>
-      <a href="turizm-otelcilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#E67E22;"></span>🏨 Turizm ve Otelcilik</a>
+      <a href="turizm-otelcilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#E67E22;"></span>Turizm ve Otelcilik</a>
      </div>
     </li>
     <li class="navbar__item--dropdown">
