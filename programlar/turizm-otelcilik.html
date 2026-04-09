@@ -4,20 +4,20 @@
  --color-gold: #FFCB03;
  --color-gold-dark: #D4A800;
  --color-gold-light: #FFD740;
- --color-lacivert: #12284C;
- --color-lacivert-dark: #0B1A30;
- --color-lacivert-light: #1A3660;
- --color-beyaz: #F7F4EC;
+ --color-lacivert: #08294D;
+ --color-lacivert-dark: #051E38;
+ --color-lacivert-light: #0F3A6B;
+ --color-beyaz: #FBFAEF;
  --color-kirmizi: #9B1B30;
  --color-gri: #D8CBB6;
  --color-gri-dark: #C4B49E;
  --color-grafit: #1E2A36;
  --color-kum-beji: #D8CBB6;
- --color-acik-mavi: #D9E6F2;
- --color-text-primary: #12284C;
+ --color-acik-mavi: #C2CFDB;
+ --color-text-primary: #08294D;
  --color-text-secondary: #1E2A36;
  --color-text-muted: #5A6A7A;
- --color-text-white: #F7F4EC;
+ --color-text-white: #FBFAEF;
  --color-border: #D8CBB6;
  --color-bg-page: #FFCB03;
  --color-bg-section-alt: #EDE8DC;
@@ -35,7 +35,7 @@
  --font-weight-regular: 400;
  --font-weight-medium: 500;
  --font-weight-semibold: 600;
- --font-weight-bold: 700;
+ --font-weight-bold: 700;--font-weight-black: 900;
  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
  --text-md: 1.125rem; --text-lg: 1.25rem; --text-xl: 1.5rem;
  --text-2xl: 1.875rem; --text-3xl: 2.25rem;
@@ -57,7 +57,7 @@
  }
  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
  html{scroll-behavior:smooth;font-size:16px;}
- body{font-family:var(--font-body);background-color:var(--color-bg-page);color:var(--color-text-secondary);line-height:1.7;-webkit-font-smoothing:antialiased;}
+ body{font-family:var(--font-body);background-color:var(--color-bg-page);color:var(--color-text-secondary);line-height:1.7;-webkit-font-smoothing:antialiased;padding-top:40px;}
  img{max-width:100%;display:block;}a{color:inherit;text-decoration:none;}ul,ol{list-style:none;}button{cursor:pointer;border:none;background:none;font-family:inherit;}
  .container{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--container-padding);}
  .section{padding-block:var(--section-padding-y);}.section--dark{background-color:var(--color-lacivert);}.section--alt{background-color:transparent;}
@@ -75,18 +75,18 @@
  .btn--outline-white{background-color:transparent;color:var(--color-beyaz);border-color:rgba(247,244,236,0.6);}
  .btn--outline-white:hover{background-color:rgba(247,244,236,0.1);border-color:var(--color-beyaz);transform:translateY(-2px);}
  .btn--lg{padding:16px 36px;font-size:var(--text-base);}
- .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:relative;z-index:var(--z-sticky);}
+ .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;width:100%;z-index:calc(var(--z-sticky) + 20);}
  .announcement-bar__track{display:flex;align-items:center;gap:var(--space-6);white-space:nowrap;animation:marquee-scroll 32s linear infinite;}
  .announcement-bar:hover .announcement-bar__track{animation-play-state:paused;}
  .announcement-bar__track span{font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);color:var(--color-lacivert);letter-spacing:0.04em;text-transform:uppercase;}
  .announcement-bar__dot{color:var(--color-lacivert)!important;opacity:0.5;font-size:1.2em;}
  @keyframes marquee-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
- .navbar{position:sticky;top:0;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
+ .navbar{position:sticky;top:40px;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
  .navbar.is-scrolled{box-shadow:var(--shadow-md);border-bottom-color:var(--color-border);}
  .navbar__inner{display:flex;align-items:center;gap:var(--space-8);height:100%;}
  .navbar__logo{display:flex;align-items:center;gap:var(--space-3);flex-shrink:0;}
  .navbar__logo-mark{width:64px;height:64px;background-color:#FDC24C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--color-lacivert);letter-spacing:-0.5px;flex-shrink:0;}
- .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#12284C;line-height:1.0;}
+ .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#08294D;line-height:1.0;}
  .navbar__logo-sub{font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:20px;color:#5A6A7A;letter-spacing:0.24px;}
  .navbar__nav{margin-left:auto;}
  .navbar__links{display:flex;align-items:center;gap:var(--space-6);list-style:none;}
@@ -295,14 +295,14 @@
  .sticky-cta-bar .btn{padding:10px 20px;font-size:var(--text-xs);flex-shrink:0;}
  @media(max-width:767px){.sticky-cta-bar{display:flex;}}
  /* WhatsApp */
- .wa-btn{position:fixed;bottom:19px;right:82px;z-index:600;display:flex;align-items:center;gap:10px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#F7F4EC;border:none;border-radius:64px;padding:10px 18px 10px 10px;width:256px;height:64px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;line-height:14px;text-decoration:none;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;transition:filter 250ms ease,transform 250ms ease,box-shadow 250ms ease;white-space:nowrap;}
+ .wa-btn{position:fixed;bottom:19px;right:82px;z-index:600;display:flex;align-items:center;gap:10px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#FBFAEF;border:none;border-radius:64px;padding:10px 18px 10px 10px;width:256px;height:64px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;line-height:14px;text-decoration:none;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;transition:filter 250ms ease,transform 250ms ease,box-shadow 250ms ease;white-space:nowrap;}
  .wa-btn:hover,.wa-btn:focus-visible{filter:brightness(1.18);transform:translateY(-2px);box-shadow:0 8px 28px rgba(18,40,76,0.45);}
  .wa-btn:focus-visible{outline:2px solid #FFCB03;outline-offset:3px;}
  .wa-btn__circle{width:50px;height:50px;min-width:50px;border-radius:50%;background-color:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
  @keyframes wa-entrance{from{transform:translateY(32px);opacity:0;}to{transform:translateY(0);opacity:1;}}
  .chatbot-btn{position:fixed;bottom:19px;right:11px;z-index:600;width:64px;height:64px;border-radius:296px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.55s both;transition:filter 250ms ease,transform 250ms ease;}
  .chatbot-btn:hover,.chatbot-btn:focus-visible{filter:brightness(1.18);transform:translateY(-2px);}
- .chatbot-btn svg{width:26px;height:26px;color:#F7F4EC;}
+ .chatbot-btn svg{width:26px;height:26px;color:#FBFAEF;}
  @media(max-width:767px){.wa-btn{bottom:80px;font-size:13px;padding:9px 14px 9px 9px;}.wa-btn__circle{width:30px;height:30px;min-width:30px;}.chatbot-btn{bottom:80px;right:11px;}}
  @media(prefers-reduced-motion:reduce){.wa-btn{animation:none;opacity:1;transform:none;transition:none;}.chatbot-btn{animation:none;opacity:1;}}
  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
@@ -368,14 +368,14 @@
   <span>Turizm ve Otelcilik — Seyhan Kampüsü</span>
   <span class="announcement-bar__dot">·</span><span>Devlet Destekli Programlar</span>
   <span class="announcement-bar__dot">·</span><span>Altıneller Güvencesi</span>
-  <span class="announcement-bar__dot">·</span><span>Bursluluk Sınavı Açık</span>
+  <span class="announcement-bar__dot">·</span><span>Ücretsiz Ön Kayıt Açık</span>
   <span class="announcement-bar__dot">·</span><span>Aşçılık · Konaklama</span>
   <span class="announcement-bar__dot">·</span><span>Kayıt 2026–2027</span>
   <span class="announcement-bar__dot">·</span>
   <span>Turizm ve Otelcilik — Seyhan Kampüsü</span>
   <span class="announcement-bar__dot">·</span><span>Devlet Destekli Programlar</span>
   <span class="announcement-bar__dot">·</span><span>Altıneller Güvencesi</span>
-  <span class="announcement-bar__dot">·</span><span>Bursluluk Sınavı Açık</span>
+  <span class="announcement-bar__dot">·</span><span>Ücretsiz Ön Kayıt Açık</span>
   <span class="announcement-bar__dot">·</span><span>Aşçılık · Konaklama</span>
   <span class="announcement-bar__dot">·</span><span>Kayıt 2026–2027</span>
   <span class="announcement-bar__dot">·</span>
@@ -404,7 +404,7 @@
       <a href="biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#9B3060;"></span> Biyomedikal</a>
       
       
-      <a href="saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span> Sağlık Hizmetleri <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span><div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);"><a href="saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8E44AD;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a><a href="saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E8A0BF;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a><a href="saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#C0392B;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a></div></a>
+      <a href="saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span> Sağlık Hizmetleri <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span><div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);"><a href="saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a><a href="saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a><a href="saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a></div></a>
       <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#A0285A;"></span> Elektrik-Elektronik</a>
       <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#C85A28;"></span> Gıda Teknolojileri</a>
       <a href="turizm-otelcilik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#3A7060;"></span>Turizm ve Otelcilik</a>
@@ -424,9 +424,10 @@
     <li><a href="#">Fırsatlar</a></li>
     <li><a href="#">Okulumuz</a></li>
     <li><a href="../index.html#iletisim">İletişim</a></li>
+    <li><a href="../etkinlikler.html">Etkinlikler</a></li>
    </ul>
   </nav>
-  <a href="#basvuru" class="btn btn--primary navbar__cta-desktop">Bursluluk Sınavı</a>
+  <a href="#basvuru" class="btn btn--primary navbar__cta-desktop">Ücretsiz Ön Kayıt</a>
   <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
    <span></span><span></span><span></span>
   </button>
@@ -436,9 +437,10 @@
   <a href="#" class="mobile-nav-link">Tüm Programlar</a>
   <a href="#" class="mobile-nav-link">Kampüsler</a>
   <a href="#" class="mobile-nav-link">Fırsatlar</a>
+  <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
   <a href="../index.html" class="mobile-nav-link">Ana Sayfa</a>
   <div class="mobile-nav-cta">
-   <a href="#basvuru" class="btn btn--primary" style="width:100%;justify-content:center;">Bursluluk Sınavına Başvur</a>
+   <a href="#basvuru" class="btn btn--primary" style="width:100%;justify-content:center;">Ücretsiz Ön Kayıt Yap</a>
   </div>
  </div>
 </header>
@@ -653,12 +655,12 @@
  <div class="container">
   <div class="section-header reveal">
    <span class="section-badge section-badge--white">Neden Uzay Koleji?</span>
-   <h2 class="section-title" style="color:#F7F4EC!important;">Sektör Bağlantılı Eğitim</h2>
+   <h2 class="section-title" style="color:#FBFAEF!important;">Sektör Bağlantılı Eğitim</h2>
    <p class="section-subtitle" style="color:rgba(247,244,236,0.65)!important;margin-inline:auto;">Teoriden pratiğe, kampüsten sektöre.</p>
   </div>
   <div class="firsatlar-grid">
   <div class="firsat-card reveal reveal-delay-1"
-       style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#12284C;--fc-desc:rgba(18,40,76,0.80);">
+       style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#08294D;--fc-desc:rgba(18,40,76,0.80);">
     <div class="firsat-card__glow"></div>
     <div class="firsat-card__clip">
     <div class="firsat-card__bg"></div>
@@ -670,7 +672,7 @@
     </div>
   </div>
   <div class="firsat-card reveal reveal-delay-2"
-       style="--fc-gradient:linear-gradient(135deg,#6B9BC7,#12284C);">
+       style="--fc-gradient:linear-gradient(135deg,#6B9BC7,#08294D);">
     <div class="firsat-card__glow"></div>
     <div class="firsat-card__clip">
     <div class="firsat-card__bg"></div>
@@ -682,7 +684,7 @@
     </div>
   </div>
   <div class="firsat-card reveal reveal-delay-3"
-       style="--fc-gradient:linear-gradient(135deg,#1A3660,#6B9BC7);">
+       style="--fc-gradient:linear-gradient(135deg,#0F3A6B,#6B9BC7);">
     <div class="firsat-card__glow"></div>
     <div class="firsat-card__clip">
     <div class="firsat-card__bg"></div>
@@ -841,9 +843,9 @@
  <div class="container">
   <span class="section-badge section-badge--white" style="margin-bottom:var(--space-6);">Kayıt 2026–2027</span>
   <h2>Turizm kariyerine bugün başla</h2>
-  <p>Bursluluk sınavını geç, devlet destekli Turizm ve Otelcilik programına başvur. Sınırlı kontenjan.</p>
+  <p>Ücretsiz ön kayıt yap, devlet destekli Turizm ve Otelcilik programına başvur. Sınırlı kontenjan.</p>
   <div class="cta-group">
-   <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Bursluluk Sınavına Başvur</a>
+   <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Ücretsiz Ön Kayıt Yap</a>
    <a href="https://wa.me/905XXXXXXXXX?text=Turizm%20ve%20Otelcilik%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum" class="btn btn--outline-white btn--lg" target="_blank" rel="noopener">WhatsApp ile Sor</a>
   </div>
  </div>
@@ -880,7 +882,7 @@
    <div>
     <div class="footer__col-title">İletişim</div>
     <div class="footer__links">
-     <a href="../bursluluk-sinavi.html">Bursluluk Sınavı</a>
+     <a href="../bursluluk-sinavi.html">Ücretsiz Ön Kayıt</a>
      <a href="../kayit.html">Kayıt</a>
      <a href="../index.html#iletisim">İletişim</a>
     </div>
@@ -1028,5 +1030,6 @@
   }, undefined, 0.6);
 </script>
 
+<script src="../assets/grid-canvas.js"></script>
 </body>
 </html>

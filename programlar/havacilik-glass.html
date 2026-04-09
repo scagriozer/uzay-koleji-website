@@ -4,26 +4,26 @@
  --color-gold: #FFCB03;
  --color-gold-dark: #D4A800;
  --color-gold-light: #FFD740;
- --color-lacivert: #12284C;
- --color-lacivert-dark: #0B1A30;
- --color-lacivert-light: #1A3660;
- --color-beyaz: #F7F4EC;
+ --color-lacivert: #08294D;
+ --color-lacivert-dark: #051E38;
+ --color-lacivert-light: #0F3A6B;
+ --color-beyaz: #FBFAEF;
  --color-kirmizi: #9B1B30;
  --color-gri: #D8CBB6;
  --color-gri-dark: #C4B49E;
  --color-grafit: #1E2A36;
  --color-kum-beji: #D8CBB6;
- --color-acik-mavi: #D9E6F2;
- --color-text-primary: #12284C;
+ --color-acik-mavi: #C2CFDB;
+ --color-text-primary: #08294D;
  --color-text-secondary: #1E2A36;
  --color-text-muted: #5A6A7A;
- --color-text-white: #F7F4EC;
+ --color-text-white: #FBFAEF;
  --color-border: #D8CBB6;
- --color-bg-page: #F7F4EC;
+ --color-bg-page: #FBFAEF;
  --color-bg-section-alt: #EDE8DC;
  --color-whatsapp: #25D366;
 
- --color-accent: #4A90D9;
+ --color-accent: #84ABCB;
  --color-accent-dark: #3a78c0;
  --color-accent-light: #6aaae3;
  --color-accent-bg: rgba(74,144,217,0.08);
@@ -35,7 +35,7 @@
  --font-weight-regular: 400;
  --font-weight-medium: 500;
  --font-weight-semibold: 600;
- --font-weight-bold: 700;
+ --font-weight-bold: 700;--font-weight-black: 900;
  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
  --text-md: 1.125rem; --text-lg: 1.25rem; --text-xl: 1.5rem;
  --text-2xl: 1.875rem; --text-3xl: 2.25rem;
@@ -58,7 +58,7 @@
  }
  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
  html{scroll-behavior:smooth;font-size:16px;overflow-x:hidden;}
- body{font-family:var(--font-body);background-color:var(--color-bg-page);color:var(--color-text-secondary);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+ body{font-family:var(--font-body);background-color:var(--color-bg-page);color:var(--color-text-secondary);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-top:40px;}
  img{max-width:100%;display:block;}a{color:inherit;text-decoration:none;}
  ul,ol{list-style:none;}button{cursor:pointer;border:none;background:none;font-family:inherit;}
  .container{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--container-padding);}
@@ -80,14 +80,14 @@
  .btn--outline-white{background-color:transparent;color:var(--color-beyaz);border-color:rgba(247,244,236,0.6);}
  .btn--outline-white:hover{background-color:rgba(247,244,236,0.1);border-color:var(--color-beyaz);transform:translateY(-2px);}
  .btn--lg{padding:16px 36px;font-size:var(--text-base);}
- .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:relative;z-index:var(--z-sticky);}
+ .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;width:100%;z-index:calc(var(--z-sticky) + 20);}
  .announcement-bar__track{display:flex;align-items:center;gap:var(--space-6);white-space:nowrap;animation:marquee-scroll 32s linear infinite;will-change:transform;}
  .announcement-bar:hover .announcement-bar__track{animation-play-state:paused;}
  .announcement-bar__track span{font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);color:var(--color-lacivert);letter-spacing:0.04em;text-transform:uppercase;}
  .announcement-bar__dot{color:var(--color-lacivert)!important;opacity:0.5;font-size:1.2em;}
  @keyframes marquee-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
  @media(max-width:767px){.announcement-bar{height:36px;}.announcement-bar__track span{font-size:var(--text-xs);}}
- .navbar{position:sticky;top:0;z-index:calc(var(--z-sticky) + 10);width:100%;height:72px;background-color:var(--color-beyaz);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
+ .navbar{position:sticky;top:40px;z-index:calc(var(--z-sticky) + 10);width:100%;height:72px;background-color:var(--color-beyaz);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
  .navbar.is-scrolled{box-shadow:var(--shadow-md);border-bottom-color:var(--color-border);}
  .navbar__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
  .navbar__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;flex-shrink:0;}
@@ -280,7 +280,7 @@
  ============================================================ */
 
  /* Koyu gökyüzü zemini — uçak animasyonu üstünde görünecek */
- body{background:linear-gradient(140deg,#0B1A30 0%,#0e1e3a 45%,#0a1628 100%) fixed;color:#F7F4EC;}
+ body{background:linear-gradient(140deg,#051E38 0%,#0e1e3a 45%,#0a1628 100%) fixed;color:#FBFAEF;}
 
  /* Hero: kendi arka planını kaldır, sadece içerik göster */
  .hero{background:transparent!important;}
@@ -298,12 +298,12 @@
    border-bottom:1px solid rgba(217,230,242,0.10)!important;
  }
  .navbar.is-scrolled{background:rgba(8,16,36,0.90)!important;box-shadow:0 4px 24px rgba(0,0,0,0.30)!important;}
- .navbar__logo-text{color:#F7F4EC!important;}
+ .navbar__logo-text{color:#FBFAEF!important;}
  .navbar__logo-sub{color:rgba(217,230,242,0.50)!important;}
  .navbar__links a,.navbar__dropdown-trigger{color:rgba(217,230,242,0.85)!important;}
  .navbar__links a:hover,.navbar__dropdown-trigger:hover,.navbar__links a.active{color:#FFCB03!important;}
  .navbar__links a::after,.navbar__dropdown-trigger::after{background-color:#FFCB03!important;}
- .navbar__hamburger span{background-color:#F7F4EC!important;}
+ .navbar__hamburger span{background-color:#FBFAEF!important;}
 
  /* Mega menu — koyu cam */
  .navbar__mega-menu{background:rgba(8,18,40,0.96)!important;backdrop-filter:blur(20px);border-color:rgba(217,230,242,0.12)!important;}
@@ -325,7 +325,7 @@
  .cta-section::before{opacity:0.5;}
 
  /* Tipografi — açık tema metinleri koy temaya çevir */
- h1,h2,h3,h4,.section-title,.h2,.h3{color:#F7F4EC!important;}
+ h1,h2,h3,h4,.section-title,.h2,.h3{color:#FBFAEF!important;}
  .section-subtitle{color:rgba(217,230,242,0.70)!important;}
  .hero h1 em{color:#6aaae3!important;}
  .hero__desc{color:rgba(247,244,236,0.82)!important;}
@@ -342,7 +342,7 @@
    border-color:rgba(255,203,3,0.28)!important;
    box-shadow:0 8px 32px rgba(255,203,3,0.09)!important;
  }
- .ozet-card__label,.feature-card__title,.kariyer-item__name,.testimonial-card__name{color:#F7F4EC!important;}
+ .ozet-card__label,.feature-card__title,.kariyer-item__name,.testimonial-card__name{color:#FBFAEF!important;}
  .ozet-card__desc,.feature-card__desc,.testimonial-card__text{color:rgba(217,230,242,0.72)!important;}
  .ozet-card__value{color:#6aaae3!important;}
  .testimonial-card__quote{color:var(--color-gold)!important;}
@@ -357,7 +357,7 @@
    background:rgba(10,22,52,0.68)!important;
    backdrop-filter:blur(14px);
  }
- .tesis-card__title{color:#F7F4EC!important;}
+ .tesis-card__title{color:#FBFAEF!important;}
  .tesis-card__desc{color:rgba(217,230,242,0.70)!important;}
 
  /* Kampüs bilgi kartı */
@@ -370,13 +370,13 @@
    background:rgba(10,22,52,0.70)!important;
    backdrop-filter:blur(16px);
  }
- .kampus-info-card__title{color:#F7F4EC!important;}
+ .kampus-info-card__title{color:#FBFAEF!important;}
  .kampus-detail{color:rgba(217,230,242,0.72)!important;}
  .kampus-other-links a{color:rgba(217,230,242,0.55)!important;border-color:rgba(217,230,242,0.15)!important;}
  .kampus-other-links a:hover{color:#6aaae3!important;border-color:#6aaae3!important;}
 
  /* Outline buton — açık temadan çevir */
- .btn--outline-white{color:#F7F4EC!important;border-color:rgba(247,244,236,0.45)!important;}
+ .btn--outline-white{color:#FBFAEF!important;border-color:rgba(247,244,236,0.45)!important;}
  .btn--outline-white:hover{background:rgba(247,244,236,0.10)!important;}
 
  /* Footer */
@@ -429,21 +429,21 @@
     <li class="navbar__item--dropdown">
      <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">Programlar <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
      <div class="navbar__mega-menu" role="menu">
-      <a href="havacilik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#4A90D9;"></span>Havacılık</a>
+      <a href="havacilik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#84ABCB;"></span>Havacılık</a>
       <a href="enerji.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#F5A623;"></span>Enerji Sistemleri</a>
-      <a href="biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#27AE60;"></span>Biyomedikal</a>
+      <a href="biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#A2C5A9;"></span>Biyomedikal</a>
       <a href="saglik-bakim.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2a6080;"></span>Sağlık Hizmetleri</a>
-      <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2980B9;"></span>Elektrik-Elektronik</a>
-      <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#2ECC71;"></span>Gıda Teknolojileri</a>
+      <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#84ABCB;"></span>Elektrik-Elektronik</a>
+      <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#BABD49;"></span>Gıda Teknolojileri</a>
       <a href="turizm-otelcilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#E67E22;"></span>Turizm ve Otelcilik</a>
      </div>
     </li>
     <li class="navbar__item--dropdown">
      <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">Kampüsler <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
      <div class="navbar__mega-menu" role="menu">
-      <a href="../kampusler/cukurova.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#27AE60;"></span>Çukurova</a>
+      <a href="../kampusler/cukurova.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#A2C5A9;"></span>Çukurova</a>
       <a href="../kampusler/seyhan.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:var(--color-gold);"></span>Seyhan</a>
-      <a href="../kampusler/yuregir.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#4A90D9;"></span>Yüreğir</a>
+      <a href="../kampusler/yuregir.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#84ABCB;"></span>Yüreğir</a>
      </div>
     </li>
     <li><a href="#">Fırsatlar</a></li>
@@ -476,12 +476,12 @@
     <linearGradient id="skyAtmos" x1="0" y1="0" x2="0" y2="1">
      <stop offset="0%"   stop-color="#0a1628"   stop-opacity="0"/>
      <stop offset="55%"  stop-color="#1a3a6b"   stop-opacity="0.25"/>
-     <stop offset="82%"  stop-color="#4A90D9"   stop-opacity="0.18"/>
-     <stop offset="100%" stop-color="#D9E6F2"   stop-opacity="0.30"/>
+     <stop offset="82%"  stop-color="#84ABCB"   stop-opacity="0.18"/>
+     <stop offset="100%" stop-color="#C2CFDB"   stop-opacity="0.30"/>
     </linearGradient>
     <linearGradient id="horizonGlow" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0%"   stop-color="#D9E6F2" stop-opacity="0"/>
-     <stop offset="100%" stop-color="#D9E6F2" stop-opacity="0.22"/>
+     <stop offset="0%"   stop-color="#C2CFDB" stop-opacity="0"/>
+     <stop offset="100%" stop-color="#C2CFDB" stop-opacity="0.22"/>
     </linearGradient>
    </defs>
    <rect width="1400" height="700" fill="url(#skyAtmos)"/>
@@ -772,7 +772,7 @@
     </div>
    </div>
    <div class="tesis-card reveal reveal-delay-2">
-    <div class="tesis-card__image" style="background:linear-gradient(135deg,#111D33 0%,#12284C 50%,#1A3660 100%);">
+    <div class="tesis-card__image" style="background:linear-gradient(135deg,#111D33 0%,#08294D 50%,#0F3A6B 100%);">
      <span style="position:relative;z-index:1;">🔧</span>
      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.7) 100%);"></div>
      <span class="tesis-card__image-label">Atölye</span>
@@ -783,7 +783,7 @@
     </div>
    </div>
    <div class="tesis-card reveal reveal-delay-3">
-    <div class="tesis-card__image" style="background:linear-gradient(135deg,#1a2a1a 0%,#2a3a2a 50%,#12284C 100%);">
+    <div class="tesis-card__image" style="background:linear-gradient(135deg,#1a2a1a 0%,#2a3a2a 50%,#08294D 100%);">
      <span style="position:relative;z-index:1;">📚</span>
      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.7) 100%);"></div>
      <span class="tesis-card__image-label">Kütüphane</span>

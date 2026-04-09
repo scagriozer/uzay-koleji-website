@@ -19,34 +19,34 @@
       --color-gold:           #FFCB03;
       --color-gold-dark:      #D4A800;
       --color-gold-light:     #FFD740;
-      --color-lacivert:       #12284C;
-      --color-lacivert-dark:  #0B1A30;
-      --color-lacivert-light: #1A3660;
-      --color-beyaz:          #F7F4EC;
+      --color-lacivert:       #08294D;
+      --color-lacivert-dark:  #051E38;
+      --color-lacivert-light: #0F3A6B;
+      --color-beyaz:          #FBFAEF;
       --color-kirmizi:        #9B1B30;
       --color-gri:            #D8CBB6;
       --color-gri-dark:       #C4B49E;
       --color-grafit:         #1E2A36;
       --color-kum-beji:       #D8CBB6;
-      --color-acik-mavi:      #D9E6F2;
-      --color-text-primary:   #12284C;
+      --color-acik-mavi:      #C2CFDB;
+      --color-text-primary:   #08294D;
       --color-text-secondary: #1E2A36;
       --color-text-muted:     #5A6A7A;
-      --color-text-white:     #F7F4EC;
+      --color-text-white:     #FBFAEF;
       --color-border:         #D8CBB6;
       --color-bg-page:        #FFCB03;
       --color-bg-section-alt: #F5C200;
       --color-whatsapp:       #25D366;
       --color-whatsapp-dark:  #1DA851;
 
-      --color-program-havacilik:    #4A90D9;
+      --color-program-havacilik:    #84ABCB;
       --color-program-enerji:       #F5A623;
-      --color-program-biyomedikal:  #27AE60;
-      --color-program-hemsire:      #E8A0BF;
-      --color-program-ebelik:       #C0392B;
-      --color-program-saglik-bakim: #8E44AD;
-      --color-program-elektrik:     #2980B9;
-      --color-program-gida:         #2ECC71;
+      --color-program-biyomedikal:  #A2C5A9;
+      --color-program-hemsire:      #D2AAB0;
+      --color-program-ebelik:       #A22F2D;
+      --color-program-saglik-bakim: #8A4E99;
+      --color-program-elektrik:     #84ABCB;
+      --color-program-gida:         #BABD49;
 
       --font-display: 'Montserrat', -apple-system, sans-serif;
       --font-body:    'Poppins', -apple-system, sans-serif;
@@ -304,8 +304,10 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      position: relative;
-      z-index: var(--z-sticky);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: calc(var(--z-sticky) + 20);
     }
 
     .announcement-bar__track {
@@ -351,7 +353,7 @@
     ============================================================ */
     .navbar {
       position: fixed;
-      top: 0;
+      top: 40px;
       z-index: calc(var(--z-sticky) + 10);
       width: 100%;
       height: 100px;
@@ -403,7 +405,7 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-size: 2rem;
-      color: #12284C;
+      color: #08294D;
       line-height: 1.0;
     }
 
@@ -478,7 +480,7 @@
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.06em;
-      color: #12284C;
+      color: #08294D;
       background: #FFCB03;
       border-radius: 4px;
       padding: 1px 5px;
@@ -630,7 +632,7 @@
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none; }
       .navbar__hamburger { display: flex; }
-      .navbar { height: 72px; }
+      .navbar { height: 72px; top: 36px; }
     }
 
     /* ============================================================
@@ -941,7 +943,7 @@
     }
 
     @media (max-width: 767px) {
-      .hero { min-height: 100svh; padding-top:72px; }
+      .hero { min-height: 100svh; padding-top:108px; }
       .hero__cta-group { flex-direction: column; align-items: flex-start; }
       .hero__cta-group .btn { width: 100%; justify-content: center; }
       .hero h1 { font-size: 48px; }
@@ -1205,7 +1207,7 @@
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 6vw, 5rem);
       font-weight: 900;
-      color: #F7F4EC;
+      color: #FBFAEF;
       letter-spacing: -0.03em;
       white-space: nowrap;
       display: block;
@@ -1338,7 +1340,7 @@
     /* Partner banner — kırık beyaz + köşe gölgesi */
     .logo-cloud-section--partners {
       padding-block: 2.24rem 1.92rem; /* %20 azaltıldı: 2.8→2.24, 2.4→1.92 */
-      background: #F7F4EC;
+      background: #FBFAEF;
       position: relative;
       overflow: hidden;
       box-shadow:
@@ -1960,7 +1962,7 @@
       background: rgba(18, 40, 76, 0.7);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      color: #F7F4EC;
+      color: #FBFAEF;
       border: none;
       border-radius: 64px;
       padding: 10px 18px 10px 10px;
@@ -2039,7 +2041,7 @@
     .chatbot-btn svg {
       width: 26px;
       height: 26px;
-      color: #F7F4EC;
+      color: #FBFAEF;
     }
 
     /* ============================================================
@@ -2246,9 +2248,9 @@
                 🏥 Sağlık Hizmetleri
                 <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span>
                 <div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);">
-                  <a href="../programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8E44AD;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a>
-                  <a href="../programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E8A0BF;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a>
-                  <a href="../programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#C0392B;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a>
+                  <a href="../programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a>
+                  <a href="../programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a>
+                  <a href="../programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a>
                 </div>
               </a>
               <a href="../programlar/elektrik-elektronik.html" class="mega-menu__item">
@@ -2294,7 +2296,7 @@
         </ul>
       </nav>
 
-      <a href="../bursluluk-sinavi.html" class="btn navbar__cta-desktop" style="background:#FFCB03;border-color:#FFCB03;color:#12284C;width:171px;height:46px;border-radius:27px;padding:14px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;justify-content:center;">Bursluluk Sınavı</a>
+      <a href="../bursluluk-sinavi.html" class="btn navbar__cta-desktop" style="background:#FFCB03;border-color:#FFCB03;color:#08294D;width:171px;height:46px;border-radius:27px;padding:14px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;justify-content:center;">Bursluluk Sınavı</a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -2318,7 +2320,7 @@
   <!-- ============================================================
        HERO SECTION
   ============================================================ -->
-  <section class="hero" id="hero" style="padding-top:100px;">
+  <section class="hero" id="hero" style="padding-top:140px;">
     <canvas class="hero__bg-grid" aria-hidden="true"></canvas>
 
     <!-- Decorative paper plane trail + plane -->
@@ -2342,10 +2344,10 @@
               Devlet destekli programlar, Altıneller güvencesinde özel eğitim.
             </p>
             <div class="hero__cta-group">
-              <a href="../kayit.html" class="btn" style="background:#08294D;color:#F7F4EC;border-color:#08294D;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
+              <a href="../kayit.html" class="btn" style="background:#08294D;color:#FBFAEF;border-color:#08294D;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
                 Ücretsiz Ön Kayıt
               </a>
-              <a href="#kampusler" class="btn" style="background:#08294D;color:#F7F4EC;border-color:#08294D;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
+              <a href="#kampusler" class="btn" style="background:#08294D;color:#FBFAEF;border-color:#08294D;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
                 Kampüsleri Keşfet
               </a>
             </div>
@@ -2846,7 +2848,7 @@
     <div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:640px;height:640px;border-radius:50%;background:#F9E87B;opacity:0.45;pointer-events:none;z-index:0;"></div>
     <div class="container" style="position:relative;z-index:1;">
       <div class="section-header reveal" style="margin-top:75px;">
-        <span class="section-badge" style="background:rgba(217,230,242,0.75);color:#12284C;">Adana'da 3 Nokta</span>
+        <span class="section-badge" style="background:rgba(217,230,242,0.75);color:#08294D;">Adana'da 3 Nokta</span>
         <h2 class="section-title">Kampüslerimiz</h2>
         <p class="section-subtitle" style="margin-inline:auto;margin-top:75px;">
           Adana'nın farklı ilçelerinde 3 modern kampüs. Sana en yakın olanda eğitimine başla.
@@ -2931,8 +2933,8 @@
     <div class="container">
       <div class="section-header reveal" style="margin-top:-50px;">
         <span class="section-badge">Uzay Koleji'nde</span>
-        <h2 class="section-title" style="color:#12284C;">Uzay Koleji Öğrencilerine<br>Özel Fırsatlar</h2>
-        <p class="section-subtitle" style="color:#12284C;margin-inline:auto;">
+        <h2 class="section-title" style="color:#08294D;">Uzay Koleji Öğrencilerine<br>Özel Fırsatlar</h2>
+        <p class="section-subtitle" style="color:#08294D;margin-inline:auto;">
           Mezun olduğunda sadece bir diploma değil, kariyerine hazır bir paket alıyorsun.
         </p>
       </div>
@@ -2941,7 +2943,7 @@
 
         <!-- card 1: gold #FFCB03 → #D4A800  |  dark text -->
         <div class="firsat-card reveal reveal-delay-1"
-             style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#12284C;--fc-desc:rgba(18,40,76,0.80);">
+             style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#08294D;--fc-desc:rgba(18,40,76,0.80);">
           <div class="firsat-card__glow"></div>
           <div class="firsat-card__clip">
           <div class="firsat-card__bg"></div>
@@ -2955,9 +2957,9 @@
           </div>
         </div>
 
-        <!-- card 2: blue #6B9BC7 → navy #12284C  |  white text -->
+        <!-- card 2: blue #6B9BC7 → navy #08294D  |  white text -->
         <div class="firsat-card reveal reveal-delay-2"
-             style="--fc-gradient:linear-gradient(135deg,#6B9BC7,#12284C);">
+             style="--fc-gradient:linear-gradient(135deg,#6B9BC7,#08294D);">
           <div class="firsat-card__glow"></div>
           <div class="firsat-card__clip">
           <div class="firsat-card__bg"></div>
@@ -2973,7 +2975,7 @@
 
         <!-- card 3: gold #FFCB03 → blue #6B9BC7  |  dark text -->
         <div class="firsat-card reveal reveal-delay-3"
-             style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#12284C;--fc-desc:rgba(18,40,76,0.80);">
+             style="--fc-gradient:linear-gradient(135deg,#FFCB03,#6B9BC7);--fc-text:#08294D;--fc-desc:rgba(18,40,76,0.80);">
           <div class="firsat-card__glow"></div>
           <div class="firsat-card__clip">
           <div class="firsat-card__bg"></div>
@@ -2987,9 +2989,9 @@
           </div>
         </div>
 
-        <!-- card 4: dark navy #1A3660 → blue #6B9BC7  |  white text -->
+        <!-- card 4: dark navy #0F3A6B → blue #6B9BC7  |  white text -->
         <div class="firsat-card reveal reveal-delay-4"
-             style="--fc-gradient:linear-gradient(135deg,#1A3660,#6B9BC7);">
+             style="--fc-gradient:linear-gradient(135deg,#0F3A6B,#6B9BC7);">
           <div class="firsat-card__glow"></div>
           <div class="firsat-card__clip">
           <div class="firsat-card__bg"></div>

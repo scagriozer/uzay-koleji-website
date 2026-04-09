@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Uzay Koleji Seyhan Kampüsü — Elektrik-Elektronik ve Gıda Teknolojileri programları. Seyhan İlçesi, Adana.">
   <title>Seyhan Kampüsü — Uzay Koleji | Adana</title>
@@ -12,13 +13,13 @@
 
   <style>
     :root {
-      --color-gold:#FFCB03;--color-gold-dark:#D4A800;--color-lacivert:#12284C;--color-lacivert-dark:#0B1A30;--color-lacivert-light:#1A3660;
-      --color-beyaz:#F7F4EC;--color-text-primary:#12284C;--color-text-secondary:#1E2A36;--color-text-muted:#5A6A7A;
-      --color-border:#D8CBB6;--color-bg-page:#F7F4EC;--color-bg-section-alt:#EDE8DC;--color-whatsapp:#25D366;
-      --color-accent:#2980B9;--color-accent-dark:#1e6090;--color-accent-light:#5aa8d8;
+      --color-gold:#FFCB03;--color-gold-dark:#D4A800;--color-lacivert:#08294D;--color-lacivert-dark:#051E38;--color-lacivert-light:#0F3A6B;
+      --color-beyaz:#FBFAEF;--color-text-primary:#08294D;--color-text-secondary:#1E2A36;--color-text-muted:#5A6A7A;
+      --color-border:#D8CBB6;--color-bg-page:#FFCB03;--color-bg-section-alt:#EDE8DC;--color-whatsapp:#25D366;
+      --color-accent:#84ABCB;--color-accent-dark:#1e6090;--color-accent-light:#5aa8d8;
       --color-accent-bg:rgba(41,128,185,0.08);--color-accent-border:rgba(41,128,185,0.25);
       --font-display:'Montserrat',-apple-system,sans-serif;--font-body:'Poppins',-apple-system,sans-serif;--font-data:'Roboto',Arial,sans-serif;
-      --font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;
+      --font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-black:900;
       --text-xs:0.75rem;--text-sm:0.875rem;--text-base:1rem;--text-md:1.125rem;--text-lg:1.25rem;--text-xl:1.5rem;--text-2xl:1.875rem;--text-3xl:2.25rem;
       --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;
       --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;--radius-2xl:24px;--radius-pill:100px;
@@ -35,7 +36,7 @@
     .container{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--container-padding);}
     .section{padding-block:var(--section-padding-y);}
     .section--dark{background-color:var(--color-lacivert);}
-    .section--alt{background-color:var(--color-bg-section-alt);}
+    .section--alt{background-color:transparent;}
     h1{font-family:var(--font-display);font-weight: var(--font-weight-black);font-size:clamp(2.25rem,5vw,4.5rem);line-height:1.15;letter-spacing:-0.02em;}
     .section-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.2;letter-spacing:-0.015em;color:var(--color-text-primary);margin-bottom:var(--space-4);}
     .section-subtitle{font-size:var(--text-md);color:var(--color-text-muted);max-width:600px;}
@@ -48,18 +49,26 @@
     .btn--outline-white{background-color:transparent;color:var(--color-beyaz);border-color:rgba(247,244,236,0.6);}
     .btn--outline-white:hover{background-color:rgba(247,244,236,0.1);transform:translateY(-2px);}
     .btn--lg{padding:16px 36px;font-size:var(--text-base);}
-    .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:relative;z-index:var(--z-sticky);}
+    .btn--shiny-gold{position:relative;overflow:hidden;background:linear-gradient(160deg,#FFD740 0%,#FFCB03 45%,#D4A800 100%);color:#09294D;border:none;box-shadow:0 0 0 1.5px rgba(255,255,255,0.35) inset,0 4px 18px rgba(255,203,3,0.35),28px 0 40px rgba(255,203,3,0.22);}
+    .btn--shiny-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.28) 0%,transparent 55%);pointer-events:none;border-radius:inherit;}
+    .btn--shiny-gold:hover{transform:translateY(-2px);box-shadow:0 0 0 1.5px rgba(255,255,255,0.45) inset,0 8px 28px rgba(255,203,3,0.5),32px 0 52px rgba(255,203,3,0.30);}
+    .btn--shiny-navy{position:relative;overflow:hidden;background:linear-gradient(160deg,#1A4A80 0%,#09294D 50%,#061828 100%);color:var(--color-beyaz);border:none;box-shadow:0 0 0 1.5px rgba(255,255,255,0.1) inset,0 4px 18px rgba(9,41,77,0.5),-28px 0 40px rgba(9,41,77,0.32);}
+    .btn--shiny-navy::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.1) 0%,transparent 55%);pointer-events:none;border-radius:inherit;}
+    .btn--shiny-navy::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,203,3,0.0) 0%,rgba(255,203,3,0.06) 100%);pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 250ms ease;}
+    .btn--shiny-navy:hover{transform:translateY(-2px);box-shadow:0 0 0 1.5px rgba(255,203,3,0.25) inset,0 8px 28px rgba(9,41,77,0.6),-32px 0 52px rgba(9,41,77,0.42);}
+    .btn--shiny-navy:hover::after{opacity:1;}
+    .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;width:100%;z-index:calc(var(--z-sticky) + 20);}
     .announcement-bar__track{display:flex;align-items:center;gap:var(--space-6);white-space:nowrap;animation:marquee-scroll 30s linear infinite;}
     .announcement-bar:hover .announcement-bar__track{animation-play-state:paused;}
     .announcement-bar__track span{font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);color:var(--color-lacivert);letter-spacing:0.04em;text-transform:uppercase;}
     .announcement-bar__dot{color:var(--color-lacivert)!important;opacity:0.5;}
     @keyframes marquee-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-    .navbar{position:sticky;top:0;z-index:calc(var(--z-sticky)+10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
+    .navbar{position:fixed;top:40px;left:0;right:0;z-index:calc(var(--z-float) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
     .navbar.is-scrolled{box-shadow:var(--shadow-md);border-bottom-color:var(--color-border);}
     .navbar__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
     .navbar__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;flex-shrink:0;}
     .navbar__logo-mark{width:64px;height:64px;background-color:#FDC24C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--color-lacivert);letter-spacing:-0.5px;flex-shrink:0;}
-    .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#12284C;line-height:1.0;}
+    .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#08294D;line-height:1.0;}
     .navbar__logo-sub{font-size:var(--text-xs);color:var(--color-text-muted);}
     .navbar__nav{flex:1;}
     .navbar__links{display:flex;align-items:center;justify-content:center;gap:var(--space-6);}
@@ -92,25 +101,27 @@
     .mobile-nav-cta{margin-top:var(--space-4);}
     @media(max-width:1023px){.navbar__nav,.navbar__cta-desktop{display:none;}.navbar__hamburger{display:flex;}.navbar{height:72px;}}
 
-    .hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;
-      background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.4) 60%,transparent 100%),
-                linear-gradient(180deg,transparent 45%,rgba(41,128,185,0.12) 100%),
-                linear-gradient(140deg,#08101e 0%,#0e1a2e 35%,#101e38 65%,#08101e 100%);}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 45%,rgba(41,128,185,0.12) 0%,transparent 55%);pointer-events:none;}
-    .hero__bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(41,128,185,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(41,128,185,0.05) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
-    .hero__deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(8rem,18vw,18rem);opacity:0.04;pointer-events:none;user-select:none;line-height:1;}
-    .hero__content{position:relative;z-index:2;padding:var(--space-16) 0;display:flex;align-items:center;width:100%;}
+    .hero{position:relative;min-height:90vh;padding-top:140px;display:flex;align-items:center;overflow:hidden;background:var(--color-lacivert);}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 45%,rgba(255,203,3,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 15%,rgba(41,128,185,0.15) 0%,transparent 50%);pointer-events:none;}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent 0%,rgba(255,203,3,0.5) 75%,var(--color-bg-page) 100%);pointer-events:none;z-index:1;}
+    .hero__bg-grid{position:absolute;inset:0;pointer-events:none;}
+    .hero__deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(8rem,18vw,18rem);opacity:0.06;pointer-events:none;user-select:none;line-height:1;}
+    .hero__content{position:relative;z-index:2;padding:var(--space-16) 0 160px;display:flex;align-items:center;width:100%;}
     .hero__text{max-width:580px;}
     .hero__badges{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6);flex-wrap:wrap;}
     .badge-kampus{display:inline-flex;align-items:center;gap:var(--space-2);background-color:var(--color-gold);color:var(--color-lacivert);padding:8px 16px;border-radius:var(--radius-pill);font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;}
-    .badge-prog{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(41,128,185,0.18);color:#5aa8d8;padding:8px 16px;border-radius:var(--radius-pill);font-size:13px;border:1px solid rgba(41,128,185,0.3);}
+    .badge-prog{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent-bg);color:var(--color-accent-dark);padding:8px 16px;border-radius:var(--radius-pill);font-size:13px;border:1px solid var(--color-accent-border);}
     .hero h1{color:var(--color-beyaz);margin-bottom:var(--space-6);}
-    .hero h1 em{color:var(--color-accent-light);font-style:normal;}
-    .hero__desc{font-size:var(--text-md);color:rgba(247,244,236,0.78);line-height:1.65;margin-bottom:var(--space-8);}
+    .hero h1 em{color:var(--color-gold);font-style:normal;}
+    .hero__desc{font-size:var(--text-md);color:rgba(247,244,236,0.75);line-height:1.65;margin-bottom:var(--space-8);}
+    .hero .breadcrumb{color:rgba(247,244,236,0.45);}
+    .hero .breadcrumb a{color:rgba(247,244,236,0.45);}
+    .hero .breadcrumb a:hover{color:var(--color-gold);}
+    .hero .breadcrumb__current{color:var(--color-gold);font-weight:var(--font-weight-medium);}
     .hero__cta-group{display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;}
     @media(max-width:767px){.hero{min-height:100svh;}.hero__cta-group{flex-direction:column;align-items:flex-start;}.hero__cta-group .btn{width:100%;justify-content:center;}}
 
-    .hero-anim-overlay{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.14;overflow:hidden;}
+    .hero-anim-overlay{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.35;overflow:hidden;}
     @keyframes circuit-flow{0%{stroke-dashoffset:600;}100%{stroke-dashoffset:0;}}
     @keyframes circuit-dot{0%,100%{opacity:0.3;r:3;}50%{opacity:1;r:5;}}
 
@@ -124,7 +135,7 @@
     .prog-card{background:var(--color-beyaz);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;text-decoration:none;transition:transform var(--transition-base),box-shadow var(--transition-base);}
     .prog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card-hover);}
     .prog-card__header{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
-    .prog-card__header::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.5) 100%);}
+    .prog-card__header::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(255,203,3,0.55) 100%);}
     .prog-card__body{padding:var(--space-6);flex:1;}
     .prog-card__name{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-lg);color:var(--color-text-primary);margin-bottom:var(--space-2);}
     .prog-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.65;margin-bottom:var(--space-4);}
@@ -142,19 +153,28 @@
     .tesis-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
     @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}}
 
-    .cta-section{background:linear-gradient(135deg,#082040 0%,#051428 50%,#030a18 100%);text-align:center;position:relative;overflow:hidden;}
-    .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(255,203,3,0.18) 0%,transparent 55%);pointer-events:none;}
+    .cta-section{background:transparent;text-align:center;position:relative;overflow:hidden;}
     .cta-section .container{position:relative;z-index:1;}
-    .cta-section .section-title{color:var(--color-beyaz);}
-    .cta-section .section-subtitle{color:rgba(247,244,236,0.75);margin-inline:auto;margin-bottom:var(--space-8);}
+    .cta-section .section-title{color:var(--color-lacivert);}
+    .cta-section .section-subtitle{color:var(--color-text-secondary);margin-inline:auto;margin-bottom:var(--space-8);}
     .cta-section .cta-buttons{display:flex;align-items:center;justify-content:center;gap:var(--space-4);flex-wrap:wrap;}
 
-    .other-campus-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);}
-    .other-campus-card{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-sm);border-left:4px solid var(--color-accent);text-decoration:none;transition:transform var(--transition-base),box-shadow var(--transition-base);display:block;}
-    .other-campus-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
-    .other-campus-card__name{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-md);color:var(--color-text-primary);margin-bottom:var(--space-2);}
-    .other-campus-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
-    @media(max-width:600px){.other-campus-row{grid-template-columns:1fr;}}
+    .kampus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
+    @media(max-width:600px){.kampus-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto;}}
+    .kampus-card{aspect-ratio:4/5;border-radius:34px;overflow:hidden;transition:transform 0.5s ease,box-shadow 0.5s ease;}
+    .kampus-card:hover{transform:scale(1.03);box-shadow:0 0 60px -15px hsl(var(--kc-theme)/0.55);}
+    .kampus-card__link{position:relative;display:block;width:100%;height:100%;border-radius:34px;overflow:hidden;text-decoration:none;box-shadow:0 0 40px -15px hsl(var(--kc-theme)/0.45);}
+    .kampus-card__img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.5s ease;}
+    .kampus-card:hover .kampus-card__img{transform:scale(1.1);}
+    .kampus-card__gradient{position:absolute;inset:0;background:linear-gradient(to top,hsl(var(--kc-theme)/0.92) 0%,hsl(var(--kc-theme)/0.60) 35%,transparent 65%);}
+    .kampus-card__content{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;color:#fff;}
+    .kampus-card__district{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.78);margin-bottom:6px;}
+    .kampus-card__name{font-family:var(--font-display);font-size:26px;font-weight:800;color:#fff;line-height:1.2;margin:0 0 6px;}
+    .kampus-card__stats{font-size:13px;color:rgba(255,255,255,0.72);font-weight:500;margin:0 0 20px;line-height:1.5;}
+    .kampus-card__btn{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.28);border-radius:10px;padding:12px 16px;color:#fff;font-size:13px;font-weight:700;letter-spacing:0.02em;transition:background 0.3s,border-color 0.3s;}
+    .kampus-card:hover .kampus-card__btn{background:rgba(255,255,255,0.26);border-color:rgba(255,255,255,0.45);}
+    .kampus-card__btn-arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+    .kampus-card:hover .kampus-card__btn-arrow{transform:translateX(4px);}
 
     .footer{background-color:var(--color-lacivert-dark);border-top:1px solid rgba(247,244,236,0.08);padding-top:var(--space-16);padding-bottom:var(--space-8);}
     .footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:var(--space-12);margin-bottom:var(--space-12);}
@@ -183,14 +203,14 @@
     @media(max-width:767px){.footer__grid{grid-template-columns:1fr;gap:var(--space-8);}.footer__bottom{flex-direction:column;text-align:center;}}
 
     /* WhatsApp */
-    .wa-btn{position:fixed;bottom:19px;right:82px;z-index:600;display:flex;align-items:center;gap:10px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#F7F4EC;border:none;border-radius:64px;padding:10px 18px 10px 10px;width:256px;height:64px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;line-height:14px;text-decoration:none;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;transition:filter 250ms ease,transform 250ms ease,box-shadow 250ms ease;white-space:nowrap;}
+    .wa-btn{position:fixed;bottom:19px;right:82px;z-index:600;display:flex;align-items:center;gap:10px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#FBFAEF;border:none;border-radius:64px;padding:10px 18px 10px 10px;width:256px;height:64px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;line-height:14px;text-decoration:none;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;transition:filter 250ms ease,transform 250ms ease,box-shadow 250ms ease;white-space:nowrap;}
     .wa-btn:hover,.wa-btn:focus-visible{filter:brightness(1.18);transform:translateY(-2px);box-shadow:0 8px 28px rgba(18,40,76,0.45);}
     .wa-btn:focus-visible{outline:2px solid #FFCB03;outline-offset:3px;}
     .wa-btn__circle{width:50px;height:50px;min-width:50px;border-radius:50%;background-color:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     @keyframes wa-entrance{from{transform:translateY(32px);opacity:0;}to{transform:translateY(0);opacity:1;}}
     .chatbot-btn{position:fixed;bottom:19px;right:11px;z-index:600;width:64px;height:64px;border-radius:296px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.55s both;transition:filter 250ms ease,transform 250ms ease;}
     .chatbot-btn:hover,.chatbot-btn:focus-visible{filter:brightness(1.18);transform:translateY(-2px);}
-    .chatbot-btn svg{width:26px;height:26px;color:#F7F4EC;}
+    .chatbot-btn svg{width:26px;height:26px;color:#FBFAEF;}
     @media(max-width:767px){.wa-btn{bottom:80px;font-size:13px;padding:9px 14px 9px 9px;}.wa-btn__circle{width:30px;height:30px;min-width:30px;}.chatbot-btn{bottom:80px;right:11px;}}
     @media(prefers-reduced-motion:reduce){.wa-btn{animation:none;opacity:1;transform:none;transition:none;}.chatbot-btn{animation:none;opacity:1;}}
 
@@ -200,11 +220,11 @@
     @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
     .text-white{color:var(--color-beyaz)!important;}
     .text-muted-white{color:rgba(247,244,236,0.65)!important;}
-    .breadcrumb{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:rgba(247,244,236,0.55);margin-bottom:var(--space-6);}
-    .breadcrumb a{color:rgba(247,244,236,0.55);text-decoration:none;}
-    .breadcrumb a:hover{color:var(--color-gold);}
+    .breadcrumb{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);}
+    .breadcrumb a{color:var(--color-text-muted);text-decoration:none;}
+    .breadcrumb a:hover{color:var(--color-accent);}
     .breadcrumb__sep{opacity:0.4;}
-    .breadcrumb__current{color:var(--color-accent-light);font-weight:var(--font-weight-medium);}
+    .breadcrumb__current{color:var(--color-accent);font-weight:var(--font-weight-medium);}
   </style>
 </head>
 <body>
@@ -213,19 +233,19 @@
     <div class="announcement-bar__track">
       <span>🏫 Seyhan Kampüsü — Elektrik-Elektronik &amp; Gıda Teknolojileri</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Devlet Destekli Ücretsiz Eğitim</span>
+      <span>Devlet Destekli Eğitim</span>
       <span class="announcement-bar__dot">·</span>
       <span>Altıneller Güvencesi</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Bursluluk Sınavı — 26 Nisan 2026</span>
+      <span>Ücretsiz Ön Kayıt Açık</span>
       <span class="announcement-bar__dot">·</span>
       <span>🏫 Seyhan Kampüsü — Elektrik-Elektronik &amp; Gıda Teknolojileri</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Devlet Destekli Ücretsiz Eğitim</span>
+      <span>Devlet Destekli Eğitim</span>
       <span class="announcement-bar__dot">·</span>
       <span>Altıneller Güvencesi</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Bursluluk Sınavı — 26 Nisan 2026</span>
+      <span>Ücretsiz Ön Kayıt Açık</span>
       <span class="announcement-bar__dot">·</span>
     </div>
   </div>
@@ -244,13 +264,13 @@
           <li class="navbar__item--dropdown">
             <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
               Programlar
-              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
+              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"></polyline></svg>
             </button>
             <div class="navbar__mega-menu" role="menu">
               <a href="../programlar/havacilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#4B7EC8;"></span>Havacılık</a>
               <a href="../programlar/enerji.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#8FB84A;"></span>Yenilenebilir Enerji</a>
               <a href="../programlar/biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#9B3060;"></span>Biyomedikal</a>
-              <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span>Sağlık Hizmetleri<span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span><div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);"><a href="../programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8E44AD;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a><a href="../programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E8A0BF;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a><a href="../programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#C0392B;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a></div></a>
+              <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span>Sağlık Hizmetleri<span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span></a><div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);"><a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"></a><a href="../programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background=&#39;var(--color-bg-section-alt)&#39;" onmouseout="this.style.background=&#39;&#39;"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a><a href="../programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background=&#39;var(--color-bg-section-alt)&#39;" onmouseout="this.style.background=&#39;&#39;"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a><a href="../programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background=&#39;var(--color-bg-section-alt)&#39;" onmouseout="this.style.background=&#39;&#39;"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a></div>
               <a href="../programlar/elektrik-elektronik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#A0285A;"></span>Elektrik-Elektronik</a>
               <a href="../programlar/gida-teknolojileri.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#C85A28;"></span>Gıda Teknolojileri</a>
               <a href="../programlar/turizm-otelcilik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#3A7060;"></span>Turizm ve Otelcilik</a>
@@ -259,20 +279,21 @@
           <li class="navbar__item--dropdown">
             <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
               Kampüsler
-              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
+              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"></polyline></svg>
             </button>
             <div class="navbar__mega-menu" role="menu">
-              <a href="cukurova.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#27AE60;"></span>Çukurova</a>
-              <a href="seyhan.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#2980B9;"></span>Seyhan</a>
+              <a href="cukurova.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#A2C5A9;"></span>Çukurova</a>
+              <a href="seyhan.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#84ABCB;"></span>Seyhan</a>
               <a href="yuregir.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#F5A623;"></span>Yüreğir</a>
             </div>
           </li>
           <li><a href="../bursluluk-sinavi.html">Bursluluk Sınavı</a></li>
           <li><a href="../index.html">Ana Sayfa</a></li>
           <li><a href="../index.html#iletisim">İletişim</a></li>
+          <li><a href="../etkinlikler.html">Etkinlikler</a></li>
         </ul>
       </nav>
-      <a href="../bursluluk-sinavi.html" class="btn btn--primary navbar__cta-desktop">Bursluluk Sınavı</a>
+      <a href="../bursluluk-sinavi.html" class="btn navbar__cta-desktop" style="background:#FFCB03;border-color:#FFCB03;color:#08294D;width:171px;height:46px;border-radius:27px;padding:14px 28px;font-family:&#39;Poppins&#39;,sans-serif;font-weight:500;font-size:14px;justify-content:center;">Bursluluk Sınavı</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -281,9 +302,10 @@
       <a href="seyhan.html" class="mobile-nav-link active">🏫 Seyhan Kampüsü</a>
       <a href="../programlar/index.html" class="mobile-nav-link">Tüm Programlar</a>
       <a href="../bursluluk-sinavi.html" class="mobile-nav-link">Bursluluk Sınavı</a>
+      <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
       <a href="../index.html" class="mobile-nav-link">Ana Sayfa</a>
       <div class="mobile-nav-cta">
-        <a href="../bursluluk-sinavi.html" class="btn btn--primary" style="width:100%;justify-content:center;">🎓 Sınava Başvur</a>
+        <a href="../bursluluk-sinavi.html" class="btn btn--primary" style="width:100%;justify-content:center;">Ücretsiz Ön Kayıt Yap</a>
       </div>
     </div>
   </header>
@@ -293,25 +315,16 @@
     <!-- Circuit/Tech Animation -->
     <div class="hero-anim-overlay" aria-hidden="true">
       <svg width="100%" height="100%" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <path d="M700,100 L700,200 L800,200 L800,300 L900,300 L900,400 L1000,400 L1000,500"
-          fill="none" stroke="white" stroke-width="2"
-          stroke-dasharray="600" stroke-dashoffset="600"
-          style="animation:circuit-flow 5s linear infinite;"/>
-        <path d="M750,50 L750,150 L850,150 L850,250 L950,250 L950,350 L1050,350 L1050,450 L1100,450"
-          fill="none" stroke="white" stroke-width="1.5" opacity="0.6"
-          stroke-dasharray="600" stroke-dashoffset="600"
-          style="animation:circuit-flow 5s linear 1s infinite;"/>
-        <path d="M650,150 L650,250 L750,250 L750,350 L850,350 L850,450 L1000,450"
-          fill="none" stroke="white" stroke-width="1.5" opacity="0.5"
-          stroke-dasharray="600" stroke-dashoffset="600"
-          style="animation:circuit-flow 5s linear 2s infinite;"/>
-        <circle cx="700" cy="200" r="4" fill="white" style="animation:circuit-dot 2s ease-in-out infinite;"/>
-        <circle cx="800" cy="300" r="4" fill="white" style="animation:circuit-dot 2s ease-in-out 0.4s infinite;"/>
-        <circle cx="900" cy="400" r="4" fill="white" style="animation:circuit-dot 2s ease-in-out 0.8s infinite;"/>
-        <circle cx="750" cy="150" r="3" fill="white" style="animation:circuit-dot 2s ease-in-out 0.6s infinite;"/>
-        <circle cx="850" cy="250" r="3" fill="white" style="animation:circuit-dot 2s ease-in-out 1s infinite;"/>
-        <rect x="790" y="292" width="20" height="8" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
-        <rect x="890" y="392" width="20" height="8" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <path d="M700,100 L700,200 L800,200 L800,300 L900,300 L900,400 L1000,400 L1000,500" fill="none" stroke="rgba(255,203,3,0.55)" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" style="animation:circuit-flow 5s linear infinite;"></path>
+        <path d="M750,50 L750,150 L850,150 L850,250 L950,250 L950,350 L1050,350 L1050,450 L1100,450" fill="none" stroke="rgba(255,203,3,0.55)" stroke-width="1.5" opacity="0.6" stroke-dasharray="600" stroke-dashoffset="600" style="animation:circuit-flow 5s linear 1s infinite;"></path>
+        <path d="M650,150 L650,250 L750,250 L750,350 L850,350 L850,450 L1000,450" fill="none" stroke="rgba(255,203,3,0.55)" stroke-width="1.5" opacity="0.5" stroke-dasharray="600" stroke-dashoffset="600" style="animation:circuit-flow 5s linear 2s infinite;"></path>
+        <circle cx="700" cy="200" r="4" fill="rgba(255,203,3,0.55)" style="animation:circuit-dot 2s ease-in-out infinite;"></circle>
+        <circle cx="800" cy="300" r="4" fill="rgba(255,203,3,0.55)" style="animation:circuit-dot 2s ease-in-out 0.4s infinite;"></circle>
+        <circle cx="900" cy="400" r="4" fill="rgba(255,203,3,0.55)" style="animation:circuit-dot 2s ease-in-out 0.8s infinite;"></circle>
+        <circle cx="750" cy="150" r="3" fill="rgba(255,203,3,0.55)" style="animation:circuit-dot 2s ease-in-out 0.6s infinite;"></circle>
+        <circle cx="850" cy="250" r="3" fill="rgba(255,203,3,0.55)" style="animation:circuit-dot 2s ease-in-out 1s infinite;"></circle>
+        <rect x="790" y="292" width="20" height="8" fill="none" stroke="rgba(255,203,3,0.55)" stroke-width="1.5" opacity="0.7"></rect>
+        <rect x="890" y="392" width="20" height="8" fill="none" stroke="rgba(255,203,3,0.55)" stroke-width="1.5" opacity="0.7"></rect>
       </svg>
     </div>
     <div class="hero__deco" aria-hidden="true"></div>
@@ -320,7 +333,7 @@
         <nav class="breadcrumb" aria-label="Sayfa konumu">
           <a href="../index.html">Ana Sayfa</a>
           <span class="breadcrumb__sep">›</span>
-          <a href="#">Kampüsler</a>
+          <a href="seyhan.html#">Kampüsler</a>
           <span class="breadcrumb__sep">›</span>
           <span class="breadcrumb__current" aria-current="page">Seyhan</span>
         </nav>
@@ -335,8 +348,8 @@
             Seyhan İlçesi, Adana.
           </p>
           <div class="hero__cta-group">
-            <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Bursluluk Sınavına Başvur</a>
-            <a href="#programlar" class="btn btn--outline-white btn--lg">Programları İncele</a>
+            <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Ücretsiz Ön Kayıt Yap</a>
+            <a href="seyhan.html#programlar" class="btn btn--lg" style="background:transparent;color:var(--color-beyaz);border:2px solid rgba(247,244,236,0.4);">Programları İncele</a>
           </div>
         </div>
       </div>
@@ -345,29 +358,22 @@
 
   <section class="section">
     <div class="container">
-      <div class="stats-row">
-        <div class="stat-box reveal reveal-delay-1"><span class="stat-box__num">2</span><span class="stat-box__label">Teknik Program</span></div>
-        <div class="stat-box reveal reveal-delay-2"><span class="stat-box__num">4 Yıl</span><span class="stat-box__label">Eğitim Süresi</span></div>
-        <div class="stat-box reveal reveal-delay-3"><span class="stat-box__num">%100</span><span class="stat-box__label">Ücretsiz</span></div>
-        <div class="stat-box reveal reveal-delay-1"><span class="stat-box__num">Adana</span><span class="stat-box__label">Seyhan İlçesi</span></div>
-      </div>
-
-      <div class="section-header reveal" id="programlar">
+      <div class="section-header reveal is-visible" id="programlar">
         <span class="section-badge">Bu Kampüste Programlar</span>
         <h2 class="section-title">Seyhan'da Verilen Programlar</h2>
-        <p class="section-subtitle" style="margin-inline:auto;">İki güçlü teknik program — devlet destekli, ücretsiz, geniş istihdam kapıları.</p>
+        <p class="section-subtitle" style="margin-inline:auto;">İki güçlü teknik program — devlet destekli, geniş istihdam kapıları.</p>
       </div>
       <div class="prog-cards">
-        <a href="../programlar/elektrik-elektronik.html" class="prog-card reveal reveal-delay-1">
-          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a1a2a 0%,#1a4060 50%,#2980B9 100%);">⚡</div>
+        <a href="../programlar/elektrik-elektronik.html" class="prog-card reveal reveal-delay-1 is-visible">
+          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a1a2a 0%,#1a4060 50%,#84ABCB 100%);">⚡</div>
           <div class="prog-card__body">
             <div class="prog-card__name">Elektrik-Elektronik Teknolojisi</div>
             <p class="prog-card__desc">Devre tasarımı, otomasyon ve endüstriyel elektronik. Türkiye'nin en geniş istihdam kapılarına sahip teknik programı.</p>
             <span class="prog-card__link">Programı İncele →</span>
           </div>
         </a>
-        <a href="../programlar/gida-teknolojileri.html" class="prog-card reveal reveal-delay-2">
-          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#2ECC71 100%);">🌾</div>
+        <a href="../programlar/gida-teknolojileri.html" class="prog-card reveal reveal-delay-2 is-visible">
+          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#BABD49 100%);">🌾</div>
           <div class="prog-card__body">
             <div class="prog-card__name">Gıda Teknolojileri</div>
             <p class="prog-card__desc">Gıda üretimi, kalite kontrol ve gıda güvenliği. Adana'nın tarım ekonomisiyle doğrudan bağlantılı pratik odaklı program.</p>
@@ -380,27 +386,27 @@
 
   <section class="section section--alt" id="tesis">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header reveal is-visible">
         <span class="section-badge">Altyapı</span>
         <h2 class="section-title">Seyhan Kampüsü Tesisleri</h2>
         <p class="section-subtitle" style="margin-inline:auto;">Teknik eğitime özel atölyeler ve laboratuvarlar.</p>
       </div>
       <div class="tesis-grid">
-        <div class="tesis-card reveal reveal-delay-1">
-          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a1a30 0%,#1a3a5a 50%,#2980B9 100%);">⚡<span class="tesis-card__label">Elektrik Lab</span></div>
+        <div class="tesis-card reveal reveal-delay-1 is-visible">
+          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a1a30 0%,#1a3a5a 50%,#84ABCB 100%);">⚡<span class="tesis-card__label">Elektrik Lab</span></div>
           <div class="tesis-card__body">
             <div class="tesis-card__title">Elektrik-Elektronik Atölyesi</div>
             <p class="tesis-card__desc">Devre tasarımı, PCB üretimi ve endüstriyel otomasyon ekipmanları ile tam donanımlı uygulama alanı.</p>
           </div>
         </div>
-        <div class="tesis-card reveal reveal-delay-2">
-          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#2ECC71 100%);">🌾<span class="tesis-card__label">Gıda Lab</span></div>
+        <div class="tesis-card reveal reveal-delay-2 is-visible">
+          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#BABD49 100%);">🌾<span class="tesis-card__label">Gıda Lab</span></div>
           <div class="tesis-card__body">
             <div class="tesis-card__title">Gıda Teknolojileri Laboratuvarı</div>
             <p class="tesis-card__desc">Gıda analizi, kalite kontrol ve üretim simülasyon ekipmanları. Gerçek sektör standartlarında eğitim.</p>
           </div>
         </div>
-        <div class="tesis-card reveal reveal-delay-3">
+        <div class="tesis-card reveal reveal-delay-3 is-visible">
           <div class="tesis-card__image" style="background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#3a3a3a 100%);">📚<span class="tesis-card__label">Çalışma Alanı</span></div>
           <div class="tesis-card__body">
             <div class="tesis-card__title">Kütüphane &amp; Dijital Kaynak Merkezi</div>
@@ -413,32 +419,62 @@
 
   <section class="section" id="diger">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header reveal is-visible">
         <span class="section-badge">Diğer Kampüsler</span>
         <h2 class="section-title">Diğer Uzay Koleji Kampüsleri</h2>
       </div>
-      <div class="other-campus-row">
-        <a href="cukurova.html" class="other-campus-card reveal reveal-delay-1">
-          <div style="font-size:2rem;margin-bottom:var(--space-3);">🏫</div>
-          <div class="other-campus-card__name">Çukurova Kampüsü</div>
-          <p class="other-campus-card__desc">Biyomedikal Cihaz Teknolojisi · Hemşire Yardımcılığı<br>Çukurova İlçesi, Adana</p>
-        </a>
-        <a href="yuregir.html" class="other-campus-card reveal reveal-delay-2">
-          <div style="font-size:2rem;margin-bottom:var(--space-3);">🏫</div>
-          <div class="other-campus-card__name">Yüreğir Kampüsü</div>
-          <p class="other-campus-card__desc">Havacılık · Enerji · Biyomedikal · Hemşirelik · Ebelik · Sağlık Bakım<br>Yüreğir İlçesi, Adana</p>
-        </a>
+      <div class="kampus-grid">
+        <div class="kampus-card reveal reveal-delay-1 is-visible" style="--kc-theme:215 55% 22%;">
+          <a href="cukurova.html" class="kampus-card__link" aria-label="Çukurova Kampüsü">
+            <div class="kampus-card__img" style="background-image:url(&#39;https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=700&amp;h=900&amp;fit=crop&amp;q=80&amp;auto=format&#39;);"></div>
+            <div class="kampus-card__gradient"></div>
+            <div class="kampus-card__content">
+              <div class="kampus-card__district">
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.485-2.015-4.5-4.5-4.5zm0 6.125A1.625 1.625 0 1 1 8 4.25a1.625 1.625 0 0 1 0 3.375z" fill="currentColor"></path></svg>
+                Çukurova, Adana
+              </div>
+              <h3 class="kampus-card__name">Çukurova Kampüsü</h3>
+              <p class="kampus-card__stats">Biyomedikal · Hemşire Yardımcılığı</p>
+              <div class="kampus-card__btn">
+                <span>Kampüsü Gör</span>
+                <span class="kampus-card__btn-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="kampus-card reveal reveal-delay-2 is-visible" style="--kc-theme:235 48% 22%;">
+          <a href="yuregir.html" class="kampus-card__link" aria-label="Yüreğir Kampüsü">
+            <div class="kampus-card__img" style="background-image:url(&#39;https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&amp;h=900&amp;fit=crop&amp;q=80&amp;auto=format&#39;);"></div>
+            <div class="kampus-card__gradient"></div>
+            <div class="kampus-card__content">
+              <div class="kampus-card__district">
+                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.485-2.015-4.5-4.5-4.5zm0 6.125A1.625 1.625 0 1 1 8 4.25a1.625 1.625 0 0 1 0 3.375z" fill="currentColor"></path></svg>
+                Yüreğir, Adana
+              </div>
+              <h3 class="kampus-card__name">Yüreğir Kampüsü</h3>
+              <p class="kampus-card__stats">Havacılık · Yenilenebilir Enerji · +4 program</p>
+              <div class="kampus-card__btn">
+                <span>Kampüsü Gör</span>
+                <span class="kampus-card__btn-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section cta-section" id="basvuru">
     <div class="container">
-      <h2 class="section-title reveal" style="color:white;">Seyhan Kampüsü'nde<br>Yerini Ayır</h2>
-      <p class="section-subtitle reveal" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Bursluluk Sınavı başvuruları açık. Elektrik-Elektronik veya Gıda Teknolojileri için sınav tarihini kaçırma.</p>
-      <div class="cta-buttons reveal">
-        <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">🎓 Bursluluk Sınavına Başvur</a>
-        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="btn btn--outline-white btn--lg">💬 WhatsApp Danışman</a>
+      <h2 class="section-title reveal is-visible">Seyhan Kampüsü'nde<br>Yerini Ayır</h2>
+      <p class="section-subtitle reveal is-visible" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Ücretsiz Ön Kayıt başvuruları açık. Elektrik-Elektronik veya Gıda Teknolojileri için sınav tarihini kaçırma.</p>
+      <div class="cta-buttons reveal is-visible">
+        <a href="../bursluluk-sinavi.html" class="btn btn--shiny-gold btn--lg">Ücretsiz Ön Kayıt Yap</a>
+        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="btn btn--shiny-navy btn--lg">💬 WhatsApp Danışman</a>
       </div>
     </div>
   </section>
@@ -470,7 +506,7 @@
           </nav>
           <h4 class="footer__col-title" style="margin-top:2rem;">Hızlı</h4>
           <nav class="footer__links">
-            <a href="../bursluluk-sinavi.html">🎓 Bursluluk Sınavı</a>
+            <a href="../bursluluk-sinavi.html">Ücretsiz Ön Kayıt</a>
             <a href="../kayit.html">📝 Online Başvuru</a>
           </nav>
         </div>
@@ -486,34 +522,34 @@
       <div class="footer__group-bar">
         <span class="footer__group-label">Altıneller Grup Ailesi</span>
         <div class="footer__group-brands">
-          <a href="#">Altıneller Okulları</a><span class="footer__group-sep">·</span>
+          <a href="seyhan.html#">Altıneller Okulları</a><span class="footer__group-sep">·</span>
           <a href="../index.html" class="active">Uzay Koleji</a><span class="footer__group-sep">·</span>
-          <a href="#">Altıneller Sürücü Kursu</a><span class="footer__group-sep">·</span>
-          <a href="#">Canyon Hotel</a>
+          <a href="seyhan.html#">Altıneller Sürücü Kursu</a><span class="footer__group-sep">·</span>
+          <a href="seyhan.html#">Canyon Hotel</a>
         </div>
       </div>
       <hr class="footer__divider">
       <div class="footer__bottom">
         <span class="footer__copyright">© 2026 Uzay Koleji — Tüm hakları saklıdır. Altıneller Grup bünyesindedir.</span>
-        <nav class="footer__bottom-links"><a href="#">Gizlilik Politikası</a><a href="#">KVKK Aydınlatma</a></nav>
+        <nav class="footer__bottom-links"><a href="seyhan.html#">Gizlilik Politikası</a><a href="seyhan.html#">KVKK Aydınlatma</a></nav>
       </div>
     </div>
   </footer>
 
   <a href="https://wa.me/905320000000" class="wa-btn" id="waFloat" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile iletişime geç">
     <span class="wa-btn__circle" aria-hidden="true">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,203,3,0.55)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
       </svg>
     </span>
     WhatsApp'tan Ulaşın
   </a>
   <button class="chatbot-btn" id="chatbotBtn" aria-label="Chatbot ile konuş">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
-      <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
-      <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"></circle>
+      <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"></circle>
+      <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"></circle>
     </svg>
   </button>
 
@@ -523,5 +559,106 @@
     (function(){var items=document.querySelectorAll('.mega-menu__item.has-submenu');items.forEach(function(item){var sub=item.querySelector('.submenu');if(!sub)return;var t;function show(){clearTimeout(t);sub.style.display='block';}function hide(){t=setTimeout(function(){sub.style.display='none';},200);}item.addEventListener('mouseenter',show);item.addEventListener('mouseleave',hide);sub.addEventListener('mouseenter',show);sub.addEventListener('mouseleave',hide);});})();
     (function(){if(!('IntersectionObserver' in window)){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('is-visible');});return;}var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});})();
   </script>
-</body>
-</html>
+<script src="../assets/grid-canvas.js"></script>
+<script>
+(function(){
+  var hero = document.getElementById('hero');
+  var gridDiv = hero ? hero.querySelector('.hero__bg-grid') : null;
+  if (!gridDiv) return;
+
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden','true');
+  canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+  gridDiv.appendChild(canvas);
+
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  var CELL=60, GLOW_R=280, LERP=0.11, LERP_A=0.09;
+  var W=0, H=0, mx=0, my=0, tmx=0, tmy=0;
+  var glowAlpha=0, mouseActive=false, mouseInHero=false;
+  var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var gc = typeof OffscreenCanvas!=='undefined' ? new OffscreenCanvas(1,1) : document.createElement('canvas');
+  var gCtx = gc.getContext('2d');
+
+  function buildPath(c){
+    var rect = hero.getBoundingClientRect();
+    var ox = (window.scrollX||0) % CELL;
+    var oy = (rect.top + (window.scrollY||0)) % CELL;
+    c.beginPath();
+    for(var y=-oy%CELL; y<=H+CELL; y+=CELL){ var ly=Math.round(y)+0.5; c.moveTo(0,ly); c.lineTo(W,ly); }
+    for(var x=-ox%CELL; x<=W+CELL; x+=CELL){ var lx=Math.round(x)+0.5; c.moveTo(lx,0); c.lineTo(lx,H); }
+  }
+
+  function drawFrame(){
+    ctx.clearRect(0,0,W,H);
+    buildPath(ctx);
+    ctx.strokeStyle='rgba(255,255,255,0.04)';
+    ctx.lineWidth=1;
+    ctx.stroke();
+
+    if(reduced || glowAlpha<0.005 || !mouseInHero) return;
+
+    var rect = hero.getBoundingClientRect();
+    var lx = mx - rect.left;
+    var ly = my - rect.top;
+
+    gCtx.clearRect(0,0,W,H);
+    buildPath(gCtx);
+    gCtx.strokeStyle='rgba(255,255,255,0.28)';
+    gCtx.lineWidth=1.2;
+    gCtx.stroke();
+    gCtx.globalCompositeOperation='screen';
+    gCtx.strokeStyle='rgba(255,203,3,0.18)';
+    gCtx.stroke();
+    gCtx.globalCompositeOperation='source-over';
+
+    gCtx.globalCompositeOperation='destination-in';
+    var grd=gCtx.createRadialGradient(lx,ly,0,lx,ly,GLOW_R);
+    grd.addColorStop(0,'rgba(0,0,0,1)');
+    grd.addColorStop(0.40,'rgba(0,0,0,0.65)');
+    grd.addColorStop(0.72,'rgba(0,0,0,0.18)');
+    grd.addColorStop(1,'rgba(0,0,0,0)');
+    gCtx.fillStyle=grd;
+    gCtx.fillRect(0,0,W,H);
+    gCtx.globalCompositeOperation='source-over';
+
+    ctx.globalAlpha=glowAlpha*0.55;
+    ctx.drawImage(gc,0,0);
+    ctx.globalAlpha=1;
+  }
+
+  function resize(){
+    W=hero.offsetWidth; H=hero.offsetHeight;
+    canvas.width=W; canvas.height=H;
+    gc.width=W; gc.height=H;
+    drawFrame();
+  }
+
+  function tick(){
+    var dirty=false;
+    if(mouseActive&&mouseInHero){
+      var nx=mx+(tmx-mx)*LERP, ny=my+(tmy-my)*LERP;
+      if(Math.abs(nx-mx)>0.15||Math.abs(ny-my)>0.15){ mx=nx; my=ny; dirty=true; }
+    }
+    var ta=(mouseActive&&mouseInHero)?1:0;
+    var na=glowAlpha+(ta-glowAlpha)*LERP_A;
+    if(Math.abs(na-glowAlpha)>0.004){ glowAlpha=na; dirty=true; }
+    if(dirty) drawFrame();
+    requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('mousemove',function(e){ tmx=e.clientX; tmy=e.clientY; if(!mouseActive){mx=tmx;my=tmy;} mouseActive=true; },{passive:true});
+  hero.addEventListener('mouseenter',function(){ mouseInHero=true; });
+  hero.addEventListener('mouseleave',function(){ mouseInHero=false; });
+  document.addEventListener('mouseleave',function(){ mouseActive=false; mouseInHero=false; });
+  window.addEventListener('resize',resize,{passive:true});
+  window.addEventListener('scroll',function(){ drawFrame(); },{passive:true});
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){ resize(); tick(); });
+  } else { resize(); tick(); }
+})();
+</script>
+</body></html>
