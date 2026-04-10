@@ -1343,22 +1343,12 @@
 
     /* Partner banner — video section ile birleşik koyu blok */
     .logo-cloud-section--partners {
-      padding-block: 2.1rem 2.45rem;
-      background: #060d1a;
+      padding-block: calc(2.1rem - 10px) 3rem;
+      background: linear-gradient(to bottom, #060d1a 55%, rgba(6,13,26,0.55) 80%, transparent 100%);
       position: relative;
       overflow-x: clip;
-      overflow-y: visible;
     }
-    .logo-cloud-section--partners::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 30px;
-      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
-      pointer-events: none;
-    }
+    .logo-cloud-section--partners::before { content: none; }
     .logo-cloud-section--partners::after { content: none; }
 
     /* Tam genişlik yatay border çizgileri */
@@ -2289,11 +2279,11 @@
               <a href="programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
-                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span>
-                <div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);">
-                  <a href="programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a>
-                  <a href="programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a>
-                  <a href="programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a>
+                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
+                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
+                  <div onclick="location.href='programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div>
+                  <div onclick="location.href='programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div>
+                  <div onclick="location.href='programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div>
                 </div>
               </a>
               <a href="programlar/elektrik-elektronik.html" class="mega-menu__item">
@@ -2304,9 +2294,14 @@
                 <span class="mega-menu__dot" style="background-color:#C85A28;"></span>
                 Gıda Teknolojileri
               </a>
-              <a href="programlar/turizm-otelcilik.html" class="mega-menu__item">
+              <a href="programlar/turizm-otelcilik.html" class="mega-menu__item has-submenu" style="position:relative;">
                 <span class="mega-menu__dot" style="background-color:#3A7060;"></span>
                 Turizm ve Otelcilik
+                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
+                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
+                  <div onclick="location.href='programlar/turizm-otelcilik.html#konaklama'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E67E22;flex-shrink:0;display:inline-block;"></span> Konaklama ve Ön Büro</div>
+                  <div onclick="location.href='programlar/turizm-otelcilik.html#ascilik'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#FFCB03;flex-shrink:0;display:inline-block;"></span> Aşçılık</div>
+                </div>
               </a>
             </div>
           </li>
@@ -3256,7 +3251,7 @@
       window.addEventListener('scroll', onScroll, { passive: true });
     })();
 
-    /* ── 2. DROPDOWN CLICK TOGGLE ── */
+    /* ── 2. DROPDOWN HOVER TOGGLE ── */
     (function () {
       var items = document.querySelectorAll('.navbar__item--dropdown');
       function closeAll() {
@@ -3267,17 +3262,16 @@
       }
       items.forEach(function (item) {
         var trigger = item.querySelector('.navbar__dropdown-trigger');
-        trigger.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var wasOpen = item.classList.contains('is-open');
+        item.addEventListener('mouseenter', function () {
           closeAll();
-          if (!wasOpen) {
-            item.classList.add('is-open');
-            trigger.setAttribute('aria-expanded', 'true');
-          }
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        });
+        item.addEventListener('mouseleave', function () {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
         });
       });
-      document.addEventListener('click', closeAll);
     })();
 
     /* ── 3. MOBILE MENU TOGGLE ── */

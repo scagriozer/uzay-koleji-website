@@ -144,14 +144,22 @@
  /* Track tabs */
  .track-tabs{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);}
  @media(max-width:767px){.track-tabs{grid-template-columns:1fr;}}
- .track-card{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);border:2px solid var(--color-border);position:relative;overflow:hidden;}
- .track-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--track-color,var(--color-accent));}
- .track-card__badge{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent-bg);color:var(--color-accent);padding:4px 12px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-5);border:1px solid var(--color-accent-border);}
- .track-card__title{font-family:var(--font-display);font-weight:900;font-size:var(--text-xl);color:var(--color-text-primary);margin-bottom:var(--space-3);}
- .track-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);}
+ .track-card{position:relative;border-radius:var(--radius-xl);padding:var(--space-8);overflow:hidden;min-height:360px;transition:transform 0.4s ease,box-shadow 0.4s ease;}
+ .track-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+ .track-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+ .track-card:hover .track-card__img{transform:scale(1.05);}
+ .track-card__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,40,0.4) 0%,rgba(8,20,40,0.88) 50%,rgba(8,20,40,0.97) 100%);transition:background 0.4s ease;}
+ .track-card:hover .track-card__overlay{background:linear-gradient(180deg,rgba(8,20,40,0.3) 0%,rgba(8,20,40,0.82) 45%,rgba(8,20,40,0.95) 100%);}
+ .track-card__glow{position:absolute;bottom:0;left:0;right:0;height:40%;background:radial-gradient(ellipse at bottom center,var(--track-color-glow,rgba(255,203,3,0.12)) 0%,transparent 70%);pointer-events:none;opacity:0;transition:opacity 0.4s ease;}
+ .track-card:hover .track-card__glow{opacity:1;}
+ .track-card__content{position:relative;z-index:2;}
+ .track-card::before{display:none;}
+ .track-card__badge{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(255,255,255,0.1);color:#fff;padding:4px 12px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-5);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(4px);}
+ .track-card__title{font-family:var(--font-display);font-weight:900;font-size:var(--text-xl);color:#fff;margin-bottom:var(--space-3);text-shadow:0 2px 4px rgba(0,0,0,0.3);}
+ .track-card__desc{font-size:var(--text-sm);color:rgba(255,255,255,0.75);margin-bottom:var(--space-6);text-shadow:0 1px 2px rgba(0,0,0,0.2);}
  .track-card__modules{display:flex;flex-direction:column;gap:var(--space-2);}
- .track-module{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-secondary);}
- .track-module::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--color-accent);flex-shrink:0;}
+ .track-module{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:rgba(255,255,255,0.7);}
+ .track-module::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--track-color,var(--color-accent));flex-shrink:0;box-shadow:0 0 6px var(--track-color,var(--color-accent));}
  .kariyer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-8);}
  @media(max-width:767px){.kariyer-grid{grid-template-columns:1fr;}}
  .kariyer-track{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);border:1px solid var(--color-border);}
@@ -388,7 +396,7 @@
    <div class="navbar__logo-mark">UK</div>
    <div>
     <div class="navbar__logo-text">UZAY KOLEJİ</div>
-    <div class="navbar__logo-sub">Mesleki Lise · Adana</div>
+    <div class="navbar__logo-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
    </div>
   </a>
   <nav class="navbar__nav" aria-label="Ana Navigasyon">
@@ -404,10 +412,10 @@
       <a href="biyomedikal.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#9B3060;"></span> Biyomedikal</a>
       
       
-      <a href="saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span> Sağlık Hizmetleri <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span><div class="submenu" style="min-width:180px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px 6px 28px;display:none;margin-top:6px;box-shadow:0 4px 12px rgba(18,40,76,0.10);border:1px solid var(--color-border);"><a href="saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a><a href="saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a><a href="saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a></div></a>
+      <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span> Sağlık Hizmetleri <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span><div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()"><div onclick="location.href='../programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div><div onclick="location.href='../programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div><div onclick="location.href='../programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div></div></a>
       <a href="elektrik-elektronik.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#A0285A;"></span> Elektrik-Elektronik</a>
       <a href="gida-teknolojileri.html" class="mega-menu__item"><span class="mega-menu__dot" style="background-color:#C85A28;"></span> Gıda Teknolojileri</a>
-      <a href="turizm-otelcilik.html" class="mega-menu__item active"><span class="mega-menu__dot" style="background-color:#3A7060;"></span>Turizm ve Otelcilik</a>
+      <a href="../programlar/turizm-otelcilik.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#3A7060;"></span> Turizm ve Otelcilik <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span><div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()"><div onclick="location.href='../programlar/turizm-otelcilik.html#konaklama'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E67E22;flex-shrink:0;display:inline-block;"></span> Konaklama ve Ön Büro</div><div onclick="location.href='../programlar/turizm-otelcilik.html#ascilik'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#FFCB03;flex-shrink:0;display:inline-block;"></span> Aşçılık</div></div></a>
      </div>
     </li>
     <li class="navbar__item--dropdown">
@@ -470,45 +478,6 @@
 </section>
 
 <!-- ============================================================
-     ÖZET — 3 KART
-============================================================ -->
-<section class="section" id="ozet">
- <div class="container">
-  <div class="section-header reveal">
-   <span class="section-badge">Programa Genel Bakış</span>
-   <h2 class="section-title">Turizm ve Otelcilik Neden?</h2>
-   <p class="section-subtitle" style="margin-inline:auto;">Türkiye dünyanın en çok ziyaret edilen 5 ülkesinden biri. Nitelikli mesleki eleman açığı her geçen yıl büyüyor.</p>
-  </div>
-  <div class="ozet-grid">
-   <div class="ozet-card reveal reveal-delay-1">
-    <div class="ozet-card__icon">
-     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </div>
-    <div class="ozet-card__value">2</div>
-    <div class="ozet-card__label">Uzmanlaşma Dalı</div>
-    <div class="ozet-card__desc">Konaklama &amp; Seyahat Hizmetleri ile Mutfak Sanatları — farklı kariyer yolları, tek program.</div>
-   </div>
-   <div class="ozet-card reveal reveal-delay-2">
-    <div class="ozet-card__icon">
-     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    </div>
-    <div class="ozet-card__value">%85</div>
-    <div class="ozet-card__label">İstihdam Oranı</div>
-    <div class="ozet-card__desc">Mezunlar ortalama 3 ay içinde sektörde iş buluyor. Otel zincirleri ve restoran grupları doğrudan işe alım yapıyor.</div>
-   </div>
-   <div class="ozet-card reveal reveal-delay-3">
-    <div class="ozet-card__icon">
-     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    </div>
-    <div class="ozet-card__value">Erasmus+</div>
-    <div class="ozet-card__label">Avrupa Stajı</div>
-    <div class="ozet-card__desc">Avrupa'da 5-yıldızlı otellerde ve restoranlarda staj imkânı. Uluslararası deneyim, CV'de fark yaratır.</div>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- ============================================================
      MÜFREDAT — 2 TRACK
 ============================================================ -->
 <section class="section section--alt" id="muzfredat">
@@ -521,7 +490,11 @@
   <div class="track-tabs">
 
    <!-- DAL 1: Konaklama -->
-   <div id="konaklama" class="track-card reveal reveal-delay-1" style="--track-color:#E67E22;">
+   <div id="konaklama" class="track-card reveal reveal-delay-1" style="--track-color:#E67E22;--track-color-glow:rgba(230,126,34,0.15);scroll-margin-top:160px;">
+    <img class="track-card__img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop&q=80&auto=format" alt="Konaklama ve Seyahat Hizmetleri" loading="lazy">
+    <div class="track-card__overlay"></div>
+    <div class="track-card__glow"></div>
+    <div class="track-card__content">
     <div class="track-card__badge">Dal 1</div>
     <h3 class="track-card__title">Konaklama ve Seyahat Hizmetleri</h3>
     <p class="track-card__desc">Otel operasyonları, resepsiyon yönetimi, tur organizasyonu ve müşteri ilişkileri. Türkiye'nin turizm başkentlerinde kariyer seni bekliyor.</p>
@@ -534,11 +507,16 @@
      <div class="track-module">Turizm İngilizceси (Mesleki)</div>
      <div class="track-module">Dijital Pazarlama ve OTA Platformları</div>
     </div>
+    </div>
    </div>
 
    <!-- DAL 2: Aşçılık -->
-   <div id="ascilik" class="track-card reveal reveal-delay-2" style="--track-color:#FFCB03;">
-    <div class="track-card__badge" style="background:rgba(255,203,3,0.10);color:#D4A800;border-color:rgba(255,203,3,0.30);">Dal 2</div>
+   <div id="ascilik" class="track-card reveal reveal-delay-2" style="--track-color:#FFCB03;--track-color-glow:rgba(255,203,3,0.15);scroll-margin-top:160px;">
+    <img class="track-card__img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&q=80&auto=format" alt="Mutfak Sanatları Aşçılık" loading="lazy">
+    <div class="track-card__overlay"></div>
+    <div class="track-card__glow"></div>
+    <div class="track-card__content">
+    <div class="track-card__badge" style="background:rgba(255,203,3,0.12);color:#FFCB03;border-color:rgba(255,203,3,0.25);">Dal 2</div>
     <h3 class="track-card__title">Mutfak Sanatları (Aşçılık)</h3>
     <p class="track-card__desc">Türk mutfağından uluslararası cuisinelere, pastacılıktan şef mutfağına. Sektörün en hızlı büyüyen kariyer dalı.</p>
     <div class="track-card__modules">
@@ -549,6 +527,7 @@
      <div class="track-module">Gıda Güvenliği ve HACCP Standartları</div>
      <div class="track-module">Mutfak Yönetimi ve Maliyet Hesabı</div>
      <div class="track-module">Tabak Sunumu ve Gastronomi Estetiği</div>
+    </div>
     </div>
    </div>
 
@@ -1031,5 +1010,6 @@
 </script>
 
 <script src="../assets/grid-canvas.js"></script>
+<script>(function(){var items=document.querySelectorAll(".mega-menu__item.has-submenu");items.forEach(function(item){item.addEventListener("mouseenter",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="block"});item.addEventListener("mouseleave",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="none"});var sub=item.querySelector(".submenu");if(sub){sub.addEventListener("mouseenter",function(){this.style.display="block"});sub.addEventListener("mouseleave",function(){this.style.display="none"})}})})();</script>
 </body>
 </html>

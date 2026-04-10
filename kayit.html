@@ -547,7 +547,7 @@ footer{
 @media(max-width:480px){
   .footer-grid{grid-template-columns:1fr;}
 }
-</style>
+.mega-menu__item.has-submenu{position:relative;}.mega-menu__item.has-submenu:hover .submenu,.mega-menu__item.has-submenu:focus-within .submenu{display:block!important;}</style>
 </head>
 <body>
 
@@ -568,13 +568,17 @@ footer{
         <a href="programlar/index.html">Programlar</a>
         <div class="dropdown-menu">
           <a href="programlar/havacilik.html">✈ Havacılık</a>
-          <a href="programlar/hemsirelik.html">🏥 Hemşire Yardımcılığı</a>
+          <a href="programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
           <a href="programlar/biyomedikal.html">🔬 Biyomedikal</a>
-          <a href="programlar/ebelik.html">👶 Ebelik</a>
-          <a href="programlar/saglik-bakim.html">❤ Sağlık Bakım</a>
-          <a href="programlar/enerji.html">⚡ Enerji</a>
+          <a href="programlar/saglik-bakim.html" style="font-weight:700;">🏥 Sağlık Hizmetleri</a>
+          <a href="programlar/saglik-bakim.html" style="padding-left:2rem;font-size:.75rem;">→ Sağlık Bakımı</a>
+          <a href="programlar/hemsirelik.html" style="padding-left:2rem;font-size:.75rem;">→ Hemşire Yardımcılığı</a>
+          <a href="programlar/ebelik.html" style="padding-left:2rem;font-size:.75rem;">→ Ebe Yardımcılığı</a>
           <a href="programlar/elektrik-elektronik.html">💡 Elektrik-Elektronik</a>
           <a href="programlar/gida-teknolojileri.html">🌾 Gıda Teknolojileri</a>
+          <a href="programlar/turizm-otelcilik.html" style="font-weight:700;">🏨 Turizm ve Otelcilik</a>
+          <a href="programlar/turizm-otelcilik.html#konaklama" style="padding-left:2rem;font-size:.75rem;">→ Konaklama ve Ön Büro</a>
+          <a href="programlar/turizm-otelcilik.html#ascilik" style="padding-left:2rem;font-size:.75rem;">→ Aşçılık</a>
         </div>
       </div>
       <div class="nav-dropdown">
@@ -1193,5 +1197,6 @@ function handleBigSubmit(e) {
   success.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 </script>
+<script>(function(){var items=document.querySelectorAll(".mega-menu__item.has-submenu");items.forEach(function(item){item.addEventListener("mouseenter",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="block"});item.addEventListener("mouseleave",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="none"});var sub=item.querySelector(".submenu");if(sub){sub.addEventListener("mouseenter",function(){this.style.display="block"});sub.addEventListener("mouseleave",function(){this.style.display="none"})}})})();</script>
 </body>
 </html>

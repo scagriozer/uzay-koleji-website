@@ -936,6 +936,10 @@
       .event-hero__cta-group { flex-direction: column; }
       .btn-gold, .btn-outline-light { width: 100%; justify-content: center; }
     }
+  
+    .mega-menu__item.has-submenu:hover .submenu,
+    .mega-menu__item.has-submenu:focus-within .submenu { display: block !important; }
+    .mega-menu__item.has-submenu { overflow: visible; }
   </style>
 </head>
 
@@ -976,10 +980,7 @@
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="programlar/saglik-bakim.html" class="mega-menu__item">
-                <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
-                Sağlık Hizmetleri
-              </a>
+              <a href="programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#2a6080;"></span> Sağlık Hizmetleri <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span><div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()"><div onclick="location.href='programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div><div onclick="location.href='programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div><div onclick="location.href='programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div></div></a>
               <a href="programlar/elektrik-elektronik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#A0285A;"></span>
                 Elektrik-Elektronik
@@ -988,10 +989,7 @@
                 <span class="mega-menu__dot" style="background-color:#C85A28;"></span>
                 Gıda Teknolojileri
               </a>
-              <a href="programlar/turizm-otelcilik.html" class="mega-menu__item">
-                <span class="mega-menu__dot" style="background-color:#3A7060;"></span>
-                Turizm ve Otelcilik
-              </a>
+              <a href="programlar/turizm-otelcilik.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#3A7060;"></span> Turizm ve Otelcilik <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span><div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()"><div onclick="location.href='programlar/turizm-otelcilik.html#konaklama'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E67E22;flex-shrink:0;display:inline-block;"></span> Konaklama ve Ön Büro</div><div onclick="location.href='programlar/turizm-otelcilik.html#ascilik'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#FFCB03;flex-shrink:0;display:inline-block;"></span> Aşçılık</div></div></a>
             </div>
           </li>
 
@@ -1375,18 +1373,20 @@
       }
       items.forEach(function (item) {
         var trigger = item.querySelector('.navbar__dropdown-trigger');
-        trigger.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var wasOpen = item.classList.contains('is-open');
+        item.addEventListener('mouseenter', function () {
           closeAll();
-          if (!wasOpen) {
-            item.classList.add('is-open');
-            trigger.setAttribute('aria-expanded', 'true');
-          }
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        });
+        item.addEventListener('mouseleave', function () {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
         });
       });
-      document.addEventListener('click', closeAll);
     })();
+
+    /* ── Submenu hover ── */
+    (function(){var items=document.querySelectorAll('.mega-menu__item.has-submenu');items.forEach(function(item){var sub=item.querySelector('.submenu');if(!sub)return;var t;function show(){clearTimeout(t);sub.style.display='block';}function hide(){t=setTimeout(function(){sub.style.display='none';},200);}item.addEventListener('mouseenter',show);item.addEventListener('mouseleave',hide);sub.addEventListener('mouseenter',show);sub.addEventListener('mouseleave',hide);});})();
 
     /* ── Mobile menu ── */
     (function () {
@@ -1483,5 +1483,6 @@
     });
   </script>
 
+<script>(function(){var items=document.querySelectorAll(".mega-menu__item.has-submenu");items.forEach(function(item){item.addEventListener("mouseenter",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="block"});item.addEventListener("mouseleave",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="none"});var sub=item.querySelector(".submenu");if(sub){sub.addEventListener("mouseenter",function(){this.style.display="block"});sub.addEventListener("mouseleave",function(){this.style.display="none"})}})})();</script>
 </body>
 </html>
