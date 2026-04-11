@@ -14,7 +14,7 @@
   <style>
     :root {
       --color-gold:#FFCB03;--color-gold-dark:#D4A800;--color-lacivert:#08294D;--color-lacivert-dark:#051E38;--color-lacivert-light:#0F3A6B;
-      --color-beyaz:#FBFAEF;--color-text-primary:#08294D;--color-text-secondary:#1E2A36;--color-text-muted:#5A6A7A;
+      --color-beyaz:#FBFAEF;--color-text-primary:#08294D;--color-text-secondary:#1E2A36;--color-text-muted:#3D4F5F;
       --color-border:#D8CBB6;--color-bg-page:#FFCB03;--color-bg-section-alt:#EDE8DC;--color-whatsapp:#25D366;
       --color-accent:#A2C5A9;--color-accent-dark:#1e8a4c;--color-accent-light:#5dc98a;
       --color-accent-bg:rgba(39,174,96,0.08);--color-accent-border:rgba(39,174,96,0.25);
@@ -159,8 +159,8 @@
     .cta-section .section-subtitle{color:var(--color-text-secondary);margin-inline:auto;margin-bottom:var(--space-8);}
     .cta-section .cta-buttons{display:flex;align-items:center;justify-content:center;gap:var(--space-4);flex-wrap:wrap;}
 
-    .kampus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
-    @media(max-width:600px){.kampus-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto;}}
+    .kampus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);max-width:70%;margin-inline:auto;}
+    @media(max-width:600px){.kampus-grid{grid-template-columns:1fr;max-width:336px;margin-inline:auto;}}
     .kampus-card{aspect-ratio:4/5;border-radius:34px;overflow:hidden;transition:transform 0.5s ease,box-shadow 0.5s ease;}
     .kampus-card:hover{transform:scale(1.03);box-shadow:0 0 60px -15px hsl(var(--kc-theme)/0.55);}
     .kampus-card__link{position:relative;display:block;width:100%;height:100%;border-radius:34px;overflow:hidden;text-decoration:none;box-shadow:0 0 40px -15px hsl(var(--kc-theme)/0.45);}
@@ -225,6 +225,7 @@
     .breadcrumb a:hover{color:var(--color-accent);}
     .breadcrumb__sep{opacity:0.4;}
     .breadcrumb__current{color:var(--color-accent);font-weight:var(--font-weight-medium);}
+   /* Pearl / Stardust Button */ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);} .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;} .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);} .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);} .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;} .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);} .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);} .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);} .pearl-btn:hover .pearl-btn__star{opacity:1;} .pearl-btn:active{transform:translateY(3px);}
   </style>
 </head>
 <body>
@@ -353,8 +354,8 @@
             Çukurova İlçesi, Adana.
           </p>
           <div class="hero__cta-group">
-            <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Ücretsiz Ön Kayıt Yap</a>
-            <a href="cukurova.html#programlar" class="btn btn--lg" style="background:transparent;color:var(--color-beyaz);border:2px solid rgba(247,244,236,0.4);">Programları İncele</a>
+            <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+            <a href="cukurova.html#programlar" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Programları İncele</span></a>
           </div>
         </div>
       </div>
@@ -433,7 +434,7 @@
       <div class="kampus-grid">
         <div class="kampus-card reveal reveal-delay-1 is-visible" style="--kc-theme:162 48% 20%;">
           <a href="seyhan.html" class="kampus-card__link" aria-label="Seyhan Kampüsü">
-            <div class="kampus-card__img" style="background-image:url(&#39;https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=700&amp;h=900&amp;fit=crop&amp;q=80&amp;auto=format&#39;);"></div>
+            <div class="kampus-card__img" style="background-image:url(&#39;../images/programs/elektrik-elektronik.png&#39;);"></div>
             <div class="kampus-card__gradient"></div>
             <div class="kampus-card__content">
               <div class="kampus-card__district">
@@ -453,7 +454,7 @@
         </div>
         <div class="kampus-card reveal reveal-delay-2 is-visible" style="--kc-theme:235 48% 22%;">
           <a href="yuregir.html" class="kampus-card__link" aria-label="Yüreğir Kampüsü">
-            <div class="kampus-card__img" style="background-image:url(&#39;https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&amp;h=900&amp;fit=crop&amp;q=80&amp;auto=format&#39;);"></div>
+            <div class="kampus-card__img" style="background-image:url(&#39;../images/kampus-yuregir.png&#39;);"></div>
             <div class="kampus-card__gradient"></div>
             <div class="kampus-card__content">
               <div class="kampus-card__district">
@@ -480,8 +481,8 @@
       <h2 class="section-title reveal is-visible">Çukurova Kampüsü'nde<br>Yerini Ayır</h2>
       <p class="section-subtitle reveal is-visible" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Ücretsiz Ön Kayıt başvuruları açık. Biyomedikal veya Hemşire Yardımcılığı için sınav tarihini kaçırma.</p>
       <div class="cta-buttons reveal is-visible">
-        <a href="../bursluluk-sinavi.html" class="btn btn--shiny-gold btn--lg">Ücretsiz Ön Kayıt Yap</a>
-        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="btn btn--shiny-navy btn--lg">💬 WhatsApp Danışman</a>
+        <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> WhatsApp Danışman</span></a>
       </div>
     </div>
   </section>

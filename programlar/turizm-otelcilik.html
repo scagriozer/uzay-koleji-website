@@ -16,7 +16,7 @@
  --color-acik-mavi: #C2CFDB;
  --color-text-primary: #08294D;
  --color-text-secondary: #1E2A36;
- --color-text-muted: #5A6A7A;
+ --color-text-muted: #3D4F5F;
  --color-text-white: #FBFAEF;
  --color-border: #D8CBB6;
  --color-bg-page: #FFCB03;
@@ -71,7 +71,9 @@
  .section-badge--white{background:rgba(247,244,236,0.10);color:var(--color-beyaz);border-color:rgba(247,244,236,0.2);}
  .btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:14px 28px;border-radius:var(--radius-md);font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);line-height:1;transition:all var(--transition-base);white-space:nowrap;cursor:pointer;text-decoration:none;border:2px solid transparent;}
  .btn--primary{background-color:var(--color-gold);color:var(--color-lacivert);border-color:var(--color-gold);}
- .btn--primary:hover{background-color:var(--color-gold-dark);border-color:var(--color-gold-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,203,3,0.40);}
+ 0
+ .btn--glass{background:rgba(107,155,199,0.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.18);color:var(--color-text-primary);}
+ .btn--glass:hover{background:rgba(107,155,199,0.42);border-color:rgba(255,255,255,0.30);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,155,199,0.25);}
  .btn--outline-white{background-color:transparent;color:var(--color-beyaz);border-color:rgba(247,244,236,0.6);}
  .btn--outline-white:hover{background-color:rgba(247,244,236,0.1);border-color:var(--color-beyaz);transform:translateY(-2px);}
  .btn--lg{padding:16px 36px;font-size:var(--text-base);}
@@ -87,7 +89,7 @@
  .navbar__logo{display:flex;align-items:center;gap:var(--space-3);flex-shrink:0;}
  .navbar__logo-mark{width:64px;height:64px;background-color:#FDC24C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--color-lacivert);letter-spacing:-0.5px;flex-shrink:0;}
  .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#08294D;line-height:1.0;}
- .navbar__logo-sub{font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:20px;color:#5A6A7A;letter-spacing:0.24px;}
+ .navbar__logo-sub{font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:20px;color:#3D4F5F;letter-spacing:0.24px;}
  .navbar__nav{margin-left:auto;}
  .navbar__links{display:flex;align-items:center;gap:var(--space-6);list-style:none;}
  .navbar__links a{font-size:var(--text-sm);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);position:relative;padding-block:4px;}
@@ -253,19 +255,31 @@
  .feature-card__title{font-weight:var(--font-weight-black);font-size:var(--text-md);color:var(--color-beyaz);margin-bottom:var(--space-3);}
  .feature-card__desc{font-size:var(--text-sm);color:rgba(217,230,242,0.65);line-height:1.6;}
  .tesis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
- @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}}
- .tesis-card{border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--color-border);background:var(--color-beyaz);}
- .tesis-card__img{width:100%;height:180px;background:var(--color-gri);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);font-size:var(--text-3xl);}
- .tesis-card__body{padding:var(--space-6);}
- .tesis-card__title{font-weight:var(--font-weight-black);font-size:var(--text-md);color:var(--color-text-primary);margin-bottom:var(--space-2);}
- .tesis-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);}
- .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
+ .tesis-card{perspective:1000px;height:260px;cursor:pointer;}
+ .tesis-card:hover .tesis-card__inner{transform:rotateY(180deg);}
+ .tesis-card__inner{position:relative;width:100%;height:100%;transition:transform 0.6s ease;transform-style:preserve-3d;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);}
+ .tesis-card:hover .tesis-card__inner{box-shadow:var(--shadow-card-hover);}
+ .tesis-card__front,.tesis-card__back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-xl);overflow:hidden;}
+ .tesis-card__front-img{width:100%;height:100%;object-fit:cover;}
+ .tesis-card__front-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,20,40,0.85) 100%);}
+ .tesis-card__front-title{position:absolute;bottom:0;left:0;right:0;padding:var(--space-6);font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.3);}
+ .tesis-card__back{transform:rotateY(180deg);background:rgba(107,155,199,0.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;justify-content:center;padding:var(--space-6);}
+ .tesis-card__back-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-3);}
+ .tesis-card__back-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;}
+ @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}.tesis-card{height:220px;}}
+ .testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
+ .testimonial-card{position:relative;background:url('../assets/kraft-texture.png') center/cover no-repeat;border-radius:24px;padding:var(--space-8);border:none;box-shadow:1px 2px 8px rgba(120,100,60,0.12),inset 0 0 50px rgba(200,175,120,0.15);transition:box-shadow 0.3s ease,transform 0.3s ease;overflow:hidden;}
+ .testimonial-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(245,235,200,0.4) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(200,175,120,0.2) 0%,transparent 50%);pointer-events:none;}
+ .testimonial-card::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 30px rgba(180,155,100,0.15);pointer-events:none;}
+ .testimonial-card:hover{box-shadow:3px 5px 16px rgba(120,100,60,0.18),inset 0 0 40px rgba(180,160,110,0.2);transform:translateY(-2px);}
+ .testimonial-card__quote{display:block;position:relative;z-index:1;font-family:'Georgia',serif;font-size:3rem;line-height:1;color:rgba(160,130,70,0.25);margin-bottom:-1rem;}
+ .testimonial-card__text{font-family:'Georgia',serif;font-size:0.9rem;color:#4A3C28;line-height:1.85;margin-bottom:var(--space-6);font-style:italic;position:relative;z-index:1;}
+ .testimonial-card__author{display:flex;align-items:center;gap:var(--space-3);position:relative;z-index:1;border-top:1px solid rgba(160,130,70,0.2);padding-top:var(--space-4);}
+ .testimonial-card__avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(180,160,110,0.2);border:1px solid rgba(160,130,70,0.25);}
+ .testimonial-card__name{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-sm);color:#3D2F1E;}
+ .testimonial-card__role{font-size:var(--text-xs);color:#6B5D4A;}
+ .testimonial-card__year{font-size:var(--text-xs);color:#6B5D4A;opacity:0.7;}
  @media(max-width:767px){.testimonial-grid{grid-template-columns:1fr;}}
- .testimonial-card{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);border:1px solid var(--color-border);}
- .testimonial-card__quote{font-size:var(--text-xl);color:var(--color-accent);margin-bottom:var(--space-4);line-height:1;}
- .testimonial-card__text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin-bottom:var(--space-6);font-style:italic;}
- .testimonial-card__name{font-weight:var(--font-weight-semibold);color:var(--color-text-primary);font-size:var(--text-sm);}
- .testimonial-card__role{font-size:var(--text-xs);color:var(--color-text-muted);}
  .kampus-info-card{border-radius:var(--radius-xl);border:1px solid var(--color-border);overflow:hidden;}
  .kampus-info-card__header{background:var(--color-lacivert);padding:var(--space-8);display:flex;align-items:center;gap:var(--space-4);}
  .kampus-info-card__dot{width:48px;height:48px;border-radius:50%;background:var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:var(--text-xl);}
@@ -296,12 +310,12 @@
  .footer__links a:hover{color:var(--color-gold);}
  .footer__bottom{border-top:1px solid rgba(247,244,236,0.10);margin-top:var(--space-12);padding-top:var(--space-6);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4);}
  .footer__copy{font-size:var(--text-xs);}
- .sticky-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--color-lacivert);border-top:2px solid var(--color-accent);padding:var(--space-3) var(--space-6);z-index:var(--z-float);align-items:center;justify-content:space-between;gap:var(--space-4);}
+ .sticky-cta-bar{display:none!important;display:none;position:fixed;bottom:0;left:0;right:0;background:var(--color-lacivert);border-top:2px solid var(--color-accent);padding:var(--space-3) var(--space-6);z-index:var(--z-float);align-items:center;justify-content:space-between;gap:var(--space-4);}
  .sticky-cta-bar.is-visible{display:flex;}
  .sticky-cta-bar__text{font-size:var(--text-sm);font-weight:var(--font-weight-medium);color:var(--color-beyaz);line-height:1.3;}
  .sticky-cta-bar__text small{display:block;font-size:var(--text-xs);color:rgba(247,244,236,0.55);}
  .sticky-cta-bar .btn{padding:10px 20px;font-size:var(--text-xs);flex-shrink:0;}
- @media(max-width:767px){.sticky-cta-bar{display:flex;}}
+ @media(max-width:767px){.sticky-cta-bar{display:none!important;display:flex;}}
  /* WhatsApp */
  .wa-btn{position:fixed;bottom:19px;right:82px;z-index:600;display:flex;align-items:center;gap:10px;background:rgba(18,40,76,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#FBFAEF;border:none;border-radius:64px;padding:10px 18px 10px 10px;width:256px;height:64px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;line-height:14px;text-decoration:none;box-shadow:0 4px 20px rgba(18,40,76,0.35);animation:wa-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;transition:filter 250ms ease,transform 250ms ease,box-shadow 250ms ease;white-space:nowrap;}
  .wa-btn:hover,.wa-btn:focus-visible{filter:brightness(1.18);transform:translateY(-2px);box-shadow:0 8px 28px rgba(18,40,76,0.45);}
@@ -338,11 +352,8 @@
    box-shadow:none!important;
  }
 
- /* CTA section → koyu navy tut (sarı zeminde altın buton görünür olsun) */
- .cta-section{
-   background:linear-gradient(135deg,var(--color-lacivert-dark) 0%,var(--color-lacivert) 100%)!important;
-   box-shadow:none!important;
- }
+ /* CTA section → transparent (sarı grid görünsün) */
+ .cta-section{background:transparent!important;box-shadow:none!important;}
  .cta-section::before{display:none!important;}
 
  /* section--dark metin renkleri → lacivert (CTA hariç) */
@@ -358,14 +369,15 @@
  .section-badge--white{background:var(--color-accent-bg)!important;color:var(--color-accent)!important;border-color:var(--color-accent-border)!important;}
 
  /* CTA section metin/buton → beyaz (koyu arka plan var) */
- .cta-section .section-title,.cta-section h2{color:var(--color-beyaz)!important;}
- .cta-section .section-subtitle{color:rgba(247,244,236,0.80)!important;}
- .cta-section .btn--outline-white{color:var(--color-beyaz)!important;border-color:rgba(247,244,236,0.6)!important;}
- .cta-section .btn--outline-white:hover{background:rgba(247,244,236,0.10)!important;}
- .cta-section .section-badge{background:rgba(247,244,236,0.10)!important;color:var(--color-beyaz)!important;border-color:rgba(247,244,236,0.20)!important;}
+ .cta-section .section-title,.cta-section h2{color:var(--color-text-primary)!important;}
+ .cta-section .section-subtitle{color:var(--color-text-muted)!important;}
+ .cta-section .btn--outline-white{color:var(--color-text-primary)!important;border-color:rgba(18,40,76,0.35)!important;}
+ .cta-section .btn--outline-white:hover{background:rgba(18,40,76,0.06)!important;}
+ .cta-section .section-badge{background:var(--color-accent-bg)!important;color:var(--color-accent)!important;border-color:var(--color-accent-border)!important;}
 
  
 
+   /* Pearl / Stardust Button */ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);} .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;} .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);} .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);} .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;} .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);} .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);} .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);} .pearl-btn:hover .pearl-btn__star{opacity:1;} .pearl-btn:active{transform:translateY(3px);}
   </style>
 </head>
 <body>
@@ -465,8 +477,8 @@
     <h1>Turizm sektörünün<br><em>geleceğini</em> şekillendir</h1>
     <p class="hero__desc">Konaklama yönetiminden mutfak sanatlarına, iki uzmanlaşma dalıyla Türkiye'nin büyüyen turizm sektörüne hazırlan. Altıneller güvencesiyle mesleki lise diploması ve sektör sertifikaları.</p>
     <div class="hero__cta-group">
-     <a href="#basvuru" class="btn btn--primary btn--lg">Başvur — Ücretsiz</a>
-     <a href="#muzfredat" class="btn btn--outline-white btn--lg">Müfredatı Gör</a>
+     <a href="#basvuru" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Başvur — Ücretsiz</span></a>
+     <a href="#muzfredat" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Müfredatı Gör</span></a>
     </div>
     <div class="hero__track-pills">
      <div class="track-pill"><span style="background:#E67E22;"></span>Konaklama ve Seyahat Hizmetleri</div>
@@ -491,7 +503,7 @@
 
    <!-- DAL 1: Konaklama -->
    <div id="konaklama" class="track-card reveal reveal-delay-1" style="--track-color:#E67E22;--track-color-glow:rgba(230,126,34,0.15);scroll-margin-top:160px;">
-    <img class="track-card__img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop&q=80&auto=format" alt="Konaklama ve Seyahat Hizmetleri" loading="lazy">
+    <img class="track-card__img" src="../images/programs/turizm-otelcilik-konaklama.png" alt="Konaklama ve Seyahat Hizmetleri" loading="lazy">
     <div class="track-card__overlay"></div>
     <div class="track-card__glow"></div>
     <div class="track-card__content">
@@ -512,7 +524,7 @@
 
    <!-- DAL 2: Aşçılık -->
    <div id="ascilik" class="track-card reveal reveal-delay-2" style="--track-color:#FFCB03;--track-color-glow:rgba(255,203,3,0.15);scroll-margin-top:160px;">
-    <img class="track-card__img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&q=80&auto=format" alt="Mutfak Sanatları Aşçılık" loading="lazy">
+    <img class="track-card__img" src="../images/programs/mutfak-sanatlari.png" alt="Mutfak Sanatları Aşçılık" loading="lazy">
     <div class="track-card__overlay"></div>
     <div class="track-card__glow"></div>
     <div class="track-card__content">
@@ -690,24 +702,42 @@
   </div>
   <div class="tesis-grid">
    <div class="tesis-card reveal reveal-delay-1">
-    <div class="tesis-card__img">🍳</div>
-    <div class="tesis-card__body">
-     <div class="tesis-card__title">Profesyonel Mutfak Atölyesi</div>
-     <div class="tesis-card__desc">Endüstriyel fırın, salamander, blast chiller ve tam donanımlı pâtisserie köşesiyle 5 yıldızlı standart.</div>
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="../images/programs/mutfak-sanatlari.png" alt="Profesyonel Mutfak Atölyesi" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Profesyonel Mutfak Atölyesi</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Profesyonel Mutfak Atölyesi</h3>
+      <p class="tesis-card__back-desc">Endüstriyel fırın, salamander, blast chiller ve tam donanımlı pâtisserie köşesiyle 5 yıldızlı standart.</p>
+     </div>
     </div>
    </div>
    <div class="tesis-card reveal reveal-delay-2">
-    <div class="tesis-card__img">🛎️</div>
-    <div class="tesis-card__body">
-     <div class="tesis-card__title">Resepsiyon Simülasyon Laboratuvarı</div>
-     <div class="tesis-card__desc">Opera PMS, Protel ve gerçek check-in kontuarıyla otel prosedürü eğitimi.</div>
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="../images/tesis/resepsiyon-lobi.jpg" alt="Resepsiyon Simülasyon Laboratuvarı" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Resepsiyon Simülasyon Laboratuvarı</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Resepsiyon Simülasyon Laboratuvarı</h3>
+      <p class="tesis-card__back-desc">Opera PMS, Protel ve gerçek check-in kontuarıyla otel prosedürü eğitimi.</p>
+     </div>
     </div>
    </div>
    <div class="tesis-card reveal reveal-delay-3">
-    <div class="tesis-card__img">🍽️</div>
-    <div class="tesis-card__body">
-     <div class="tesis-card__title">Restoran Servis Salonu</div>
-     <div class="tesis-card__desc">Masa servisi, fine dining kuralları ve banquet düzeni pratiği için tam donanımlı uygulama salonu.</div>
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="../images/tesis/restoran-servis.jpg" alt="Restoran Servis Salonu" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Restoran Servis Salonu</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Restoran Servis Salonu</h3>
+      <p class="tesis-card__back-desc">Masa servisi, fine dining kuralları ve banquet düzeni pratiği için tam donanımlı uygulama salonu.</p>
+     </div>
     </div>
    </div>
   </div>
@@ -824,8 +854,8 @@
   <h2>Turizm kariyerine bugün başla</h2>
   <p>Ücretsiz ön kayıt yap, devlet destekli Turizm ve Otelcilik programına başvur. Sınırlı kontenjan.</p>
   <div class="cta-group">
-   <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Ücretsiz Ön Kayıt Yap</a>
-   <a href="https://wa.me/905XXXXXXXXX?text=Turizm%20ve%20Otelcilik%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum" class="btn btn--outline-white btn--lg" target="_blank" rel="noopener">WhatsApp ile Sor</a>
+   <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+   <a href="https://wa.me/905XXXXXXXXX?text=Turizm%20ve%20Otelcilik%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum" class="pearl-btn" target="_blank" rel="noopener"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> WhatsApp ile Sor</span></a>
   </div>
  </div>
 </section>

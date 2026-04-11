@@ -16,7 +16,7 @@
  --color-acik-mavi: #C2CFDB;
  --color-text-primary: #08294D;
  --color-text-secondary: #1E2A36;
- --color-text-muted: #5A6A7A;
+ --color-text-muted: #3D4F5F;
  --color-text-white: #FBFAEF;
  --color-border: #D8CBB6;
  --color-bg-page: #FBFAEF;
@@ -75,7 +75,9 @@
  .section-badge--white{background:rgba(247,244,236,0.10);color:var(--color-beyaz);border-color:rgba(247,244,236,0.2);}
  .btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:14px 28px;border-radius:var(--radius-md);font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);line-height:1;transition:all var(--transition-base);white-space:nowrap;cursor:pointer;text-decoration:none;border:2px solid transparent;}
  .btn--primary{background-color:var(--color-gold);color:var(--color-lacivert);border-color:var(--color-gold);}
- .btn--primary:hover{background-color:var(--color-gold-dark);border-color:var(--color-gold-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,203,3,0.40);}
+ 0
+ .btn--glass{background:rgba(107,155,199,0.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.18);color:var(--color-text-primary);}
+ .btn--glass:hover{background:rgba(107,155,199,0.42);border-color:rgba(255,255,255,0.30);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,155,199,0.25);}
  .btn--accent{background-color:var(--color-accent);color:white;border-color:var(--color-accent);}
  .btn--outline-white{background-color:transparent;color:var(--color-beyaz);border-color:rgba(247,244,236,0.6);}
  .btn--outline-white:hover{background-color:rgba(247,244,236,0.1);border-color:var(--color-beyaz);transform:translateY(-2px);}
@@ -183,24 +185,30 @@
  .firsat-card__desc{font-size:var(--text-sm);color:rgba(247,244,236,0.65);line-height:1.6;}
  @media(max-width:767px){.firsat-cards{grid-template-columns:1fr;}}
  .tesis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
- .tesis-card{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition-base),box-shadow var(--transition-base);}
- .tesis-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
- .tesis-card__image{height:180px;display:flex;align-items:center;justify-content:center;position:relative;font-size:3.5rem;}
- .tesis-card__image-label{position:absolute;bottom:var(--space-3);left:var(--space-4);font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-sm);color:rgba(247,244,236,0.7);letter-spacing:0.06em;text-transform:uppercase;}
- .tesis-card__body{padding:var(--space-6);background:var(--color-beyaz);}
- .tesis-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
- .tesis-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
- @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}}
+ .tesis-card{perspective:1000px;height:260px;cursor:pointer;}
+ .tesis-card:hover .tesis-card__inner{transform:rotateY(180deg);}
+ .tesis-card__inner{position:relative;width:100%;height:100%;transition:transform 0.6s ease;transform-style:preserve-3d;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);}
+ .tesis-card:hover .tesis-card__inner{box-shadow:var(--shadow-card-hover);}
+ .tesis-card__front,.tesis-card__back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-xl);overflow:hidden;}
+ .tesis-card__front-img{width:100%;height:100%;object-fit:cover;}
+ .tesis-card__front-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,20,40,0.85) 100%);}
+ .tesis-card__front-title{position:absolute;bottom:0;left:0;right:0;padding:var(--space-6);font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.3);}
+ .tesis-card__back{transform:rotateY(180deg);background:rgba(107,155,199,0.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;justify-content:center;padding:var(--space-6);}
+ .tesis-card__back-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-3);}
+ .tesis-card__back-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;}
+ @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}.tesis-card{height:220px;}}
  .testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
- .testimonial-card{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-sm);position:relative;border-top:4px solid var(--color-accent);transition:transform var(--transition-base),box-shadow var(--transition-base);}
- .testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
- .testimonial-card__quote{font-family:var(--font-display);font-size:4rem;color:var(--color-gold);line-height:1;margin-bottom:var(--space-4);display:block;opacity:0.8;}
- .testimonial-card__text{font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.7;margin-bottom:var(--space-6);font-style:italic;}
- .testimonial-card__author{display:flex;align-items:center;gap:var(--space-4);}
- .testimonial-card__avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--color-accent) 0%,var(--color-lacivert) 100%);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
- .testimonial-card__name{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-sm);color:var(--color-text-primary);}
- .testimonial-card__role{font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--font-weight-medium);}
- .testimonial-card__year{font-size:var(--text-xs);color:var(--color-text-muted);}
+ .testimonial-card{position:relative;background:url('../assets/kraft-texture.png') center/cover no-repeat;border-radius:24px;padding:var(--space-8);border:none;box-shadow:1px 2px 8px rgba(120,100,60,0.12),inset 0 0 50px rgba(200,175,120,0.15);transition:box-shadow 0.3s ease,transform 0.3s ease;overflow:hidden;}
+ .testimonial-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(245,235,200,0.4) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(200,175,120,0.2) 0%,transparent 50%);pointer-events:none;}
+ .testimonial-card::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 30px rgba(180,155,100,0.15);pointer-events:none;}
+ .testimonial-card:hover{box-shadow:3px 5px 16px rgba(120,100,60,0.18),inset 0 0 40px rgba(180,160,110,0.2);transform:translateY(-2px);}
+ .testimonial-card__quote{display:block;position:relative;z-index:1;font-family:'Georgia',serif;font-size:3rem;line-height:1;color:rgba(160,130,70,0.25);margin-bottom:-1rem;}
+ .testimonial-card__text{font-family:'Georgia',serif;font-size:0.9rem;color:#4A3C28;line-height:1.85;margin-bottom:var(--space-6);font-style:italic;position:relative;z-index:1;}
+ .testimonial-card__author{display:flex;align-items:center;gap:var(--space-3);position:relative;z-index:1;border-top:1px solid rgba(160,130,70,0.2);padding-top:var(--space-4);}
+ .testimonial-card__avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(180,160,110,0.2);border:1px solid rgba(160,130,70,0.25);}
+ .testimonial-card__name{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-sm);color:#3D2F1E;}
+ .testimonial-card__role{font-size:var(--text-xs);color:#6B5D4A;}
+ .testimonial-card__year{font-size:var(--text-xs);color:#6B5D4A;opacity:0.7;}
  @media(max-width:767px){.testimonial-grid{grid-template-columns:1fr;}}
  .kampus-info-card{background:var(--color-beyaz);border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-md);display:grid;grid-template-columns:1fr 1fr;}
  .kampus-info-card__map{background:linear-gradient(135deg,var(--color-lacivert) 0%,#1d3d6b 50%,#16305a 100%);min-height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:var(--space-4);padding:var(--space-8);position:relative;overflow:hidden;}
@@ -255,12 +263,12 @@
  @keyframes wa-entrance{from{transform:translateY(32px);opacity:0;}to{transform:translateY(0);opacity:1;}}
  @media(max-width:767px){.wa-btn{bottom:80px;font-size:13px;padding:9px 14px 9px 9px;}.wa-btn__circle{width:30px;height:30px;}}
  @media(prefers-reduced-motion:reduce){.wa-btn{animation:none;opacity:1;transform:none;transition:none;}}
- .sticky-cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:calc(var(--z-float) - 10);background-color:var(--color-lacivert);border-top:1px solid rgba(74,144,217,0.35);padding:var(--space-3) var(--space-4);display:none;align-items:center;justify-content:space-between;gap:var(--space-3);transform:translateY(100%);transition:transform var(--transition-base);box-shadow:0 -4px 24px rgba(18,40,76,0.3);}
+ .sticky-cta-bar{display:none!important;position:fixed;bottom:0;left:0;right:0;z-index:calc(var(--z-float) - 10);background-color:var(--color-lacivert);border-top:1px solid rgba(74,144,217,0.35);padding:var(--space-3) var(--space-4);display:none;align-items:center;justify-content:space-between;gap:var(--space-3);transform:translateY(100%);transition:transform var(--transition-base);box-shadow:0 -4px 24px rgba(18,40,76,0.3);}
  .sticky-cta-bar.is-visible{transform:translateY(0);}
  .sticky-cta-bar__text{font-size:var(--text-sm);font-weight:var(--font-weight-medium);color:var(--color-beyaz);line-height:1.3;}
  .sticky-cta-bar__text small{display:block;font-size:var(--text-xs);color:rgba(247,244,236,0.55);}
  .sticky-cta-bar .btn{padding:10px 20px;font-size:var(--text-xs);flex-shrink:0;}
- @media(max-width:767px){.sticky-cta-bar{display:flex;}.wa-btn{bottom:80px;}}
+ @media(max-width:767px){.sticky-cta-bar{display:none!important;display:flex;}.wa-btn{bottom:80px;}}
  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
  .reveal.is-visible{opacity:1;transform:translateY(0);}
  .reveal-delay-1{transition-delay:0.1s;}
@@ -288,7 +296,7 @@
  .hero__bg-grid{opacity:0.15;}
 
  /* Tüm bölümler ve header/footer z-index 1'de, animasyonun üstünde */
- .announcement-bar,.navbar,section,.footer,.sticky-cta-bar{position:relative;z-index:1;}
+ .announcement-bar,.navbar,section,.footer,.sticky-cta-bar{display:none!important;position:relative;z-index:1;}
 
  /* Navbar — liquid glass */
  .navbar{
@@ -321,8 +329,8 @@
  }
  .section--alt{background:rgba(8,18,44,0.62)!important;}
  .section--dark{background:rgba(5,12,30,0.78)!important;}
- .cta-section{background:linear-gradient(135deg,rgba(255,203,3,0.14) 0%,rgba(12,26,60,0.75) 100%)!important;}
- .cta-section::before{opacity:0.5;}
+ .cta-section{background:transparent!important;box-shadow:none!important;}
+ .cta-section::before{display:none!important;}
 
  /* Tipografi — açık tema metinleri koy temaya çevir */
  h1,h2,h3,h4,.section-title,.h2,.h3{color:#FBFAEF!important;}
@@ -352,13 +360,10 @@
  .kariyer-item__icon{background:rgba(74,144,217,0.12)!important;}
 
  /* Tesis kartları */
- .tesis-card{border:1px solid rgba(217,230,242,0.10)!important;}
- .tesis-card__body{
-   background:rgba(10,22,52,0.68)!important;
-   backdrop-filter:blur(14px);
- }
- .tesis-card__title{color:#FBFAEF!important;}
- .tesis-card__desc{color:rgba(217,230,242,0.70)!important;}
+ .tesis-card__inner{box-shadow:0 2px 12px rgba(0,0,0,0.3)!important;}
+ .tesis-card__back{background:rgba(10,22,52,0.68)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(217,230,242,0.10)!important;}
+ .tesis-card__back-title{color:#FBFAEF!important;}
+ .tesis-card__back-desc{color:rgba(217,230,242,0.70)!important;}
 
  /* Kampüs bilgi kartı */
  .kampus-info-card{
@@ -387,7 +392,7 @@
  }
 
  /* Sticky bar */
- .sticky-cta-bar{
+ .sticky-cta-bar{display:none!important;
    background:rgba(8,16,36,0.94)!important;
    backdrop-filter:blur(20px);
    border-top-color:rgba(74,144,217,0.25)!important;
@@ -399,6 +404,21 @@
     .mega-menu__item.has-submenu:hover .submenu,
     .mega-menu__item.has-submenu:focus-within .submenu { display: block !important; }
     .mega-menu__item.has-submenu { overflow: visible; }
+
+ /* Pearl / Stardust Button */
+ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);}
+ .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);}
+ .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;}
+ .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);}
+ .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);}
+ .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;}
+ .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);}
+ .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);}
+ .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);}
+ .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);}
+ .pearl-btn:hover .pearl-btn__star{opacity:1;}
+ .pearl-btn:active{transform:translateY(3px);}
+
   </style>
 </head>
 <body>
@@ -599,8 +619,8 @@
      Devlet destekli program, Altıneller güvencesinde.
     </p>
     <div class="hero__cta-group">
-     <a href="#basvuru" class="btn btn--primary btn--lg">Bu Programa Başvur</a>
-     <a href="#tesis" class="btn btn--outline-white btn--lg">Okul Turunu Planla</a>
+     <a href="#basvuru" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Bu Programa Başvur</span></a>
+     <a href="#tesis" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Okul Turunu Planla</span></a>
     </div>
    </div>
   </div>
@@ -686,7 +706,7 @@
     <span class="section-badge">İstihdam</span>
     <h2 class="section-title" style="margin-bottom:var(--space-4);">Mezun Olunca<br>Seni Neler Bekliyor?</h2>
     <p style="font-size:var(--text-md);color:var(--color-text-muted);line-height:1.65;margin-bottom:var(--space-6);">Türk havacılık sektörü her yıl binlerce nitelikli teknik eleman arıyor. Uzay Koleji mezunları sahaya hazır çıkıyor.</p>
-    <a href="#basvuru" class="btn btn--primary">Hemen Başvur</a>
+    <a href="#basvuru" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Hemen Başvur</span></a>
    </div>
    <div>
     <div class="kariyer-list">
@@ -764,37 +784,43 @@
    <p class="section-subtitle" style="margin-inline:auto;">Yüreğir Kampüsü'nde havacılık sektörüne özgü donanımlı tesisler.</p>
   </div>
   <div class="tesis-grid">
-   <div class="tesis-card reveal reveal-delay-1">
-    <div class="tesis-card__image" style="background:linear-gradient(135deg,#0d1e3a 0%,#1a3266 50%,#1d4a7a 100%);">
-     <span style="position:relative;z-index:1;">🎮</span>
-     <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.7) 100%);"></div>
-     <span class="tesis-card__image-label">Simülatör</span>
-    </div>
-    <div class="tesis-card__body">
-     <h3 class="tesis-card__title">Havacılık Simülatörü</h3>
-     <p class="tesis-card__desc">Gerçek kokpit ekipmanları ile donatılmış uçuş simülatörü. Acil durum senaryoları, kalkış-iniş prosedürleri.</p>
-    </div>
-   </div>
-   <div class="tesis-card reveal reveal-delay-2">
-    <div class="tesis-card__image" style="background:linear-gradient(135deg,#111D33 0%,#08294D 50%,#0F3A6B 100%);">
-     <span style="position:relative;z-index:1;">🔧</span>
-     <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.7) 100%);"></div>
-     <span class="tesis-card__image-label">Atölye</span>
-    </div>
-    <div class="tesis-card__body">
-     <h3 class="tesis-card__title">Teknik Atölye</h3>
-     <p class="tesis-card__desc">Uçak bileşenleri, bakım ekipmanları ve ölçüm aletleriyle donanımlı tam kapsamlı teknik bakım atölyesi.</p>
+      <div class="tesis-card reveal reveal-delay-1">
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=480&h=320&fit=crop&q=80&auto=format" alt="Havacılık Simülatörü" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Havacılık Simülatörü</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Havacılık Simülatörü</h3>
+      <p class="tesis-card__back-desc">Gerçek kokpit ekipmanları ile donatılmış uçuş simülatörü. Acil durum senaryoları, kalkış-iniş prosedürleri.</p>
+     </div>
     </div>
    </div>
-   <div class="tesis-card reveal reveal-delay-3">
-    <div class="tesis-card__image" style="background:linear-gradient(135deg,#1a2a1a 0%,#2a3a2a 50%,#08294D 100%);">
-     <span style="position:relative;z-index:1;">📚</span>
-     <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.7) 100%);"></div>
-     <span class="tesis-card__image-label">Kütüphane</span>
+      <div class="tesis-card reveal reveal-delay-2">
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=480&h=320&fit=crop&q=80&auto=format" alt="Teknik Atölye" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Teknik Atölye</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Teknik Atölye</h3>
+      <p class="tesis-card__back-desc">Uçak bileşenleri, bakım ekipmanları ve ölçüm aletleriyle donanımlı tam kapsamlı teknik bakım atölyesi.</p>
+     </div>
     </div>
-    <div class="tesis-card__body">
-     <h3 class="tesis-card__title">Kütüphane &amp; Çalışma Alanı</h3>
-     <p class="tesis-card__desc">Havacılık teknik dökümanları, uluslararası yayınlar ve bireysel/grup çalışma alanları.</p>
+   </div>
+      <div class="tesis-card reveal reveal-delay-3">
+    <div class="tesis-card__inner">
+     <div class="tesis-card__front">
+      <img class="tesis-card__front-img" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=480&h=320&fit=crop&q=80&auto=format" alt="Kütüphane &amp; Çalışma Alanı" loading="lazy">
+      <div class="tesis-card__front-overlay"></div>
+      <div class="tesis-card__front-title">Kütüphane &amp; Çalışma Alanı</div>
+     </div>
+     <div class="tesis-card__back">
+      <h3 class="tesis-card__back-title">Kütüphane &amp; Çalışma Alanı</h3>
+      <p class="tesis-card__back-desc">Havacılık teknik dökümanları, uluslararası yayınlar ve bireysel/grup çalışma alanları.</p>
+     </div>
     </div>
    </div>
   </div>
@@ -872,8 +898,8 @@
   <h2 class="section-title reveal" style="color:white;">Havacılık Kariyerine<br>Devlet Desteğiyle Başla</h2>
   <p class="section-subtitle reveal" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Bursluluk Sınavı başvuruları açık. Sınırlı kontenjan, hemen başvur.</p>
   <div class="cta-buttons reveal">
-   <a href="../bursluluk-sinavi.html" class="btn btn--primary btn--lg">Bursluluk Sınavına Başvur</a>
-   <a href="../kayit.html" class="btn btn--outline-white btn--lg">Online Başvuru Formu</a>
+   <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Bursluluk Sınavına Başvur</span></a>
+   <a href="../kayit.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Online Başvuru Formu</span></a>
   </div>
  </div>
 </section>

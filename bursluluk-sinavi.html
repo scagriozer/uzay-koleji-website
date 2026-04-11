@@ -27,7 +27,7 @@
       --color-acik-mavi:      #C2CFDB;
       --color-text-primary:   #08294D;
       --color-text-secondary: #1E2A36;
-      --color-text-muted:     #5A6A7A;
+      --color-text-muted:     #3D4F5F;
       --color-text-white:     #FBFAEF;
       --color-border:         #D8CBB6;
       --color-bg-page:        #FBFAEF;
@@ -108,7 +108,7 @@
     .navbar__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;flex-shrink:0;}
     .navbar__logo-mark{width:64px;height:64px;background-color:#FDC24C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--color-lacivert);letter-spacing:-0.5px;flex-shrink:0;}
     .navbar__logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;color:#08294D;line-height:1.0;}
-    .navbar__logo-sub{font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:20px;color:#5A6A7A;letter-spacing:0.24px;}
+    .navbar__logo-sub{font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;line-height:20px;color:#3D4F5F;letter-spacing:0.24px;}
     .navbar__nav{flex:1;}
     .navbar__links{display:flex;align-items:center;justify-content:center;gap:var(--space-6);}
     .navbar__links>li{position:relative;}
@@ -318,6 +318,7 @@
     .form-field input:focus,.form-field select:focus{outline:none;border-color:var(--color-gold);box-shadow:0 0 0 3px rgba(255,203,3,0.18);}
     .form-field--full{grid-column:1/-1;}
     @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+   /* Pearl / Stardust Button */ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);} .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;} .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);} .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);} .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;} .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);} .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);} .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);} .pearl-btn:hover .pearl-btn__star{opacity:1;} .pearl-btn:active{transform:translateY(3px);}
   </style>
 </head>
 <body>
@@ -483,8 +484,8 @@
           </div>
 
           <div class="hero__cta-group">
-            <a href="#basvuru" class="btn btn--primary btn--xl">🎓 Hemen Başvur</a>
-            <a href="#nasil-basvurulur" class="btn btn--outline-white btn--lg">📋 Nasıl Başvurulur?</a>
+            <a href="#basvuru" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Hemen Başvur</span></a>
+            <a href="#nasil-basvurulur" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Nasıl Başvurulur?</span></a>
           </div>
         </div>
       </div>
@@ -814,8 +815,8 @@
       <h2 class="section-title reveal" style="color:white;">Bugün Başvur —<br>Yarının Kariyeri Başlasın</h2>
       <p class="section-subtitle reveal" style="margin-inline:auto;margin-bottom:2rem;">Devlet destekli eğitim, stajyer maaşı ve meslek sertifikasına adım at. Kontenjan dolmadan başvurunu yap.</p>
       <div class="cta-buttons reveal">
-        <a href="#basvuru" class="btn btn--primary btn--xl">🎓 Sınava Başvur</a>
-        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="btn btn--outline-white btn--lg">💬 WhatsApp Danışman</a>
+        <a href="#basvuru" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Sınava Başvur</span></a>
+        <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> WhatsApp Danışman</span></a>
       </div>
     </div>
   </section>
