@@ -959,7 +959,15 @@
     }
 
     @media (max-width: 1023px) {
-      .hero__stats { display: none; }
+      .hero__stats {
+        width: 280px;
+        height: 280px;
+        transform: scale(0.6);
+        transform-origin: center center;
+      }
+      .galaxy-orbit {
+        transform-origin: 210px 210px;
+      }
       .hero__text { max-width: 100%; }
     }
 
@@ -970,6 +978,30 @@
       .hero__cta-group .pearl-btn .pearl-btn__wrap { justify-content: center; }
       .hero h1 { font-size: 48px; }
       .hero h1 span { font-size: 60px; }
+
+      .hero__inner {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-8);
+      }
+
+      .hero__stats {
+        width: 260px;
+        height: 260px;
+        transform: scale(0.6);
+        transform-origin: center center;
+        order: 2;
+        margin-top: var(--space-4);
+      }
+
+      .hero__text {
+        order: 1;
+        text-align: center;
+      }
+
+      .hero__cta-group {
+        align-items: center;
+      }
     }
 
     /* Pearl / Stardust Button */
