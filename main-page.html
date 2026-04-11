@@ -31,7 +31,7 @@
       --color-acik-mavi:      #C2CFDB;
       --color-text-primary:   #08294D;
       --color-text-secondary: #1E2A36;
-      --color-text-muted:     #5A6A7A;
+      --color-text-muted:     #3D4F5F;
       --color-text-white:     #FBFAEF;
       --color-border:         #D8CBB6;
       --color-bg-page:        #FFCB03;
@@ -126,6 +126,7 @@
       color: var(--color-text-secondary);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     img { max-width: 100%; display: block; }
@@ -414,7 +415,7 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 20px;
-      color: #5A6A7A;
+      color: #3D4F5F;
       letter-spacing: 0.24px;
     }
 
@@ -569,10 +570,10 @@
     /* Hamburger */
     .navbar__hamburger {
       display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
       background: none;
       border: none;
       cursor: pointer;
@@ -580,34 +581,58 @@
       z-index: calc(var(--z-overlay) + 10);
     }
 
-    .navbar__hamburger span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: var(--color-lacivert);
-      border-radius: 2px;
-      transition: transform var(--transition-base), opacity var(--transition-fast);
+    .navbar__hamburger svg {
+      width: 28px;
+      height: 28px;
+      stroke: #455B72;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 500ms ease-in-out, stroke 500ms ease-in-out;
     }
 
-    .navbar__hamburger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .navbar__hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .navbar__hamburger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .navbar__hamburger.is-open svg {
+      transform: rotate(-45deg);
+      stroke: #ACBBC9;
+    }
 
-    .navbar__hamburger.is-open span { background-color: var(--color-beyaz); }
+    .navbar__hamburger svg .menu-path {
+      stroke-dasharray: 12 63;
+      transition: stroke-dasharray 500ms ease-in-out, stroke-dashoffset 500ms ease-in-out;
+    }
+
+    .navbar__hamburger.is-open svg .menu-path {
+      stroke-dasharray: 20 300;
+      stroke-dashoffset: -32.42px;
+    }
+
+    .navbar__hamburger svg .menu-line {
+      transition: opacity 500ms ease-in-out;
+    }
+
+    .navbar__hamburger.is-open svg .menu-line {
+      opacity: 1;
+    }
 
     /* Mobile Drawer */
     .navbar__mobile-menu {
       position: fixed;
-      inset: 0;
+      top: 108px;
+      right: 0;
+      bottom: 0;
+      width: 70%;
       background-color: var(--color-lacivert);
       z-index: var(--z-overlay);
-      padding: var(--space-20) var(--space-6) var(--space-8);
+      padding: var(--space-8) var(--space-6) var(--space-8);
       display: flex;
       flex-direction: column;
       gap: var(--space-4);
       transform: translateX(100%);
       transition: transform var(--transition-slow);
       overflow-y: auto;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.3);
+      border-radius: 8px 0 0 8px;
     }
 
     .navbar__mobile-menu.is-open { transform: translateX(0); }
@@ -631,8 +656,11 @@
 
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none; }
-      .navbar__hamburger { display: flex; }
+      .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
       .navbar { height: 72px; top: 36px; }
+      .navbar__logo { transform: scale(0.7); transform-origin: left center; }
+      .navbar__inner { padding-inline: var(--space-8); }
+      .navbar__mobile-menu { z-index: 99999 !important; }
     }
 
     /* ============================================================
@@ -644,7 +672,8 @@
       display: flex;
       align-items: center;
       background: transparent;
-      overflow: clip;
+      overflow: hidden;
+      padding-top: 140px;
     }
 
     /* Decorative background elements */
@@ -716,17 +745,36 @@
     }
 
     .hero h1 {
-      color: #003C5E;
+      color: transparent;
       font-size: 76px;
       margin-bottom: var(--space-6);
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
+      background: linear-gradient(180deg, #004a73 0%, #002840 45%, #001a2e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      position: relative;
+      filter: drop-shadow(0 2px 4px rgba(0,40,64,0.3));
+    }
+    .hero h1::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 40%, transparent 55%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      pointer-events: none;
     }
 
     .hero h1 span {
-      color: #003C5E;
+      color: transparent;
       font-size: 96px;
       display: block;
+      background: linear-gradient(180deg, #003a5c 0%, #001e33 50%, #00141f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 3px 6px rgba(0,30,51,0.35));
     }
 
     .hero__desc {
@@ -771,7 +819,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: visible;
+      overflow: hidden;
     }
 
     /* Unused ring classes kept for compat */
@@ -918,7 +966,7 @@
     /* ── PAPER PLANE DECORATION ─────────────────────────────────── */
     .hero__plane {
       position: absolute;
-      top: calc(44% + 35px);
+      top: calc(44% + 60px);
       left: 250px;
       width: clamp(420px, 52vw, 660px);
       opacity: 1;
@@ -933,6 +981,11 @@
       50%      { transform: translateY(-18px) rotate(1deg); }
     }
 
+    @keyframes plane-drift-mobile {
+      0%,100% { transform: translateY(0px) translateX(0) rotate(0deg); }
+      50%      { transform: translateY(-25px) translateX(5px) rotate(-5deg); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero__plane { animation: none; }
     }
@@ -940,14 +993,153 @@
     @media (max-width: 1023px) {
       .hero__stats { display: none; }
       .hero__text { max-width: 100%; }
+      .hero__plane { width: clamp(280px, 35vw, 420px); left: 180px; }
     }
 
     @media (max-width: 767px) {
-      .hero { min-height: 100svh; padding-top:108px; }
-      .hero__cta-group { flex-direction: column; align-items: flex-start; }
-      .hero__cta-group .btn { width: 100%; justify-content: center; }
-      .hero h1 { font-size: 48px; }
-      .hero h1 span { font-size: 60px; }
+      .hero { min-height: auto; padding-top:108px; padding-bottom: var(--space-8); overflow: visible; }
+      .hero__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-6);
+        transform: none;
+        position: relative;
+      }
+      .hero__text { max-width: 100%; position: relative; z-index: 5; margin-top: -30px; }
+      .hero__cta-group { position: relative; z-index: 5; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-left: 95px; margin-top: 98px; }
+      .hero__cta-group .pearl-btn { width: 240px; transform: scale(0.68); transform-origin: left center; }
+      .hero__cta-group .pearl-btn .pearl-btn__wrap { justify-content: center; }
+      .hero__cta-group a[href="#kampusler"] { order: -1; }
+      .hero h1 { font-size: clamp(37px, 10.5vw, 55px); }
+      .hero h1 span { font-size: clamp(45px, 13vw, 68px); }
+
+      .hero__plane { display: none; }
+      .hero__plane-trail { display: none; }
+
+      /* Cosmos orbit — hero arkasinda merkezde donuyor */
+      .hero__stats {
+        display: block;
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% + 130px)) scale(0.9);
+        transform-origin: center center;
+        pointer-events: none;
+        opacity: 0.9;
+        z-index: -1;
+      }
+      .cosmos-node { z-index: auto; }
+      .galaxy-orbit { z-index: auto; }
+
+      /* Logo slider — blur kaldir */
+      .logo-slider-wrap {
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+      .partners-pblur { display: none; }
+      .logo-slider-track { gap: 2rem; }
+
+      /* CTA section butonlari — yan yana, esit boyut, tek satir */
+      .cta-section .cta-buttons {
+        flex-wrap: nowrap;
+        gap: var(--space-2);
+        padding: 0 var(--space-2);
+      }
+      .cta-section .cta-buttons .pearl-btn {
+        flex: 1;
+      }
+      .cta-section .cta-buttons .pearl-btn .pearl-btn__wrap {
+        font-size: 11px;
+        padding: 12px 10px;
+        justify-content: center;
+        white-space: nowrap;
+        color: #d0dce8;
+        text-shadow: 0 0 8px rgba(200,220,240,0.5), 0 1px 2px rgba(0,0,0,0.3);
+      }
+    }
+
+    /* Pearl / Stardust Button */
+    .pearl-btn {
+      display: inline-block;
+      position: relative;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 100px;
+      background-color: #0a1929;
+      transition: all 0.25s ease;
+      box-shadow:
+        inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),
+        inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),
+        inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),
+        0 2rem 2.5rem rgba(0,0,0,0.25),
+        0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);
+    }
+    .pearl-btn__wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 36px;
+      border-radius: inherit;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: rgba(129,216,255,0.9);
+      transition: all 0.2s ease;
+      transform: translateY(1px);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(129,216,255,1) 50%, transparent 100%);
+      mask-image: linear-gradient(to bottom, rgba(129,216,255,1) 50%, transparent 100%);
+    }
+    .pearl-btn__wrap::before,
+    .pearl-btn__wrap::after {
+      content: "";
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+    .pearl-btn__wrap::before {
+      left: -15%; right: -15%; bottom: 25%; top: -100%;
+      border-radius: 50%;
+      background-color: rgba(64,180,255,0.15);
+    }
+    .pearl-btn__wrap::after {
+      left: 6%; right: 6%; top: 12%; bottom: 40%;
+      border-radius: 22px 22px 0 0;
+      box-shadow: inset 0 10px 8px -10px rgba(129,216,255,0.6);
+      background: linear-gradient(180deg, rgba(64,180,255,0.25) 0%, transparent 50%);
+    }
+    .pearl-btn__star { font-size: 14px; opacity: 0.7; transition: opacity 0.2s ease; }
+    .pearl-btn:hover {
+      box-shadow:
+        inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),
+        inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),
+        inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),
+        0 2rem 2.5rem rgba(0,0,0,0.25),
+        0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);
+    }
+    .pearl-btn:hover .pearl-btn__wrap::before { transform: translateY(-5%); }
+    .pearl-btn:hover .pearl-btn__wrap::after { opacity: 0.4; transform: translateY(5%); }
+    .pearl-btn:hover .pearl-btn__wrap { transform: translateY(-2px); }
+    .pearl-btn:hover .pearl-btn__star { opacity: 1; }
+    .pearl-btn:active { transform: translateY(3px); }
+
+    .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::before {
+      background-color: rgba(180,120,0,0.12);
+    }
+    .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::after {
+      box-shadow: inset 0 10px 8px -10px rgba(255,220,50,0.5);
+      background: linear-gradient(180deg, rgba(255,200,0,0.2) 0%, transparent 50%);
+    }
+    .navbar__cta-desktop.pearl-btn:hover {
+      box-shadow:
+        inset 0 0.3rem 0.5rem rgba(255,230,80,0.5),
+        inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),
+        inset 0 -0.4rem 0.9rem rgba(255,200,0,0.6),
+        0 0.8rem 1.5rem rgba(0,0,0,0.2);
     }
 
     /* ============================================================
@@ -987,7 +1179,7 @@
       height: 164px;
       border-radius: 50%;
       background: var(--color-gold);
-      border: 3px solid var(--color-lacivert);
+      border: 3px solid #2B2B2B;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1001,14 +1193,14 @@
 
     .why-card__circle .fa-solid {
       font-size: 3rem;
-      color: var(--color-lacivert);
+      color: #2B2B2B;
     }
 
     .why-card__num {
       font-family: var(--font-display);
       font-size: 2.75rem;
       font-weight: 900;
-      color: var(--color-lacivert);
+      color: #2B2B2B;
       line-height: 1;
       letter-spacing: -0.03em;
     }
@@ -1017,7 +1209,7 @@
       font-family: var(--font-display);
       font-weight: 700;
       font-size: 1rem;
-      color: var(--color-lacivert);
+      color: #2B2B2B;
       text-align: center;
       line-height: 1.35;
       margin: 0;
@@ -1135,6 +1327,7 @@
     .video-section {
       position: relative;
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -1299,8 +1492,11 @@
     /* partners: mask yerine progressive blur overlay */
     .partners-slider-outer {
       position: relative;
-      flex: 1;
       overflow: hidden;
+      background: rgba(8,41,77,0.72);
+      border-radius: 0;
+      padding-block: 0.25rem;
+      margin-inline: -2rem;
     }
     .partners-slider-outer .logo-slider-wrap {
       -webkit-mask-image: none;
@@ -1337,44 +1533,81 @@
       filter: brightness(0);
     }
 
-    /* Partner banner — kırık beyaz + köşe gölgesi */
+    /* Partner banner — lacivert şerit, başlık + logolar tek blok */
     .logo-cloud-section--partners {
-      padding-block: 2.24rem 1.92rem; /* %20 azaltıldı: 2.8→2.24, 2.4→1.92 */
-      background: #FBFAEF;
+      padding-block: 0 0.3rem !important;
+      background: radial-gradient(ellipse at center, #0d3259 0%, #09294D 50%, #051a32 100%);
       position: relative;
-      overflow: hidden;
-      box-shadow:
-        0 4px 24px rgba(18,40,76,0.08),
-        inset 60px 0 80px -40px rgba(18,40,76,0.07),
-        inset -60px 0 80px -40px rgba(18,40,76,0.07),
-        inset 0 40px 60px -30px rgba(18,40,76,0.05),
-        inset 0 -40px 60px -30px rgba(18,40,76,0.05);
+      z-index: 2;
+      overflow: visible;
+      box-shadow: 0 12px 24px -4px rgba(8,20,40,0.5), 0 32px 64px -8px rgba(8,20,40,0.35) !important;
     }
-    .logo-cloud-section--partners::before,
-    .logo-cloud-section--partners::after { content: none; }
-    /* label */
-    .logo-cloud-section--partners .logo-cloud-label-block p {
-      color: rgba(18,40,76,0.55);
-      font-size: 0.75rem;
+    .logo-cloud-section--partners::before { content: none; }
+    .logo-cloud-section--partners::after { content: none;
+    }
+
+    /* Tam genişlik yatay border çizgileri */
+    .lc-full-border {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      pointer-events: none;
+    }
+    .lc-full-border--top    { top: 0; }
+    .lc-full-border--bottom { bottom: 0; }
+
+    /* Tam genişlik iç kapsayıcı */
+    .lc-partners-inner {
+      max-width: 100%;
+      margin-inline: auto;
+      padding: 0 2rem !important;
+      background: transparent;
+    }
+
+    /* Başlık — banner içinde, arka plansız */
+    .lc-partners-heading {
+      text-align: center;
+      margin: 0 !important;
+      padding: 9px 0 6px !important;
+      background: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .lc-partners-heading__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.40);
+      letter-spacing: 0.04em;
+      margin-bottom: 1px;
+    }
+    .lc-partners-heading__main {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.975rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: -0.01em;
     }
     @media (min-width: 768px) {
-      .logo-cloud-section--partners .logo-cloud-label-block {
-        border-right: 1px solid rgba(18,40,76,0.12);
-      }
+      .lc-partners-heading__main { font-size: 1.025rem; }
     }
-    /* partner logolar koyu */
+
+    /* partner logolar beyaz */
     .logo-slider-track .partner-svg {
-      height: 22px;
+      height: 25px;
       width: auto;
       display: block;
       flex-shrink: 0;
-      opacity: 0.50;
-      filter: grayscale(1) brightness(0.15);
-      transition: opacity 0.5s ease, filter 0.5s ease;
+      opacity: 0.55;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.4s ease;
     }
     .logo-slider-track .partner-svg:hover {
       opacity: 1;
-      filter: grayscale(1) brightness(0.05);
     }
 
     /* ============================================================
@@ -1395,7 +1628,7 @@
     }
 
     .kampus-card {
-      height: 480px;
+      aspect-ratio: 4 / 5;
       border-radius: 34px; /* R2 = R1(10) + D(24) */
       overflow: hidden;
       transition: transform 0.5s ease, box-shadow 0.5s ease;
@@ -1513,7 +1746,6 @@
 
     @media (max-width: 767px) {
       .kampus-grid { max-width: 100%; }
-      .kampus-card { height: 400px; }
     }
 
     /* ============================================================
@@ -2002,9 +2234,24 @@
       to   { transform: translateY(0);    opacity: 1; }
     }
     @media (max-width: 767px) {
-      .wa-btn { bottom: 80px; font-size: 13px; padding: 9px 14px 9px 9px; }
-      .wa-btn__circle { width: 30px; height: 30px; }
-      .chatbot-btn { bottom: 80px; right: 11px; }
+      .wa-btn {
+        bottom: 19px;
+        right: 11px;
+        width: 64px !important;
+        height: 64px !important;
+        min-width: unset;
+        max-width: 64px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        background: #25D366;
+        box-shadow: 0 4px 20px rgba(18,40,76,0.35);
+      }
+      .wa-btn__circle { width: 64px; height: 64px; min-width: 64px; background: transparent; }
+      .wa-btn__circle svg { width: 28px; height: 28px; }
+      .wa-btn__text { display: none; }
+      .chatbot-btn { bottom: 19px; right: auto; left: 11px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .wa-btn { animation: none; opacity: 1; transform: none; transition: none; }
@@ -2090,7 +2337,7 @@
     }
 
     @media (max-width: 767px) {
-      .sticky-cta-bar { display: flex; }
+      .sticky-cta-bar { display: none; }
     }
 
     /* ============================================================
@@ -2214,7 +2461,7 @@
   <header class="navbar" id="navbar">
     <div class="container navbar__inner">
 
-      <a href="../index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
+      <a href="index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
         <div class="navbar__logo-mark">UK</div>
         <div>
           <div class="navbar__logo-text">UZAY KOLEJİ</div>
@@ -2231,37 +2478,45 @@
               <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
             </button>
             <div class="navbar__mega-menu" role="menu">
-              <a href="../programlar/havacilik.html" class="mega-menu__item">
+              <a href="programlar/havacilik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#4B7EC8;"></span>
-                ✈ Havacılık
+                Havacılık
               </a>
-              <a href="../programlar/enerji.html" class="mega-menu__item">
+              <a href="programlar/enerji.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#8FB84A;"></span>
-                ⚡ Yenilenebilir Enerji
+                Yenilenebilir Enerji
               </a>
-              <a href="../programlar/biyomedikal.html" class="mega-menu__item">
+              <a href="programlar/biyomedikal.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
-                🔬 Biyomedikal
+                Biyomedikal
               </a>
-              <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
+              <a href="programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
-                🏥 Sağlık Hizmetleri
-                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span>
-                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;">
-                  <a href="../programlar/saglik-bakim.html#saglik-bakimi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</a>
-                  <a href="../programlar/saglik-bakim.html#hemsire-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</a>
-                  <a href="../programlar/saglik-bakim.html#ebe-yardimciligi" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</a>
+                Sağlık Hizmetleri
+                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
+                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
+                  <div onclick="location.href='programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div>
+                  <div onclick="location.href='programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div>
+                  <div onclick="location.href='programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div>
                 </div>
               </a>
-              <a href="../programlar/elektrik-elektronik.html" class="mega-menu__item">
+              <a href="programlar/elektrik-elektronik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#A0285A;"></span>
-                🔌 Elektrik-Elektronik
+                Elektrik-Elektronik
               </a>
-              <a href="../programlar/gida-teknolojileri.html" class="mega-menu__item">
+              <a href="programlar/gida-teknolojileri.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#C85A28;"></span>
-                🌿 Gıda Teknolojileri
+                Gıda Teknolojileri
               </a>
-              <a href="../programlar/turizm-otelcilik.html" class="mega-menu__item has-submenu" style="position:relative;"><span class="mega-menu__dot" style="background-color:#3A7060;"></span>🏨 Turizm ve Otelcilik<span style="margin-left:auto;font-size:11px;opacity:0.7;">▾</span><div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;"><a href="../programlar/turizm-otelcilik.html#konaklama" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E67E22;flex-shrink:0;display:inline-block;"></span> Konaklama ve Ön Büro</a><a href="../programlar/turizm-otelcilik.html#ascilik" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);text-decoration:none;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#FFCB03;flex-shrink:0;display:inline-block;"></span> Aşçılık</a></div></a>
+              <a href="programlar/turizm-otelcilik.html" class="mega-menu__item has-submenu" style="position:relative;">
+                <span class="mega-menu__dot" style="background-color:#3A7060;"></span>
+                Turizm ve Otelcilik
+                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
+                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
+                  <div onclick="location.href='programlar/turizm-otelcilik.html#konaklama'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#E67E22;flex-shrink:0;display:inline-block;"></span> Konaklama ve Ön Büro</div>
+                  <div onclick="location.href='programlar/turizm-otelcilik.html#ascilik'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#FFCB03;flex-shrink:0;display:inline-block;"></span> Aşçılık</div>
+                </div>
+              </a>
             </div>
           </li>
 
@@ -2271,15 +2526,15 @@
               <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
             </button>
             <div class="navbar__mega-menu" role="menu">
-              <a href="../kampusler/cukurova.html" class="mega-menu__item">
+              <a href="kampusler/cukurova.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:var(--color-gold);"></span>
                 Çukurova Kampüsü
               </a>
-              <a href="../kampusler/seyhan.html" class="mega-menu__item">
+              <a href="kampusler/seyhan.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:var(--color-gold);"></span>
                 Seyhan Kampüsü
               </a>
-              <a href="../kampusler/yuregir.html" class="mega-menu__item">
+              <a href="kampusler/yuregir.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:var(--color-gold);"></span>
                 Yüreğir Kampüsü
               </a>
@@ -2293,37 +2548,45 @@
         </ul>
       </nav>
 
-      <a href="../bursluluk-sinavi.html" class="btn navbar__cta-desktop" style="background:#FFCB03;border-color:#FFCB03;color:#08294D;width:171px;height:46px;border-radius:27px;padding:14px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;justify-content:center;">Bursluluk Sınavı</a>
+      <a href="kayit.html" class="pearl-btn navbar__cta-desktop" style="background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
+        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+      </a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-        <svg viewBox="0 0 32 32"><path class="menu-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/><path class="menu-line" d="M7 16 27 16"/></svg>
+        <svg viewBox="0 0 32 32">
+          <path class="menu-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/>
+          <path class="menu-line" d="M7 16 27 16"/>
+        </svg>
       </button>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
-      <a href="#programlar" class="mobile-nav-link">Programlar</a>
-      <a href="#kampusler" class="mobile-nav-link">Kampüsler</a>
-      <a href="#firsatlar" class="mobile-nav-link">Fırsatlar</a>
-      <a href="#okulumuz" class="mobile-nav-link">Okulumuz</a>
-      <a href="#iletisim" class="mobile-nav-link">İletişim</a>
-      <a href="etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
-      <div class="mobile-nav-cta">
-        <a href="../bursluluk-sinavi.html" class="btn btn--primary" style="width:100%;justify-content:center;">🎓 Bursluluk Sınavına Başvur</a>
-      </div>
-    </div>
   </header>
+
+  <!-- Mobile Menu (header disinda — stacking context sorunu icin) -->
+  <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#programlar" class="mobile-nav-link">Programlar</a>
+    <a href="#kampusler" class="mobile-nav-link">Kampüsler</a>
+    <a href="#firsatlar" class="mobile-nav-link">Fırsatlar</a>
+    <a href="#okulumuz" class="mobile-nav-link">Okulumuz</a>
+    <a href="#iletisim" class="mobile-nav-link">İletişim</a>
+    <a href="etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
+    <div class="mobile-nav-cta">
+      <a href="kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
+        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+      </a>
+    </div>
+  </div>
 
   <!-- ============================================================
        HERO SECTION
   ============================================================ -->
-  <section class="hero" id="hero" style="padding-top:140px;">
+  <section class="hero" id="hero">
     <canvas class="hero__bg-grid" aria-hidden="true"></canvas>
 
     <!-- Decorative paper plane trail + plane -->
     <svg class="hero__plane-trail" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9;overflow:visible;">
-      <path d="M 160,120% Q 350,65% 620,77% T 980,73%"
+      style="position:absolute;top:35px;left:0;width:100%;height:100%;pointer-events:none;z-index:9;overflow:hidden;">
+      <path d="M 160,110% Q 350,55% 620,67% T 980,63%"
         fill="none" stroke="rgba(18,40,76,0.22)" stroke-width="2.5"
         stroke-dasharray="12 10" stroke-linecap="round"/>
     </svg>
@@ -2333,7 +2596,7 @@
       <div class="container">
         <div class="hero__inner">
           <div class="hero__text">
-            <h1>
+            <h1 data-text="Geleceğini">
               Geleceğini
               <span>Şimdi Seç</span>
             </h1>
@@ -2341,11 +2604,11 @@
               Devlet destekli programlar, Altıneller güvencesinde özel eğitim.
             </p>
             <div class="hero__cta-group">
-              <a href="../kayit.html" class="btn" style="background:linear-gradient(135deg, #2f4760 0%, #233656 60%, #1e2f42 100%);color:#FBFAEF;border-color:transparent;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
-                Ücretsiz Ön Kayıt
+              <a href="kayit.html" class="pearl-btn" style="background:linear-gradient(135deg, #2f4760 0%, #233656 60%, #1e2f42 100%);">
+                <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt</span>
               </a>
-              <a href="#kampusler" class="btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #9ab0c4 50%, #1a3350 100%);color:#0a1929;border-color:transparent;border-radius:64px;height:64px;padding:10px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;">
-                Kampüsleri Keşfet
+              <a href="#kampusler" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #9ab0c4 50%, #1a3350 100%);">
+                <span class="pearl-btn__wrap" style="color:#0a1929;"><span class="pearl-btn__star">✧</span> Kampüsleri Keşfet</span>
               </a>
             </div>
           </div>
@@ -2594,10 +2857,12 @@
        İŞ BİRLİKLERİ BANNER — PROGRAMLAR ALTI
   ============================================================ -->
   <div class="logo-cloud-section logo-cloud-section--partners">
-    <div class="logo-cloud-inner">
-      <div class="logo-cloud-label-block">
-        <p>İş Birlikleri &amp;<br>Mezunlarımızın<br>Çalıştığı Kurumlar</p>
-      </div>
+    <div class="lc-full-border lc-full-border--top"></div>
+    <div class="lc-partners-inner">
+      <h2 class="lc-partners-heading">
+        <span class="lc-partners-heading__sub">İş Birlikleri &amp; Mezunlarımızın</span>
+        <span class="lc-partners-heading__main">Çalıştığı Kurumlar</span>
+      </h2>
       <div class="partners-slider-outer">
       <div class="logo-slider-wrap">
         <div class="logo-slider-track">
@@ -2647,9 +2912,7 @@
         </div>
       </div>
     </div>
-  </div>
-      </div>
-    </div>
+    <div class="lc-full-border lc-full-border--bottom"></div>
   </div>
 
   <!-- ============================================================
@@ -2713,8 +2976,8 @@
 
       <div class="program-grid">
 
-        <a href="../programlar/havacilik.html" class="program-card reveal reveal-delay-1" style="--program-color:#4B7EC8;--program-color-dark:#1e3a6e;--program-color-rgb:75,126,200;" aria-label="Havacılık Programı">
-          <img class="program-card__img" src="../images/programs/havacilik.png" alt="Havacılık">
+        <a href="programlar/havacilik.html" class="program-card reveal reveal-delay-1" style="--program-color:#4B7EC8;--program-color-dark:#1e3a6e;--program-color-rgb:75,126,200;" aria-label="Havacılık Programı">
+          <img class="program-card__img" src="images/programs/havacilik.png" alt="Havacılık">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2730,8 +2993,8 @@
           </div>
         </a>
 
-        <a href="../programlar/enerji.html" class="program-card reveal reveal-delay-2" style="--program-color:#8FB84A;--program-color-dark:#3a5a10;--program-color-rgb:143,184,74;" aria-label="Yenilenebilir Enerji Programı">
-          <img class="program-card__img" src="../images/programs/yenilenebilir-enerji.png" alt="Enerji">
+        <a href="programlar/enerji.html" class="program-card reveal reveal-delay-2" style="--program-color:#8FB84A;--program-color-dark:#3a5a10;--program-color-rgb:143,184,74;" aria-label="Yenilenebilir Enerji Programı">
+          <img class="program-card__img" src="images/programs/yenilenebilir-enerji.png" alt="Enerji">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2747,8 +3010,8 @@
           </div>
         </a>
 
-        <a href="../programlar/biyomedikal.html" class="program-card reveal reveal-delay-3" style="--program-color:#9B3060;--program-color-dark:#4a0f2c;--program-color-rgb:155,48,96;" aria-label="Biyomedikal Teknoloji Programı">
-          <img class="program-card__img" src="../images/programs/biyomedikal.png" alt="Biyomedikal">
+        <a href="programlar/biyomedikal.html" class="program-card reveal reveal-delay-3" style="--program-color:#9B3060;--program-color-dark:#4a0f2c;--program-color-rgb:155,48,96;" aria-label="Biyomedikal Teknoloji Programı">
+          <img class="program-card__img" src="images/programs/biyomedikal.png" alt="Biyomedikal">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2764,8 +3027,8 @@
           </div>
         </a>
 
-        <a href="../programlar/saglik-bakim.html" class="program-card reveal reveal-delay-4" style="--program-color:#2a6080;--program-color-dark:#0a2030;--program-color-rgb:42,96,128;" aria-label="Sağlık Hizmetleri Programı">
-          <img class="program-card__img" src="../images/programs/saglik-hizmetleri.png" alt="Sağlık Hizmetleri">
+        <a href="programlar/saglik-bakim.html" class="program-card reveal reveal-delay-4" style="--program-color:#2a6080;--program-color-dark:#0a2030;--program-color-rgb:42,96,128;" aria-label="Sağlık Hizmetleri Programı">
+          <img class="program-card__img" src="images/programs/saglik-hizmetleri.png" alt="Sağlık Hizmetleri">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2781,8 +3044,8 @@
           </div>
         </a>
 
-        <a href="../programlar/elektrik-elektronik.html" class="program-card reveal reveal-delay-2" style="--program-color:#A0285A;--program-color-dark:#4a0f2c;--program-color-rgb:160,40,90;" aria-label="Elektrik-Elektronik Programı">
-          <img class="program-card__img" src="../images/programs/elektrik-elektronik.png" alt="Elektrik-Elektronik">
+        <a href="programlar/elektrik-elektronik.html" class="program-card reveal reveal-delay-2" style="--program-color:#A0285A;--program-color-dark:#4a0f2c;--program-color-rgb:160,40,90;" aria-label="Elektrik-Elektronik Programı">
+          <img class="program-card__img" src="images/programs/elektrik-elektronik.png" alt="Elektrik-Elektronik">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2798,8 +3061,8 @@
           </div>
         </a>
 
-        <a href="../programlar/gida-teknolojileri.html" class="program-card reveal reveal-delay-3" style="--program-color:#C85A28;--program-color-dark:#6a2a08;--program-color-rgb:200,90,40;" aria-label="Gıda Teknolojileri Programı">
-          <img class="program-card__img" src="../images/programs/gida-teknolojileri.png" alt="Gıda Teknolojileri">
+        <a href="programlar/gida-teknolojileri.html" class="program-card reveal reveal-delay-3" style="--program-color:#C85A28;--program-color-dark:#6a2a08;--program-color-rgb:200,90,40;" aria-label="Gıda Teknolojileri Programı">
+          <img class="program-card__img" src="images/programs/gida-teknolojileri.png" alt="Gıda Teknolojileri">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2815,8 +3078,8 @@
           </div>
         </a>
 
-        <a href="../programlar/turizm-otelcilik.html" class="program-card reveal reveal-delay-4" style="--program-color:#3A7060;--program-color-dark:#102a28;--program-color-rgb:58,112,96;" aria-label="Turizm ve Otelcilik Programı">
-          <img class="program-card__img" src="../images/programs/turizm-otelcilik-konaklama.png" alt="Turizm ve Otelcilik">
+        <a href="programlar/turizm-otelcilik.html" class="program-card reveal reveal-delay-4" style="--program-color:#3A7060;--program-color-dark:#102a28;--program-color-rgb:58,112,96;" aria-label="Turizm ve Otelcilik Programı">
+          <img class="program-card__img" src="images/programs/turizm-otelcilik-konaklama.png" alt="Turizm ve Otelcilik">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
           <div class="program-card__content">
@@ -2844,9 +3107,9 @@
     <!-- Dekoratif sarı çember -->
     <div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:640px;height:640px;border-radius:50%;background:#F9E87B;opacity:0.45;pointer-events:none;z-index:0;"></div>
     <div class="container" style="position:relative;z-index:1;">
-      <div class="section-header reveal" style="margin-top:75px;">
+      <div class="section-header reveal" style="margin-top:120px;">
         <span class="section-badge" style="background:rgba(217,230,242,0.75);color:#08294D;">Adana'da 3 Nokta</span>
-        <h2 class="section-title">Kampüslerimiz</h2>
+        <h2 class="section-title" style="margin-top:50px;">Kampüslerimiz</h2>
         <p class="section-subtitle" style="margin-inline:auto;margin-top:75px;">
           Adana'nın farklı ilçelerinde 3 modern kampüs. Sana en yakın olanda eğitimine başla.
         </p>
@@ -2856,8 +3119,8 @@
 
         <!-- Kart 1: Çukurova -->
         <div class="kampus-card reveal reveal-delay-1" style="--kc-theme:215 55% 22%;">
-          <a href="../kampusler/cukurova.html" class="kampus-card__link" aria-label="Çukurova Kampüsü">
-            <div class="kampus-card__img" style="background-image:url('https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=700&h=900&fit=crop&q=80&auto=format');"></div>
+          <a href="kampusler/cukurova.html" class="kampus-card__link" aria-label="Çukurova Kampüsü">
+            <div class="kampus-card__img" style="background-image:url('images/kampus-cukurova.png');"></div>
             <div class="kampus-card__gradient"></div>
             <div class="kampus-card__content">
               <div class="kampus-card__district">
@@ -2878,8 +3141,8 @@
 
         <!-- Kart 2: Seyhan -->
         <div class="kampus-card reveal reveal-delay-2" style="--kc-theme:162 48% 20%;">
-          <a href="../kampusler/seyhan.html" class="kampus-card__link" aria-label="Seyhan Kampüsü">
-            <div class="kampus-card__img" style="background-image:url('../images/programs/elektrik-elektronik.png');"></div>
+          <a href="kampusler/seyhan.html" class="kampus-card__link" aria-label="Seyhan Kampüsü">
+            <div class="kampus-card__img" style="background-image:url('images/programs/elektrik-elektronik.png');"></div>
             <div class="kampus-card__gradient"></div>
             <div class="kampus-card__content">
               <div class="kampus-card__district">
@@ -2900,8 +3163,8 @@
 
         <!-- Kart 3: Yüreğir -->
         <div class="kampus-card reveal reveal-delay-3" style="--kc-theme:235 48% 22%;">
-          <a href="../kampusler/yuregir.html" class="kampus-card__link" aria-label="Yüreğir Kampüsü">
-            <div class="kampus-card__img" style="background-image:url('../images/kampus-yuregir.png');"></div>
+          <a href="kampusler/yuregir.html" class="kampus-card__link" aria-label="Yüreğir Kampüsü">
+            <div class="kampus-card__img" style="background-image:url('images/kampus-yuregir.png');"></div>
             <div class="kampus-card__gradient"></div>
             <div class="kampus-card__content">
               <div class="kampus-card__district">
@@ -3014,7 +3277,7 @@
        CTA SECTION
   ============================================================ -->
   <section class="section cta-section" id="bursluluk">
-    <div class="container">
+    <div class="container" style="margin-top:-15px;">
       <h2 class="section-title reveal">
         Hayalindeki Kariyere<br>Devlet Desteğiyle Başla
       </h2>
@@ -3022,8 +3285,9 @@
         Bursluluk sınavıyla burs imkânlarından yararlan. 2026–2027 kayıtları için başvurular açık.
       </p>
       <div class="cta-buttons reveal">
-        <a href="../bursluluk-sinavi.html" class="btn btn--glass btn--lg">🎓 Bursluluk Sınavına Başvur</a>
-        <a href="../kayit.html" class="btn btn--glass btn--lg">📝 Online Kayıt</a>
+        <a href="bursluluk-sinavi.html" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #8DA4B8 60%, #0a1929 100%);"><span class="pearl-btn__wrap" style="color:#031525;transform:translateX(-2px);"><span class="pearl-btn__star">✧</span> Bursluluk Sınavına Başvur</span></a>
+        <a href="kayit.html" class="pearl-btn" style="background:linear-gradient(135deg, #8DA4B8 0%, #2a4060 40%, #0a1929 100%);"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Online Kayıt</span></a>
+
       </div>
     </div>
   </section>
@@ -3054,12 +3318,12 @@
         <div>
           <h4 class="footer__col-title">Programlar</h4>
           <nav class="footer__links" aria-label="Program Linkleri">
-            <a href="../programlar/havacilik.html">✈ Havacılık</a>
-            <a href="../programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
-            <a href="../programlar/biyomedikal.html">🔬 Biyomedikal</a>
-            <a href="../programlar/saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
-            <a href="../programlar/elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
-            <a href="../programlar/gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
+            <a href="programlar/havacilik.html">✈ Havacılık</a>
+            <a href="programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
+            <a href="programlar/biyomedikal.html">🔬 Biyomedikal</a>
+            <a href="programlar/saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
+            <a href="programlar/elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
+            <a href="programlar/gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
           </nav>
         </div>
 
@@ -3067,15 +3331,15 @@
         <div>
           <h4 class="footer__col-title">Kampüsler</h4>
           <nav class="footer__links" aria-label="Kampüs Linkleri">
-            <a href="../kampusler/cukurova.html">🏫 Çukurova Kampüsü</a>
-            <a href="../kampusler/seyhan.html">🏫 Seyhan Kampüsü</a>
-            <a href="../kampusler/yuregir.html">🏫 Yüreğir Kampüsü</a>
+            <a href="kampusler/cukurova.html">🏫 Çukurova Kampüsü</a>
+            <a href="kampusler/seyhan.html">🏫 Seyhan Kampüsü</a>
+            <a href="kampusler/yuregir.html">🏫 Yüreğir Kampüsü</a>
           </nav>
 
           <h4 class="footer__col-title" style="margin-top:2rem;">Hızlı Bağlantılar</h4>
           <nav class="footer__links" aria-label="Hızlı Bağlantılar">
-            <a href="../bursluluk-sinavi.html">🎓 Bursluluk Sınavı</a>
-            <a href="../kayit.html">📝 Online Başvuru</a>
+            <a href="bursluluk-sinavi.html">🎓 Bursluluk Sınavı</a>
+            <a href="kayit.html">📝 Online Başvuru</a>
             <a href="#">💬 WhatsApp Hattı</a>
             <a href="#">🖼 Galeri</a>
           </nav>
@@ -3150,7 +3414,7 @@
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
     </span>
-    WhatsApp'tan Ulaşın
+    <span class="wa-btn__text">WhatsApp'tan Ulaşın</span>
   </a>
 
   <!-- Chatbot Trailing Button -->
@@ -3171,7 +3435,7 @@
       Bursluluk Sınavı
       <small>2026–2027 başvuruları açık</small>
     </div>
-    <a href="../bursluluk-sinavi.html" class="btn btn--primary">🎓 Başvur</a>
+    <a href="bursluluk-sinavi.html" class="btn btn--primary">🎓 Başvur</a>
   </div>
 
   <!-- ============================================================
@@ -3210,7 +3474,7 @@
       window.addEventListener('scroll', onScroll, { passive: true });
     })();
 
-    /* ── 2. DROPDOWN CLICK TOGGLE ── */
+    /* ── 2. DROPDOWN HOVER TOGGLE ── */
     (function () {
       var items = document.querySelectorAll('.navbar__item--dropdown');
       function closeAll() {
@@ -3221,17 +3485,16 @@
       }
       items.forEach(function (item) {
         var trigger = item.querySelector('.navbar__dropdown-trigger');
-        trigger.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var wasOpen = item.classList.contains('is-open');
+        item.addEventListener('mouseenter', function () {
           closeAll();
-          if (!wasOpen) {
-            item.classList.add('is-open');
-            trigger.setAttribute('aria-expanded', 'true');
-          }
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        });
+        item.addEventListener('mouseleave', function () {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
         });
       });
-      document.addEventListener('click', closeAll);
     })();
 
     /* ── 3. MOBILE MENU TOGGLE ── */
@@ -3240,10 +3503,12 @@
       var mobileMenu = document.getElementById('mobileMenu');
       var isOpen = false;
 
+      var navbar = document.querySelector('.navbar');
       hamburger.addEventListener('click', function () {
         isOpen = !isOpen;
         hamburger.classList.toggle('is-open', isOpen);
         mobileMenu.classList.toggle('is-open', isOpen);
+        navbar.style.zIndex = isOpen ? '99999' : '';
         hamburger.setAttribute('aria-expanded', isOpen);
         mobileMenu.setAttribute('aria-hidden', !isOpen);
         document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -3549,7 +3814,7 @@
       window.addEventListener('scroll', function () { drawFrame(); }, { passive: true });
 
       /* ── init ─────────────────────────────────────────────────────── */
-      function init() { resize(); tick(); }
+      function init() { resize(); drawFrame(); tick(); }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
@@ -3576,6 +3841,14 @@
    var blockedUntil  = 0;
    var touchStartY   = 0;
    var isMobile      = window.innerWidth < 768;
+
+   /* section.offsetTop offsetParent zincirinde hatalı sonuç verir;
+    * her sorguda anlık getBoundingClientRect() + scrollY kullan. */
+   function getSectionTop() {
+     return Math.round(
+       section.getBoundingClientRect().top + (window.scrollY || window.pageYOffset)
+     );
+   }
 
    function apply() {
      var maxW = window.innerWidth  + 4;
@@ -3607,26 +3880,20 @@
      lockScroll();
    }
 
-   /*
-    * Aktivasyon scroll event ile yapılır: scrollY, sectionTop'a geldiğinde
-    * tetiklenir. Wheel event üzerinden tetiklemek, kullanıcı henüz
-    * kaydırırken section'ı yanlış pozisyonda yakalıyordu.
-    */
-   window.addEventListener('scroll', function () {
-     if (active || expanded || Date.now() < blockedUntil) return;
-     var st = section.offsetTop;
-     var sy = window.scrollY || window.pageYOffset;
-     /* scrollY, sectionTop'ın ±40px içindeyse yakala */
-     if (sy >= st - 40 && sy <= st + 40) {
-       /* Sayfayı tam sectionTop'a kilitle — küçük sapmaları düzelt */
-       window.scrollTo(0, st);
-       activate();
-     }
-   }, { passive: true });
-
    function handleWheel(e) {
      var now = Date.now();
      if (now < blockedUntil) { e.preventDefault(); return; }
+
+     /* Aktivasyon: section viewport tepesine yaklaşırken wheel'i yakala */
+     if (!active && !expanded && e.deltaY > 0) {
+       var rect = section.getBoundingClientRect();
+       if (rect.top >= -10 && rect.top <= 80) {
+         e.preventDefault();
+         window.scrollTo(0, getSectionTop());
+         activate();
+         return;
+       }
+     }
 
      if (active && !expanded) {
        e.preventDefault();
@@ -3643,7 +3910,7 @@
        }
        apply();
      }
-     /* Collapse: expanded durumdayken ve section viewport tepesindeyken yukarı scroll */
+     /* Collapse: expanded durumdayken yukarı scroll */
      if (expanded && !active) {
        var rect = section.getBoundingClientRect();
        if (e.deltaY < -8 && rect.top > -30 && rect.top < 30) {
@@ -3662,11 +3929,11 @@
      if (!touchStartY) return;
      var touchY = e.touches[0].clientY;
      var deltaY = touchStartY - touchY;
-     if (!active && !expanded) {
-       var st = section.offsetTop;
-       var sy = window.scrollY || window.pageYOffset;
-       if (sy >= st - 40 && sy <= st + 40 && deltaY > 10) {
-         window.scrollTo(0, st);
+     if (!active && !expanded && deltaY > 10) {
+       var rect = section.getBoundingClientRect();
+       if (rect.top >= -10 && rect.top <= 80) {
+         e.preventDefault();
+         window.scrollTo(0, getSectionTop());
          activate();
        }
      }
