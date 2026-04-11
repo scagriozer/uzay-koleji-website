@@ -964,64 +964,72 @@
     }
 
     @media (max-width: 1023px) {
-      .hero__stats {
-        width: 280px;
-        height: 280px;
-        transform: scale(0.6);
-        transform-origin: center center;
-      }
-      .galaxy-orbit {
-        transform-origin: 210px 210px;
-      }
+      .hero__stats { display: none; }
       .hero__text { max-width: 100%; }
+      .hero__plane { width: clamp(280px, 35vw, 420px); left: 180px; }
     }
 
     @media (max-width: 767px) {
-      .hero { min-height: 100svh; padding-top:108px; }
-      .hero__cta-group { flex-direction: column; align-items: flex-start; }
-      .hero__cta-group .pearl-btn { width: 100%; }
-      .hero__cta-group .pearl-btn .pearl-btn__wrap { justify-content: center; }
-      .hero h1 { font-size: clamp(32px, 10vw, 48px); }
-      .hero h1 span { font-size: clamp(40px, 12vw, 60px); }
-      .hero__cta-group a[href="#kampusler"] { order: -1; }
-
+      .hero { min-height: auto; padding-top:108px; padding-bottom: var(--space-8); overflow: visible; }
       .hero__inner {
         flex-direction: column;
-        align-items: center;
-        gap: var(--space-8);
-      }
-
-      .hero__stats {
-        width: 260px;
-        height: 260px;
-        transform: scale(0.6);
-        transform-origin: center center;
-        order: 2;
-        margin-top: var(--space-4);
-      }
-
-      .hero__text {
-        order: 1;
-        text-align: center;
-      }
-
-      .hero__cta-group {
-        align-items: center;
-      }
-
-      .hero__plane {
+        align-items: stretch;
+        gap: var(--space-6);
+        transform: none;
         position: relative;
-        top: auto;
-        left: auto;
-        width: 120px;
-        margin: calc(-1 * var(--space-4)) auto var(--space-4);
-        display: block;
-        animation: plane-drift-mobile 6s ease-in-out infinite;
-        z-index: 10;
       }
+      .hero__text { max-width: 100%; position: relative; z-index: 5; margin-top: -30px; }
+      .hero__cta-group { position: relative; z-index: 5; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-left: 95px; margin-top: 100px; }
+      .hero__cta-group .pearl-btn { width: 240px; transform: scale(0.68); transform-origin: left center; }
+      .hero__cta-group .pearl-btn .pearl-btn__wrap { justify-content: center; }
+      .hero__cta-group a[href="#kampusler"] { order: -1; }
+      .hero h1 { font-size: clamp(37px, 10.5vw, 55px); }
+      .hero h1 span { font-size: clamp(45px, 13vw, 68px); }
 
-      .hero__plane-trail {
-        display: none;
+      .hero__plane { display: none; }
+      .hero__plane-trail { display: none; }
+
+      /* Cosmos orbit — hero arkasinda merkezde donuyor */
+      .hero__stats {
+        display: block;
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% + 130px)) scale(0.9);
+        transform-origin: center center;
+        pointer-events: none;
+        opacity: 0.9;
+        z-index: -1;
+      }
+      .cosmos-node { z-index: auto; }
+      .galaxy-orbit { z-index: auto; }
+
+      /* Logo slider — blur kaldir */
+      .logo-slider-wrap {
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+      .partners-pblur { display: none; }
+      .logo-slider-track { gap: 2rem; }
+
+      /* CTA section butonlari — yan yana, esit boyut, tek satir */
+      .cta-section .cta-buttons {
+        flex-wrap: nowrap;
+        gap: var(--space-2);
+        padding: 0 var(--space-2);
+      }
+      .cta-section .cta-buttons .pearl-btn {
+        flex: 1;
+      }
+      .cta-section .cta-buttons .pearl-btn .pearl-btn__wrap {
+        font-size: 11px;
+        padding: 12px 10px;
+        justify-content: center;
+        white-space: nowrap;
+        color: #d0dce8;
+        text-shadow: 0 0 8px rgba(200,220,240,0.5), 0 1px 2px rgba(0,0,0,0.3);
       }
     }
 
@@ -2184,9 +2192,24 @@
       to   { transform: translateY(0);    opacity: 1; }
     }
     @media (max-width: 767px) {
-      .wa-btn { bottom: 80px; font-size: 13px; padding: 9px 14px 9px 9px; }
-      .wa-btn__circle { width: 30px; height: 30px; }
-      .chatbot-btn { bottom: 80px; right: 11px; }
+      .wa-btn {
+        bottom: 19px;
+        right: 11px;
+        width: 64px !important;
+        height: 64px !important;
+        min-width: unset;
+        max-width: 64px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        background: #25D366;
+        box-shadow: 0 4px 20px rgba(18,40,76,0.35);
+      }
+      .wa-btn__circle { width: 64px; height: 64px; min-width: 64px; background: transparent; }
+      .wa-btn__circle svg { width: 28px; height: 28px; }
+      .wa-btn__text { display: none; }
+      .chatbot-btn { bottom: 19px; right: auto; left: 11px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .wa-btn { animation: none; opacity: 1; transform: none; transition: none; }
@@ -2272,7 +2295,7 @@
     }
 
     @media (max-width: 767px) {
-      .sticky-cta-bar { display: flex; }
+      .sticky-cta-bar { display: none; }
     }
 
     /* ============================================================
@@ -2531,11 +2554,11 @@
               Devlet destekli programlar, Altıneller güvencesinde özel eğitim.
             </p>
             <div class="hero__cta-group">
-              <a href="kayit.html" class="pearl-btn">
+              <a href="kayit.html" class="pearl-btn" style="background:linear-gradient(135deg, #2f4760 0%, #233656 60%, #1e2f42 100%);">
                 <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt</span>
               </a>
-              <a href="#kampusler" class="pearl-btn">
-                <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Kampüsleri Keşfet</span>
+              <a href="#kampusler" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #9ab0c4 50%, #1a3350 100%);">
+                <span class="pearl-btn__wrap" style="color:#0a1929;"><span class="pearl-btn__star">✧</span> Kampüsleri Keşfet</span>
               </a>
             </div>
           </div>
@@ -3212,7 +3235,7 @@
         Bursluluk sınavıyla burs imkânlarından yararlan. 2026–2027 kayıtları için başvurular açık.
       </p>
       <div class="cta-buttons reveal">
-        <a href="bursluluk-sinavi.html" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #8DA4B8 60%, #0a1929 100%);"><span class="pearl-btn__wrap" style="color:#031525;"><span class="pearl-btn__star">✧</span> Bursluluk Sınavına Başvur</span></a>
+        <a href="bursluluk-sinavi.html" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #8DA4B8 60%, #0a1929 100%);"><span class="pearl-btn__wrap" style="color:#031525;transform:translateX(-2px);"><span class="pearl-btn__star">✧</span> Bursluluk Sınavına Başvur</span></a>
         <a href="kayit.html" class="pearl-btn" style="background:linear-gradient(135deg, #8DA4B8 0%, #2a4060 40%, #0a1929 100%);"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Online Kayıt</span></a>
 
       </div>
@@ -3341,7 +3364,7 @@
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
     </span>
-    WhatsApp'tan Ulaşın
+    <span class="wa-btn__text">WhatsApp'tan Ulaşın</span>
   </a>
 
   <!-- Chatbot Trailing Button -->
@@ -3739,7 +3762,7 @@
       window.addEventListener('scroll', function () { drawFrame(); }, { passive: true });
 
       /* ── init ─────────────────────────────────────────────────────── */
-      function init() { resize(); tick(); }
+      function init() { resize(); drawFrame(); tick(); }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
