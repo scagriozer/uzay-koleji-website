@@ -570,10 +570,10 @@
     /* Hamburger */
     .navbar__hamburger {
       display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
       background: none;
       border: none;
       cursor: pointer;
@@ -581,34 +581,58 @@
       z-index: calc(var(--z-overlay) + 10);
     }
 
-    .navbar__hamburger span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: var(--color-lacivert);
-      border-radius: 2px;
-      transition: transform var(--transition-base), opacity var(--transition-fast);
+    .navbar__hamburger svg {
+      width: 28px;
+      height: 28px;
+      stroke: #455B72;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 500ms ease-in-out, stroke 500ms ease-in-out;
     }
 
-    .navbar__hamburger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .navbar__hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .navbar__hamburger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .navbar__hamburger.is-open svg {
+      transform: rotate(-45deg);
+      stroke: #ACBBC9;
+    }
 
-    .navbar__hamburger.is-open span { background-color: var(--color-beyaz); }
+    .navbar__hamburger svg .menu-path {
+      stroke-dasharray: 12 63;
+      transition: stroke-dasharray 500ms ease-in-out, stroke-dashoffset 500ms ease-in-out;
+    }
+
+    .navbar__hamburger.is-open svg .menu-path {
+      stroke-dasharray: 20 300;
+      stroke-dashoffset: -32.42px;
+    }
+
+    .navbar__hamburger svg .menu-line {
+      transition: opacity 500ms ease-in-out;
+    }
+
+    .navbar__hamburger.is-open svg .menu-line {
+      opacity: 1;
+    }
 
     /* Mobile Drawer */
     .navbar__mobile-menu {
       position: fixed;
-      inset: 0;
+      top: 108px;
+      right: 0;
+      bottom: 0;
+      width: 70%;
       background-color: var(--color-lacivert);
       z-index: var(--z-overlay);
-      padding: var(--space-20) var(--space-6) var(--space-8);
+      padding: var(--space-8) var(--space-6) var(--space-8);
       display: flex;
       flex-direction: column;
       gap: var(--space-4);
       transform: translateX(100%);
       transition: transform var(--transition-slow);
       overflow-y: auto;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.3);
+      border-radius: 8px 0 0 8px;
     }
 
     .navbar__mobile-menu.is-open { transform: translateX(0); }
@@ -632,8 +656,11 @@
 
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none; }
-      .navbar__hamburger { display: flex; }
+      .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
       .navbar { height: 72px; top: 36px; }
+      .navbar__logo { transform: scale(0.7); transform-origin: left center; }
+      .navbar__inner { padding-inline: var(--space-8); }
+      .navbar__mobile-menu { z-index: 99999 !important; }
     }
 
     /* ============================================================
@@ -2509,23 +2536,27 @@
       <a href="bursluluk-sinavi.html" class="btn navbar__cta-desktop" style="background:#FFCB03;border-color:#FFCB03;color:#08294D;width:171px;height:46px;border-radius:27px;padding:14px 28px;font-family:'Poppins',sans-serif;font-weight:500;font-size:14px;justify-content:center;">Bursluluk Sınavı</a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <svg viewBox="0 0 32 32">
+          <path class="menu-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/>
+          <path class="menu-line" d="M7 16 27 16"/>
+        </svg>
       </button>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
-      <a href="#programlar" class="mobile-nav-link">Programlar</a>
-      <a href="#kampusler" class="mobile-nav-link">Kampüsler</a>
-      <a href="#firsatlar" class="mobile-nav-link">Fırsatlar</a>
-      <a href="#okulumuz" class="mobile-nav-link">Okulumuz</a>
-      <a href="#iletisim" class="mobile-nav-link">İletişim</a>
-      <a href="etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
-      <div class="mobile-nav-cta">
-        <a href="bursluluk-sinavi.html" class="btn btn--primary" style="width:100%;justify-content:center;">🎓 Bursluluk Sınavına Başvur</a>
-      </div>
-    </div>
   </header>
+
+  <!-- Mobile Menu (header disinda — stacking context sorunu icin) -->
+  <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#programlar" class="mobile-nav-link">Programlar</a>
+    <a href="#kampusler" class="mobile-nav-link">Kampüsler</a>
+    <a href="#firsatlar" class="mobile-nav-link">Fırsatlar</a>
+    <a href="#okulumuz" class="mobile-nav-link">Okulumuz</a>
+    <a href="#iletisim" class="mobile-nav-link">İletişim</a>
+    <a href="etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
+    <div class="mobile-nav-cta">
+      <a href="kayit.html" class="btn btn--primary" style="width:100%;justify-content:center;">🎓 Ücretsiz Ön Kayıt</a>
+    </div>
+  </div>
 
   <!-- ============================================================
        HERO SECTION
@@ -3453,10 +3484,12 @@
       var mobileMenu = document.getElementById('mobileMenu');
       var isOpen = false;
 
+      var navbar = document.querySelector('.navbar');
       hamburger.addEventListener('click', function () {
         isOpen = !isOpen;
         hamburger.classList.toggle('is-open', isOpen);
         mobileMenu.classList.toggle('is-open', isOpen);
+        navbar.style.zIndex = isOpen ? '99999' : '';
         hamburger.setAttribute('aria-expanded', isOpen);
         mobileMenu.setAttribute('aria-hidden', !isOpen);
         document.body.style.overflow = isOpen ? 'hidden' : '';

@@ -132,7 +132,7 @@
  .breadcrumb a:hover{color:var(--color-gold);}
  .breadcrumb__sep{opacity:0.4;}
  .breadcrumb__current{color:var(--color-accent-light);font-weight:var(--font-weight-medium);}
- .hero{position:relative;min-height:100vh;padding-top:140px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(105deg,rgba(18,40,76,0.80) 0%,rgba(18,40,76,0.38) 60%,transparent 100%),linear-gradient(180deg,transparent 45%,rgba(75,126,200,0.18) 100%),linear-gradient(140deg,var(--color-lacivert-dark) 0%,#0e1e3a 40%,#0a1628 70%,#0d1e3a 100%);}
+ .hero{position:relative;min-height:100vh;padding-top:140px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.65) 50%,rgba(18,40,76,0.45) 100%),url('../images/programs/havacilik.png') center center/cover no-repeat;}
  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 75% 45%,rgba(75,126,200,0.15) 0%,transparent 55%),radial-gradient(ellipse 30% 30% at 85% 80%,rgba(75,126,200,0.10) 0%,transparent 50%);pointer-events:none;}
  .hero__bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(75,126,200,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(75,126,200,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
  .hero__deco-plane{display:none;}
@@ -148,14 +148,6 @@
  .hero__cta-group{display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;}
  @media(max-width:1023px){.hero{padding-top:108px;}}
  @media(max-width:767px){.hero{min-height:100svh;}.hero__cta-group{flex-direction:column;align-items:flex-start;}.hero__cta-group .btn{width:100%;justify-content:center;}}
- /* ── HERO ANIMATION ── */
- .hero-anim-overlay{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.55;overflow:hidden;}
- /* Yıldız animasyonları kendi merkezlerinden ölçeklenmeli */
- .hero-anim-overlay svg circle{transform-box:fill-box;transform-origin:center;}
- @keyframes plane-soar{0%{transform:translateX(-120px) translateY(20px);}100%{transform:translateX(1500px) translateY(-60px);}}
- @keyframes plane-soar-2{0%{transform:translateX(-80px) translateY(0px);}100%{transform:translateX(1500px) translateY(-30px);}}
- @keyframes star-twinkle{0%,100%{opacity:0.5;transform:scale(1);}50%{opacity:1;transform:scale(1.8);}}
- @keyframes cloud-drift{0%{transform:translateX(0);}100%{transform:translateX(40px);}}
  /* ── OZET ── */
  .ozet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
  .ozet-card{background:var(--color-beyaz);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-sm);border-top:4px solid var(--color-accent);text-align:center;transition:transform var(--transition-base),box-shadow var(--transition-base);}
@@ -165,21 +157,14 @@
  .ozet-card__label{font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);display:block;}
  .ozet-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
  @media(max-width:767px){.ozet-grid{grid-template-columns:1fr;}}
- .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
- .feature-card{position:relative;border-radius:20px;overflow:hidden;min-height:280px;transition:transform 0.4s ease,box-shadow 0.4s ease;cursor:default;}
- .feature-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.3);}
- .feature-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
- .feature-card:hover .feature-card__img{transform:scale(1.05);}
- .feature-card__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,40,0.3) 0%,rgba(8,20,40,0.85) 70%,rgba(8,20,40,0.95) 100%);transition:background 0.4s ease;}
- .feature-card:hover .feature-card__overlay{background:linear-gradient(180deg,rgba(8,20,40,0.2) 0%,rgba(8,20,40,0.75) 60%,rgba(8,20,40,0.92) 100%);}
- .feature-card__glow{position:absolute;bottom:0;left:0;right:0;height:50%;background:radial-gradient(ellipse at bottom center,rgba(255,203,3,0.15) 0%,transparent 70%);pointer-events:none;opacity:0;transition:opacity 0.4s ease;}
- .feature-card:hover .feature-card__glow{opacity:1;}
- .feature-card__content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:var(--space-6);}
- .feature-card__icon{display:none!important;font-size:1.8rem;margin-bottom:var(--space-3);filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));}
- .feature-card__title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:#fff;margin-bottom:var(--space-2);text-shadow:0 1px 3px rgba(0,0,0,0.3);}
- .feature-card__desc{font-size:var(--text-sm);color:rgba(255,255,255,0.75);line-height:1.6;text-shadow:0 1px 2px rgba(0,0,0,0.2);}
- @media(max-width:1023px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
- @media(max-width:480px){.feature-grid{grid-template-columns:1fr;}.feature-card{min-height:240px;}}
+ .curriculum-list{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4);}
+ .curriculum-item{display:flex;align-items:flex-start;gap:var(--space-4);padding:var(--space-5) var(--space-6);background:var(--color-beyaz);border-radius:var(--radius-lg);border-left:4px solid var(--color-accent);box-shadow:var(--shadow-sm);transition:transform var(--transition-base),box-shadow var(--transition-base);}
+ .curriculum-item:hover{transform:translateX(6px);box-shadow:var(--shadow-md);}
+ .curriculum-item__icon{width:44px;height:44px;min-width:44px;background:var(--color-accent-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-accent);}
+.curriculum-item__icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+ .curriculum-item__text h4{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-1);}
+ .curriculum-item__text p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;margin:0;}
+ @media(max-width:767px){.curriculum-list{grid-template-columns:1fr;}}
  .kariyer-list{display:flex;flex-direction:column;gap:var(--space-3);}
  .kariyer-item{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-6);background:var(--color-beyaz);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);border-left:4px solid var(--color-accent);transition:transform var(--transition-base),box-shadow var(--transition-base);}
  .kariyer-item:hover{transform:translateX(6px);box-shadow:var(--shadow-md);}
@@ -475,7 +460,7 @@
    </ul>
   </nav>
   <a href="#basvuru" class="btn btn--primary navbar__cta-desktop">Ücretsiz Ön Kayıt</a>
-  <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false"><svg viewBox="0 0 32 32"><path class="menu-path" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/><path class="menu-line" d="M7 16 27 16"/></svg></button>
  </div>
  <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
   <a href="havacilik.html" class="mobile-nav-link active">Havacılık</a>
@@ -491,115 +476,6 @@
 <section class="hero" id="hero">
  <div class="hero__bg-grid" aria-hidden="true"></div>
 
- <!-- Gökyüzü + Uçak Animasyonu -->
- <div class="hero-anim-overlay" aria-hidden="true">
-  <svg width="100%" height="100%" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-
-   <!-- Gökyüzü atmosfer katmanı -->
-   <defs>
-    <linearGradient id="skyAtmos" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0%"   stop-color="#0a1628"   stop-opacity="0"/>
-     <stop offset="55%"  stop-color="#1a3a6b"   stop-opacity="0.25"/>
-     <stop offset="82%"  stop-color="#84ABCB"   stop-opacity="0.18"/>
-     <stop offset="100%" stop-color="#C2CFDB"   stop-opacity="0.30"/>
-    </linearGradient>
-    <linearGradient id="horizonGlow" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0%"   stop-color="#C2CFDB" stop-opacity="0"/>
-     <stop offset="100%" stop-color="#C2CFDB" stop-opacity="0.22"/>
-    </linearGradient>
-   </defs>
-   <!-- Atmosfer gradyanı — tüm SVG'yi kapsar -->
-   <rect width="1400" height="700" fill="url(#skyAtmos)"/>
-   <!-- Ufuk parlaması — alt bölge -->
-   <rect x="0" y="420" width="1400" height="280" fill="url(#horizonGlow)"/>
-
-   <!-- Yıldızlar / nokta kümesi -->
-   <circle cx="120" cy="80"  r="2" fill="white" style="animation:star-twinkle 2.1s ease-in-out infinite;"/>
-   <circle cx="280" cy="55"  r="1.5" fill="white" style="animation:star-twinkle 3.0s ease-in-out 0.4s infinite;"/>
-   <circle cx="450" cy="110" r="2" fill="white" style="animation:star-twinkle 2.5s ease-in-out 0.8s infinite;"/>
-   <circle cx="620" cy="45"  r="1.5" fill="white" style="animation:star-twinkle 1.9s ease-in-out 1.2s infinite;"/>
-   <circle cx="780" cy="90"  r="2" fill="white" style="animation:star-twinkle 3.3s ease-in-out 0.2s infinite;"/>
-   <circle cx="950" cy="60"  r="1.5" fill="white" style="animation:star-twinkle 2.7s ease-in-out 0.6s infinite;"/>
-   <circle cx="1100" cy="130" r="2" fill="#FFCB03" style="animation:star-twinkle 2.0s ease-in-out 1.0s infinite;"/>
-   <circle cx="1260" cy="75"  r="1.5" fill="white" style="animation:star-twinkle 3.1s ease-in-out 0.3s infinite;"/>
-   <circle cx="200"  cy="180" r="1.5" fill="white" style="animation:star-twinkle 2.4s ease-in-out 0.9s infinite;"/>
-   <circle cx="520"  cy="200" r="2" fill="white" style="animation:star-twinkle 1.8s ease-in-out 1.5s infinite;"/>
-   <circle cx="860"  cy="165" r="1.5" fill="#FFCB03" style="animation:star-twinkle 2.9s ease-in-out 0.5s infinite;"/>
-   <circle cx="1180" cy="190" r="2" fill="white" style="animation:star-twinkle 3.4s ease-in-out 0.7s infinite;"/>
-   <circle cx="340"  cy="290" r="1.5" fill="white" style="animation:star-twinkle 2.2s ease-in-out 1.1s infinite;"/>
-   <circle cx="700"  cy="260" r="2" fill="white" style="animation:star-twinkle 2.6s ease-in-out 0.4s infinite;"/>
-   <circle cx="1050" cy="300" r="1.5" fill="white" style="animation:star-twinkle 3.2s ease-in-out 1.3s infinite;"/>
-
-   <!-- Bulut 1 — sol -->
-   <g style="animation:cloud-drift 12s ease-in-out infinite alternate;">
-    <ellipse cx="180" cy="380" rx="90" ry="28" fill="white" opacity="0.06"/>
-    <ellipse cx="150" cy="368" rx="55" ry="22" fill="white" opacity="0.05"/>
-    <ellipse cx="220" cy="365" rx="50" ry="20" fill="white" opacity="0.05"/>
-   </g>
-
-   <!-- Bulut 2 — sağ -->
-   <g style="animation:cloud-drift 16s ease-in-out 2s infinite alternate-reverse;">
-    <ellipse cx="1100" cy="320" rx="110" ry="32" fill="white" opacity="0.055"/>
-    <ellipse cx="1065" cy="305" rx="65" ry="24" fill="white" opacity="0.045"/>
-    <ellipse cx="1145" cy="303" rx="60" ry="22" fill="white" opacity="0.045"/>
-   </g>
-
-   <!-- Bulut 3 — orta alt -->
-   <g style="animation:cloud-drift 14s ease-in-out 4s infinite alternate;">
-    <ellipse cx="650" cy="480" rx="130" ry="36" fill="white" opacity="0.05"/>
-    <ellipse cx="610" cy="465" rx="75" ry="26" fill="white" opacity="0.04"/>
-    <ellipse cx="700" cy="462" rx="70" ry="24" fill="white" opacity="0.04"/>
-   </g>
-
-   <!-- Uçak 1 — ana uçak (büyük, yavaş) -->
-   <g style="animation:plane-soar 22s linear 1s infinite;">
-    <g transform="translate(0,280)">
-     <!-- Gövde: burundan kuyrağa düzgün kapsül profil -->
-     <path d="M52,0 C45,-4 10,-6.5 -38,-5.5 L-54,-2 L-54,2 L-38,5.5 C10,6.5 45,4 52,0 Z" fill="white" opacity="0.92"/>
-     <!-- Dikey kuyruk fin -->
-     <path d="M-38,-5 L-54,-26 C-52,-23 -46,-14 -42,-5 Z" fill="white" opacity="0.88"/>
-     <!-- Ana kanat (üst) — geniş, sweep'li -->
-     <path d="M6,-3 L-30,-50 L-21,-4 Z" fill="white" opacity="0.90"/>
-     <!-- Ana kanat (alt) -->
-     <path d="M6,3 L-30,50 L-21,4 Z" fill="white" opacity="0.90"/>
-     <!-- Yatay stabilizer (üst) -->
-     <path d="M-40,-4 L-57,-18 L-49,-5 Z" fill="white" opacity="0.82"/>
-     <!-- Yatay stabilizer (alt) -->
-     <path d="M-40,4 L-57,18 L-49,5 Z" fill="white" opacity="0.82"/>
-     <!-- Motor pod (üst kanatta) -->
-     <ellipse cx="-13" cy="-30" rx="11" ry="3.5" fill="white" opacity="0.80"/>
-     <!-- Motor pod (alt kanatta) -->
-     <ellipse cx="-13" cy="30" rx="11" ry="3.5" fill="white" opacity="0.80"/>
-     <!-- Kondensasyon izleri (çift motor) -->
-     <line x1="-24" y1="-30" x2="-170" y2="-30" stroke="white" stroke-width="1.2" opacity="0.22" stroke-linecap="round"/>
-     <line x1="-24" y1="30" x2="-170" y2="30" stroke="white" stroke-width="1.2" opacity="0.22" stroke-linecap="round"/>
-    </g>
-   </g>
-
-   <!-- Uçak 2 — küçük, hızlı, yüksekte -->
-   <g style="animation:plane-soar-2 14s linear 5s infinite;">
-    <g transform="translate(0,148)">
-     <!-- Gövde -->
-     <path d="M30,0 C26,-2.5 6,-4 -22,-3.5 L-32,-1.2 L-32,1.2 L-22,3.5 C6,4 26,2.5 30,0 Z" fill="white" opacity="0.72"/>
-     <!-- Dikey fin -->
-     <path d="M-22,-3 L-32,-16 C-30,-14 -26,-8 -24,-3 Z" fill="white" opacity="0.68"/>
-     <!-- Kanat (üst) -->
-     <path d="M4,-2 L-18,-30 L-13,-2.5 Z" fill="white" opacity="0.70"/>
-     <!-- Kanat (alt) -->
-     <path d="M4,2 L-18,30 L-13,2.5 Z" fill="white" opacity="0.70"/>
-     <!-- Stabilizer (üst) -->
-     <path d="M-23,-2.5 L-33,-11 L-28,-3 Z" fill="white" opacity="0.62"/>
-     <!-- Stabilizer (alt) -->
-     <path d="M-23,2.5 L-33,11 L-28,3 Z" fill="white" opacity="0.62"/>
-     <!-- Kondensasyon izi -->
-     <line x1="-33" y1="0" x2="-110" y2="0" stroke="white" stroke-width="0.8" opacity="0.18" stroke-linecap="round"/>
-    </g>
-   </g>
-
-  </svg>
- </div>
-
- <div class="hero__deco-plane" aria-hidden="true"></div>
  <div class="hero__content">
   <div class="container">
    <nav class="breadcrumb" aria-label="Sayfa konumu">
@@ -636,65 +512,47 @@
    <h2 class="section-title">Ne Öğreneceksin?</h2>
    <p class="section-subtitle" style="margin-inline:auto;">Teorik temelden sahaya uygulamaya uzanan kapsamlı bir müfredat. Her konuda gerçek ekipman ve simülatör kullanımı.</p>
   </div>
-  <div class="feature-grid">
-   <div class="feature-card reveal reveal-delay-1">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="Uçak Sistemleri Temelleri" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">✈️</span>
-    <h3 class="feature-card__title">Uçak Sistemleri Temelleri</h3>
-    <p class="feature-card__desc">Hava aracının temel bileşenleri, aerodinamik prensipler, uçuş dinamikleri ve sistem entegrasyonu.</p>
+  <div class="curriculum-list">
+   <div class="curriculum-item reveal reveal-delay-1">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><path d="M2 14l9-9 2.5 2.5L22 4l-3.5 8.5L21 15l-7-2-5 5-1-3-3-1z"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>Uçak Sistemleri Temelleri</h4>
+     <p>Hava aracının temel bileşenleri, aerodinamik prensipler, uçuş dinamikleri ve sistem entegrasyonu.</p>
     </div>
    </div>
-   <div class="feature-card reveal reveal-delay-2">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="Havalimanı Yer Hizmetleri" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">🏢</span>
-    <h3 class="feature-card__title">Havalimanı Yer Hizmetleri</h3>
-    <p class="feature-card__desc">Apron operasyonları, bagaj yönetimi, yolcu hizmetleri ve yer ekipmanı kullanımı.</p>
+   <div class="curriculum-item reveal reveal-delay-2">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="18" rx="1"/><line x1="9" y1="4" x2="9" y2="22"/><line x1="15" y1="4" x2="15" y2="22"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>Havalimanı Yer Hizmetleri</h4>
+     <p>Apron operasyonları, bagaj yönetimi, yolcu hizmetleri ve yer ekipmanı kullanımı.</p>
     </div>
    </div>
-   <div class="feature-card reveal reveal-delay-3">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="Simülatör Eğitimi" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">🎮</span>
-    <h3 class="feature-card__title">Simülatör Eğitimi</h3>
-    <p class="feature-card__desc">Gerçek kokpit simülatörlerinde uçuş prosedürleri, acil durum yönetimi ve operasyon pratiği.</p>
+   <div class="curriculum-item reveal reveal-delay-3">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><circle cx="12" cy="10" r="3"/><line x1="12" y1="7" x2="12" y2="8"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>Simülatör Eğitimi</h4>
+     <p>Gerçek kokpit simülatörlerinde uçuş prosedürleri, acil durum yönetimi ve operasyon pratiği.</p>
     </div>
    </div>
-   <div class="feature-card reveal reveal-delay-1">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="Güvenlik Prosedürleri" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">🛡️</span>
-    <h3 class="feature-card__title">Güvenlik Prosedürleri</h3>
-    <p class="feature-card__desc">ICAO ve IATA standartlarında güvenlik prosedürleri, tehlikeli madde yönetimi ve acil müdahale.</p>
+   <div class="curriculum-item reveal reveal-delay-1">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><path d="M12 2l7 4v5c0 5.25-3.5 9.74-7 11-3.5-1.26-7-5.75-7-11V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>Güvenlik Prosedürleri</h4>
+     <p>ICAO ve IATA standartlarında güvenlik prosedürleri, tehlikeli madde yönetimi ve acil müdahale.</p>
     </div>
    </div>
-   <div class="feature-card reveal reveal-delay-2">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="İngilizce Havacılık Terminolojisi" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">🌐</span>
-    <h3 class="feature-card__title">İngilizce Havacılık Terminolojisi</h3>
-    <p class="feature-card__desc">ICAO standart havacılık İngilizcesi, kule-pilot iletişimi ve uluslararası operasyon dili.</p>
+   <div class="curriculum-item reveal reveal-delay-2">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4" ry="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4 7h16"/><path d="M4 17h16"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>İngilizce Havacılık Terminolojisi</h4>
+     <p>ICAO standart havacılık İngilizcesi, kule-pilot iletişimi ve uluslararası operasyon dili.</p>
     </div>
    </div>
-   <div class="feature-card reveal reveal-delay-3">
-    <img class="feature-card__img" src="../images/programs/havacilik.png" alt="Bakım &amp; Teknik Operasyon" loading="lazy">
-    <div class="feature-card__overlay"></div>
-    <div class="feature-card__glow"></div>
-    <div class="feature-card__content">
-    <span class="feature-card__icon">🔧</span>
-    <h3 class="feature-card__title">Bakım &amp; Teknik Operasyon</h3>
-    <p class="feature-card__desc">Rutin bakım prosedürleri, teknik dokümantasyon, arıza teşhisi ve bakım planlama temelleri.</p>
+   <div class="curriculum-item reveal reveal-delay-3">
+    <div class="curriculum-item__icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94L6.73 20.2a2 2 0 01-2.83 0l-.1-.1a2 2 0 010-2.83l6.73-6.73A6 6 0 013.34 2.53l3.77 3.77z"/></svg></div>
+    <div class="curriculum-item__text">
+     <h4>Bakım &amp; Teknik Operasyon</h4>
+     <p>Periyodik bakım planlaması, arıza tespiti, teknik dokümantasyon ve güvenlik kontrolleri.</p>
     </div>
    </div>
   </div>
@@ -806,7 +664,7 @@
    <div class="tesis-card reveal reveal-delay-1">
     <div class="tesis-card__inner">
      <div class="tesis-card__front">
-      <img class="tesis-card__front-img" src="../images/tesis/havacilik-simulatoru.jpg" alt="Havacılık Simülatörü" loading="lazy">
+      <img class="tesis-card__front-img" src="../images/tesis/havacilik-simulatoru.png" alt="Havacılık Simülatörü" loading="lazy">
       <div class="tesis-card__front-overlay"></div>
       <div class="tesis-card__front-title">Havacılık Simülatörü</div>
      </div>
@@ -819,7 +677,7 @@
    <div class="tesis-card reveal reveal-delay-2">
     <div class="tesis-card__inner">
      <div class="tesis-card__front">
-      <img class="tesis-card__front-img" src="../images/tesis/teknik-atolye-havacilik.jpg" alt="Teknik Atölye" loading="lazy">
+      <img class="tesis-card__front-img" src="../images/tesis/teknik-atolye-havacilik.png" alt="Teknik Atölye" loading="lazy">
       <div class="tesis-card__front-overlay"></div>
       <div class="tesis-card__front-title">Teknik Atölye</div>
      </div>
@@ -832,7 +690,7 @@
    <div class="tesis-card reveal reveal-delay-3">
     <div class="tesis-card__inner">
      <div class="tesis-card__front">
-      <img class="tesis-card__front-img" src="../images/tesis/kutupane-1.jpg" alt="Kütüphane &amp; Çalışma Alanı" loading="lazy">
+      <img class="tesis-card__front-img" src="../images/tesis/kutupane.png" alt="Kütüphane &amp; Çalışma Alanı" loading="lazy">
       <div class="tesis-card__front-overlay"></div>
       <div class="tesis-card__front-title">Kütüphane &amp; Çalışma Alanı</div>
      </div>
@@ -1040,7 +898,7 @@
       var prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var gc=typeof OffscreenCanvas!=='undefined'?new OffscreenCanvas(1,1):document.createElement('canvas');
       var gCtx=gc.getContext('2d');
-      var EXCL_SEL=['#navbar','.hero__text','.hero__cta-group','.ozet-card','.feature-card','.kariyer-item','.testimonial-card','.tesis-card','.kampus-info-card'].join(',');
+      var EXCL_SEL=['#navbar','.hero__text','.hero__cta-group','.ozet-card','.curriculum-item','.kariyer-item','.testimonial-card','.tesis-card','.kampus-info-card'].join(',');
       function hBlock(e,ly){if(ly<=e.y||ly>=e.y+e.h)return null;var shrink=0,er=Math.min(e.r,e.w/2,e.h/2);if(ly<e.y+er){var dy=e.y+er-ly;shrink=er-Math.sqrt(er*er-dy*dy);}else if(ly>e.y+e.h-er){var dy=ly-(e.y+e.h-er);shrink=er-Math.sqrt(er*er-dy*dy);}var xs=e.x+shrink,xe=e.x+e.w-shrink;return xs<xe?{s:xs,e:xe}:null;}
       function vBlock(e,lx){if(lx<=e.x||lx>=e.x+e.w)return null;var shrink=0,er=Math.min(e.r,e.w/2,e.h/2);if(lx<e.x+er){var dx=e.x+er-lx;shrink=er-Math.sqrt(er*er-dx*dx);}else if(lx>e.x+e.w-er){var dx=lx-(e.x+e.w-er);shrink=er-Math.sqrt(er*er-dx*dx);}var ys=e.y+shrink,ye=e.y+e.h-shrink;return ys<ye?{s:ys,e:ye}:null;}
       function visSegs(start,end,blocks){var segs=[{s:start,e:end}];for(var i=0;i<blocks.length;i++){var b=blocks[i],next=[];for(var j=0;j<segs.length;j++){var s=segs[j];if(b.e<=s.s||b.s>=s.e){next.push(s);continue;}if(b.s>s.s)next.push({s:s.s,e:b.s});if(b.e<s.e)next.push({s:b.e,e:s.e});}segs=next;}return segs.filter(function(s){return s.e-s.s>=MIN_SEG;});}
