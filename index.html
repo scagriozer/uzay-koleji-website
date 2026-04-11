@@ -976,8 +976,9 @@
       .hero__cta-group { flex-direction: column; align-items: flex-start; }
       .hero__cta-group .pearl-btn { width: 100%; }
       .hero__cta-group .pearl-btn .pearl-btn__wrap { justify-content: center; }
-      .hero h1 { font-size: 48px; }
-      .hero h1 span { font-size: 60px; }
+      .hero h1 { font-size: clamp(32px, 10vw, 48px); }
+      .hero h1 span { font-size: clamp(40px, 12vw, 60px); }
+      .hero__cta-group a[href="#kampusler"] { order: -1; }
 
       .hero__inner {
         flex-direction: column;
