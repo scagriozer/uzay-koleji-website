@@ -954,6 +954,11 @@
       50%      { transform: translateY(-18px) rotate(1deg); }
     }
 
+    @keyframes plane-drift-mobile {
+      0%,100% { transform: translateY(0px) translateX(0) rotate(0deg); }
+      50%      { transform: translateY(-25px) translateX(5px) rotate(-5deg); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero__plane { animation: none; }
     }
@@ -1002,6 +1007,21 @@
 
       .hero__cta-group {
         align-items: center;
+      }
+
+      .hero__plane {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 120px;
+        margin: calc(-1 * var(--space-4)) auto var(--space-4);
+        display: block;
+        animation: plane-drift-mobile 6s ease-in-out infinite;
+        z-index: 10;
+      }
+
+      .hero__plane-trail {
+        display: none;
       }
     }
 
