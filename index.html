@@ -3616,6 +3616,24 @@
       });
     })();
 
+    /* ── 5a-pre. COSMOS ALIGN TO CTA (Mobile) ── */
+    (function () {
+      function alignCosmos() {
+        if (window.innerWidth > 767) return;
+        var stats = document.querySelector('.hero__stats');
+        var cta   = document.querySelector('.hero__cta-group');
+        var inner = document.querySelector('.hero__inner');
+        if (!stats || !cta || !inner) return;
+        var innerRect = inner.getBoundingClientRect();
+        var ctaRect   = cta.getBoundingClientRect();
+        var ctaCenterY = ctaRect.top + ctaRect.height / 2 - innerRect.top;
+        stats.style.top       = ctaCenterY + 'px';
+        stats.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      }
+      document.fonts.ready.then(alignCosmos);
+      window.addEventListener('resize', alignCosmos);
+    })();
+
     /* ── 5a. GALAXY CARD APPEAR ── */
     (function () {
       function showNodes() {
