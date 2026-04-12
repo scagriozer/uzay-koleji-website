@@ -3621,16 +3621,26 @@
       function alignCosmos() {
         if (window.innerWidth > 767) return;
         var stats = document.querySelector('.hero__stats');
-        var cta   = document.querySelector('.hero__cta-group');
         var inner = document.querySelector('.hero__inner');
-        if (!stats || !cta || !inner) return;
+        var btns  = document.querySelectorAll('.hero__cta-group .pearl-btn');
+        if (!stats || !inner || btns.length === 0) return;
         var innerRect = inner.getBoundingClientRect();
-        var ctaRect   = cta.getBoundingClientRect();
-        var ctaCenterY = ctaRect.top + ctaRect.height / 2 - innerRect.top;
-        stats.style.top       = ctaCenterY + 'px';
-        stats.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        /* pearl-btn'lerin visual rect'i scale(0.68) sonrası gerçek pozisyonu verir */
+        var b0 = btns[0].getBoundingClientRect();
+        var b1 = btns.length > 1 ? btns[1].getBoundingClientRect() : b0;
+        var ctaVisualCenterY = (b0.top + b0.height / 2 + b1.top + b1.height / 2) / 2 - innerRect.top;
+        /* top = center - height/2 (transform sadece X ve scale için) */
+        stats.style.top       = (ctaVisualCenterY - 210) + 'px';
+        stats.style.transform = 'translateX(-50%) scale(0.9)';
       }
-      document.fonts.ready.then(alignCosmos);
+      /* İlk ölçüm DOM hazır olduğunda */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', alignCosmos);
+      } else {
+        alignCosmos();
+      }
+      /* showNodes ~650ms'de biter — 800ms sonra yeniden hizala */
+      document.fonts.ready.then(function () { setTimeout(alignCosmos, 800); });
       window.addEventListener('resize', alignCosmos);
     })();
 
