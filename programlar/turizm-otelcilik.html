@@ -68,6 +68,7 @@
  .section-subtitle{font-size:var(--text-md);color:var(--color-text-muted);max-width:600px;}
  .section-header{text-align:center;margin-bottom:var(--space-12);}
  .section-badge{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent-bg);color:var(--color-accent);padding:6px 14px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:var(--font-weight-semibold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-4);border:1px solid var(--color-accent-border);}
+ .page-hero .section-badge,.section--dark .section-badge{background:rgba(255,255,255,0.15);color:rgba(247,244,236,0.9);border-color:rgba(255,255,255,0.25);}
  .section-badge--white{background:rgba(247,244,236,0.10);color:var(--color-beyaz);border-color:rgba(247,244,236,0.2);}
  .btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:14px 28px;border-radius:var(--radius-md);font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);line-height:1;transition:all var(--transition-base);white-space:nowrap;cursor:pointer;text-decoration:none;border:2px solid transparent;}
  .btn--primary{background-color:var(--color-gold);color:var(--color-lacivert);border-color:var(--color-gold);}
@@ -197,7 +198,7 @@
     }
 
     @media (max-width: 1023px) {
-      .navbar__nav, .navbar__cta-desktop { display: none; }
+      .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
       .navbar { height: 72px; top: 36px; }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
@@ -207,16 +208,17 @@
  .mobile-nav-link{font-size:var(--text-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);padding:var(--space-3) 0;border-bottom:1px solid var(--color-border);}
  .mobile-nav-link.active,.mobile-nav-link:hover{color:var(--color-accent);}
  .mobile-nav-cta{margin-top:var(--space-4);}
- .hero{position:relative;min-height:90vh;display:flex;align-items:center;background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.65) 50%,rgba(18,40,76,0.45) 100%),url('../images/programs/turizm-otelcilik-konaklama.png') center center/cover no-repeat;overflow:hidden;}
+ .hero{position:relative;min-height:90vh;display:flex;align-items:center;background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.65) 50%,rgba(18,40,76,0.45) 100%),url('../images/programs/turizm-otelcilik-konaklama.png') center center/cover no-repeat;margin-top:-100px;padding-top:100px;overflow:hidden;}
  .hero__bg-grid{position:absolute;inset:0;opacity:0.06;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:48px 48px;}
  .hero > canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;}
  .hero__content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;padding-block:var(--space-24);}
- @media(max-width:1023px){.hero__content{grid-template-columns:1fr;}.hero__visual{display:none;}}
+ @media(max-width:1023px){.hero{margin-top:-72px;padding-top:72px;}.hero__content{grid-template-columns:1fr;}.hero__visual{display:none;}}
  .hero__eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(58,112,96,0.15);color:var(--color-accent-light);padding:6px 14px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:var(--font-weight-semibold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--space-6);border:1px solid rgba(58,112,96,0.25);}
  .hero h1{color:var(--color-beyaz);margin-bottom:var(--space-6);}
  .hero h1 em{color:var(--color-gold);font-style:normal;}
  .hero__desc{color:rgba(247,244,236,0.75);font-size:var(--text-md);max-width:520px;margin-bottom:var(--space-8);}
  .hero__cta-group{display:flex;flex-wrap:wrap;gap:var(--space-4);}
+ @media(max-width:767px){.hero__cta-group{flex-direction:column;align-items:flex-start;}.hero__cta-group .pearl-btn{width:100%;}.hero__cta-group .pearl-btn .pearl-btn__wrap{justify-content:center;}}
  .hero__track-pills{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-8);}
  .track-pill{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(247,244,236,0.08);border:1px solid rgba(247,244,236,0.18);border-radius:var(--radius-pill);padding:8px 16px;font-size:var(--text-xs);font-weight:var(--font-weight-semibold);color:rgba(247,244,236,0.80);letter-spacing:0.06em;}
  .track-pill span{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
@@ -349,22 +351,22 @@
  .tesis-card__front-img{width:100%;height:100%;object-fit:cover;}
  .tesis-card__front-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,20,40,0.85) 100%);}
  .tesis-card__front-title{position:absolute;bottom:0;left:0;right:0;padding:var(--space-6);font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.3);}
- .tesis-card__back{transform:rotateY(180deg);background:rgba(107,155,199,0.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;justify-content:center;padding:var(--space-6);}
- .tesis-card__back-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-3);}
- .tesis-card__back-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;}
+ .tesis-card__back{transform:rotateY(180deg);background:linear-gradient(135deg,#1a4a8a 0%,#123468 50%,#0a1e40 100%);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;justify-content:center;padding:var(--space-6);}
+ .tesis-card__back-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-beyaz);margin-bottom:var(--space-3);}
+ .tesis-card__back-desc{font-size:var(--text-sm);color:rgba(247,244,236,0.80);line-height:1.6;}
  @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}.tesis-card{height:220px;}}
  .testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
- .testimonial-card{position:relative;background:url('../assets/kraft-texture.png') center/cover no-repeat;border-radius:24px;padding:var(--space-8);border:none;box-shadow:1px 2px 8px rgba(120,100,60,0.12),inset 0 0 50px rgba(200,175,120,0.15);transition:box-shadow 0.3s ease,transform 0.3s ease;overflow:hidden;}
- .testimonial-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(245,235,200,0.4) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(200,175,120,0.2) 0%,transparent 50%);pointer-events:none;}
- .testimonial-card::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 30px rgba(180,155,100,0.15);pointer-events:none;}
- .testimonial-card:hover{box-shadow:3px 5px 16px rgba(120,100,60,0.18),inset 0 0 40px rgba(180,160,110,0.2);transform:translateY(-2px);}
- .testimonial-card__quote{display:block;position:relative;z-index:1;font-family:'Georgia',serif;font-size:3rem;line-height:1;color:rgba(160,130,70,0.25);margin-bottom:-1rem;}
- .testimonial-card__text{font-family:'Georgia',serif;font-size:0.9rem;color:#4A3C28;line-height:1.85;margin-bottom:var(--space-6);font-style:italic;position:relative;z-index:1;}
- .testimonial-card__author{display:flex;align-items:center;gap:var(--space-3);position:relative;z-index:1;border-top:1px solid rgba(160,130,70,0.2);padding-top:var(--space-4);}
- .testimonial-card__avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(180,160,110,0.2);border:1px solid rgba(160,130,70,0.25);}
- .testimonial-card__name{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-sm);color:#3D2F1E;}
- .testimonial-card__role{font-size:var(--text-xs);color:#6B5D4A;}
- .testimonial-card__year{font-size:var(--text-xs);color:#6B5D4A;opacity:0.7;}
+ .testimonial-card{position:relative;background-color:#FBFAEF;background-image:linear-gradient(rgba(58,112,96,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(58,112,96,0.07) 1px,transparent 1px);background-size:22px 22px;border-radius:24px;padding:var(--space-8);border:none;box-shadow:1px 2px 8px rgba(120,100,60,0.12),inset 0 0 50px rgba(200,175,120,0.15);transition:box-shadow 0.3s ease,transform 0.3s ease;overflow:hidden;}
+ .testimonial-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.55) 0%,transparent 55%);pointer-events:none;}
+ .testimonial-card::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,41,77,0.05);pointer-events:none;}
+ .testimonial-card:hover{box-shadow:0 6px 20px rgba(8,41,77,0.11),0 2px 6px rgba(8,41,77,0.07);transform:translateY(-2px);}
+ .testimonial-card__quote{display:block;position:relative;z-index:1;font-family:'Georgia',serif;font-size:3rem;line-height:1;color:rgba(8,41,77,0.10);margin-bottom:-1rem;}
+ .testimonial-card__text{font-family:'Georgia',serif;font-size:0.9rem;color:#1E2A36;line-height:1.85;margin-bottom:var(--space-6);font-style:italic;position:relative;z-index:1;}
+ .testimonial-card__author{display:flex;align-items:center;gap:var(--space-3);position:relative;z-index:1;border-top:1px solid rgba(8,41,77,0.09);padding-top:var(--space-4);}
+ .testimonial-card__avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(8,41,77,0.05);border:1px solid rgba(8,41,77,0.10);}
+ .testimonial-card__name{font-family:var(--font-display);font-weight:var(--font-weight-bold);font-size:var(--text-sm);color:#08294D;}
+ .testimonial-card__role{font-size:var(--text-xs);color:#3D4F5F;}
+ .testimonial-card__year{font-size:var(--text-xs);color:#3D4F5F;opacity:0.7;}
  @media(max-width:767px){.testimonial-grid{grid-template-columns:1fr;}}
  .kampus-info-card{border-radius:var(--radius-xl);border:1px solid var(--color-border);overflow:hidden;}
  .kampus-info-card__header{background:var(--color-lacivert);padding:var(--space-8);display:flex;align-items:center;gap:var(--space-4);}
@@ -610,6 +612,11 @@
  
 
    /* Pearl / Stardust Button */ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);} .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;} .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);} .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);} .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;} .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);} .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);} .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);} .pearl-btn:hover .pearl-btn__star{opacity:1;} .pearl-btn:active{transform:translateY(3px);}
+ .navbar__cta-desktop.pearl-btn{height:auto!important;padding:0!important;border:0!important;}
+ .navbar__cta-desktop.pearl-btn .pearl-btn__wrap{transform:translateY(0);}
+ .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12);}
+ .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5);background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%);}
+ .navbar__cta-desktop.pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(255,230,80,0.5),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.6),0 0.8rem 1.5rem rgba(0,0,0,0.2);}
   </style>
 </head>
 <body>
@@ -725,7 +732,7 @@
       </nav>
 
       <a href="../kayit.html" class="pearl-btn navbar__cta-desktop" style="background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
       </a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
@@ -747,7 +754,7 @@
     <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
     <div class="mobile-nav-cta">
       <a href="../kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
       </a>
     </div>
   </div>
@@ -764,8 +771,8 @@
     <h1>Turizm sektörünün<br><em>geleceğini</em> şekillendir</h1>
     <p class="hero__desc">Konaklama yönetiminden mutfak sanatlarına, iki uzmanlaşma dalıyla Türkiye'nin büyüyen turizm sektörüne hazırlan. Altıneller güvencesiyle mesleki lise diploması ve sektör sertifikaları.</p>
     <div class="hero__cta-group">
-     <a href="../kayit.html?program=konaklama#quickForm" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Başvur — Ücretsiz</span></a>
-     <a href="#muzfredat" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Müfredatı Gör</span></a>
+     <a href="../kayit.html?program=konaklama#quickForm" class="pearl-btn" style="background:linear-gradient(135deg, #2f4760 0%, #233656 60%, #1e2f42 100%);"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Başvur — Ücretsiz</span></a>
+     <a href="#muzfredat" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #9ab0c4 50%, #1a3350 100%);"><span class="pearl-btn__wrap" style="color:#0a1929;"><span class="pearl-btn__star">✧</span> Müfredatı Gör</span></a>
     </div>
     <div class="hero__track-pills">
      <div class="track-pill"><span style="background:#E67E22;"></span>Konaklama ve Seyahat Hizmetleri</div>
@@ -1152,41 +1159,76 @@
 ============================================================ -->
 <footer class="footer" id="iletisim">
  <div class="container">
-  <div class="footer__inner">
+  <div class="footer__grid">
    <div>
     <div class="footer__brand-name">UZAY KOLEJİ</div>
+    <div class="footer__brand-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
     <p class="footer__brand-desc">Devlet destekli programlar, Altıneller güvencesinde özel mesleki eğitim. 3 kampüs, 9 program, sınırsız kariyer.</p>
-   </div>
-   <div>
-    <div class="footer__col-title">Programlar</div>
-    <div class="footer__links">
-     <a href="havacilik.html">Havacılık</a>
-     <a href="enerji.html">Yenilenebilir Enerji</a>
-     <a href="biyomedikal.html">Biyomedikal</a>
-     <a href="gida-teknolojileri.html">Gıda Teknolojileri</a>
-     <a href="turizm-otelcilik.html">Turizm ve Otelcilik</a>
+    <div class="footer__social-links">
+     <a href="#" class="footer__social-btn" aria-label="Instagram">📸</a>
+     <a href="#" class="footer__social-btn" aria-label="YouTube">▶</a>
+     <a href="#" class="footer__social-btn" aria-label="WhatsApp">💬</a>
+     <a href="#" class="footer__social-btn" aria-label="Facebook">f</a>
     </div>
    </div>
    <div>
-    <div class="footer__col-title">Kampüsler</div>
-    <div class="footer__links">
-     <a href="#">Çukurova Kampüsü</a>
-     <a href="#">Seyhan Kampüsü</a>
-     <a href="#">Yüreğir Kampüsü</a>
-    </div>
+    <h4 class="footer__col-title">Programlar</h4>
+    <nav class="footer__links" aria-label="Program Linkleri">
+     <a href="havacilik.html">✈ Havacılık</a>
+     <a href="enerji.html">⚡ Yenilenebilir Enerji</a>
+     <a href="biyomedikal.html">🔬 Biyomedikal</a>
+     <a href="saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
+     <a href="elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
+     <a href="gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
+    </nav>
    </div>
    <div>
-    <div class="footer__col-title">İletişim</div>
-    <div class="footer__links">
-     <a href="../bursluluk-sinavi.html">Ücretsiz Ön Kayıt</a>
-     <a href="../kayit.html">Kayıt</a>
-     <a href="../index.html#iletisim">İletişim</a>
-    </div>
+    <h4 class="footer__col-title">Kampüsler</h4>
+    <nav class="footer__links" aria-label="Kampüs Linkleri">
+     <a href="../kampusler/cukurova.html">🏫 Çukurova Kampüsü</a>
+     <a href="../kampusler/seyhan.html">🏫 Seyhan Kampüsü</a>
+     <a href="../kampusler/yuregir.html">🏫 Yüreğir Kampüsü</a>
+    </nav>
+    <h4 class="footer__col-title" style="margin-top:2rem;">Hızlı Bağlantılar</h4>
+    <nav class="footer__links" aria-label="Hızlı Bağlantılar">
+     <a href="../bursluluk-sinavi.html">🎓 Bursluluk Sınavı</a>
+     <a href="../kayit.html">📝 Online Başvuru</a>
+     <a href="#">💬 WhatsApp Hattı</a>
+     <a href="../etkinlikler.html">📅 Etkinlikler</a>
+    </nav>
+   </div>
+   <div>
+    <h4 class="footer__col-title">İletişim</h4>
+    <div class="footer__contact-item"><span class="footer__contact-icon">📍</span><span>Çukurova, Seyhan, Yüreğir<br>Adana, Türkiye</span></div>
+    <div class="footer__contact-item"><span class="footer__contact-icon">📞</span><span>0 322 XXX XX XX</span></div>
+    <div class="footer__contact-item"><span class="footer__contact-icon">💬</span><span>WhatsApp Başvuru Hattı</span></div>
+    <div class="footer__contact-item"><span class="footer__contact-icon">✉</span><span>info@uzay.k12.tr</span></div>
+    <div class="footer__contact-item"><span class="footer__contact-icon">🌐</span><a href="#" style="color:var(--color-gold);">uzay.k12.tr</a></div>
    </div>
   </div>
+  <hr class="footer__divider">
+  <div class="footer__group-bar">
+   <span class="footer__group-label">Altıneller Kuruluşları Ailesi</span>
+   <div class="footer__group-brands">
+    <a href="#">Altıneller Okulları</a>
+    <span class="footer__group-sep">·</span>
+    <a href="#" class="active">Uzay Koleji</a>
+    <span class="footer__group-sep">·</span>
+    <a href="#">Altıneller Sürücü Kursu</a>
+    <span class="footer__group-sep">·</span>
+    <a href="#">Canyon Hotel</a>
+    <span class="footer__group-sep">·</span>
+    <a href="#" aria-disabled="true" style="opacity:0.55;pointer-events:none;cursor:default;">Gold Family Farm</a>
+   </div>
+  </div>
+  <hr class="footer__divider">
   <div class="footer__bottom">
-   <span class="footer__copy">© 2026 Uzay Koleji — Altıneller Eğitim Kurumları</span>
-   <span class="footer__copy">Adana, Türkiye</span>
+   <span class="footer__copyright">© 2026 Uzay Koleji — Tüm hakları saklıdır. Altıneller Kuruluşları bünyesindedir.</span>
+   <nav class="footer__bottom-links" aria-label="Yasal Linkler">
+    <a href="#">Gizlilik Politikası</a>
+    <a href="#">KVKK Aydınlatma</a>
+    <a href="#">Çerez Politikası</a>
+   </nav>
   </div>
  </div>
 </footer>
