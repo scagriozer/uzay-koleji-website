@@ -208,11 +208,11 @@
  .mobile-nav-link{font-size:var(--text-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);padding:var(--space-3) 0;border-bottom:1px solid var(--color-border);}
  .mobile-nav-link.active,.mobile-nav-link:hover{color:var(--color-accent);}
  .mobile-nav-cta{margin-top:var(--space-4);}
- .hero{position:relative;min-height:90vh;display:flex;align-items:center;background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.65) 50%,rgba(18,40,76,0.45) 100%),url('../images/programs/turizm-otelcilik-konaklama.png') center center/cover no-repeat;margin-top:-100px;padding-top:100px;overflow:hidden;}
+ .hero{position:relative;min-height:90vh;display:flex;align-items:flex-start;background:linear-gradient(105deg,rgba(18,40,76,0.85) 0%,rgba(18,40,76,0.65) 50%,rgba(18,40,76,0.45) 100%),url('../images/programs/turizm-otelcilik-konaklama.png') center center/cover no-repeat;margin-top:0;padding-top:165px;overflow:hidden;}
  .hero__bg-grid{position:absolute;inset:0;opacity:0.06;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:48px 48px;}
  .hero > canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;}
  .hero__content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;padding-block:var(--space-24);}
- @media(max-width:1023px){.hero{margin-top:-72px;padding-top:72px;}.hero__content{grid-template-columns:1fr;}.hero__visual{display:none;}}
+ @media(max-width:1023px){.hero{margin-top:0;padding-top:108px;}.hero__content{grid-template-columns:1fr;}.hero__visual{display:none;}}
  .hero__eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(58,112,96,0.15);color:var(--color-accent-light);padding:6px 14px;border-radius:var(--radius-pill);font-size:var(--text-xs);font-weight:var(--font-weight-semibold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--space-6);border:1px solid rgba(58,112,96,0.25);}
  .hero h1{color:var(--color-beyaz);margin-bottom:var(--space-6);}
  .hero h1 em{color:var(--color-gold);font-style:normal;}
@@ -617,7 +617,28 @@
  .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12);}
  .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5);background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%);}
  .navbar__cta-desktop.pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(255,230,80,0.5),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.6),0 0.8rem 1.5rem rgba(0,0,0,0.2);}
-  </style>
+  
+      .nav-etkinlikler-wrap {
+      position: relative;
+    }
+    .nav-badge-diagonal {
+      position: absolute;
+      top: -18px;
+      right: -36px;
+      background: #F0A800;
+      color: var(--color-lacivert);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      transform: rotate(14deg);
+      text-align: center;
+      pointer-events: none;
+      z-index: 5;
+      line-height: 1.5;
+    }
+    </style>
 </head>
 <body>
 <div id="cursor-glow" style="position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(58,112,96,0.45) 0%,rgba(58,112,96,0.18) 35%,transparent 68%);pointer-events:none;transform:translate(-50%,-50%);z-index:0;opacity:0;transition:opacity 0.4s ease;mix-blend-mode:overlay;will-change:left,top;"></div>
@@ -627,14 +648,14 @@
   <span>Turizm ve Otelcilik — Seyhan Kampüsü</span>
   <span class="announcement-bar__dot">·</span><span>Devlet Destekli Programlar</span>
   <span class="announcement-bar__dot">·</span><span>Altıneller Güvencesi</span>
-  <span class="announcement-bar__dot">·</span><span>Ücretsiz Ön Kayıt Açık</span>
+  <span class="announcement-bar__dot">·</span><span>Ücretsiz Başvuru Açık</span>
   <span class="announcement-bar__dot">·</span><span>Aşçılık · Konaklama</span>
   <span class="announcement-bar__dot">·</span><span>Kayıt 2026–2027</span>
   <span class="announcement-bar__dot">·</span>
   <span>Turizm ve Otelcilik — Seyhan Kampüsü</span>
   <span class="announcement-bar__dot">·</span><span>Devlet Destekli Programlar</span>
   <span class="announcement-bar__dot">·</span><span>Altıneller Güvencesi</span>
-  <span class="announcement-bar__dot">·</span><span>Ücretsiz Ön Kayıt Açık</span>
+  <span class="announcement-bar__dot">·</span><span>Ücretsiz Başvuru Açık</span>
   <span class="announcement-bar__dot">·</span><span>Aşçılık · Konaklama</span>
   <span class="announcement-bar__dot">·</span><span>Kayıt 2026–2027</span>
   <span class="announcement-bar__dot">·</span>
@@ -645,7 +666,7 @@
     <div class="container navbar__inner">
 
       <a href="../index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
-        <div class="navbar__logo-mark">UK</div>
+        
         <div>
           <div class="navbar__logo-text">UZAY KOLEJİ</div>
           <div class="navbar__logo-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
@@ -673,15 +694,9 @@
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
+              <a href="../programlar/saglik-bakim.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
-                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
-                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
-                  <div onclick="location.href='../programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div>
-                  <div onclick="location.href='../programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div>
-                  <div onclick="location.href='../programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div>
-                </div>
               </a>
               <a href="../programlar/elektrik-elektronik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#A0285A;"></span>
@@ -725,14 +740,30 @@
           </li>
 
           <li><a href="../index.html#firsatlar">Fırsatlar</a></li>
-          <li><a href="../index.html#neden">Okulumuz</a></li>
+          <li><a href="../index.html#videoSection">Okulumuz</a></li>
           <li><a href="../index.html#iletisim">İletişim</a></li>
-          <li><a href="../etkinlikler.html" class="nav-link--etkinlikler">Etkinlikler</a></li>
+                    <li class="navbar__item--dropdown">
+            <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+              Gurur Tablosu
+              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
+            </button>
+            <div class="navbar__mega-menu" role="menu">
+              <a href="../gurur/basarilar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Başarılar
+              </a>
+              <a href="../gurur/sampiyonluklar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Şampiyonluklar
+              </a>
+            </div>
+          </li>
+<li class="nav-etkinlikler-wrap"><a href="../etkinlikler.html">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
         </ul>
       </nav>
 
       <a href="../kayit.html" class="pearl-btn navbar__cta-desktop" style="background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
@@ -754,7 +785,7 @@
     <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
     <div class="mobile-nav-cta">
       <a href="../kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
     </div>
   </div>
@@ -1148,7 +1179,7 @@
   <h2>Turizm kariyerine bugün başla</h2>
   <p>Ücretsiz ön kayıt yap, devlet destekli Turizm ve Otelcilik programına başvur. Sınırlı kontenjan.</p>
   <div class="cta-group">
-   <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+   <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Başvuru Yap</span></a>
    <a href="https://wa.me/905XXXXXXXXX?text=Turizm%20ve%20Otelcilik%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum" class="pearl-btn" target="_blank" rel="noopener"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> WhatsApp ile Sor</span></a>
   </div>
  </div>

@@ -1175,6 +1175,7 @@
         0 0.8rem 1.5rem rgba(0,0,0,0.2);
     }
     .navbar__cta-desktop .pearl-btn__wrap { transform: translateY(0); }
+    .navbar__cta-desktop { margin-left: 35px; }
 
     .nav-etkinlikler-wrap {
       position: relative;
@@ -2563,7 +2564,7 @@
     <div class="container navbar__inner">
 
       <a href="index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
-        <div class="navbar__logo-mark">UK</div>
+        
         <div>
           <div class="navbar__logo-text">UZAY KOLEJİ</div>
           <div class="navbar__logo-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
@@ -2591,15 +2592,9 @@
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
+              <a href="programlar/saglik-bakim.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
-                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
-                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
-                  <div onclick="location.href='programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div>
-                  <div onclick="location.href='programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div>
-                  <div onclick="location.href='programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div>
-                </div>
               </a>
               <a href="programlar/elektrik-elektronik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#A0285A;"></span>
@@ -2645,12 +2640,28 @@
           <li><a href="#firsatlar">Fırsatlar</a></li>
           <li><a href="#videoSection">Okulumuz</a></li>
           <li><a href="#iletisim">İletişim</a></li>
-          <li class="nav-etkinlikler-wrap"><a href="etkinlikler.html">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
+                    <li class="navbar__item--dropdown">
+            <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+              Gurur Tablosu
+              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
+            </button>
+            <div class="navbar__mega-menu" role="menu">
+              <a href="gurur/basarilar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Başarılar
+              </a>
+              <a href="gurur/sampiyonluklar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Şampiyonluklar
+              </a>
+            </div>
+          </li>
+<li class="nav-etkinlikler-wrap"><a href="etkinlikler.html">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
         </ul>
       </nav>
 
       <a href="kayit.html" class="pearl-btn navbar__cta-desktop" style="background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
@@ -2673,7 +2684,7 @@
     <a href="etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
     <div class="mobile-nav-cta">
       <a href="kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
     </div>
   </div>
@@ -2706,7 +2717,7 @@
             </p>
             <div class="hero__cta-group">
               <a href="kayit.html" class="pearl-btn" style="background:linear-gradient(135deg, #2f4760 0%, #233656 60%, #1e2f42 100%);">
-                <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt</span>
+                <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Başvuru</span>
               </a>
               <a href="#kampusler" class="pearl-btn" style="background:linear-gradient(135deg, #C2CFDB 0%, #9ab0c4 50%, #1a3350 100%);">
                 <span class="pearl-btn__wrap" style="color:#0a1929;"><span class="pearl-btn__star">✧</span> Kampüsleri Keşfet</span>

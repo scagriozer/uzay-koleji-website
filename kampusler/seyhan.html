@@ -174,7 +174,7 @@
     }
 
     @media (max-width: 1023px) {
-      .navbar__nav, .navbar__cta-desktop { display: none; }
+      .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
       .navbar { height: 72px; top: 36px; }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
@@ -184,7 +184,7 @@
     .mobile-nav-link{font-size:var(--text-xl);font-weight:var(--font-weight-semibold);color:var(--color-text-white)!important;text-decoration:none;padding:var(--space-3) 0;border-bottom:1px solid rgba(247,244,236,0.1);display:block;}
     .mobile-nav-link:hover,.mobile-nav-link.active{color:var(--color-accent)!important;}
     .mobile-nav-cta{margin-top:var(--space-4);}
-    @media(max-width:1023px){.navbar__nav,.navbar__cta-desktop{display:none;}.navbar__hamburger{display:flex;}.navbar{height:72px;}}
+    @media(max-width:1023px){.navbar__nav,.navbar__cta-desktop{display:none!important;}.navbar__hamburger{display:flex;}.navbar{height:72px;}}
 
     .hero{position:relative;min-height:90vh;padding-top:140px;display:flex;align-items:center;overflow:hidden;background:var(--color-lacivert);}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 45%,rgba(255,203,3,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 15%,rgba(41,128,185,0.15) 0%,transparent 50%);pointer-events:none;}
@@ -216,27 +216,44 @@
     .stat-box__label{font-size:var(--text-sm);font-weight:var(--font-weight-medium);color:var(--color-text-primary);}
     @media(max-width:767px){.stats-row{grid-template-columns:repeat(2,1fr);}}
 
-    .prog-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);}
-    .prog-card{background:var(--color-beyaz);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;text-decoration:none;transition:transform var(--transition-base),box-shadow var(--transition-base);}
-    .prog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card-hover);}
-    .prog-card__header{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
-    .prog-card__header::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(255,203,3,0.55) 100%);}
-    .prog-card__body{padding:var(--space-6);flex:1;}
-    .prog-card__name{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-lg);color:var(--color-text-primary);margin-bottom:var(--space-2);}
-    .prog-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.65;margin-bottom:var(--space-4);}
-    .prog-card__link{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:var(--font-weight-semibold);color:var(--color-accent);}
-    @media(max-width:600px){.prog-cards{grid-template-columns:1fr;}}
+    .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
+    .program-grid--2col{grid-template-columns:repeat(2,1fr);}
+    .program-grid>.program-card:last-child:nth-child(3n+1){grid-column:1/-1;max-width:calc(33.333% - var(--space-4));margin-inline:auto;}
+    .program-card{position:relative;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:3/4;display:block;text-decoration:none;}
+    .program-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);}
+    .program-card__img{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-slow);}
+    .program-card:hover .program-card__img{transform:scale(1.06);}
+    .program-card__overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,41,77,0.92) 100%);}
+    .program-card__color-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(var(--program-color-rgb),0.7) 0%,transparent 100%);clip-path:inset(0 100% 0 0);transition:clip-path 0.5s ease;}
+    .program-card:hover .program-card__color-overlay{clip-path:inset(0 0 0 0);}
+    .program-card__content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-6);}
+    .program-card__middle{margin-bottom:auto;margin-top:auto;transition:transform 0.4s ease;}
+    .program-card:hover .program-card__middle{transform:translateY(-4rem);}
+    .program-card__name{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:clamp(1.1rem,2vw,1.4rem);color:white;line-height:1.2;margin-bottom:var(--space-2);}
+    .program-card__campus-tag{font-size:11px;color:rgba(255,255,255,0.72);display:block;margin-bottom:var(--space-2);}
+    .program-card__desc{font-size:var(--text-xs);color:rgba(255,255,255,0.65);line-height:1.55;}
+    .program-card__bottom{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-4);opacity:0;transform:translateY(1rem);transition:opacity 0.4s ease,transform 0.4s ease;}
+    .program-card:hover .program-card__bottom{opacity:1;transform:translateY(0);}
+    .program-card__meta-value{font-size:var(--text-xs);font-weight:var(--font-weight-bold);color:white;}
+    .program-card__meta-label{font-size:10px;color:rgba(255,255,255,0.60);}
+    .program-card__cta{display:inline-flex;align-items:center;gap:var(--space-2);background:rgba(255,255,255,0.20);backdrop-filter:blur(8px);color:white;font-size:var(--text-xs);font-weight:var(--font-weight-semibold);padding:var(--space-2) var(--space-4);border-radius:var(--radius-pill);transition:background var(--transition-fast);}
+    .program-card__cta:hover{background:rgba(255,255,255,0.88);}
+    @media(max-width:1023px){.program-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-4);}.program-grid>.program-card:last-child:nth-child(3n+1){grid-column:auto;}.program-grid>.program-card:last-child:nth-child(2n+1){grid-column:1/-1;max-width:calc(50% - var(--space-2));margin-inline:auto;}}
+    @media(max-width:767px){.program-grid,.program-grid--2col{grid-template-columns:1fr;}.program-grid>.program-card:last-child:nth-child(2n+1){grid-column:auto;max-width:none;margin-inline:0;}.program-card{aspect-ratio:1/1;}}
 
     .tesis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);}
-    .tesis-card{background:var(--color-beyaz);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--transition-base),box-shadow var(--transition-base);}
-    .tesis-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
-    .tesis-card__image{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;}
-    .tesis-card__image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,40,76,0.6) 100%);}
-    .tesis-card__label{position:absolute;bottom:var(--space-3);left:var(--space-4);font-size:var(--text-xs);font-weight:var(--font-weight-semibold);color:rgba(247,244,236,0.8);letter-spacing:0.06em;text-transform:uppercase;z-index:1;}
-    .tesis-card__body{padding:var(--space-5);}
-    .tesis-card__title{font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-2);}
-    .tesis-card__desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;}
-    @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}}
+    .tesis-card{perspective:1000px;height:260px;cursor:pointer;}
+    .tesis-card:hover .tesis-card__inner{transform:rotateY(180deg);}
+    .tesis-card__inner{position:relative;width:100%;height:100%;transition:transform 0.6s ease;transform-style:preserve-3d;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);}
+    .tesis-card:hover .tesis-card__inner{box-shadow:var(--shadow-card-hover);}
+    .tesis-card__front,.tesis-card__back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-xl);overflow:hidden;}
+    .tesis-card__front-img{width:100%;height:100%;object-fit:cover;}
+    .tesis-card__front-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,20,40,0.85) 100%);}
+    .tesis-card__front-title{position:absolute;bottom:0;left:0;right:0;padding:var(--space-6);font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.3);}
+    .tesis-card__back{transform:rotateY(180deg);background:rgba(107,155,199,0.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;justify-content:center;padding:var(--space-6);}
+    .tesis-card__back-title{font-family:var(--font-display);font-weight:var(--font-weight-black);font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:var(--space-3);}
+    .tesis-card__back-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;}
+    @media(max-width:767px){.tesis-grid{grid-template-columns:1fr;}.tesis-card{height:220px;}}
 
     .cta-section{background:transparent;text-align:center;position:relative;overflow:hidden;}
     .cta-section .container{position:relative;z-index:1;}
@@ -457,7 +474,8 @@
     .breadcrumb__sep{opacity:0.4;}
     .breadcrumb__current{color:var(--color-accent);font-weight:var(--font-weight-medium);}
    /* Pearl / Stardust Button */ .pearl-btn{display:inline-block;position:relative;border:0;outline:none;cursor:pointer;text-decoration:none;border-radius:100px;background-color:#0a1929;transition:all 0.25s ease;box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.3),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(255,255,255,0.5),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn__wrap{display:flex;align-items:center;gap:10px;padding:20px 36px;border-radius:inherit;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;color:rgba(129,216,255,0.9);transition:all 0.2s ease;transform:translateY(1px);-webkit-mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);mask-image:linear-gradient(to bottom,rgba(129,216,255,1) 50%,transparent 100%);} .pearl-btn__wrap::before,.pearl-btn__wrap::after{content:"";position:absolute;transition:all 0.3s ease;} .pearl-btn__wrap::before{left:-15%;right:-15%;bottom:25%;top:-100%;border-radius:50%;background-color:rgba(64,180,255,0.15);} .pearl-btn__wrap::after{left:6%;right:6%;top:12%;bottom:40%;border-radius:22px 22px 0 0;box-shadow:inset 0 10px 8px -10px rgba(129,216,255,0.6);background:linear-gradient(180deg,rgba(64,180,255,0.25) 0%,transparent 50%);} .pearl-btn__star{font-size:14px;opacity:0.7;transition:opacity 0.2s ease;} .pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(129,216,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.7),inset 0 -0.4rem 0.9rem rgba(64,180,255,0.6),0 2rem 2.5rem rgba(0,0,0,0.25),0 0.8rem 0.8rem -0.5rem rgba(0,0,0,0.6);} .pearl-btn:hover .pearl-btn__wrap::before{transform:translateY(-5%);} .pearl-btn:hover .pearl-btn__wrap::after{opacity:0.4;transform:translateY(5%);} .pearl-btn:hover .pearl-btn__wrap{transform:translateY(-2px);} .pearl-btn:hover .pearl-btn__star{opacity:1;} .pearl-btn:active{transform:translateY(3px);}
-  </style>
+  .nav-etkinlikler-wrap{position:relative;}.nav-badge-diagonal{position:absolute;top:-18px;right:-36px;background:#F0A800;color:var(--color-lacivert);font-size:8px;font-weight:700;letter-spacing:0.04em;padding:2px 6px;border-radius:3px;transform:rotate(14deg);text-align:center;pointer-events:none;z-index:5;line-height:1.5;}
+    </style>
 </head>
 <body>
 
@@ -469,7 +487,7 @@
       <span class="announcement-bar__dot">·</span>
       <span>Altıneller Güvencesi</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Ücretsiz Ön Kayıt Açık</span>
+      <span>Ücretsiz Başvuru Açık</span>
       <span class="announcement-bar__dot">·</span>
       <span>🏫 Seyhan Kampüsü — Elektrik-Elektronik &amp; Gıda Teknolojileri</span>
       <span class="announcement-bar__dot">·</span>
@@ -477,7 +495,7 @@
       <span class="announcement-bar__dot">·</span>
       <span>Altıneller Güvencesi</span>
       <span class="announcement-bar__dot">·</span>
-      <span>Ücretsiz Ön Kayıt Açık</span>
+      <span>Ücretsiz Başvuru Açık</span>
       <span class="announcement-bar__dot">·</span>
     </div>
   </div>
@@ -486,7 +504,7 @@
     <div class="container navbar__inner">
 
       <a href="../index.html" class="navbar__logo" aria-label="Uzay Koleji Ana Sayfa">
-        <div class="navbar__logo-mark">UK</div>
+        
         <div>
           <div class="navbar__logo-text">UZAY KOLEJİ</div>
           <div class="navbar__logo-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
@@ -514,15 +532,9 @@
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="../programlar/saglik-bakim.html" class="mega-menu__item has-submenu" style="position:relative;">
+              <a href="../programlar/saglik-bakim.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
-                <span style="margin-left:auto;font-size:11px;opacity:0.7;">▸</span>
-                <div class="submenu" style="position:absolute;top:0;left:100%;min-width:200px;background:rgba(247,244,236,0.97);border-radius:var(--radius-md);padding:6px 8px;display:none;box-shadow:0 8px 24px rgba(18,40,76,0.15);border:1px solid var(--color-border);z-index:102;" onclick="event.stopPropagation()">
-                  <div onclick="location.href='../programlar/saglik-bakim.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#8A4E99;flex-shrink:0;display:inline-block;"></span> Sağlık Bakımı</div>
-                  <div onclick="location.href='../programlar/hemsirelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#D2AAB0;flex-shrink:0;display:inline-block;"></span> Hemşire Yardımcılığı</div>
-                  <div onclick="location.href='../programlar/ebelik.html'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:0.875rem;font-weight:500;color:var(--color-text-primary);cursor:pointer;" onmouseover="this.style.background='var(--color-bg-section-alt)'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:50%;background:#A22F2D;flex-shrink:0;display:inline-block;"></span> Ebe Yardımcılığı</div>
-                </div>
               </a>
               <a href="../programlar/elektrik-elektronik.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#A0285A;"></span>
@@ -566,14 +578,30 @@
           </li>
 
           <li><a href="../index.html#firsatlar">Fırsatlar</a></li>
-          <li><a href="../index.html#neden">Okulumuz</a></li>
+          <li><a href="../index.html#videoSection">Okulumuz</a></li>
           <li><a href="../index.html#iletisim">İletişim</a></li>
-          <li><a href="../etkinlikler.html" class="nav-link--etkinlikler">Etkinlikler</a></li>
+                    <li class="navbar__item--dropdown">
+            <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+              Gurur Tablosu
+              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
+            </button>
+            <div class="navbar__mega-menu" role="menu">
+              <a href="../gurur/basarilar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Başarılar
+              </a>
+              <a href="../gurur/sampiyonluklar.html" class="mega-menu__item">
+                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
+                Şampiyonluklar
+              </a>
+            </div>
+          </li>
+<li class="nav-etkinlikler-wrap"><a href="../etkinlikler.html">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
         </ul>
       </nav>
 
       <a href="../kayit.html?kampus=seyhan#quickForm" class="pearl-btn navbar__cta-desktop" style="background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
 
       <button class="navbar__hamburger" id="hamburger" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
@@ -595,7 +623,7 @@
     <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
     <div class="mobile-nav-cta">
       <a href="../kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
-        <span class="pearl-btn__wrap" style="color:#08294D;padding:11px 22px;font-size:14px;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Ön Kayıt</span>
+        <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
       </a>
     </div>
   </div>
@@ -638,7 +666,7 @@
             Seyhan İlçesi, Adana.
           </p>
           <div class="hero__cta-group">
-            <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+            <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Başvuru Yap</span></a>
             <a href="seyhan.html#programlar" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Programları İncele</span></a>
           </div>
         </div>
@@ -653,21 +681,37 @@
         <h2 class="section-title">Seyhan'da Verilen Programlar</h2>
         <p class="section-subtitle" style="margin-inline:auto;">İki güçlü teknik program — devlet destekli, geniş istihdam kapıları.</p>
       </div>
-      <div class="prog-cards">
-        <a href="../programlar/elektrik-elektronik.html" class="prog-card reveal reveal-delay-1 is-visible">
-          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a1a2a 0%,#1a4060 50%,#84ABCB 100%);">⚡</div>
-          <div class="prog-card__body">
-            <div class="prog-card__name">Elektrik-Elektronik Teknolojisi</div>
-            <p class="prog-card__desc">Devre tasarımı, otomasyon ve endüstriyel elektronik. Türkiye'nin en geniş istihdam kapılarına sahip teknik programı.</p>
-            <span class="prog-card__link">Programı İncele →</span>
+      <div class="program-grid program-grid--2col">
+        <a href="../programlar/elektrik-elektronik.html" class="program-card reveal reveal-delay-1" style="--program-color:#A0285A;--program-color-dark:#4a0f2c;--program-color-rgb:160,40,90;" aria-label="Elektrik-Elektronik Programı">
+          <img class="program-card__img" src="../images/programs/elektrik-elektronik.png" alt="Elektrik-Elektronik Teknolojisi">
+          <div class="program-card__overlay"></div>
+          <div class="program-card__color-overlay"></div>
+          <div class="program-card__content">
+            <div class="program-card__middle">
+              <div class="program-card__name">Elektrik-Elektronik</div>
+              <span class="program-card__campus-tag">📍 Seyhan Kampüsü</span>
+              <p class="program-card__desc">Devre tasarımı, otomasyon sistemleri ve elektrik tesisatı. Sanayi ve hizmet sektörü fırsatları.</p>
+            </div>
+            <div class="program-card__bottom">
+              <div><div class="program-card__meta-value">Devlet Destekli</div><div class="program-card__meta-label">4 Yıl Eğitim</div></div>
+              <span class="program-card__cta">İncele →</span>
+            </div>
           </div>
         </a>
-        <a href="../programlar/gida-teknolojileri.html" class="prog-card reveal reveal-delay-2 is-visible">
-          <div class="prog-card__header" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#BABD49 100%);">🌾</div>
-          <div class="prog-card__body">
-            <div class="prog-card__name">Gıda Teknolojileri</div>
-            <p class="prog-card__desc">Gıda üretimi, kalite kontrol ve gıda güvenliği. Adana'nın tarım ekonomisiyle doğrudan bağlantılı pratik odaklı program.</p>
-            <span class="prog-card__link">Programı İncele →</span>
+        <a href="../programlar/gida-teknolojileri.html" class="program-card reveal reveal-delay-2" style="--program-color:#C85A28;--program-color-dark:#6a2a08;--program-color-rgb:200,90,40;" aria-label="Gıda Teknolojileri Programı">
+          <img class="program-card__img" src="../images/programs/gida-teknolojileri.png" alt="Gıda Teknolojileri">
+          <div class="program-card__overlay"></div>
+          <div class="program-card__color-overlay"></div>
+          <div class="program-card__content">
+            <div class="program-card__middle">
+              <div class="program-card__name">Gıda Teknolojileri</div>
+              <span class="program-card__campus-tag">📍 Seyhan Kampüsü</span>
+              <p class="program-card__desc">Gıda üretim süreçleri, kalite kontrol ve hijyen standartları. Gıda sektöründe güçlü istihdam.</p>
+            </div>
+            <div class="program-card__bottom">
+              <div><div class="program-card__meta-value">Devlet Destekli</div><div class="program-card__meta-label">4 Yıl Eğitim</div></div>
+              <span class="program-card__cta">İncele →</span>
+            </div>
           </div>
         </a>
       </div>
@@ -682,25 +726,43 @@
         <p class="section-subtitle" style="margin-inline:auto;">Teknik eğitime özel atölyeler ve laboratuvarlar.</p>
       </div>
       <div class="tesis-grid">
-        <div class="tesis-card reveal reveal-delay-1 is-visible">
-          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a1a30 0%,#1a3a5a 50%,#84ABCB 100%);">⚡<span class="tesis-card__label">Elektrik Lab</span></div>
-          <div class="tesis-card__body">
-            <div class="tesis-card__title">Elektrik-Elektronik Atölyesi</div>
-            <p class="tesis-card__desc">Devre tasarımı, PCB üretimi ve endüstriyel otomasyon ekipmanları ile tam donanımlı uygulama alanı.</p>
+        <div class="tesis-card reveal reveal-delay-1">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/tesis/elektrik-atolye.png" alt="Elektrik-Elektronik Atölyesi" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Elektrik-Elektronik Atölyesi</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Elektrik-Elektronik Atölyesi</h3>
+              <p class="tesis-card__back-desc">Devre tasarımı, PCB üretimi ve endüstriyel otomasyon ekipmanları ile tam donanımlı uygulama alanı.</p>
+            </div>
           </div>
         </div>
-        <div class="tesis-card reveal reveal-delay-2 is-visible">
-          <div class="tesis-card__image" style="background:linear-gradient(135deg,#0a2a18 0%,#185a30 50%,#BABD49 100%);">🌾<span class="tesis-card__label">Gıda Lab</span></div>
-          <div class="tesis-card__body">
-            <div class="tesis-card__title">Gıda Teknolojileri Laboratuvarı</div>
-            <p class="tesis-card__desc">Gıda analizi, kalite kontrol ve üretim simülasyon ekipmanları. Gerçek sektör standartlarında eğitim.</p>
+        <div class="tesis-card reveal reveal-delay-2">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/tesis/gida-analiz-lab.png" alt="Gıda Teknolojileri Laboratuvarı" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Gıda Teknolojileri Laboratuvarı</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Gıda Teknolojileri Laboratuvarı</h3>
+              <p class="tesis-card__back-desc">Gıda analizi, kalite kontrol ve üretim simülasyon ekipmanları. Gerçek sektör standartlarında eğitim.</p>
+            </div>
           </div>
         </div>
-        <div class="tesis-card reveal reveal-delay-3 is-visible">
-          <div class="tesis-card__image" style="background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#3a3a3a 100%);">📚<span class="tesis-card__label">Çalışma Alanı</span></div>
-          <div class="tesis-card__body">
-            <div class="tesis-card__title">Kütüphane &amp; Dijital Kaynak Merkezi</div>
-            <p class="tesis-card__desc">Teknik kaynaklar, dijital kütüphane erişimi ve bireysel/grup çalışma odaları.</p>
+        <div class="tesis-card reveal reveal-delay-3">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/tesis/kutupane.png" alt="Kütüphane ve Dijital Kaynak Merkezi" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Kütüphane &amp; Dijital Kaynak Merkezi</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Kütüphane &amp; Dijital Kaynak Merkezi</h3>
+              <p class="tesis-card__back-desc">Teknik kaynaklar, dijital kütüphane erişimi ve bireysel/grup çalışma odaları.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -761,70 +823,89 @@
   <section class="section cta-section" id="basvuru">
     <div class="container">
       <h2 class="section-title reveal is-visible">Seyhan Kampüsü'nde<br>Yerini Ayır</h2>
-      <p class="section-subtitle reveal is-visible" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Ücretsiz Ön Kayıt başvuruları açık. Elektrik-Elektronik veya Gıda Teknolojileri için sınav tarihini kaçırma.</p>
+      <p class="section-subtitle reveal is-visible" style="margin-inline:auto;margin-bottom:2rem;">2026–2027 Ücretsiz Başvuru başvuruları açık. Elektrik-Elektronik veya Gıda Teknolojileri için sınav tarihini kaçırma.</p>
       <div class="cta-buttons reveal is-visible">
-        <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Ön Kayıt Yap</span></a>
+        <a href="../bursluluk-sinavi.html" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Ücretsiz Başvuru Yap</span></a>
         <a href="https://wa.me/905320000000" target="_blank" rel="noopener noreferrer" class="pearl-btn"><span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> WhatsApp Danışman</span></a>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__brand-name">UZAY KOLEJİ</div>
-          <div class="footer__brand-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
-          <p class="footer__brand-desc">Devlet destekli programlar, Altıneller güvencesinde özel mesleki eğitim.</p>
-        </div>
-        <div>
-          <h4 class="footer__col-title">Programlar</h4>
-          <nav class="footer__links">
-            <a href="../programlar/elektrik-elektronik.html" class="active">🔌 Elektrik-Elektronik</a>
-            <a href="../programlar/gida-teknolojileri.html" class="active">🌿 Gıda Teknolojileri</a>
-            <a href="../programlar/havacilik.html">✈ Havacılık</a>
-            <a href="../programlar/biyomedikal.html">🔬 Biyomedikal</a>
-            <a href="../programlar/hemsirelik.html">🏥 Hemşire Yardımcılığı</a>
-          </nav>
-        </div>
-        <div>
-          <h4 class="footer__col-title">Kampüsler</h4>
-          <nav class="footer__links">
-            <a href="cukurova.html">🏫 Çukurova</a>
-            <a href="seyhan.html" class="active">🏫 Seyhan Kampüsü</a>
-            <a href="yuregir.html">🏫 Yüreğir</a>
-          </nav>
-          <h4 class="footer__col-title" style="margin-top:2rem;">Hızlı</h4>
-          <nav class="footer__links">
-            <a href="../bursluluk-sinavi.html">Ücretsiz Ön Kayıt</a>
-            <a href="../kayit.html">📝 Online Başvuru</a>
-          </nav>
-        </div>
-        <div>
-          <h4 class="footer__col-title">İletişim</h4>
-          <div class="footer__contact-item"><span>📍</span><span>Seyhan İlçesi, Adana</span></div>
-          <div class="footer__contact-item"><span>📞</span><span>0 322 XXX XX XX</span></div>
-          <div class="footer__contact-item"><span>✉</span><span>seyhan@uzay.k12.tr</span></div>
-          <div class="footer__contact-item"><span>🌐</span><a href="../index.html" style="color:var(--color-accent);">uzay.k12.tr</a></div>
+  <footer class="footer" id="iletisim">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">UZAY KOLEJİ</div>
+        <div class="footer__brand-sub">Mesleki ve Teknik Anadolu Lisesi · Adana</div>
+        <p class="footer__brand-desc">Devlet destekli programlar, Altıneller güvencesinde özel mesleki eğitim. 3 kampüs, 9 program, sınırsız kariyer.</p>
+        <div class="footer__social-links">
+          <a href="#" class="footer__social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="footer__social-btn" aria-label="YouTube">▶</a>
+          <a href="#" class="footer__social-btn" aria-label="WhatsApp">💬</a>
+          <a href="#" class="footer__social-btn" aria-label="Facebook">f</a>
         </div>
       </div>
-      <hr class="footer__divider">
-      <div class="footer__group-bar">
-        <span class="footer__group-label">Altıneller Grup Ailesi</span>
-        <div class="footer__group-brands">
-          <a href="seyhan.html#">Altıneller Okulları</a><span class="footer__group-sep">·</span>
-          <a href="../index.html" class="active">Uzay Koleji</a><span class="footer__group-sep">·</span>
-          <a href="seyhan.html#">Altıneller Sürücü Kursu</a><span class="footer__group-sep">·</span>
-          <a href="seyhan.html#">Canyon Hotel</a>
-        </div>
+      <div>
+        <h4 class="footer__col-title">Programlar</h4>
+        <nav class="footer__links" aria-label="Program Linkleri">
+          <a href="../programlar/havacilik.html">✈ Havacılık</a>
+          <a href="../programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
+          <a href="../programlar/biyomedikal.html">🔬 Biyomedikal</a>
+          <a href="../programlar/saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
+          <a href="../programlar/elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
+          <a href="../programlar/gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
+        </nav>
       </div>
-      <hr class="footer__divider">
-      <div class="footer__bottom">
-        <span class="footer__copyright">© 2026 Uzay Koleji — Tüm hakları saklıdır. Altıneller Grup bünyesindedir.</span>
-        <nav class="footer__bottom-links"><a href="seyhan.html#">Gizlilik Politikası</a><a href="seyhan.html#">KVKK Aydınlatma</a></nav>
+      <div>
+        <h4 class="footer__col-title">Kampüsler</h4>
+        <nav class="footer__links" aria-label="Kampüs Linkleri">
+          <a href="cukurova.html">🏫 Çukurova Kampüsü</a>
+          <a href="seyhan.html">🏫 Seyhan Kampüsü</a>
+          <a href="yuregir.html">🏫 Yüreğir Kampüsü</a>
+        </nav>
+        <h4 class="footer__col-title" style="margin-top:2rem;">Hızlı Bağlantılar</h4>
+        <nav class="footer__links" aria-label="Hızlı Bağlantılar">
+          <a href="../bursluluk-sinavi.html">🎓 Bursluluk Sınavı</a>
+          <a href="../kayit.html">📝 Online Başvuru</a>
+          <a href="#">💬 WhatsApp Hattı</a>
+          <a href="../etkinlikler.html">📅 Etkinlikler</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="footer__col-title">İletişim</h4>
+        <div class="footer__contact-item"><span class="footer__contact-icon">📍</span><span>Çukurova, Seyhan, Yüreğir<br>Adana, Türkiye</span></div>
+        <div class="footer__contact-item"><span class="footer__contact-icon">📞</span><span>0 322 XXX XX XX</span></div>
+        <div class="footer__contact-item"><span class="footer__contact-icon">💬</span><span>WhatsApp Başvuru Hattı</span></div>
+        <div class="footer__contact-item"><span class="footer__contact-icon">✉</span><span>info@uzay.k12.tr</span></div>
+        <div class="footer__contact-item"><span class="footer__contact-icon">🌐</span><a href="#" style="color:var(--color-gold);">uzay.k12.tr</a></div>
       </div>
     </div>
-  </footer>
+    <hr class="footer__divider">
+    <div class="footer__group-bar">
+      <span class="footer__group-label">Altıneller Kuruluşları Ailesi</span>
+      <div class="footer__group-brands">
+        <a href="#">Altıneller Okulları</a>
+        <span class="footer__group-sep">·</span>
+        <a href="#" class="active">Uzay Koleji</a>
+        <span class="footer__group-sep">·</span>
+        <a href="#">Altıneller Sürücü Kursu</a>
+        <span class="footer__group-sep">·</span>
+        <a href="#">Canyon Hotel</a>
+        <span class="footer__group-sep">·</span>
+        <a href="#" aria-disabled="true" style="opacity:0.55;pointer-events:none;cursor:default;">Gold Family Farm</a>
+      </div>
+    </div>
+    <hr class="footer__divider">
+    <div class="footer__bottom">
+      <span class="footer__copyright">© 2026 Uzay Koleji — Tüm hakları saklıdır. Altıneller Kuruluşları bünyesindedir.</span>
+      <nav class="footer__bottom-links" aria-label="Yasal Linkler">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">KVKK Aydınlatma</a>
+        <a href="#">Çerez Politikası</a>
+      </nav>
+    </div>
+  </div>
+</footer>
 
     <!-- ============================================================
        WHATSAPP BUTONU
