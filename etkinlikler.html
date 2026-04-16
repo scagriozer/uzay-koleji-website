@@ -308,28 +308,6 @@
       flex-shrink: 0;
     }
 
-    .navbar__cta-desktop {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #FFCB03;
-      border: 2px solid #FFCB03;
-      color: #08294D;
-      height: 46px;
-      border-radius: 27px;
-      padding: 14px 28px;
-      font-family: var(--font-body);
-      font-weight: var(--font-weight-medium);
-      font-size: var(--text-sm);
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background var(--transition-fast), box-shadow var(--transition-fast);
-    }
-    .navbar__cta-desktop:hover {
-      background: var(--color-gold-dark);
-      border-color: var(--color-gold-dark);
-      box-shadow: 0 4px 16px rgba(255,203,3,0.35);
-    }
 
     /* Hamburger */
         .navbar__hamburger {
@@ -1136,6 +1114,7 @@
     .nav-etkinlikler-wrap { position: relative; }
     .nav-badge-diagonal { position: absolute; top: -18px; right: -36px; background: var(--color-gold); color: var(--color-lacivert); font-size: 8px; font-weight: 700; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 3px; transform: rotate(14deg); text-align: center; pointer-events: none; z-index: 5; line-height: 1.5; }
     .navbar__cta-desktop.pearl-btn { height: auto !important; padding: 0 !important; border: 0 !important; }
+    .navbar__cta-desktop { margin-left: 35px; }
 
     .ucus-rezervasyon-wrap {
       margin-top: 2.5rem;
@@ -1278,22 +1257,7 @@
           <li><a href="index.html#firsatlar">Fırsatlar</a></li>
           <li><a href="index.html#videoSection">Okulumuz</a></li>
           <li><a href="index.html#iletisim">İletişim</a></li>
-                    <li class="navbar__item--dropdown">
-            <button class="navbar__dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-              Gurur Tablosu
-              <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg>
-            </button>
-            <div class="navbar__mega-menu" role="menu">
-              <a href="gurur/basarilar.html" class="mega-menu__item">
-                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
-                Başarılar
-              </a>
-              <a href="gurur/sampiyonluklar.html" class="mega-menu__item">
-                <span class="mega-menu__dot" style="background-color:#FFCB03;"></span>
-                Şampiyonluklar
-              </a>
-            </div>
-          </li>
+                    <li><a href="gurur/sampiyonluklar.html">Şampiyonluklar</a></li>
 <li class="nav-etkinlikler-wrap"><a href="etkinlikler.html" class="active">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
         </ul>
       </nav>
