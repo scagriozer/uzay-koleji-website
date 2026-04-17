@@ -321,8 +321,8 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      position: fixed;
-      top: 0;
+      position: relative;
+      
       width: 100%;
       z-index: calc(var(--z-sticky) + 20);
     }
@@ -369,8 +369,8 @@
        NAVBAR
     ============================================================ */
     .navbar {
-      position: fixed;
-      top: 40px;
+      position: relative;
+      
       z-index: calc(var(--z-sticky) + 10);
       width: 100%;
       height: 100px;
@@ -673,7 +673,7 @@
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
-      .navbar { height: 72px; top: 36px; }
+      .navbar { height: 72px;  }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
       .navbar__inner { padding-inline: var(--space-8); }
       .navbar__mobile-menu { z-index: 99999 !important; }
@@ -689,7 +689,7 @@
       align-items: center;
       background: transparent;
       overflow: hidden;
-      padding-top: 140px;
+      padding-top:0;
     }
 
     /* Decorative background elements */
@@ -1013,7 +1013,7 @@
     }
 
     @media (max-width: 767px) {
-      .hero { min-height: auto; padding-top:108px; padding-bottom: var(--space-8); overflow: visible; }
+      .hero { min-height: auto; padding-top:0; padding-bottom: var(--space-8); overflow: visible; }
       .hero__inner {
         flex-direction: column;
         align-items: stretch;

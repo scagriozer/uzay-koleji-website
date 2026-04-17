@@ -110,7 +110,7 @@
     .btn--xl{padding:20px 44px;font-size:var(--text-md);font-weight:var(--font-weight-semibold);}
 
     /* Announcement Bar */
-    .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;width:100%;z-index:calc(var(--z-sticky) + 20);}
+    .announcement-bar{background-color:var(--color-gold);height:40px;overflow:hidden;display:flex;align-items:center;position: relative;width:100%;z-index:calc(var(--z-sticky) + 20);}
     .announcement-bar__track{display:flex;align-items:center;gap:var(--space-6);white-space:nowrap;animation:marquee-scroll 32s linear infinite;will-change:transform;}
     .announcement-bar:hover .announcement-bar__track{animation-play-state:paused;}
     .announcement-bar__track span{font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);color:var(--color-lacivert);letter-spacing:0.04em;text-transform:uppercase;}
@@ -118,7 +118,7 @@
     @keyframes marquee-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
     /* Navbar */
-    .navbar{position:sticky;top:40px;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
+    .navbar{position:sticky;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
     .navbar.is-scrolled{box-shadow:var(--shadow-md);border-bottom-color:var(--color-border);}
     .navbar__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
     .navbar__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;flex-shrink:0;}
@@ -230,7 +230,7 @@
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
-      .navbar { height: 72px; top: 36px; }
+      .navbar { height: 72px;  }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
       .navbar__inner { padding-inline: var(--space-8); }
       .navbar__mobile-menu { z-index: 99999 !important; }

@@ -308,7 +308,7 @@
        NAVBAR
     ============================================================ */
     .navbar {
-      position: fixed;
+      position: relative;
       top: 0;
       z-index: calc(var(--z-sticky) + 10);
       width: 100%;
@@ -583,7 +583,7 @@
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
-      .navbar { height: 72px; top: 36px; }
+      .navbar { height: 72px;  }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
       .navbar__inner { padding-inline: var(--space-8); }
       .navbar__mobile-menu { z-index: 99999 !important; }
@@ -621,7 +621,7 @@
       align-items: center;
       background: transparent;
       overflow: hidden;
-      padding-top: 100px;
+      padding-top:0;
     }
     .hero::before {
       content: '';
