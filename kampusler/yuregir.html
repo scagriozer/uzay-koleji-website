@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <!-- Consent Mode v2 defaults -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage':              'denied',
+      'ad_user_data':            'denied',
+      'ad_personalization':      'denied',
+      'analytics_storage':       'denied',
+      'functionality_storage':   'granted',
+      'personalization_storage': 'denied',
+      'security_storage':        'granted',
+      'wait_for_update':         500
+    });
+  </script>
+  <!-- End Consent Mode v2 defaults -->
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -479,6 +495,276 @@
     </style>
 </head>
 <body>
+
+<!-- ── COOKIE CONSENT BANNER ──────────────────────────────────────────── -->
+<style>
+  #uzay-cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 99999;
+    background: #08294D;
+    color: #FBFAEF;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.25);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+  }
+  #uzay-cookie-banner.cc-visible { transform: translateY(0); }
+  #uzay-cookie-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.25rem clamp(1rem, 4vw, 3rem);
+  }
+  #uzay-cookie-main {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  #uzay-cookie-text { flex: 1; min-width: 260px; }
+  #uzay-cookie-text strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFCB03;
+    margin-bottom: 0.25rem;
+  }
+  #uzay-cookie-text p { margin: 0; color: rgba(251,250,239,0.75); line-height: 1.5; }
+  #uzay-cookie-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  #cc-accept-btn {
+    background: #FFCB03;
+    color: #08294D;
+    border: none;
+    border-radius: 100px;
+    padding: 0.6rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  #cc-accept-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,203,3,0.4); }
+  #cc-reject-btn {
+    background: transparent;
+    color: rgba(251,250,239,0.7);
+    border: 1px solid rgba(251,250,239,0.3);
+    border-radius: 100px;
+    padding: 0.6rem 1.25rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  #cc-reject-btn:hover { border-color: rgba(251,250,239,0.6); color: #FBFAEF; }
+  #cc-customize-btn {
+    background: transparent;
+    color: rgba(251,250,239,0.55);
+    border: none;
+    padding: 0.6rem 0.25rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  #cc-customize-btn:hover { color: #FBFAEF; }
+  #uzay-cookie-panel {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(251,250,239,0.15);
+  }
+  .cc-category {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(251,250,239,0.08);
+  }
+  .cc-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cc-category-title {
+    display: block;
+    font-weight: 600;
+    color: #FBFAEF;
+    margin-bottom: 0.2rem;
+  }
+  .cc-category-desc {
+    display: block;
+    color: rgba(251,250,239,0.5);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .cc-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .cc-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .cc-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: rgba(251,250,239,0.2);
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+  .cc-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 3px; bottom: 3px;
+    background: #FBFAEF;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .cc-toggle input:checked + .cc-slider { background: #FFCB03; }
+  .cc-toggle input:checked + .cc-slider::before { transform: translateX(20px); background: #08294D; }
+  .cc-toggle--locked {
+    width: auto; height: auto;
+    font-size: 0.75rem;
+    color: rgba(255,203,3,0.65);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  #uzay-cookie-save-wrap { padding-top: 1rem; text-align: right; }
+  #cc-save-btn {
+    background: transparent;
+    color: #FFCB03;
+    border: 1.5px solid #FFCB03;
+    border-radius: 100px;
+    padding: 0.5rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  #cc-save-btn:hover { background: #FFCB03; color: #08294D; }
+</style>
+
+<div id="uzay-cookie-banner" role="dialog" aria-label="Çerez Tercihleri" aria-modal="true">
+  <div id="uzay-cookie-inner">
+    <div id="uzay-cookie-main">
+      <div id="uzay-cookie-text">
+        <strong>Uzay Koleji çerezler kullanıyor</strong>
+        <p>Sitemizin daha iyi çalışması, tercihlerinizi hatırlamak ve Uzay Koleji programlarını doğru kitleye ulaştırmak için çerezlerden yararlanıyoruz. Tercihlerinizi dilediğiniz zaman güncelleyebilirsiniz.</p>
+      </div>
+      <div id="uzay-cookie-actions">
+        <button id="cc-customize-btn">Özelleştir</button>
+        <button id="cc-reject-btn">Reddet</button>
+        <button id="cc-accept-btn">Tümünü Kabul Et</button>
+      </div>
+    </div>
+    <div id="uzay-cookie-panel" hidden>
+      <div class="cc-category">
+        <div class="cc-category-header">
+          <div>
+            <span class="cc-category-title">Zorunlu Çerezler</span>
+            <span class="cc-category-desc">Sitenin çalışması için gereklidir, devre dışı bırakılamaz.</span>
+          </div>
+          <span class="cc-toggle cc-toggle--locked">Her zaman açık</span>
+        </div>
+      </div>
+      <div class="cc-category">
+        <div class="cc-category-header">
+          <div>
+            <span class="cc-category-title">Analitik Çerezler</span>
+            <span class="cc-category-desc">Sitemizin nasıl kullanıldığını anlamamızı sağlar (Google Analytics).</span>
+          </div>
+          <label class="cc-toggle">
+            <input type="checkbox" id="cc-analytics" checked>
+            <span class="cc-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="cc-category">
+        <div class="cc-category-header">
+          <div>
+            <span class="cc-category-title">Pazarlama Çerezleri</span>
+            <span class="cc-category-desc">Uzay Koleji programlarını ilgi duyabilecek kişilere ulaştırmak için (Google Ads).</span>
+          </div>
+          <label class="cc-toggle">
+            <input type="checkbox" id="cc-ads" checked>
+            <span class="cc-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div id="uzay-cookie-save-wrap">
+        <button id="cc-save-btn">Seçimlerimi Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'uzay_cookie_consent_v1';
+  function getStoredConsent() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { return null; }
+  }
+  function storeConsent(c) { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); }
+  function applyConsent(c) {
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', {
+      'ad_storage':              c.ads       ? 'granted' : 'denied',
+      'ad_user_data':            c.ads       ? 'granted' : 'denied',
+      'ad_personalization':      c.ads       ? 'granted' : 'denied',
+      'analytics_storage':       c.analytics ? 'granted' : 'denied',
+      'personalization_storage': c.ads       ? 'granted' : 'denied',
+      'functionality_storage':   'granted',
+      'security_storage':        'granted'
+    });
+  }
+  function hideBanner() {
+    var el = document.getElementById('uzay-cookie-banner');
+    if (el) el.classList.remove('cc-visible');
+  }
+  function acceptAll() { var c={analytics:true,ads:true}; storeConsent(c); applyConsent(c); hideBanner(); }
+  function rejectAll()  { var c={analytics:false,ads:false}; storeConsent(c); applyConsent(c); hideBanner(); }
+  function saveCustom() {
+    var c = {
+      analytics: document.getElementById('cc-analytics').checked,
+      ads:       document.getElementById('cc-ads').checked
+    };
+    storeConsent(c); applyConsent(c); hideBanner();
+  }
+  function togglePanel() {
+    var p = document.getElementById('uzay-cookie-panel');
+    if (p.hasAttribute('hidden')) p.removeAttribute('hidden'); else p.setAttribute('hidden','');
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var stored = getStoredConsent();
+    if (stored) { applyConsent(stored); }
+    else {
+      setTimeout(function () {
+        var el = document.getElementById('uzay-cookie-banner');
+        if (el) el.classList.add('cc-visible');
+      }, 600);
+    }
+    document.getElementById('cc-accept-btn').addEventListener('click', acceptAll);
+    document.getElementById('cc-reject-btn').addEventListener('click', rejectAll);
+    document.getElementById('cc-save-btn').addEventListener('click', saveCustom);
+    document.getElementById('cc-customize-btn').addEventListener('click', togglePanel);
+  });
+})();
+</script>
+<!-- ── END COOKIE CONSENT BANNER ──────────────────────────────────────── -->
 
   <div class="announcement-bar" role="marquee" aria-label="Duyuru">
     <div class="announcement-bar__track">
