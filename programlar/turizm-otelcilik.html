@@ -1645,31 +1645,6 @@
 
 </script>
 
-<script type="module">
-  import { ShaderMount, warpFragmentShader, WarpPatterns, getShaderColorFromString } from 'https://esm.sh/@paper-design/shaders@latest';
-
-  const cssColors = [
-    'hsl(200, 100%, 15%)',
-    'hsl(180, 90%, 25%)',
-    'hsl(160, 70%, 35%)',
-    'hsl(45, 100%, 55%)',
-  ];
-  const colors = cssColors.map(getShaderColorFromString);
-
-  const hero = document.getElementById('hero');
-  new ShaderMount(hero, warpFragmentShader, {
-    u_colors: colors,
-    u_colorsCount: colors.length,
-    u_proportion: 0.45,
-    u_softness: 1.0,
-    u_distortion: 0.25,
-    u_swirl: 0.8,
-    u_swirlIterations: 10,
-    u_shape: WarpPatterns.checks,
-    u_shapeScale: 0.1,
-    u_scale: 1.0,
-  }, undefined, 0.6);
-</script>
 
 <script src="../assets/grid-canvas.js"></script>
 <script>(function(){var items=document.querySelectorAll(".mega-menu__item.has-submenu");items.forEach(function(item){item.addEventListener("mouseenter",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="block"});item.addEventListener("mouseleave",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="none"});var sub=item.querySelector(".submenu");if(sub){sub.addEventListener("mouseenter",function(){this.style.display="block"});sub.addEventListener("mouseleave",function(){this.style.display="none"})}})})();</script>
