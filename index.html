@@ -166,11 +166,31 @@
     }
     body::before {
       left: 0;
-      background: linear-gradient(to right, rgba(8,20,40,0.22) 0%, transparent 100%);
+      background: linear-gradient(to right, rgba(8,20,40,0.14) 0%, transparent 100%);
     }
     body::after {
       right: 0;
-      background: linear-gradient(to left, rgba(8,20,40,0.22) 0%, transparent 100%);
+      background: linear-gradient(to left, rgba(8,20,40,0.14) 0%, transparent 100%);
+    }
+    /* Fullscreen radial vignette — köşelere doğru koyulaşan atmosferik katman */
+    html::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(8,20,40,0.25) 100%);
+    }
+    /* Sinematik grain — düz gradient bölgelerdeki banding'i kırar, premium doku katar */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
+      background-size: 200px 200px;
     }
 
     img { max-width: 100%; display: block; }
@@ -1332,8 +1352,18 @@
       display: block;
       transition: transform 300ms ease, box-shadow 300ms ease;
       cursor: pointer;
+      box-shadow:
+        0 2px 6px rgba(18,40,76,0.15),
+        0 8px 20px rgba(18,40,76,0.21),
+        0 20px 48px rgba(18,40,76,0.30);
     }
-    .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .program-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 2px 6px rgba(18,40,76,0.10),
+        0 8px 20px rgba(18,40,76,0.14),
+        0 20px 48px rgba(18,40,76,0.20);
+    }
     .program-card__img {
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
@@ -1447,7 +1477,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.12);
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, rgba(8,20,40,0.55) 100%);
     }
     .video-expand-box {
       position: absolute;
@@ -1456,7 +1486,12 @@
       transform: translate(-50%, -50%);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        inset 0 -1px 0 rgba(0,0,0,0.3),
+        0 2px 8px rgba(0,0,0,0.18),
+        0 32px 100px rgba(8,20,40,0.42),
+        0 60px 140px -20px rgba(0,0,0,0.25);
       will-change: width, height;
       width: 300px;
       height: 400px;
@@ -2552,6 +2587,7 @@
   </style>
 </head>
 <body>
+<div class="grain-overlay" aria-hidden="true"></div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8J5QPW7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -2916,7 +2952,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="programlar/saglik-bakim.html" class="mega-menu__item">
+              <a href="programlar/saglik-hizmetleri.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
               </a>
@@ -3453,11 +3489,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </a>
 
-        <a href="programlar/saglik-bakim.html" class="program-card reveal reveal-delay-4" style="--program-color:#2a6080;--program-color-dark:#0a2030;--program-color-rgb:42,96,128;" aria-label="Sağlık Hizmetleri Programı">
+        <a href="programlar/saglik-hizmetleri.html" class="program-card reveal reveal-delay-4" style="--program-color:#2a6080;--program-color-dark:#0a2030;--program-color-rgb:42,96,128;" aria-label="Sağlık Hizmetleri Programı">
           <img class="program-card__img" src="images/programs/saglik-hizmetleri.png" alt="Sağlık Hizmetleri">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
-          <span class="program-card__campus-tag">📍 Çukurova + Yüreğir</span>
+          <span class="program-card__campus-tag">📍 Yüreğir Kampüsü</span>
           <div class="program-card__content">
             <div class="program-card__middle">
               <div class="program-card__name">Sağlık Hizmetleri</div>
@@ -3747,7 +3783,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="programlar/havacilik.html">✈ Havacılık</a>
             <a href="programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
             <a href="programlar/biyomedikal.html">🔬 Biyomedikal</a>
-            <a href="programlar/saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
+            <a href="programlar/saglik-hizmetleri.html">🏥 Sağlık Hizmetleri</a>
             <a href="programlar/elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
             <a href="programlar/gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
           </nav>

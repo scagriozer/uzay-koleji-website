@@ -500,6 +500,8 @@
     </style>
 </head>
 <body>
+<div class="grain-overlay" aria-hidden="true"></div>
+
 
 <!-- ── COOKIE CONSENT BANNER ──────────────────────────────────────────── -->
 <style>
@@ -661,6 +663,15 @@
     transition: background 0.15s, color 0.15s;
   }
   #cc-save-btn:hover { background: #FFCB03; color: #08294D; }
+
+    /* ── Sinematik derinlik katmanları ── */
+    html::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(8,20,40,0.25) 100%);}
+    body::before,body::after{content:'';position:fixed;top:0;bottom:0;width:clamp(60px,8vw,140px);pointer-events:none;z-index:1;}
+    body::before{left:0;background:linear-gradient(to right,rgba(8,20,40,0.14) 0%,transparent 100%);}
+    body::after{right:0;background:linear-gradient(to left,rgba(8,20,40,0.14) 0%,transparent 100%);}
+    .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:0.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");background-size:200px 200px;}
+    .program-card{box-shadow:0 2px 6px rgba(18,40,76,0.15),0 8px 20px rgba(18,40,76,0.21),0 20px 48px rgba(18,40,76,0.30)!important;}
+    .program-card:hover{transform:translateY(-6px)!important;box-shadow:0 2px 6px rgba(18,40,76,0.10),0 8px 20px rgba(18,40,76,0.14),0 20px 48px rgba(18,40,76,0.20)!important;}
 </style>
 
 <div id="uzay-cookie-banner" role="dialog" aria-label="Çerez Tercihleri" aria-modal="true">
@@ -824,7 +835,7 @@
                 <span class="mega-menu__dot" style="background-color:#9B3060;"></span>
                 Biyomedikal
               </a>
-              <a href="../programlar/saglik-bakim.html" class="mega-menu__item">
+              <a href="../programlar/saglik-hizmetleri.html" class="mega-menu__item">
                 <span class="mega-menu__dot" style="background-color:#2a6080;"></span>
                 Sağlık Hizmetleri
               </a>
@@ -1119,7 +1130,7 @@
           <a href="../programlar/havacilik.html">✈ Havacılık</a>
           <a href="../programlar/enerji.html">⚡ Yenilenebilir Enerji</a>
           <a href="../programlar/biyomedikal.html">🔬 Biyomedikal</a>
-          <a href="../programlar/saglik-bakim.html">🏥 Sağlık Hizmetleri</a>
+          <a href="../programlar/saglik-hizmetleri.html">🏥 Sağlık Hizmetleri</a>
           <a href="../programlar/elektrik-elektronik.html">🔌 Elektrik-Elektronik</a>
           <a href="../programlar/gida-teknolojileri.html">🌿 Gıda Teknolojileri</a>
         </nav>
@@ -1318,4 +1329,5 @@
     <a href="../bursluluk-sinavi.html" class="btn btn--primary">🎓 Başvur</a>
   </div>
 
-  </body></html>
+  <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;box-shadow:0 16px 56px -4px rgba(8,20,40,0.55);}</style>
+</body></html>
