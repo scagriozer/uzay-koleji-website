@@ -204,7 +204,7 @@
 
     .hero{position:relative;min-height:90vh;padding-top:0;display:flex;align-items:center;overflow:hidden;background:var(--color-lacivert);}
     .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 45%,rgba(255,203,3,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 15%,rgba(162,197,169,0.15) 0%,transparent 50%);pointer-events:none;}
-    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent 0%,rgba(255,203,3,0.5) 75%,var(--color-bg-page) 100%);pointer-events:none;z-index:1;}
+    .hero::after{display:none;}
     .hero__bg-grid{position:absolute;inset:0;pointer-events:none;}
     .hero__deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:clamp(8rem,18vw,18rem);opacity:0.06;pointer-events:none;user-select:none;line-height:1;}
     .hero__content{position:relative;z-index:2;padding:var(--space-16) 0 160px;display:flex;align-items:center;width:100%;}
@@ -672,6 +672,24 @@
     .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:0.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");background-size:200px 200px;}
     .program-card{box-shadow:0 2px 6px rgba(18,40,76,0.15),0 8px 20px rgba(18,40,76,0.21),0 20px 48px rgba(18,40,76,0.30)!important;}
     .program-card:hover{transform:translateY(-6px)!important;box-shadow:0 2px 6px rgba(18,40,76,0.10),0 8px 20px rgba(18,40,76,0.14),0 20px 48px rgba(18,40,76,0.20)!important;}
+    /* ── KONUM & İLETİŞİM ──── */
+    .konum-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:var(--space-8);align-items:start;}
+    .konum-info{display:flex;flex-direction:column;gap:var(--space-4);}
+    .iletisim-kart{display:flex;align-items:center;gap:var(--space-4);background:rgba(255,255,255,0.07);border:1px solid rgba(255,203,3,0.2);border-radius:var(--radius-xl);padding:var(--space-4) var(--space-5);}
+    .iletisim-kart__icon{font-size:1.4rem;flex-shrink:0;}
+    .iletisim-kart__label{font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;}
+    .iletisim-kart__value{display:block;font-family:var(--font-data);font-size:clamp(1rem,2vw,1.2rem);font-weight:var(--font-weight-bold);color:var(--color-gold);text-decoration:none;}
+    .iletisim-kart__value:hover{color:#fff;}
+    .konum-harita{border-radius:var(--radius-2xl);overflow:hidden;}
+    .harita-div{width:100%;height:380px;}
+    .konum-prompt{background:rgba(255,203,3,0.08);border:1px solid rgba(255,203,3,0.2);border-radius:var(--radius-xl);padding:var(--space-4) var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);}
+    .konum-prompt__text{font-size:var(--text-sm);color:rgba(255,255,255,0.7);line-height:1.55;}
+    .konum-prompt__btn{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-gold);color:var(--color-lacivert);border:none;padding:8px 18px;border-radius:var(--radius-pill);font-family:var(--font-body);font-weight:var(--font-weight-semibold);font-size:var(--text-sm);cursor:pointer;transition:var(--transition-fast);align-self:flex-start;}
+    .konum-prompt__btn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(255,203,3,0.4);}
+    .konum-prompt__btn:disabled{opacity:0.6;cursor:default;transform:none;}
+    .konum-sonuc{font-size:var(--text-sm);color:var(--color-gold);font-weight:var(--font-weight-medium);}
+    .konum-sonuc strong{color:#fff;}
+    @media(max-width:1023px){.konum-layout{grid-template-columns:1fr;}.harita-div{height:300px;}}
 </style>
 
 <div id="uzay-cookie-banner" role="dialog" aria-label="Çerez Tercihleri" aria-modal="true">
@@ -974,10 +992,26 @@
       <div class="section-header reveal is-visible" id="programlar">
         <span class="section-badge">Bu Kampüste Programlar</span>
         <h2 class="section-title">Çukurova'da Verilen Programlar</h2>
-        <p class="section-subtitle" style="margin-inline:auto;">Biyomedikal Teknoloji programı — devlet destekli, kariyer garantili.</p>
+        <p class="section-subtitle" style="margin-inline:auto;">Turizm ve Otelcilik ile Biyomedikal Teknoloji — devlet destekli, kariyer garantili.</p>
       </div>
-      <div class="program-grid program-grid--2col" style="max-width:480px;">
-        <a href="../programlar/biyomedikal.html" class="program-card reveal reveal-delay-1" style="--program-color:#9B3060;--program-color-dark:#4a0f2c;--program-color-rgb:155,48,96;" aria-label="Biyomedikal Teknoloji Programı">
+      <div class="program-grid program-grid--2col">
+        <a href="../programlar/turizm-otelcilik.html" class="program-card reveal reveal-delay-1" style="--program-color:#3A7060;--program-color-dark:#102a28;--program-color-rgb:58,112,96;" aria-label="Turizm ve Otelcilik Programı">
+          <img class="program-card__img" src="../images/programs/turizm-otelcilik-konaklama.png" alt="Turizm ve Otelcilik">
+          <div class="program-card__overlay"></div>
+          <div class="program-card__color-overlay"></div>
+          <div class="program-card__content">
+            <div class="program-card__middle">
+              <div class="program-card__name">Turizm ve Otelcilik</div>
+              <span class="program-card__campus-tag">📍 Çukurova</span>
+              <p class="program-card__desc">Otel yönetimi, mutfak sanatları ve konaklama. Turizm sektöründe uluslararası kariyer.</p>
+            </div>
+            <div class="program-card__bottom">
+              <div><div class="program-card__meta-value">Devlet Destekli</div><div class="program-card__meta-label">4 Yıl Eğitim</div></div>
+              <span class="program-card__cta">İncele →</span>
+            </div>
+          </div>
+        </a>
+        <a href="../programlar/biyomedikal.html" class="program-card reveal reveal-delay-2" style="--program-color:#9B3060;--program-color-dark:#4a0f2c;--program-color-rgb:155,48,96;" aria-label="Biyomedikal Teknoloji Programı">
           <img class="program-card__img" src="../images/programs/biyomedikal.png" alt="Biyomedikal Teknoloji">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
@@ -993,7 +1027,7 @@
             </div>
           </div>
         </a>
-        </div>
+      </div>
     </div>
   </section>
 
@@ -1002,9 +1036,48 @@
       <div class="section-header reveal is-visible">
         <span class="section-badge">Altyapı</span>
         <h2 class="section-title">Çukurova Kampüsü Tesisleri</h2>
-        <p class="section-subtitle" style="margin-inline:auto;">Sağlık eğitimine özel donanımlı tesisler — sınıftan hastaneye hazırlanıyorsun.</p>
+        <p class="section-subtitle" style="margin-inline:auto;">İki bölüme özel donanımlı tesisler — mesleki pratiğin sınıfta başlıyor.</p>
       </div>
       <div class="tesis-grid">
+        <div class="tesis-card reveal reveal-delay-1">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/programs/mutfak-sanatlari.png" alt="Profesyonel Mutfak Atölyesi" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Profesyonel Mutfak Atölyesi</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Profesyonel Mutfak Atölyesi</h3>
+              <p class="tesis-card__back-desc">Endüstriyel fırın, salamander ve tam donanımlı pâtisserie köşesiyle 5 yıldızlı standart.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tesis-card reveal reveal-delay-2">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/tesis/resepsiyon-lobi.jpg" alt="Resepsiyon Simülasyon Laboratuvarı" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Resepsiyon Simülasyon Lab.</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Resepsiyon Simülasyon Laboratuvarı</h3>
+              <p class="tesis-card__back-desc">Opera PMS, Protel ve gerçek check-in kontuarıyla otel prosedürü eğitimi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tesis-card reveal reveal-delay-3">
+          <div class="tesis-card__inner">
+            <div class="tesis-card__front">
+              <img class="tesis-card__front-img" src="../images/tesis/restoran-servis-yeni.png" alt="Restoran Servis Salonu" loading="lazy">
+              <div class="tesis-card__front-overlay"></div>
+              <div class="tesis-card__front-title">Restoran Servis Salonu</div>
+            </div>
+            <div class="tesis-card__back">
+              <h3 class="tesis-card__back-title">Restoran Servis Salonu</h3>
+              <p class="tesis-card__back-desc">Masa servisi, fine dining kuralları ve banquet düzeni pratiği için tam donanımlı uygulama salonu.</p>
+            </div>
+          </div>
+        </div>
         <div class="tesis-card reveal reveal-delay-1">
           <div class="tesis-card__inner">
             <div class="tesis-card__front">
@@ -1040,9 +1113,43 @@
             </div>
             <div class="tesis-card__back">
               <h3 class="tesis-card__back-title">Kütüphane &amp; Çalışma Alanı</h3>
-              <p class="tesis-card__back-desc">Sağlık bilimleri kaynakları, anatomi atlasları, bireysel ve grup çalışma odaları.</p>
+              <p class="tesis-card__back-desc">Akademik kaynaklar, bireysel ve grup çalışma odaları her iki bölüm öğrencisine açık.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="konum">
+    <div class="container">
+      <div class="konum-layout">
+        <div class="konum-info">
+          <div class="iletisim-kart">
+            <div class="iletisim-kart__icon">📞</div>
+            <div>
+              <div class="iletisim-kart__label">Telefon</div>
+              <a href="tel:+903222471515" class="iletisim-kart__value">(0322) 247 15 15</a>
+            </div>
+          </div>
+          <div class="iletisim-kart">
+            <div class="iletisim-kart__icon">📍</div>
+            <div>
+              <div class="iletisim-kart__label">İlçe</div>
+              <span class="iletisim-kart__value" style="cursor:default;">Çukurova, Adana</span>
+            </div>
+          </div>
+          <div class="konum-prompt">
+            <p class="konum-prompt__text">Ne kadar uzaklıkta olduğunu görmek için şimdi konum izni verin, tahminen kaç dakikada orada olacağınızı hesaplayalım.</p>
+            <button class="konum-prompt__btn" id="konumBtn" onclick="konumIzniAl()">📍 Konumumu Göster</button>
+            <div class="konum-sonuc" id="konumSonuc"></div>
+          </div>
+          <a href="https://maps.app.goo.gl/NHbK46oMSRhuyfCz5" target="_blank" rel="noopener" class="pearl-btn" style="align-self:flex-start;">
+            <span class="pearl-btn__wrap"><span class="pearl-btn__star">✧</span> Google Maps'de Aç</span>
+          </a>
+        </div>
+        <div class="konum-harita">
+          <div id="kampusHarita" class="harita-div"></div>
         </div>
       </div>
     </div>
@@ -1330,4 +1437,57 @@
   </div>
 
   <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;box-shadow:0 16px 56px -4px rgba(8,20,40,0.55);}</style>
+  <script>
+  (function(){
+    var KAMPUS_LAT=37.0649,KAMPUS_LNG=35.3062,KAMPUS_ADI='Uzay Koleji Çukurova Kampüsü';
+    var MAP_STYLES=[
+      {elementType:'geometry',stylers:[{color:'#0b1a2e'}]},
+      {elementType:'labels.text.stroke',stylers:[{color:'#0b1a2e'}]},
+      {elementType:'labels.text.fill',stylers:[{color:'#FFCB03'}]},
+      {featureType:'road',elementType:'geometry',stylers:[{color:'#1a3a6a'}]},
+      {featureType:'road.arterial',elementType:'geometry',stylers:[{color:'#FFCB03'}]},
+      {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#FFCB03'}]},
+      {featureType:'road.local',elementType:'geometry',stylers:[{color:'#1e4080'}]},
+      {featureType:'water',elementType:'geometry',stylers:[{color:'#051929'}]},
+      {featureType:'landscape',elementType:'geometry',stylers:[{color:'#0f2040'}]},
+      {featureType:'poi',stylers:[{visibility:'off'}]},
+      {featureType:'transit',stylers:[{visibility:'off'}]},
+      {featureType:'administrative.locality',elementType:'labels.text.fill',stylers:[{color:'#FFCB03'}]}
+    ];
+    window.initKampusHarita=function(){
+      if(typeof google==='undefined')return;
+      var map=new google.maps.Map(document.getElementById('kampusHarita'),{
+        center:{lat:KAMPUS_LAT,lng:KAMPUS_LNG},zoom:15,styles:MAP_STYLES,
+        disableDefaultUI:true,zoomControl:true,
+        zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_CENTER}
+      });
+      new google.maps.Marker({
+        position:{lat:KAMPUS_LAT,lng:KAMPUS_LNG},map:map,title:KAMPUS_ADI,
+        icon:{path:google.maps.SymbolPath.CIRCLE,scale:12,fillColor:'#FFCB03',fillOpacity:1,strokeColor:'#08294D',strokeWeight:3}
+      });
+    };
+    window.konumIzniAl=function(){
+      var btn=document.getElementById('konumBtn');
+      var sonuc=document.getElementById('konumSonuc');
+      if(!navigator.geolocation){sonuc.textContent='Tarayıcınız konum özelliğini desteklemiyor.';return;}
+      btn.textContent='⏳ Konum alınıyor...';btn.disabled=true;
+      navigator.geolocation.getCurrentPosition(
+        function(pos){
+          var d=haversine(pos.coords.latitude,pos.coords.longitude,KAMPUS_LAT,KAMPUS_LNG);
+          var dk=Math.round(d/35*60);
+          sonuc.innerHTML='Tahminen <strong>'+d.toFixed(1)+' km</strong> uzaklıktasınız — yaklaşık <strong>'+dk+' dakika</strong> sürüş mesafesi.';
+          btn.style.display='none';
+        },
+        function(){sonuc.textContent='Konum alınamadı, lütfen tarayıcı iznini kontrol edin.';btn.textContent='📍 Tekrar Dene';btn.disabled=false;}
+      );
+    };
+    function haversine(lat1,lng1,lat2,lng2){
+      var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLng=(lng2-lng1)*Math.PI/180;
+      var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
+      return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    }
+  })();
+  </script>
+  <!-- Google Maps: https://console.cloud.google.com/google/maps-apis/ adresinden API anahtarı alın ve aşağıdaki YOUR_MAPS_API_KEY yerine yapıştırın -->
+  <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_MAPS_API_KEY&callback=initKampusHarita&language=tr&region=TR"></script>
 </body></html>
