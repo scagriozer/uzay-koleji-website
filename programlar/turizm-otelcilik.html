@@ -87,8 +87,9 @@
  .announcement-bar__track span{font-family:var(--font-body);font-weight:var(--font-weight-medium);font-size:var(--text-sm);color:var(--color-lacivert);letter-spacing:0.04em;text-transform:uppercase;}
  .announcement-bar__dot{color:var(--color-lacivert)!important;opacity:0.5;font-size:1.2em;}
  @keyframes marquee-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
- .navbar{position: relative;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base);}
+ .navbar{position:sticky;top:0;z-index:calc(var(--z-sticky) + 10);width:100%;height:100px;background-color:rgba(251,250,239,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--transition-base),border-color var(--transition-base),transform .3s ease;}
  .navbar.is-scrolled{box-shadow:var(--shadow-md);border-bottom-color:var(--color-border);}
+    .navbar.is-hidden{transform:translateY(-100%);}
  .navbar__inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
  .navbar__logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;flex-shrink:0;}
  .navbar__logo-mark{width:64px;height:64px;background-color:#FDC24C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--color-lacivert);letter-spacing:-0.5px;flex-shrink:0;}
@@ -659,7 +660,7 @@
  .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12);}
  .navbar__cta-desktop.pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5);background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%);}
  .navbar__cta-desktop.pearl-btn:hover{box-shadow:inset 0 0.3rem 0.5rem rgba(255,230,80,0.5),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.6),0 0.8rem 1.5rem rgba(0,0,0,0.2);}
- .navbar__cta-desktop{margin-left:35px;}
+ .navbar__cta-desktop{margin-left:15px;}
 
       .nav-etkinlikler-wrap {
       position: relative;
@@ -682,6 +683,20 @@
       line-height: 1.5;
     }
     </style>
+<link rel="canonical" href="https://uzay.k12.tr/programlar/turizm-otelcilik.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://uzay.k12.tr/programlar/turizm-otelcilik.html">
+<meta property="og:title" content="Turizm ve Otelcilik Programı — Uzay Koleji | Adana">
+<meta property="og:description" content="Uzay Koleji Turizm ve Otelcilik Programı — Konaklama hizmetleri, aşçılık ve mutfak sanatları eğitimi. Seyhan Kampüsü, Adana. Devlet destekli mesleki lise.">
+<meta property="og:image" content="https://uzay.k12.tr/assets/logo.png">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Uzay Koleji">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Turizm ve Otelcilik Programı — Uzay Koleji | Adana">
+<meta name="twitter:description" content="Uzay Koleji Turizm ve Otelcilik Programı — Konaklama hizmetleri, aşçılık ve mutfak sanatları eğitimi. Seyhan Kampüsü, Adana. Devlet destekli mesleki lise.">
+<meta name="twitter:image" content="https://uzay.k12.tr/assets/logo.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Turizm ve Otelcilik Programı","description":"Uzay Koleji Turizm ve Otelcilik Programı — Konaklama hizmetleri, aşçılık ve mutfak sanatları eğitimi. Seyhan Kampüsü, Adana. Devlet destekli mesleki lise.","url":"https://uzay.k12.tr/programlar/turizm-otelcilik.html","provider":{"@type":"EducationalOrganization","name":"Uzay Koleji","sameAs":"https://uzay.k12.tr","logo":"https://uzay.k12.tr/assets/logo.png"},"educationalLevel":"Lise","occupationalCategory":"Konaklama / aşçılık","courseCode":"turizm-otelcilik","hasCourseInstance":{"@type":"CourseInstance","courseMode":"yüz yüze","courseWorkload":"PT4Y","location":{"@type":"Place","name":"Uzay Koleji Seyhan Kampüsü","geo":{"@type":"GeoCoordinates","latitude":36.9929,"longitude":35.30395}}},"inLanguage":"tr-TR"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://uzay.k12.tr/"},{"@type":"ListItem","position":2,"name":"Programlar","item":"https://uzay.k12.tr/programlar/"},{"@type":"ListItem","position":3,"name":"Turizm ve Otelcilik","item":"https://uzay.k12.tr/programlar/turizm-otelcilik.html"}]}</script>
 </head>
 <body>
 <div class="grain-overlay" aria-hidden="true"></div>
@@ -1069,6 +1084,7 @@
           <li><a href="../index.html#iletisim">İletişim</a></li>
                     <li><a href="../gurur/sampiyonluklar.html">Şampiyonluklar</a></li>
 <li class="nav-etkinlikler-wrap"><a href="../etkinlikler.html">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
+<li style="margin-left:10px;"><a href="../blog/">Blog</a></li>
         </ul>
       </nav>
 
@@ -1093,6 +1109,7 @@
     <a href="../index.html#okulumuz" class="mobile-nav-link">Okulumuz</a>
     <a href="../index.html#iletisim" class="mobile-nav-link">İletişim</a>
     <a href="../etkinlikler.html" class="mobile-nav-link">Etkinlikler</a>
+    <a href="../blog/" class="mobile-nav-link">Blog</a>
     <div class="mobile-nav-cta">
       <a href="../kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
         <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
@@ -1437,7 +1454,7 @@
    <div class="tesis-card reveal reveal-delay-3">
     <div class="tesis-card__inner">
      <div class="tesis-card__front">
-      <img class="tesis-card__front-img" src="../images/tesis/restoran-servis.jpg" alt="Restoran Servis Salonu" loading="lazy">
+      <img class="tesis-card__front-img" src="../images/tesis/restoran-servis-yeni.png" alt="Restoran Servis Salonu" loading="lazy">
       <div class="tesis-card__front-overlay"></div>
       <div class="tesis-card__front-title">Restoran Servis Salonu</div>
      </div>
@@ -1649,7 +1666,7 @@
   <!-- ============================================================
        WHATSAPP BUTONU
   ============================================================ -->
-  <a href="https://wa.me/905320000000" class="wa-btn" id="waFloat"
+  <a href="https://wa.me/905014648295" class="wa-btn" id="waFloat"
      target="_blank" rel="noopener noreferrer"
      aria-label="WhatsApp ile iletişime geç">
     <span class="wa-btn__circle" aria-hidden="true">
@@ -1685,7 +1702,7 @@
  (function () {
   var navbar = document.getElementById('navbar');
   function onScroll() {
-   navbar.classList.toggle('is-scrolled', window.scrollY > 20);
+   var y=window.scrollY;var prev=prev||0;navbar.classList.toggle('is-scrolled',y>50);navbar.classList.toggle('is-hidden',y>100&&y>prev);prev=y;
   }
   window.addEventListener('scroll', onScroll, { passive: true });
  })();
@@ -1767,5 +1784,6 @@
 <script src="../assets/grid-canvas.js"></script>
 <script>(function(){var items=document.querySelectorAll(".mega-menu__item.has-submenu");items.forEach(function(item){item.addEventListener("mouseenter",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="block"});item.addEventListener("mouseleave",function(){var sub=this.querySelector(".submenu");if(sub)sub.style.display="none"});var sub=item.querySelector(".submenu");if(sub){sub.addEventListener("mouseenter",function(){this.style.display="block"});sub.addEventListener("mouseleave",function(){this.style.display="none"})}})})();</script>
 <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;box-shadow:0 16px 56px -4px rgba(8,20,40,0.55);}</style>
+<style>.mobile-nav-cta .pearl-btn .pearl-btn__wrap{transform:translateY(0)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5)!important;background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%)!important;}</style>
 </body>
 </html>

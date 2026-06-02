@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /index-prototype.html
+Disallow: /main-page.html
+
+Sitemap: https://uzay.k12.tr/sitemap.xml

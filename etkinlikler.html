@@ -146,11 +146,14 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid transparent;
-      transition: box-shadow var(--transition-base), border-color var(--transition-base);
+      transition: box-shadow var(--transition-base), border-color var(--transition-base), transform 0.3s ease;
     }
     .navbar.is-scrolled {
       box-shadow: 0 4px 20px rgba(18,40,76,0.10);
       border-bottom-color: rgba(216, 203, 182, 0.5);
+    }
+    .navbar.is-hidden {
+      transform: translateY(-100%);
     }
     .navbar__inner {
       height: 100%;
@@ -1131,7 +1134,7 @@
     .nav-etkinlikler-wrap { position: relative; }
     .nav-badge-diagonal { position: absolute; top: -18px; right: -36px; background: var(--color-gold); color: var(--color-lacivert); font-size: 8px; font-weight: 700; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 3px; transform: rotate(14deg); text-align: center; pointer-events: none; z-index: 5; line-height: 1.5; }
     .navbar__cta-desktop.pearl-btn { height: auto !important; padding: 0 !important; border: 0 !important; }
-    .navbar__cta-desktop { margin-left: 35px; }
+    .navbar__cta-desktop { margin-left: 15px; }
 
     .ucus-rezervasyon-wrap {
       margin-top: 2.5rem;
@@ -1154,6 +1157,20 @@
     }
   
   </style>
+<link rel="canonical" href="https://uzay.k12.tr/etkinlikler.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://uzay.k12.tr/etkinlikler.html">
+<meta property="og:title" content="Uzay Havacılık Festivali 2026 — 8-9 Mayıs | Kelaynak Havacılık Kulübü">
+<meta property="og:description" content="Uzay Koleji'nin düzenlediği Havacılık Festivali — 8-9 Mayıs 2026, Kelaynak Havacılık Kulübü, Adana. Uçuş gösterileri, roket deneyleri, konserler ve daha fazlası.">
+<meta property="og:image" content="https://uzay.k12.tr/assets/logo.png">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Uzay Koleji">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uzay Havacılık Festivali 2026 — 8-9 Mayıs | Kelaynak Havacılık Kulübü">
+<meta name="twitter:description" content="Uzay Koleji'nin düzenlediği Havacılık Festivali — 8-9 Mayıs 2026, Kelaynak Havacılık Kulübü, Adana. Uçuş gösterileri, roket deneyleri, konserler ve daha fazlası.">
+<meta name="twitter:image" content="https://uzay.k12.tr/assets/logo.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"Uzay Havacılık Festivali 2026","startDate":"2026-05-08T10:00:00+03:00","endDate":"2026-05-09T17:00:00+03:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"Kelaynak Havacılık Kulübü","address":{"@type":"PostalAddress","addressLocality":"Adana","addressCountry":"TR"}},"organizer":{"@type":"EducationalOrganization","name":"Uzay Koleji","url":"https://uzay.k12.tr"},"image":"https://uzay.k12.tr/assets/logo.png","description":"Uzay Koleji'nin düzenlediği Havacılık Festivali — 8-9 Mayıs 2026, Kelaynak Havacılık Kulübü, Adana. Uçuş gösterileri, roket deneyleri, konserler ve daha fazlası.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY","availability":"https://schema.org/InStock","url":"https://uzay.k12.tr/etkinlikler.html"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://uzay.k12.tr/"},{"@type":"ListItem","position":2,"name":"Etkinlikler","item":"https://uzay.k12.tr/etkinlikler.html"}]}</script>
 </head>
 
 <body>
@@ -1558,6 +1575,7 @@
           <li><a href="index.html#iletisim">İletişim</a></li>
                     <li><a href="gurur/sampiyonluklar.html">Şampiyonluklar</a></li>
 <li class="nav-etkinlikler-wrap"><a href="etkinlikler.html" class="active">Etkinlikler</a><span class="nav-badge-diagonal">Havacılık<br>8-9 Mayıs</span></li>
+<li style="margin-left:10px;"><a href="blog/">Blog</a></li>
         </ul>
       </nav>
 
@@ -1582,6 +1600,7 @@
     <a href="index.html#okulumuz" class="mobile-nav-link">Okulumuz</a>
     <a href="index.html#iletisim" class="mobile-nav-link">İletişim</a>
     <a href="etkinlikler.html" class="mobile-nav-link active">Etkinlikler</a>
+    <a href="blog/" class="mobile-nav-link">Blog</a>
     <div class="mobile-nav-cta">
       <a href="kayit.html" class="pearl-btn" style="width:100%;background:linear-gradient(135deg, #FFE566 0%, #FFCB03 60%, #e0aa00 100%);box-shadow:inset 0 0.3rem 0.9rem rgba(255,255,255,0.4),inset 0 -0.1rem 0.3rem rgba(0,0,0,0.3),inset 0 -0.4rem 0.9rem rgba(255,200,0,0.5),0 0.8rem 1.5rem rgba(0,0,0,0.2);">
         <span class="pearl-btn__wrap" style="color:#08294D;-webkit-mask-image:none;mask-image:none;justify-content:center;"><span class="pearl-btn__star" style="color:#08294D;">✧</span> Ücretsiz Başvuru</span>
@@ -1902,7 +1921,7 @@
               <div class="form-thanks__icon">🎉</div>
               <h3 class="form-thanks__title">Talebiniz Alındı!</h3>
               <p class="form-thanks__sub">En kısa sürede sizi arayacağız. Fuarda görüşmek üzere!</p>
-              <a href="https://wa.me/90322XXXXXXX" target="_blank" rel="noopener" class="form-thanks__wa">
+              <a href="https://wa.me/905014648295" target="_blank" rel="noopener" class="form-thanks__wa">
                 <i class="fa-brands fa-whatsapp"></i>
                 WhatsApp'tan da ulaşabilirsiniz
               </a>
@@ -1997,7 +2016,7 @@
     <!-- ============================================================
        WHATSAPP BUTONU
   ============================================================ -->
-  <a href="https://wa.me/905320000000" class="wa-btn" id="waFloat"
+  <a href="https://wa.me/905014648295" class="wa-btn" id="waFloat"
      target="_blank" rel="noopener noreferrer"
      aria-label="WhatsApp ile iletişime geç">
     <span class="wa-btn__circle" aria-hidden="true">
@@ -2025,7 +2044,7 @@
     /* ── Navbar scroll shadow ── */
     var navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function () {
-      navbar.classList.toggle('is-scrolled', window.scrollY > 10);
+      var y=window.scrollY;var prev=prev||0;navbar.classList.toggle('is-scrolled',y>50);navbar.classList.toggle('is-hidden',y>100&&y>prev);prev=y;
     }, { passive: true });
 
     /* ── Dropdown toggle ── */
@@ -2164,5 +2183,6 @@
 
   <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;box-shadow:0 16px 56px -4px rgba(8,20,40,0.55);}</style>
   <script src="assets/grid-canvas.js"></script>
+<style>.mobile-nav-cta .pearl-btn .pearl-btn__wrap{transform:translateY(0)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5)!important;background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%)!important;}</style>
 </body>
 </html>
