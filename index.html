@@ -2776,6 +2776,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     transition: background 0.15s, color 0.15s;
   }
   #cc-save-btn:hover { background: #FFCB03; color: #08294D; }
+  #uzay-cookie-inner { padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); }
+  @media (max-width: 767px) {
+    #uzay-cookie-inner { padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px) + 3.5rem); }
+  }
 </style>
 
 <div id="uzay-cookie-banner" role="dialog" aria-label="Çerez Tercihleri" aria-modal="true">
