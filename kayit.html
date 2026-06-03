@@ -722,7 +722,7 @@
       border: 1px solid rgba(8,41,77,0.12);
       padding: var(--space-8);
       position: relative;
-      margin-left: -35px;
+      margin-left: -75px;
       box-shadow:
         inset 4px 4px 10px rgba(140,155,168,0.55),
         inset -4px -4px 10px rgba(225,234,242,0.75);
@@ -780,6 +780,79 @@
       background-repeat: no-repeat;
       background-position: right 12px center;
       padding-right: 36px;
+    }
+    /* Zorunlu alan eksik/hatalı uyarı highlight'ı */
+    .form-control.is-invalid {
+      border-color: var(--color-kirmizi);
+      background: #FBECEC;
+      box-shadow: 0 0 0 3px rgba(155,27,48,0.12);
+    }
+    .qf-kvkk-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      color: var(--color-lacivert);
+      cursor: pointer;
+    }
+    .qf-kvkk-label input {
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--color-lacivert);
+      width: 16px;
+      height: 16px;
+    }
+    .qf-kvkk-label a { color: var(--color-lacivert); text-decoration: underline; }
+    .qf-kvkk-label.is-invalid { color: var(--color-kirmizi); }
+    .qf-kvkk-label.is-invalid input { outline: 2px solid var(--color-kirmizi); outline-offset: 2px; }
+    .qf-note {
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-3);
+      line-height: 1.5;
+    }
+
+    /* Yardım bandı (hero altı) */
+    .help-band { padding: var(--space-8) 0 0; }
+    .help-band__card {
+      background: var(--color-lacivert);
+      color: var(--color-beyaz);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6) var(--space-8);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-4) var(--space-8);
+      box-shadow: var(--shadow-lg);
+    }
+    .help-band__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: var(--text-lg);
+      color: var(--color-beyaz);
+    }
+    .help-band__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4) var(--space-6);
+      margin-left: auto;
+    }
+    .help-band__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-beyaz);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 500;
+    }
+    .help-band__item i { color: var(--color-gold); width: 18px; text-align: center; }
+    .help-band__item:hover { color: var(--color-gold); }
+    @media (max-width: 640px) {
+      .help-band__card { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+      .help-band__items { margin-left: 0; flex-direction: column; gap: var(--space-3); }
     }
 
     @media (max-width: 900px) {
@@ -2162,20 +2235,22 @@
         <div class="quick-form-card reveal">
           <div class="quick-form-card__title">Hızlı Başvuru</div>
           <div class="quick-form-card__sub">Bilgilerinizi bırakın, sizi arayalım.</div>
-          <form id="quickForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="qf-ad">Ad</label>
-                <input type="text" id="qf-ad" class="form-control" placeholder="Adınız" required>
-              </div>
-              <div class="form-group">
-                <label for="qf-soyad">Soyad</label>
-                <input type="text" id="qf-soyad" class="form-control" placeholder="Soyadınız" required>
-              </div>
+          <form id="quickForm" novalidate>
+            <div class="form-group">
+              <label for="qf-veli">Veli Adı Soyadı</label>
+              <input type="text" id="qf-veli" class="form-control" placeholder="Veli adı soyadı" required>
+            </div>
+            <div class="form-group">
+              <label for="qf-ogrenci">Öğrenci Adı Soyadı</label>
+              <input type="text" id="qf-ogrenci" class="form-control" placeholder="Öğrenci adı soyadı" required>
             </div>
             <div class="form-group">
               <label for="qf-tel">Telefon</label>
               <input type="tel" id="qf-tel" class="form-control" placeholder="05XX XXX XX XX" required>
+            </div>
+            <div class="form-group">
+              <label for="qf-email">E-posta <span style="font-weight:400;text-transform:none;letter-spacing:0;opacity:0.6;">(opsiyonel)</span></label>
+              <input type="email" id="qf-email" class="form-control" placeholder="ornek@email.com">
             </div>
             <div class="form-group">
               <label for="qf-program">Program</label>
@@ -2201,12 +2276,15 @@
             </div>
             <div class="form-group">
               <label for="qf-kampus">Kampüs</label>
-              <select id="qf-kampus" class="form-control" required>
-                <option value="">Kampüs seçiniz</option>
-                <option value="cukurova">Çukurova Kampüsü</option>
-                <option value="seyhan">Seyhan Kampüsü</option>
-                <option value="yuregir">Yüreğir Kampüsü</option>
+              <select id="qf-kampus" class="form-control" required disabled>
+                <option value="">Önce program seçiniz</option>
               </select>
+            </div>
+            <div class="form-group" style="margin-bottom:var(--space-5);">
+              <label class="qf-kvkk-label">
+                <input type="checkbox" id="qf-kvkk" required>
+                <span>Kişisel verilerimin işlenmesine ilişkin <a href="#" target="_blank" rel="noopener">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum.</span>
+              </label>
             </div>
             <button type="submit" class="pearl-btn" style="width:100%;margin-top:var(--space-2);">
               <span class="pearl-btn__wrap" style="justify-content:center;width:100%;">
@@ -2214,9 +2292,26 @@
                 Başvuru Gönder
               </span>
             </button>
+            <p class="qf-note">Başvurunuz alındıktan sonra kayıt danışmanımız 24 saat içinde sizi arayacaktır.</p>
           </form>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       YARDIM BANDI (hero altı)
+  ============================================================ -->
+  <section class="help-band">
+    <div class="container">
+      <div class="help-band__card">
+        <div class="help-band__title">Yardıma mı ihtiyacınız var?</div>
+        <div class="help-band__items">
+          <a class="help-band__item" href="tel:+905014648295"><i class="fa-solid fa-phone"></i><span>0501 464 82 95</span></a>
+          <a class="help-band__item" href="https://wa.me/905014648295" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp Başvuru Hattı</span></a>
+          <a class="help-band__item" href="mailto:info@uzay.k12.tr"><i class="fa-solid fa-envelope"></i><span>info@uzay.k12.tr</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -2295,22 +2390,6 @@
               Kayıt danışmanımız 24 saat içinde arar
             </li>
           </ul>
-
-          <div class="sidebar-contact">
-            <div class="sidebar-contact__title">Yardıma mı ihtiyacınız var?</div>
-            <div class="sidebar-contact__item">
-              <i class="fa-solid fa-phone"></i>
-              <span>0501 464 82 95</span>
-            </div>
-            <div class="sidebar-contact__item">
-              <i class="fa-brands fa-whatsapp"></i>
-              <span>WhatsApp Başvuru Hattı</span>
-            </div>
-            <div class="sidebar-contact__item">
-              <i class="fa-solid fa-envelope"></i>
-              <span>info@uzay.k12.tr</span>
-            </div>
-          </div>
         </aside>
 
         <!-- Big Form -->
@@ -2483,20 +2562,6 @@
             <div class="form-group">
               <label for="bf-not">Eklemek istediğiniz not veya soru</label>
               <textarea id="bf-not" class="form-control" placeholder="Varsa ek bilgi veya sorularınızı yazabilirsiniz..."></textarea>
-            </div>
-
-            <hr class="form-divider">
-
-            <!-- Özel Fırsat: Uçak Turu -->
-            <div class="form-section-title">Özel Fırsat</div>
-            <div class="form-group">
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" id="bf-ucak-turu" name="ucak_turu">
-                  <span>Yarım saatlik kişiye özel uçak turunu Uzay Koleji'ne özel indirimle 3.000 ₺ yerine <strong>2.000 ₺</strong>'ye rezerve etmek ister misiniz?</span>
-                </label>
-                <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:0.4rem;margin-left:1.75rem;line-height:1.5;">İlgili kurumla ziyaretçilerimize özel yaptığımız anlaşma kapsamındadır, kontenjanla sınırlıdır.</p>
-              </div>
             </div>
 
             <hr class="form-divider">
@@ -2806,18 +2871,94 @@
       els.forEach(function (el) { observer.observe(el); });
     })();
 
-    /* ── Quick form submit ── */
+    /* ── Program → Kampüs eşlemesi (kampüs sayfalarındaki bölüm listesine göre) ── */
+    var PROGRAM_KAMPUS = {
+      hemsire: ['yuregir'],
+      biyomedikal: ['cukurova', 'yuregir'],
+      ebelik: ['yuregir'],
+      'saglik-bakim': ['yuregir'],
+      havacilik: ['yuregir'],
+      enerji: ['yuregir'],
+      elektrik: ['seyhan'],
+      gida: ['seyhan'],
+      konaklama: ['cukurova'],
+      ascilik: ['cukurova']
+    };
+    var KAMPUS_ADI = { cukurova: 'Çukurova Kampüsü', seyhan: 'Seyhan Kampüsü', yuregir: 'Yüreğir Kampüsü' };
+
+    function qfPopulateKampus(program, preselect) {
+      var kSel = document.getElementById('qf-kampus');
+      if (!kSel) return;
+      var list = PROGRAM_KAMPUS[program] || [];
+      kSel.innerHTML = '';
+      if (!list.length) {
+        kSel.appendChild(new Option('Önce program seçiniz', ''));
+        kSel.disabled = true;
+        return;
+      }
+      kSel.disabled = false;
+      kSel.classList.remove('is-invalid');
+      if (list.length === 1) {
+        kSel.appendChild(new Option(KAMPUS_ADI[list[0]], list[0]));
+        kSel.value = list[0];
+      } else {
+        kSel.appendChild(new Option('Kampüs seçiniz', ''));
+        list.forEach(function (k) { kSel.appendChild(new Option(KAMPUS_ADI[k], k)); });
+        if (preselect && list.indexOf(preselect) > -1) kSel.value = preselect;
+      }
+    }
+
+    /* ── Quick form: validation + submit ── */
     (function () {
       var form = document.getElementById('quickForm');
       if (!form) return;
+      var pSel = document.getElementById('qf-program');
+      pSel.addEventListener('change', function () { qfPopulateKampus(pSel.value); });
+
+      var kvkk = document.getElementById('qf-kvkk');
+      var kvkkLabel = kvkk.closest('.qf-kvkk-label');
+      ['qf-veli', 'qf-ogrenci', 'qf-tel', 'qf-email', 'qf-program', 'qf-kampus'].forEach(function (id) {
+        var el = document.getElementById(id);
+        ['input', 'change'].forEach(function (ev) { el.addEventListener(ev, function () { el.classList.remove('is-invalid'); }); });
+      });
+      kvkk.addEventListener('change', function () { if (kvkk.checked) kvkkLabel.classList.remove('is-invalid'); });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        var veli = document.getElementById('qf-veli'),
+            ogrenci = document.getElementById('qf-ogrenci'),
+            tel = document.getElementById('qf-tel'),
+            email = document.getElementById('qf-email'),
+            program = document.getElementById('qf-program'),
+            kampus = document.getElementById('qf-kampus');
+        var firstInvalid = null;
+        function check(el, ok) {
+          if (ok) { el.classList.remove('is-invalid'); }
+          else { el.classList.add('is-invalid'); if (!firstInvalid) firstInvalid = el; }
+        }
+        var telDigits = tel.value.replace(/\D/g, '');
+        check(veli, veli.value.trim() !== '');
+        check(ogrenci, ogrenci.value.trim() !== '');
+        check(tel, /^[05]\d{9,10}$/.test(telDigits)); // 0 ya da 5 ile başlar, 10-11 hane
+        check(email, email.value.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()));
+        check(program, program.value !== '');
+        check(kampus, kampus.value !== '');
+        if (kvkk.checked) { kvkkLabel.classList.remove('is-invalid'); }
+        else { kvkkLabel.classList.add('is-invalid'); if (!firstInvalid) firstInvalid = kvkk; }
+
+        if (firstInvalid) {
+          try { firstInvalid.focus({ preventScroll: true }); } catch (_) {}
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
         var data = {
-          ad: document.getElementById('qf-ad').value,
-          soyad: document.getElementById('qf-soyad').value,
-          telefon: document.getElementById('qf-tel').value,
-          program: document.getElementById('qf-program').value,
-          kampus: document.getElementById('qf-kampus').value,
+          veli: veli.value.trim(),
+          ogrenci: ogrenci.value.trim(),
+          telefon: telDigits,
+          email: email.value.trim(),
+          program: program.value,
+          kampus: kampus.value,
           form_type: 'quick'
         };
         console.log('Quick form data:', data);
@@ -2829,6 +2970,7 @@
           btn.innerHTML = origHTML;
           btn.disabled = false;
           form.reset();
+          qfPopulateKampus('');
         }, 3000);
       });
     })();
@@ -2861,20 +3003,16 @@
       var program = params.get('program');
       var kampus  = params.get('kampus');
 
-      if (program) {
-        var sel = document.getElementById('qf-program');
-        if (sel) {
-          sel.value = program;
-          // büyük formdaki program alanı da varsa doldur
-          var bfSel = document.getElementById('bf-program');
-          if (bfSel) bfSel.value = program;
-        }
+      var sel = document.getElementById('qf-program');
+      if (program && sel) {
+        sel.value = program;
+        var bfSel = document.getElementById('bf-program1');
+        if (bfSel) bfSel.value = program;
       }
-
+      // Program seçimine göre kampüs listesini kur (varsa kampus param'ını da uygula)
+      qfPopulateKampus(sel ? sel.value : '', kampus);
       if (kampus) {
-        var kSel = document.getElementById('qf-kampus');
-        if (kSel) kSel.value = kampus;
-        var bfKSel = document.getElementById('bf-kampus');
+        var bfKSel = document.getElementById('bf-kampus1');
         if (bfKSel) bfKSel.value = kampus;
       }
 
@@ -2914,7 +3052,8 @@
     <a href="bursluluk-sinavi.html" class="btn btn--primary">🎓 Başvur</a>
   </div>
 
-  <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;box-shadow:0 16px 56px -4px rgba(8,20,40,0.55);}</style>
+  <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;}</style>
 <style>.mobile-nav-cta .pearl-btn .pearl-btn__wrap{transform:translateY(0)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5)!important;background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%)!important;}</style>
+<style>/* Bursluluk basvurulari bu sezon kapali — ilgili ogeler gizlendi */ a[href$="bursluluk-sinavi.html"],#stickyCta{display:none!important;}</style>
 </body>
 </html>
