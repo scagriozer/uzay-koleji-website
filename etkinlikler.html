@@ -73,6 +73,16 @@
       --transition-fast: 150ms ease;
       --transition-base: 250ms ease;
       --z-navbar: 200;
+      --z-sticky: 200;
+      --z-dropdown: 100;
+      --z-overlay: 300;
+      --space-3: 0.75rem;
+      --transition-slow: 400ms ease;
+      --shadow-md: 0 4px 16px rgba(18,40,76,0.12);
+      --shadow-xl: 0 16px 48px rgba(18,40,76,0.20);
+      --color-bg-section-alt: #F5C200;
+      --container-max: 1280px;
+      --container-padding: clamp(1rem, 4vw, 3rem);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -137,9 +147,9 @@
 
     /* ── Navbar ── */
     .navbar {
-      position: relative;
-      
-      z-index: calc(var(--z-navbar) + 10);
+      position: sticky;
+      top: 0;
+      z-index: calc(var(--z-sticky) + 10);
       width: 100%;
       height: 100px;
       background-color: rgba(251, 250, 239, 0.7);
@@ -148,13 +158,15 @@
       border-bottom: 1px solid transparent;
       transition: box-shadow var(--transition-base), border-color var(--transition-base), transform 0.3s ease;
     }
+
     .navbar.is-scrolled {
-      box-shadow: 0 4px 20px rgba(18,40,76,0.10);
+      box-shadow: var(--shadow-md);
       border-bottom-color: rgba(216, 203, 182, 0.5);
     }
     .navbar.is-hidden {
       transform: translateY(-100%);
     }
+
     .navbar__inner {
       height: 100%;
       display: flex;
@@ -162,6 +174,12 @@
       justify-content: space-between;
       gap: var(--space-8);
     }
+    /* Navbar container'ı ana sayfa ile birebir (sayfa geneli .container 1140px; navbar 1280px) */
+    .navbar .navbar__inner {
+      max-width: var(--container-max);
+      padding-inline: var(--container-padding);
+    }
+
     .navbar__logo {
       display: flex;
       align-items: center;
@@ -169,6 +187,7 @@
       text-decoration: none;
       flex-shrink: 0;
     }
+
     .navbar__logo-mark {
       width: 64px;
       height: 64px;
@@ -184,6 +203,7 @@
       letter-spacing: -0.5px;
       flex-shrink: 0;
     }
+
     .navbar__logo-text {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
@@ -191,6 +211,7 @@
       color: #08294D;
       line-height: 1.0;
     }
+
     .navbar__logo-sub {
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
@@ -199,17 +220,20 @@
       color: #3D4F5F;
       letter-spacing: 0.24px;
     }
+
     .navbar__nav { flex: 1; }
+
     .navbar__links {
-      list-style: none;
       display: flex;
       align-items: center;
-      gap: var(--space-6);
       justify-content: center;
+      gap: var(--space-6);
     }
+
     .navbar__links > li {
       position: relative;
     }
+
     .navbar__links a,
     .navbar__dropdown-trigger {
       font-family: var(--font-body);
@@ -224,9 +248,9 @@
       gap: 4px;
       background: none;
       border: none;
-      cursor: pointer;
       transition: color var(--transition-fast);
     }
+
     .navbar__links a::after,
     .navbar__dropdown-trigger::after {
       content: '';
@@ -238,18 +262,22 @@
       background-color: var(--color-gold);
       transition: width var(--transition-base);
     }
+
     .navbar__links a:hover,
     .navbar__dropdown-trigger:hover {
       color: var(--color-gold);
     }
+
     .navbar__links a:hover::after,
     .navbar__dropdown-trigger:hover::after,
     .navbar__links a.active::after {
       width: 100%;
     }
+
     .navbar__links a.active {
       color: var(--color-gold);
     }
+
     .nav-badge {
       display: inline-block;
       font-size: 9px;
@@ -267,6 +295,8 @@
 
     /* Dropdown */
     .navbar__item--dropdown { position: relative; }
+
+    /* Köprü: trigger ile mega-menu arasındaki boşluğu kapatır, mouseleave'i önler */
     .navbar__item--dropdown::before {
       content: '';
       position: absolute;
@@ -274,16 +304,20 @@
       left: -12px;
       right: -12px;
       height: 16px;
+      z-index: calc(var(--z-dropdown) - 1);
     }
+
     .dropdown-chevron {
       width: 14px;
       height: 14px;
       transition: transform var(--transition-fast);
     }
+
     .navbar__item--dropdown.is-open .dropdown-chevron,
     .navbar__item--dropdown:focus-within .dropdown-chevron {
       transform: rotate(180deg);
     }
+
     .navbar__mega-menu {
       position: absolute;
       top: calc(100% + 12px);
@@ -292,15 +326,16 @@
       min-width: 220px;
       background: var(--color-beyaz);
       border-radius: var(--radius-lg);
-      box-shadow: 0 12px 40px rgba(18,40,76,0.12);
+      box-shadow: var(--shadow-xl);
       border: 1px solid var(--color-border);
       padding: var(--space-4);
       opacity: 0;
       visibility: hidden;
       transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
       pointer-events: none;
-      z-index: 300;
+      z-index: var(--z-dropdown);
     }
+
     .navbar__item--dropdown.is-open .navbar__mega-menu,
     .navbar__item--dropdown:focus-within .navbar__mega-menu {
       opacity: 1;
@@ -308,11 +343,12 @@
       transform: translateX(-50%) translateY(0);
       pointer-events: auto;
     }
+
     .mega-menu__item {
       display: flex;
       align-items: center;
-      gap: var(--space-4);
-      padding: var(--space-2) var(--space-4);
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
       border-radius: var(--radius-md);
       text-decoration: none;
       transition: background-color var(--transition-fast);
@@ -320,7 +356,12 @@
       font-weight: var(--font-weight-medium);
       color: var(--color-text-primary);
     }
-    .mega-menu__item:hover { background-color: rgba(255,203,3,0.15); }
+
+    .mega-menu__item:hover { background-color: var(--color-bg-section-alt); }
+    .mega-menu__item.has-submenu { position: relative; }
+    .mega-menu__item.has-submenu:hover .submenu,
+    .mega-menu__item.has-submenu:focus-within .submenu { display: block !important; }
+
     .mega-menu__dot {
       width: 8px;
       height: 8px;
@@ -328,9 +369,8 @@
       flex-shrink: 0;
     }
 
-
     /* Hamburger */
-        .navbar__hamburger {
+    .navbar__hamburger {
       display: none;
       align-items: center;
       justify-content: center;
@@ -377,7 +417,7 @@
       opacity: 1;
     }
 
-/* Mobile Drawer */
+    /* Mobile Drawer */
     .navbar__mobile-menu {
       position: fixed;
       top: 108px;
@@ -419,7 +459,7 @@
     @media (max-width: 1023px) {
       .navbar__nav, .navbar__cta-desktop { display: none !important; }
       .navbar__hamburger { display: flex; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
-      .navbar { height: 72px;  }
+      .navbar { height: 72px; top: auto; }
       .navbar__logo { transform: scale(0.7); transform-origin: left center; }
       .navbar__inner { padding-inline: var(--space-8); }
       .navbar__mobile-menu { z-index: 99999 !important; }
@@ -2047,8 +2087,9 @@
   <script>
     /* ── Navbar scroll shadow ── */
     var navbar = document.getElementById('navbar');
+    var prev = 0;
     window.addEventListener('scroll', function () {
-      var y=window.scrollY;var prev=prev||0;navbar.classList.toggle('is-scrolled',y>50);navbar.classList.toggle('is-hidden',y>100&&y>prev);prev=y;
+      var y=window.scrollY;navbar.classList.toggle('is-scrolled',y>50);navbar.classList.toggle('is-hidden',y>100&&y>prev);prev=y;
     }, { passive: true });
 
     /* ── Dropdown toggle ── */
@@ -2164,8 +2205,33 @@
         return;
       }
 
-      /* TODO: gerçek submit — fetch('/api/leads', { method:'POST', body: new FormData(this) }) */
-      console.log('Form verisi (placeholder):', Object.fromEntries(new FormData(this)));
+      var fd = new FormData(this);
+      var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
+      var dt = new Date();
+      var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
+      var g = function (k) { return (fd.get(k) || '').toString().trim(); };
+      fetch('https://sheetdb.io/api/v1/rp66tk9n7c7vt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: {
+          'Tarih/Saat': ts,
+          'Kaynak Form': 'Etkinlik',
+          'Sayfa': 'etkinlikler.html',
+          'Öğrenci Adı': name,
+          'Telefon': phone,
+          'E-posta': g('email'),
+          'Sınıf': grade,
+          'İlgilenilen Program': g('program'),
+          'Etkinlik': g('etkinlik') || g('ucus_rezervasyon'),
+          'KVKK Onayı': kvkk ? 'Evet' : 'Hayır',
+          'UTM Source': g('utm_source'),
+          'UTM Medium': g('utm_medium'),
+          'UTM Campaign': g('utm_campaign'),
+          'UTM Content': g('utm_content'),
+          'UTM Term': g('utm_term'),
+          'Durum': 'Yeni'
+        } })
+      }).catch(function () {});
 
       document.getElementById('formBody').style.display  = 'none';
       var thanks = document.getElementById('formThanks');

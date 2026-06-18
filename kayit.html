@@ -2704,7 +2704,32 @@
           kampus: kampus.value,
           form_type: 'quick'
         };
-        console.log('Quick form data:', data);
+        var q = new URLSearchParams(location.search);
+        var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
+        var dt = new Date();
+        var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
+        fetch('https://sheetdb.io/api/v1/rp66tk9n7c7vt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: {
+            'Tarih/Saat': ts,
+            'Kaynak Form': 'Hızlı Kayıt',
+            'Sayfa': 'kayit.html',
+            'Veli Adı': veli.value.trim(),
+            'Öğrenci Adı': ogrenci.value.trim(),
+            'Telefon': telDigits,
+            'E-posta': email.value.trim(),
+            'İlgilenilen Program': program.value,
+            'Kampüs': kampus.value,
+            'KVKK Onayı': kvkk.checked ? 'Evet' : 'Hayır',
+            'UTM Source': q.get('utm_source') || '',
+            'UTM Medium': q.get('utm_medium') || '',
+            'UTM Campaign': q.get('utm_campaign') || '',
+            'UTM Content': q.get('utm_content') || '',
+            'UTM Term': q.get('utm_term') || '',
+            'Durum': 'Yeni'
+          } })
+        }).catch(function () {});
         var btn = form.querySelector('.pearl-btn');
         var origHTML = btn.innerHTML;
         btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;"><i class="fa-solid fa-check"></i> Başvurunuz Alındı!</span>';

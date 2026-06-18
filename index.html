@@ -3574,7 +3574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img loading="lazy" decoding="async" class="program-card__img" src="images/programs/turizm-otelcilik-konaklama.png" alt="Turizm ve Otelcilik">
           <div class="program-card__overlay"></div>
           <div class="program-card__color-overlay"></div>
-          <span class="program-card__campus-tag">📍 Seyhan Kampüsü</span>
+          <span class="program-card__campus-tag">📍 Çukurova Kampüsü</span>
           <div class="program-card__content">
             <div class="program-card__middle">
               <div class="program-card__name">Turizm ve Otelcilik</div>
@@ -4603,6 +4603,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    form.addEventListener('submit', function (e) {
      e.preventDefault();
      trackBursluluk('form_submit');
+
+     var q = new URLSearchParams(location.search);
+     var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
+     var d = new Date();
+     var ts = d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()) + ' ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+     var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+     fetch('https://sheetdb.io/api/v1/rp66tk9n7c7vt', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ data: {
+         'Tarih/Saat': ts,
+         'Kaynak Form': 'Bursluluk',
+         'Sayfa': 'Ana Sayfa',
+         'Öğrenci Adı': v('bm-ad'),
+         'Soyad': v('bm-soyad'),
+         'Telefon': v('bm-tel'),
+         'E-posta': v('bm-email'),
+         'Sınıf': v('bm-sinif'),
+         'İlgilenilen Program': v('bm-program'),
+         'KVKK Onayı': document.getElementById('bm-kvkk').checked ? 'Evet' : 'Hayır',
+         'UTM Source': q.get('utm_source') || '',
+         'UTM Medium': q.get('utm_medium') || '',
+         'UTM Campaign': q.get('utm_campaign') || '',
+         'UTM Content': q.get('utm_content') || '',
+         'UTM Term': q.get('utm_term') || '',
+         'Durum': 'Yeni'
+       } })
+     }).catch(function () {});
+
      var btn = form.querySelector('.bm-submit-btn');
      btn.textContent = '✓ Bilgileriniz Alındı!';
      btn.disabled = true;
