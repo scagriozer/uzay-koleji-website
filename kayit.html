@@ -2253,10 +2253,8 @@
               <select id="qf-program" class="form-control" required>
                 <option value="">Program seçiniz</option>
                 <optgroup label="Sağlık Hizmetleri">
-                  <option value="hemsire">Hemşire Yardımcılığı</option>
+                  <option value="saglik-bakim">Sağlık Bakım Teknisyenliği</option>
                   <option value="biyomedikal">Biyomedikal Cihaz Teknolojileri</option>
-                  <option value="ebelik">Ebe Yardımcılığı</option>
-                  <option value="saglik-bakim">Sağlık Bakım Hizmetleri</option>
                 </optgroup>
                 <optgroup label="Teknik Programlar">
                   <option value="havacilik">Havacılık</option>
@@ -2708,10 +2706,11 @@
         var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
         var dt = new Date();
         var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
-        fetch('https://sheetdb.io/api/v1/rp66tk9n7c7vt', {
+        fetch('https://script.google.com/macros/s/AKfycbyo6MgdpDvtIuyQQXEoO_I7kbUS2lHVXQm0iZ7YG2GNK7SUAKuEB2hT0-SUuWM3B-o/exec', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data: {
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
             'Tarih/Saat': ts,
             'Kaynak Form': 'Hızlı Kayıt',
             'Sayfa': 'kayit.html',
@@ -2728,7 +2727,7 @@
             'UTM Content': q.get('utm_content') || '',
             'UTM Term': q.get('utm_term') || '',
             'Durum': 'Yeni'
-          } })
+          })
         }).catch(function () {});
         var btn = form.querySelector('.pearl-btn');
         var origHTML = btn.innerHTML;
@@ -2752,7 +2751,33 @@
         var data = new FormData(form);
         var obj = {};
         data.forEach(function (v, k) { obj[k] = v; });
-        console.log('Big form data:', obj);
+        var q = new URLSearchParams(location.search);
+        var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
+        var dt = new Date();
+        var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
+        fetch('https://script.google.com/macros/s/AKfycbyo6MgdpDvtIuyQQXEoO_I7kbUS2lHVXQm0iZ7YG2GNK7SUAKuEB2hT0-SUuWM3B-o/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            'Tarih/Saat': ts,
+            'Kaynak Form': 'Başvuru Formu',
+            'Sayfa': 'kayit.html',
+            'Veli Adı': obj['veli_adi'] || '',
+            'Öğrenci Adı': obj['ogrenci_adi'] || '',
+            'Telefon': obj['telefon'] || '',
+            'E-posta': obj['eposta'] || '',
+            'Sınıf': obj['sinif'] || '',
+            'İlgilenilen Program': obj['program'] || '',
+            'Kampüs': obj['kampus'] || '',
+            'UTM Source': q.get('utm_source') || '',
+            'UTM Medium': q.get('utm_medium') || '',
+            'UTM Campaign': q.get('utm_campaign') || '',
+            'UTM Content': q.get('utm_content') || '',
+            'UTM Term': q.get('utm_term') || '',
+            'Durum': 'Yeni'
+          })
+        }).catch(function () {});
         var btn = form.querySelector('.pearl-btn');
         var origHTML = btn.innerHTML;
         btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;"><i class="fa-solid fa-check"></i> Başvurunuz Alındı!</span>';
