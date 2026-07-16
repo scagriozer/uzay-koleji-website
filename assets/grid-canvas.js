@@ -114,7 +114,9 @@
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('scroll', function () { drawFrame(); }, { passive: true });
 
-  function init() { resize(); tick(); }
+  /* drawFrame() burada zorunlu: tick() yalnizca "dirty" durumda cizer,
+     ilk yuklemede dirty false oldugu icin grid mousemove'a kadar bos kalir. */
+  function init() { resize(); drawFrame(); tick(); }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
