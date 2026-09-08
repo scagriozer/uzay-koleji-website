@@ -1455,16 +1455,6 @@
       padding: var(--space-16) 0 var(--space-10);
       position: relative;
     }
-    .video-section-header-block::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, rgba(8,20,40,0.45));
-      pointer-events: none;
-    }
 
     .video-section__bg {
       position: absolute;
@@ -4351,6 +4341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    var navbar = document.getElementById('navbar');
    var annBar = document.querySelector('.announcement-bar');
    if (!section || !box) return;
+   if (section.style.display === 'none' || getComputedStyle(section).display === 'none') return;
 
    var progress        = 0;
    var expanded        = false;
