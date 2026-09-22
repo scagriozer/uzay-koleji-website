@@ -2693,52 +2693,49 @@
           return;
         }
 
-        var data = {
+        var payload = {
           veli: veli.value.trim(),
           ogrenci: ogrenci.value.trim(),
           telefon: telDigits,
           email: email.value.trim(),
           program: program.value,
           kampus: kampus.value,
-          form_type: 'quick'
+          kvkk: kvkk.checked,
+          form_type: 'quick',
+          sayfa: 'kayit.html'
         };
         var q = new URLSearchParams(location.search);
-        var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
-        var dt = new Date();
-        var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
-        fetch('https://script.google.com/macros/s/AKfycbyo6MgdpDvtIuyQQXEoO_I7kbUS2lHVXQm0iZ7YG2GNK7SUAKuEB2hT0-SUuWM3B-o/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            'Tarih/Saat': ts,
-            'Kaynak Form': 'Hızlı Kayıt',
-            'Sayfa': 'kayit.html',
-            'Veli Adı': veli.value.trim(),
-            'Öğrenci Adı': ogrenci.value.trim(),
-            'Telefon': telDigits,
-            'E-posta': email.value.trim(),
-            'İlgilenilen Program': program.value,
-            'Kampüs': kampus.value,
-            'KVKK Onayı': kvkk.checked ? 'Evet' : 'Hayır',
-            'UTM Source': q.get('utm_source') || '',
-            'UTM Medium': q.get('utm_medium') || '',
-            'UTM Campaign': q.get('utm_campaign') || '',
-            'UTM Content': q.get('utm_content') || '',
-            'UTM Term': q.get('utm_term') || '',
-            'Durum': 'Yeni'
-          })
-        }).catch(function () {});
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+          payload[k] = q.get(k) || '';
+        });
+
         var btn = form.querySelector('.pearl-btn');
         var origHTML = btn.innerHTML;
-        btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;"><i class="fa-solid fa-check"></i> Başvurunuz Alındı!</span>';
+        btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;">Gönderiliyor...</span>';
         btn.disabled = true;
-        setTimeout(function () {
-          btn.innerHTML = origHTML;
+
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (!res.ok) throw new Error('lead_submit_failed');
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({ event: 'generate_lead', form_type: 'quick', program: program.value, kampus: kampus.value });
+          btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;"><i class="fa-solid fa-check"></i> Başvurunuz Alındı!</span>';
+          setTimeout(function () {
+            btn.innerHTML = origHTML;
+            btn.disabled = false;
+            form.reset();
+            qfPopulateKampus('');
+          }, 3000);
+        }).catch(function () {
+          btn.innerHTML = '<span class="pearl-btn__wrap" style="justify-content:center;width:100%;">Bir sorun oluştu, tekrar deneyin</span>';
           btn.disabled = false;
-          form.reset();
-          qfPopulateKampus('');
-        }, 3000);
+          setTimeout(function () {
+            btn.innerHTML = origHTML;
+          }, 4000);
+        });
       });
     })();
 
@@ -2755,6 +2752,8 @@
         var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
         var dt = new Date();
         var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({ event: 'generate_lead', form_type: 'big', program: obj['program'] || '', kampus: obj['kampus'] || '' });
         fetch('https://script.google.com/macros/s/AKfycbyo6MgdpDvtIuyQQXEoO_I7kbUS2lHVXQm0iZ7YG2GNK7SUAKuEB2hT0-SUuWM3B-o/exec', {
           method: 'POST',
           mode: 'no-cors',
@@ -2848,5 +2847,23 @@
   <style>/* hero-junction-shadow */.hero,.page-hero{z-index:1;}</style>
 <style>.mobile-nav-cta .pearl-btn .pearl-btn__wrap{transform:translateY(0)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::before{background-color:rgba(180,120,0,0.12)!important;}.mobile-nav-cta .pearl-btn .pearl-btn__wrap::after{box-shadow:inset 0 10px 8px -10px rgba(255,220,50,0.5)!important;background:linear-gradient(180deg,rgba(255,200,0,0.2) 0%,transparent 50%)!important;}</style>
 <style>/* Bursluluk basvurulari bu sezon kapali — ilgili ogeler gizlendi */ a[href$="bursluluk-sinavi.html"],#stickyCta{display:none!important;}</style>
+<script>/* GA4 dataLayer: whatsapp/phone click tracking */
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  document.addEventListener('click', function (e) {
+    var wa = e.target.closest('a[href*="wa.me"]');
+    if (wa) {
+      var waLoc = wa.id || (wa.closest('[id]') ? wa.closest('[id]').id : 'unknown');
+      dataLayer.push({ event: 'whatsapp_click', link_location: waLoc });
+      return;
+    }
+    var tel = e.target.closest('a[href^="tel:"]');
+    if (tel) {
+      var telLoc = tel.id || (tel.closest('[id]') ? tel.closest('[id]').id : 'unknown');
+      dataLayer.push({ event: 'phone_click', link_location: telLoc });
+    }
+  });
+})();
+</script>
 </body>
 </html>
