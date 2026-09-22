@@ -1,6 +1,10 @@
 // Kayit formu lead endpoint. Supabase 'leads' tablosuna yazar (Altineller ile ortak proje,
-// brand_id ile izole). Google Apps Script kanali (script.google.com/.../exec) erisim izni
-// sessizce sifirlanip 12 Agustos 2026'dan beri basvurulari kaybettigi icin devreden cikarildi.
+// brand_id ile izole) - bu, basvurunun kaybolmamasini garanti eden asil kanal. Ayrica ayni
+// Google Sheet'e ("Uzay Koleji - Form Kayitlari") SheetDB uzerinden yazmayi dener, ki
+// personelin gunluk takip ettigi tablo (Notlar/durum sutunlari) guncel kalsin; bu ikinci
+// yazim best-effort'tur, basarisiz olsa da asil kayit (Supabase) etkilenmez.
+// Google Apps Script kanali (script.google.com/.../exec) erisim izni sessizce sifirlanip
+// 12 Agustos 2026'dan beri basvurulari kaybettigi icin devreden cikarildi.
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ ok: false, error: 'method_not_allowed' });
@@ -72,6 +76,39 @@ module.exports = async (req, res) => {
       console.error('lead endpoint: supabase insert failed', resp.status, errText);
       res.status(502).json({ ok: false, error: 'insert_failed' });
       return;
+    }
+
+    // Best-effort: ayni satiri personelin gunluk kullandigi Google Sheet'e de yaz.
+    // Supabase kaydi zaten basarili; bu adim basarisiz olsa da forma yansimaz, sadece loglanir.
+    try {
+      var p2 = function (n) { return n < 10 ? '0' + n : '' + n; };
+      var dt = new Date();
+      var ts = dt.getFullYear() + '-' + p2(dt.getMonth() + 1) + '-' + p2(dt.getDate()) + ' ' + p2(dt.getHours()) + ':' + p2(dt.getMinutes());
+      await fetch('https://sheetdb.io/api/v1/rp66tk9n7c7vt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: {
+          'Tarih/Saat': ts,
+          'Kaynak Form': body.form_type === 'big' ? 'Başvuru Formu' : 'Hızlı Kayıt',
+          'Sayfa': body.sayfa || 'kayit.html',
+          'Veli Adı': body.veli || '',
+          'Öğrenci Adı': body.ogrenci || '',
+          'Telefon': telefonDigits,
+          'E-posta': body.email || '',
+          'Sınıf': body.sinif || '',
+          'İlgilenilen Program': body.program || '',
+          'Kampüs': body.kampus || '',
+          'KVKK Onayı': body.kvkk ? 'Evet' : 'Hayır',
+          'UTM Source': body.utm_source || '',
+          'UTM Medium': body.utm_medium || '',
+          'UTM Campaign': body.utm_campaign || '',
+          'UTM Content': body.utm_content || '',
+          'UTM Term': body.utm_term || '',
+          'Durum': 'Yeni'
+        } })
+      });
+    } catch (sheetErr) {
+      console.error('lead endpoint: sheetdb mirror write failed (non-fatal)', sheetErr);
     }
 
     res.status(200).json({ ok: true });
