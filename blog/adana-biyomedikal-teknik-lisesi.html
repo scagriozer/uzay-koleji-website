@@ -424,6 +424,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('cc-save-btn').addEventListener('click', saveCustom);
     document.getElementById('cc-customize-btn').addEventListener('click', togglePanel);
   });
+
+  window.uzayOpenCookiePrefs = function () {
+    var banner = document.getElementById('uzay-cookie-banner');
+    if (banner) banner.classList.add('cc-visible');
+    var panel = document.getElementById('uzay-cookie-panel');
+    if (panel) panel.removeAttribute('hidden');
+    var stored = getStoredConsent() || { analytics: true, ads: true };
+    var analyticsEl = document.getElementById('cc-analytics');
+    var adsEl = document.getElementById('cc-ads');
+    if (analyticsEl) analyticsEl.checked = !!stored.analytics;
+    if (adsEl) adsEl.checked = !!stored.ads;
+  };
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-cookie-prefs]');
+    if (!trigger) return;
+    e.preventDefault();
+    window.uzayOpenCookiePrefs();
+  });
 })();
 </script>
 <!-- ── END COOKIE CONSENT BANNER ──────────────────────────────────────── -->
@@ -569,6 +588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p><strong>Yazar:</strong> Uzay Koleji Editör Ekibi</p>
         <p>Yayın tarihi: 27 Nisan 2026 · Son güncelleme: 27 Nisan 2026</p>
         <p style="margin-top:1rem;">Bu içerik bilgilendirme amaçlıdır. Güncel program ve kontenjan bilgisi için okulla iletişime geçiniz.</p>
+        <p style="margin-top:1rem;"><a href="#" data-cookie-prefs>Çerez Tercihleri</a></p>
       </footer>
       </div>
       </div>
