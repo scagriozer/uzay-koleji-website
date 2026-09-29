@@ -945,6 +945,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'functionality_storage':   'granted',
       'security_storage':        'granted'
     });
+    if (c.ads) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'consent_ads_granted' });
+    }
   }
   function hideBanner() {
     var el = document.getElementById('uzay-cookie-banner');
