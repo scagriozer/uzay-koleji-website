@@ -1,10 +1,10 @@
 // Başvuru (lead) ucu, sözleşme v2. Asıl kayıt Supabase 'leads' tablosuna (Altıneller ile ortak
-// proje, brand_id ile izole); personelin takip ettiği Google Sheet'e SheetDB üzerinden ayna yazım
-// best-effort'tur. Yalnız production ortamı yazar: Preview ve yerel çalıştırma dry-run döner.
+// proje, brand_id ile izole); personelin takip ettiği Google Sheet'e SheetDB üzerinden ayna yazılır.
+// Yalnız production ortamı yazar: Preview ve yerel çalıştırma dry-run döner.
 
 export const runtime = 'nodejs';
+export const maxDuration = 30;
 
-const JSON_HEADERS = { 'Content-Type': 'application/json; charset=utf-8' };
 const MAX_BODY_BYTES = 16 * 1024;
 const MAX_FIELD_LENGTH = 500;
 const WRITE_TIMEOUT_MS = 8000;
@@ -21,8 +21,16 @@ const FORM_LABELS: Record<string, string> = {
 
 type Body = Record<string, unknown>;
 
+// x-lead-env: cutover sonrası "production gerçekten yazıyor mu" kontrolü ve QA'nın
+// production'a rakamlı gövde göndermemesi bu başlığa dayanır.
 function json(status: number, body: unknown) {
-  return new Response(JSON.stringify(body), { status, headers: JSON_HEADERS });
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'x-lead-env': process.env.VERCEL_ENV ?? 'unset',
+    },
+  });
 }
 
 function methodNotAllowed() {
@@ -39,8 +47,9 @@ export {
   methodNotAllowed as DELETE,
 };
 
+// Uzun değer reddedilmez, kırpılır: bozuk bir reklam şablonunun uzun utm değeri başvuruyu düşürmemeli.
 function text(value: unknown): string | null {
-  if (typeof value === 'string') return value || null;
+  if (typeof value === 'string') return value ? value.slice(0, MAX_FIELD_LENGTH) : null;
   if (typeof value === 'number') return String(value);
   return null;
 }
@@ -55,7 +64,7 @@ function clickId(body: Body, referer: string | null, name: string): string | nul
   if (fromBody) return fromBody;
   if (!referer) return null;
   try {
-    return new URL(referer).searchParams.get(name);
+    return text(new URL(referer).searchParams.get(name));
   } catch {
     return null;
   }
@@ -69,6 +78,80 @@ function istanbulTimestamp(): string {
   }).format(new Date());
 }
 
+// Sheet, = + - @ ile başlayan hücreyi formül sayabilir.
+function sheetCell(value: string | null): string {
+  if (!value) return '';
+  return /^[=+\-@\t\r]/.test(value) ? "'" + value : value;
+}
+
+function parseBody(contentType: string, raw: string): Body | null {
+  if (contentType.includes('application/json')) {
+    if (!raw.trim()) return {};
+    try {
+      return asObject(JSON.parse(raw));
+    } catch {
+      return null;
+    }
+  }
+  if (contentType.includes('application/x-www-form-urlencoded')) {
+    return Object.fromEntries(new URLSearchParams(raw));
+  }
+  try {
+    return raw ? asObject(JSON.parse(raw)) : {};
+  } catch {
+    return {};
+  }
+}
+
+async function writeSupabase(row: unknown): Promise<boolean> {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_KEY;
+  if (!url || !key) {
+    console.error('lead endpoint: missing SUPABASE_URL/SUPABASE_SERVICE_KEY env vars');
+    return false;
+  }
+  try {
+    const resp = await fetch(url + '/rest/v1/leads', {
+      method: 'POST',
+      headers: {
+        apikey: key,
+        Authorization: 'Bearer ' + key,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify(row),
+      signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
+    });
+    if (resp.ok) return true;
+    // PostgREST hata gövdesi satır içeriğini (ad, telefon) taşıyabilir; yalnız hata kodu loglanır.
+    const errBody = await resp.text().catch(() => '');
+    let code = '';
+    try {
+      code = String(JSON.parse(errBody).code ?? '');
+    } catch {}
+    console.error('lead endpoint: supabase insert failed', resp.status, code);
+  } catch (err) {
+    console.error('lead endpoint: supabase insert failed', err instanceof Error ? err.name : 'error');
+  }
+  return false;
+}
+
+async function writeSheet(data: Record<string, string>): Promise<boolean> {
+  try {
+    const resp = await fetch(process.env.SHEETDB_URL || SHEETDB_FALLBACK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data }),
+      signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
+    });
+    if (resp.ok) return true;
+    console.error('lead endpoint: sheetdb mirror write failed', resp.status);
+  } catch (err) {
+    console.error('lead endpoint: sheetdb mirror write failed', err instanceof Error ? err.name : 'error');
+  }
+  return false;
+}
+
 export async function POST(request: Request) {
   const contentType = (request.headers.get('content-type') || '').toLowerCase();
   const raw = await request.text();
@@ -76,53 +159,25 @@ export async function POST(request: Request) {
     return json(413, { ok: false, error: 'payload_too_large' });
   }
 
-  let body: Body = {};
-  if (contentType.includes('application/json')) {
-    if (raw.trim()) {
-      try {
-        body = asObject(JSON.parse(raw));
-      } catch {
-        // Eski uçta Vercel'in ayrıştırıcısı bozuk JSON'a gövdesiz, başlıksız 400 dönüyordu.
-        return new Response(null, { status: 400 });
-      }
-    }
-  } else if (contentType.includes('application/x-www-form-urlencoded')) {
-    body = Object.fromEntries(new URLSearchParams(raw));
-  } else if (raw) {
-    try {
-      body = asObject(JSON.parse(raw));
-    } catch {
-      body = {};
-    }
+  const body = parseBody(contentType, raw);
+  if (body === null) {
+    // Eski uçta Vercel'in ayrıştırıcısı bozuk JSON'a gövdesiz, başlıksız 400 dönüyordu.
+    return new Response(null, { status: 400 });
   }
 
-  const telefonDigits = String(body.telefon || '').replace(/\D/g, '');
+  const telefon = typeof body.telefon === 'string' || typeof body.telefon === 'number' ? String(body.telefon) : '';
+  const telefonDigits = telefon.replace(/\D/g, '').slice(0, 32);
   if (!telefonDigits) {
     return json(400, { ok: false, error: 'phone_required' });
   }
 
   // Gizli tuzak alanı: gerçek ziyaretçi doldurmaz. Bota başarı gösterilir, yazılmaz.
   if (text(body.website)) {
+    console.warn('lead endpoint: honeypot hit, not written');
     return json(200, { ok: true });
   }
 
-  const tooLong = Object.values(body).some((v) => typeof v === 'string' && v.length > MAX_FIELD_LENGTH);
-  if (tooLong) {
-    return json(400, { ok: false, error: 'invalid_payload' });
-  }
-
-  if (process.env.VERCEL_ENV !== 'production') {
-    return json(200, { ok: true, dry_run: true });
-  }
-
-  const SUPABASE_URL = process.env.SUPABASE_URL;
-  const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
-    console.error('lead endpoint: missing SUPABASE_URL/SUPABASE_SERVICE_KEY env vars');
-    return json(500, { ok: false, error: 'server_misconfigured' });
-  }
-
-  const formType = FORM_LABELS[String(body.form_type)] ? String(body.form_type) : 'quick';
+  const formType = typeof body.form_type === 'string' && Object.hasOwn(FORM_LABELS, body.form_type) ? body.form_type : 'quick';
   const isEvent = formType === 'etkinlik';
   const referer = request.headers.get('referer');
   const sayfa = text(body.sayfa);
@@ -140,7 +195,7 @@ export async function POST(request: Request) {
   };
   for (const name of ['gclid', 'gbraid', 'wbraid']) {
     const value = clickId(body, referer, name);
-    if (value) rawSignals[name] = value.slice(0, MAX_FIELD_LENGTH);
+    if (value) rawSignals[name] = value;
   }
   if (text(body.etkinlik)) rawSignals.etkinlik = text(body.etkinlik);
 
@@ -161,63 +216,46 @@ export async function POST(request: Request) {
     raw_signals: rawSignals,
   };
 
-  try {
-    const resp = await fetch(SUPABASE_URL + '/rest/v1/leads', {
-      method: 'POST',
-      headers: {
-        apikey: SUPABASE_SERVICE_KEY,
-        Authorization: 'Bearer ' + SUPABASE_SERVICE_KEY,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify(row),
-      signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
-    });
+  const sheetData: Record<string, string> = {
+    'Tarih/Saat': istanbulTimestamp(),
+    'Kaynak Form': FORM_LABELS[formType],
+    Sayfa: sheetCell(sayfa) || 'kayit.html',
+    'Veli Adı': sheetCell(text(body.veli)),
+    'Öğrenci Adı': sheetCell(text(body.ogrenci)),
+    Telefon: telefonDigits,
+    'E-posta': sheetCell(text(body.email)),
+    Sınıf: sheetCell(text(body.sinif)),
+    'İlgilenilen Program': sheetCell(text(body.program)),
+    Kampüs: sheetCell(text(body.kampus)),
+    'KVKK Onayı': body.kvkk ? 'Evet' : 'Hayır',
+    'UTM Source': sheetCell(text(body.utm_source)),
+    'UTM Medium': sheetCell(text(body.utm_medium)),
+    'UTM Campaign': sheetCell(text(body.utm_campaign)),
+    'UTM Content': sheetCell(text(body.utm_content)),
+    'UTM Term': sheetCell(text(body.utm_term)),
+    Durum: 'Yeni',
+  };
 
-    if (!resp.ok) {
-      const errText = await resp.text().catch(() => '');
-      console.error('lead endpoint: supabase insert failed', resp.status, errText);
-      return json(502, { ok: false, error: 'insert_failed' });
+  const vercelEnv = process.env.VERCEL_ENV;
+  if (vercelEnv !== 'production') {
+    // Vercel üzerinde çalışıp ortamı okuyamıyorsak (sistem değişkenleri kapalı) sessizce başarı
+    // dönmek tüm başvuruları kaybettirir; veli hata görsün ve tekrar denesin.
+    if (!vercelEnv && request.headers.has('x-vercel-id')) {
+      console.error('lead endpoint: VERCEL_ENV undefined on Vercel; lead NOT written');
+      return json(503, { ok: false, error: 'server_misconfigured' });
     }
-  } catch (err) {
-    console.error('lead endpoint: supabase insert failed', err);
+    console.warn('lead endpoint: dry_run, VERCEL_ENV=' + (vercelEnv ?? 'unset'));
+    return json(200, { ok: true, dry_run: true });
+  }
+
+  // Kanallardan biri yazdıysa başvuru kaybolmamıştır; ikisi de yazamadıysa veli hata görür.
+  const savedToSupabase = await writeSupabase(row);
+  const savedToSheet = await writeSheet(sheetData);
+  if (!savedToSupabase && savedToSheet) {
+    console.error('lead endpoint: lead saved to sheet ONLY (supabase failed)');
+  }
+  if (!savedToSupabase && !savedToSheet) {
     return json(502, { ok: false, error: 'insert_failed' });
   }
-
-  // Supabase kaydı başarılı; Sheet aynası başarısız olsa da forma yansımaz, yalnız loglanır.
-  try {
-    const sheetResp = await fetch(process.env.SHEETDB_URL || SHEETDB_FALLBACK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        data: {
-          'Tarih/Saat': istanbulTimestamp(),
-          'Kaynak Form': FORM_LABELS[formType],
-          Sayfa: sayfa || 'kayit.html',
-          'Veli Adı': text(body.veli) || '',
-          'Öğrenci Adı': text(body.ogrenci) || '',
-          Telefon: telefonDigits,
-          'E-posta': text(body.email) || '',
-          Sınıf: text(body.sinif) || '',
-          'İlgilenilen Program': text(body.program) || '',
-          Kampüs: text(body.kampus) || '',
-          'KVKK Onayı': body.kvkk ? 'Evet' : 'Hayır',
-          'UTM Source': text(body.utm_source) || '',
-          'UTM Medium': text(body.utm_medium) || '',
-          'UTM Campaign': text(body.utm_campaign) || '',
-          'UTM Content': text(body.utm_content) || '',
-          'UTM Term': text(body.utm_term) || '',
-          Durum: 'Yeni',
-        },
-      }),
-      signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
-    });
-    if (!sheetResp.ok) {
-      console.error('lead endpoint: sheetdb mirror write failed (non-fatal)', sheetResp.status);
-    }
-  } catch (sheetErr) {
-    console.error('lead endpoint: sheetdb mirror write failed (non-fatal)', sheetErr);
-  }
-
   return json(200, { ok: true });
 }
