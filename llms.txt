@@ -1,0 +1,51 @@
+# Uzay Koleji
+
+> Uzay Koleji, Adana merkezli devlet destekli özel mesleki ve teknik anadolu lisesidir. Altıneller Eğitim Kurumları bünyesinde Çukurova, Seyhan ve Yüreğir olmak üzere 3 kampüsü ve 7 meslek programı bulunur.
+
+Devlet destekli özel lise; özel sektör tarafından kurulup işletilen, öğrenci başına devlet katkısı alan eğitim kurumudur. Mezunlar MEB onaylı lise diploması alır, YKS'ye girebilir ve kendi alanına yönelik üniversite programlarını tercih ettiğinde alan ek puanı kazanır.
+
+Resmi site: https://uzay.k12.tr (dil: Türkçe)
+
+## Programlar
+
+- [Tüm Programlar](https://uzay.k12.tr/programlar/): 7 mesleki programın özeti
+- [Havacılık](https://uzay.k12.tr/programlar/havacilik.html)
+- [Biyomedikal Cihaz Teknolojileri](https://uzay.k12.tr/programlar/biyomedikal.html)
+- [Yenilenebilir Enerji](https://uzay.k12.tr/programlar/enerji.html)
+- [Sağlık Hizmetleri](https://uzay.k12.tr/programlar/saglik-hizmetleri.html)
+- [Elektrik-Elektronik Teknolojisi](https://uzay.k12.tr/programlar/elektrik-elektronik.html)
+- [Gıda Teknolojisi](https://uzay.k12.tr/programlar/gida-teknolojileri.html)
+- [Turizm ve Otelcilik](https://uzay.k12.tr/programlar/turizm-otelcilik.html)
+
+## Kampüsler
+
+- [Çukurova Kampüsü](https://uzay.k12.tr/kampusler/cukurova.html): Çukurova, Adana. Telefon: +90 322 247 15 15
+- [Seyhan Kampüsü](https://uzay.k12.tr/kampusler/seyhan.html): Seyhan, Adana. Telefon: +90 322 328 28 28
+- [Yüreğir Kampüsü](https://uzay.k12.tr/kampusler/yuregir.html): Yüreğir, Adana. Telefon: +90 322 346 20 10
+
+## Kayıt ve Başvuru
+
+- [Kayıt ve Başvuru](https://uzay.k12.tr/kayit.html): online ön kayıt formu
+- [Etkinlikler](https://uzay.k12.tr/etkinlikler.html)
+- [Şampiyonluklar](https://uzay.k12.tr/gurur/sampiyonluklar.html)
+
+## Rehberler
+
+- [Adana'da Mesleki Lise Rehberi](https://uzay.k12.tr/blog/adanada-mesleki-lise-rehberi.html)
+- [Devlet Destekli Özel Meslek Lisesi Nedir?](https://uzay.k12.tr/blog/devlet-destekli-ozel-meslek-lisesi-nedir.html)
+- [Mesleki Lise mi Anadolu Lisesi mi?](https://uzay.k12.tr/blog/mesleki-lise-mi-anadolu-lisesi-mi.html)
+- [Meslek Lisesi Seçerken Sorulması Gereken 10 Soru](https://uzay.k12.tr/blog/adana-meslek-lisesi-secerken-10-soru.html)
+- [Meslek Lisesinden Üniversiteye: Bölümlere Göre Üniversite Yolu](https://uzay.k12.tr/blog/meslek-lisesi-mezunu-universite-bolumleri.html)
+- [Adana'da Teknik Lise: Bölümler ve Tercih Rehberi](https://uzay.k12.tr/blog/adana-teknik-lise-bolumleri.html)
+- [Havacılık Teknik Lisesi](https://uzay.k12.tr/blog/adana-havacilik-teknik-lisesi.html)
+- [Biyomedikal Teknik Lisesi](https://uzay.k12.tr/blog/adana-biyomedikal-teknik-lisesi.html)
+- [Yenilenebilir Enerji Teknik Lisesi](https://uzay.k12.tr/blog/adana-yenilenebilir-enerji-teknik-lisesi.html)
+- [Sağlık Teknik Lisesi](https://uzay.k12.tr/blog/adana-saglik-teknik-lisesi.html)
+- [Elektrik-Elektronik Teknik Lisesi](https://uzay.k12.tr/blog/adana-elektrik-elektronik-teknik-lisesi.html)
+- [Gıda Teknolojisi Lisesi](https://uzay.k12.tr/blog/adana-gida-teknolojisi-lisesi.html)
+- [Aşçılık Lisesi: Mutfak Sanatları Bölümü](https://uzay.k12.tr/blog/adana-ascilik-mutfak-sanatlari-lisesi.html)
+
+## Optional
+
+- [Blog](https://uzay.k12.tr/blog/)
+- [Gizlilik Politikası](https://uzay.k12.tr/gizlilik-politikasi.html)
