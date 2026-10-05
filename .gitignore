@@ -3,3 +3,9 @@
 .planning/
 apply_changes.py
 .continue-here.md
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
+.env*
+.claude/
