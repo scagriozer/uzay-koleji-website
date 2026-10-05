@@ -25,7 +25,7 @@ Resmi site: https://uzay.k12.tr (dil: Türkçe)
 
 ## Kayıt ve Başvuru
 
-- [Kayıt ve Başvuru](https://uzay.k12.tr/kayit.html): online ön kayıt formu
+- [Kayıt ve Başvuru](https://uzay.k12.tr/kayit.html): online başvuru formu
 - [Etkinlikler](https://uzay.k12.tr/etkinlikler.html)
 - [Şampiyonluklar](https://uzay.k12.tr/gurur/sampiyonluklar.html)
 
