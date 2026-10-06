@@ -22,9 +22,13 @@ for (const name of readdirSync(root)) {
   if (!ALLOWED_ROOT.has(name) && !isIgnored(name)) errors.push(`kökte beklenmeyen girdi: ${name} (site dosyaları public/ altında olmalı)`);
 }
 
-for (const required of ['index.html', 'robots.txt', 'sitemap.xml', 'programlar/index.html', 'blog/index.html']) {
+for (const required of ['index.html', 'robots.txt', 'programlar/index.html']) {
   if (!existsSync(path.join(root, 'public', required))) errors.push(`public/${required} yok`);
 }
+
+// Blog ve sitemap Sanity'den üretilir; bu yollardaki statik dosya rewrite'ı ve app/sitemap.ts'i gölgeler.
+if (existsSync(path.join(root, 'public', 'blog'))) errors.push("public/blog var: blog Sanity'den yönetilir (rewrite'ı gölgeler)");
+if (existsSync(path.join(root, 'public', 'sitemap.xml'))) errors.push('public/sitemap.xml var: app/sitemap.ts ile çakışır');
 
 // public/ altındaki dosya aynı yoldaki route'u gölgeler.
 if (existsSync(path.join(root, 'public', 'api'))) errors.push("public/api, /api route'larını gölgeler");
