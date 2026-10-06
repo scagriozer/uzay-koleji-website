@@ -15,7 +15,7 @@ if (!existsSync(vercelJson) || JSON.stringify(JSON.parse(readFileSync(vercelJson
 
 // Kökte yalnız bu girdiler olabilir. Eski yapıya (kök, blog/, kampusler/) açılmış bir içerik
 // PR'ı merge edilirse dosya yayına çıkmaz; build geçip içerik sessizce kaybolmasın.
-const ALLOWED_ROOT = new Set(['app', 'public', 'scripts', 'package.json', 'package-lock.json', 'next.config.ts', 'proxy.ts', 'tsconfig.json', 'vercel.json', '.gitignore', '.vercelignore', '.git']);
+const ALLOWED_ROOT = new Set(['app', 'public', 'scripts', 'package.json', 'package-lock.json', 'next.config.ts', 'tsconfig.json', 'vercel.json', '.gitignore', '.vercelignore', '.git']);
 const ignored = readFileSync(path.join(root, '.gitignore'), 'utf8').split('\n').map((l) => l.trim().replace(/\/$/, '')).filter((l) => l && !l.startsWith('#') && !l.startsWith('!'));
 const isIgnored = (name) => ignored.some((p) => new RegExp('^' + p.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$').test(name));
 for (const name of readdirSync(root)) {
