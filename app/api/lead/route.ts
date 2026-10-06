@@ -1,6 +1,7 @@
-// Başvuru (lead) ucu, sözleşme v2. Asıl kayıt Supabase 'leads' tablosuna (Altıneller ile ortak
-// proje, brand_id ile izole); personelin takip ettiği Google Sheet'e SheetDB üzerinden ayna yazılır.
-// Yalnız production ortamı yazar: Preview ve yerel çalıştırma dry-run döner.
+// Başvuru (lead) ucu, sözleşme v2. Başvuru, grubun diğer markalarıyla aynı yoldan ortak CRM giriş
+// ucuna (Altıneller sitesi, /api/leads/intake) iletilir: Supabase 'leads' + aşama + bildirimler.
+// O uç yanıt vermezse aynı tabloya doğrudan yazılır. Personelin takip ettiği Google Sheet'e SheetDB
+// üzerinden ayna yazılır. Yalnız production ortamı yazar: Preview ve yerel çalıştırma dry-run döner.
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -11,6 +12,8 @@ const WRITE_TIMEOUT_MS = 8000;
 // Kimlik public repoda zaten açık; SHEETDB_URL ile döndürülmüş adres verilene kadar yedek.
 const SHEETDB_FALLBACK_URL = 'https://sheetdb.io/api/v1/rp66tk9n7c7vt';
 const UZAY_BRAND_ID_FALLBACK = '8550e68a-8068-4a32-96c2-64d240cf5e48';
+const CRM_INTAKE_URL = 'https://www.altineller.k12.tr/api/leads/intake';
+const CRM_BRAND_SLUG = 'uzay-koleji';
 
 const FORM_LABELS: Record<string, string> = {
   quick: 'Hızlı Kayıt',
@@ -101,6 +104,23 @@ function parseBody(contentType: string, raw: string): Body | null {
   } catch {
     return {};
   }
+}
+
+async function writeCrm(payload: unknown): Promise<boolean> {
+  try {
+    const resp = await fetch(process.env.CRM_INTAKE_URL || CRM_INTAKE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
+    });
+    const result = resp.ok ? await resp.json().catch(() => null) : null;
+    if (result?.ok) return true;
+    console.error('lead endpoint: crm intake failed', resp.status);
+  } catch (err) {
+    console.error('lead endpoint: crm intake failed', err instanceof Error ? err.name : 'error');
+  }
+  return false;
 }
 
 async function writeSupabase(row: unknown): Promise<boolean> {
@@ -216,6 +236,23 @@ export async function POST(request: Request) {
     raw_signals: rawSignals,
   };
 
+  const { gclid, ...details } = rawSignals;
+  const crmPayload = {
+    brand_slug: CRM_BRAND_SLUG,
+    name: row.name,
+    phone: telefonDigits,
+    email: row.email,
+    gclid: gclid ?? null,
+    utm_source: row.utm_source,
+    utm_medium: row.utm_medium,
+    utm_campaign: row.utm_campaign,
+    utm_content: row.utm_content,
+    utm_term: row.utm_term,
+    referrer: referer,
+    landing_page: sayfa,
+    details,
+  };
+
   const sheetData: Record<string, string> = {
     'Tarih/Saat': istanbulTimestamp(),
     'Kaynak Form': FORM_LABELS[formType],
@@ -248,11 +285,12 @@ export async function POST(request: Request) {
     return json(200, { ok: true, dry_run: true });
   }
 
-  // Kanallardan biri yazdıysa başvuru kaybolmamıştır; ikisi de yazamadıysa veli hata görür.
-  const savedToSupabase = await writeSupabase(row);
+  // Kanallardan biri yazdıysa başvuru kaybolmamıştır; hiçbiri yazamadıysa veli hata görür.
+  const savedToCrm = row.name ? await writeCrm(crmPayload) : false;
+  const savedToSupabase = savedToCrm || (await writeSupabase(row));
   const savedToSheet = await writeSheet(sheetData);
   if (!savedToSupabase && savedToSheet) {
-    console.error('lead endpoint: lead saved to sheet ONLY (supabase failed)');
+    console.error('lead endpoint: lead saved to sheet ONLY (crm and supabase failed)');
   }
   if (!savedToSupabase && !savedToSheet) {
     return json(502, { ok: false, error: 'insert_failed' });
