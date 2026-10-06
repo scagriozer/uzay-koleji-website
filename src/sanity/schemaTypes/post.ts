@@ -16,7 +16,7 @@ export const post = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({ name: 'excerpt', title: 'Liste kartı özeti', type: 'text', rows: 3, validation: (rule) => rule.required().custom(noEmDash) }),
-    defineField({ name: 'seoDescription', title: 'Meta açıklaması (Google sonucu ve JSON-LD)', type: 'text', rows: 3, validation: (rule) => rule.required().max(160).custom(noEmDash) }),
+    defineField({ name: 'seoDescription', title: 'Meta açıklaması (Google sonucu ve JSON-LD)', type: 'text', rows: 3, validation: (rule) => [rule.required(), rule.max(160).warning('160 karakteri aşan açıklama Google sonucunda kesilir'), rule.custom(noEmDash)] }),
     defineField({ name: 'tldr', title: 'Kısaca (TL;DR kutusu)', type: 'text', rows: 3 }),
     defineField({ name: 'footerNote', title: 'Yazı sonu notu (boşsa standart bilgilendirme notu)', type: 'text', rows: 2 }),
     defineField({ name: 'tag', title: 'Etiket', type: 'string' }),
