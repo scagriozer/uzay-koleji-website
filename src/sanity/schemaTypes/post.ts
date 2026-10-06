@@ -7,7 +7,7 @@ export const post = defineType({
   title: 'Blog Yazısı',
   type: 'document',
   fields: [
-    defineField({ name: 'title', title: 'Başlık', type: 'string', validation: (rule) => rule.required().max(70).custom(noEmDash) }),
+    defineField({ name: 'title', title: 'Başlık (H1)', type: 'string', validation: (rule) => rule.required().custom(noEmDash) }),
     defineField({
       name: 'slug',
       title: 'Adres (slug)',
@@ -15,13 +15,18 @@ export const post = defineType({
       options: { source: 'title', maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: 'excerpt', title: 'Özet (meta description)', type: 'text', rows: 3, validation: (rule) => rule.required().max(160).custom(noEmDash) }),
+    defineField({ name: 'excerpt', title: 'Liste kartı özeti', type: 'text', rows: 3, validation: (rule) => rule.required().custom(noEmDash) }),
+    defineField({ name: 'seoDescription', title: 'Meta açıklaması (Google sonucu ve JSON-LD)', type: 'text', rows: 3, validation: (rule) => rule.required().max(160).custom(noEmDash) }),
     defineField({ name: 'tldr', title: 'Kısaca (TL;DR kutusu)', type: 'text', rows: 3 }),
+    defineField({ name: 'footerNote', title: 'Yazı sonu notu (boşsa standart bilgilendirme notu)', type: 'text', rows: 2 }),
     defineField({ name: 'tag', title: 'Etiket', type: 'string' }),
     defineField({ name: 'readingMinutes', title: 'Okuma süresi (dk)', type: 'number', validation: (rule) => rule.required().integer().min(1) }),
-    defineField({ name: 'publishedAt', title: 'Yayın tarihi', type: 'datetime', validation: (rule) => rule.required() }),
-    defineField({ name: 'updatedAt', title: 'Güncelleme tarihi', type: 'datetime' }),
-    defineField({ name: 'seoTitle', title: 'SEO başlığı (boşsa başlık kullanılır)', type: 'string', validation: (rule) => rule.custom(noEmDash) }),
+    defineField({ name: 'publishedAt', title: 'Yayın tarihi', type: 'date', validation: (rule) => rule.required() }),
+    defineField({ name: 'updatedAt', title: 'Güncelleme tarihi', type: 'date' }),
+    defineField({ name: 'breadcrumbName', title: 'Kırıntı adı (boşsa başlık kullanılır)', type: 'string', validation: (rule) => rule.custom(noEmDash) }),
+    defineField({ name: 'seoTitle', title: 'SEO başlığı (title etiketi; " | Uzay Koleji" otomatik eklenir, boşsa başlık)', type: 'string', validation: (rule) => rule.custom(noEmDash) }),
+    defineField({ name: 'ogTitle', title: 'Sosyal paylaşım başlığı (boşsa SEO başlığı)', type: 'string', validation: (rule) => rule.custom(noEmDash) }),
+    defineField({ name: 'ogDescription', title: 'Sosyal paylaşım açıklaması (boşsa meta açıklaması)', type: 'text', rows: 2, validation: (rule) => rule.custom(noEmDash) }),
     defineField({ name: 'coverImage', title: 'Kapak görseli', type: 'image', options: { hotspot: true }, fields: [defineField({ name: 'alt', title: 'Alt metin', type: 'string' })] }),
     defineField({
       name: 'body',
@@ -47,6 +52,12 @@ export const post = defineType({
             ],
             annotations: [
               defineArrayMember({
+                name: 'anchor',
+                type: 'object',
+                title: 'Başlık bağlantı kimliği',
+                fields: [defineField({ name: 'id', title: 'Kimlik (içindekiler bağlantısı)', type: 'string', validation: (rule) => rule.required().regex(/^[a-z0-9-]+$/) })],
+              }),
+              defineArrayMember({
                 name: 'link',
                 type: 'object',
                 title: 'Bağlantı',
@@ -56,23 +67,8 @@ export const post = defineType({
           },
         }),
         defineArrayMember({ type: 'table' }),
-      ],
-    }),
-    defineField({
-      name: 'faq',
-      title: 'Sık sorulan sorular',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'faqItem',
-          fields: [
-            defineField({ name: 'question', title: 'Soru', type: 'string', validation: (rule) => rule.required() }),
-            defineField({ name: 'answer', title: 'Cevap', type: 'text', rows: 3, validation: (rule) => rule.required() }),
-            defineField({ name: 'inJsonLd', title: 'JSON-LD içinde yer alsın', type: 'boolean', initialValue: true }),
-          ],
-          preview: { select: { title: 'question' } },
-        }),
+        defineArrayMember({ type: 'ctaBox' }),
+        defineArrayMember({ type: 'faqList' }),
       ],
     }),
   ],
